@@ -1,0 +1,28 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'application'
+
+mainClassName = 'com.ivanvinski.kunvertuh.Kunvertuh'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'com.google.guava:guava:23.3-jre'
+    compile 'org.reactfx:reactfx:1.4.1'
+    compile 'com.jfoenix:jfoenix:1.9.0'
+    compile 'de.jensd:fontawesomefx-commons:8.15'
+    compile 'de.jensd:fontawesomefx-materialdesignfont:1.7.22-4'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-all:1.10.19'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
