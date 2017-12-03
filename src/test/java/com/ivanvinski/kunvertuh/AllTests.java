@@ -2,6 +2,7 @@ package com.ivanvinski.kunvertuh;
 
 import com.ivanvinski.kunvertuh.unit.LengthUnitTest;
 import com.ivanvinski.kunvertuh.unit.MassUnitTest;
+import com.ivanvinski.kunvertuh.unit.VolumeUnitTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -10,6 +11,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
     LengthUnitTest.class,
     MassUnitTest.class,
+    VolumeUnitTest.class,
 })
 public class AllTests {
 
