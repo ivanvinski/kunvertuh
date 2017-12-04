@@ -37,11 +37,6 @@ public enum MassUnit {
     return scale;
   }
 
-  @Override
-  public String toString() {
-    return String.format("%s (%s)", super.toString().toLowerCase(), getAbbreviation());
-  }
-
   public BigDecimal toGrams(BigDecimal mass) {
     return toMassUnit(MassUnit.GRAMS, mass);
   }

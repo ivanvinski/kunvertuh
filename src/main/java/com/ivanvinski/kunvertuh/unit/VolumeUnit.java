@@ -37,11 +37,6 @@ public enum VolumeUnit {
     return scale;
   }
 
-  @Override
-  public String toString() {
-    return String.format("%s (%s)", super.toString().toLowerCase(), getAbbreviation());
-  }
-
   public BigDecimal toMillimeters(BigDecimal volume) {
     return toVolumeUnit(VolumeUnit.MILLILITERS, volume);
   }

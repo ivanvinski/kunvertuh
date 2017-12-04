@@ -39,11 +39,6 @@ public enum LengthUnit {
     return scale;
   }
 
-  @Override
-  public String toString() {
-    return String.format("%s (%s)", super.toString().toLowerCase(), getAbbreviation());
-  }
-
   public BigDecimal toMillimeters(BigDecimal length) {
     return toLengthUnit(LengthUnit.MILLIMETERS, length);
   }
