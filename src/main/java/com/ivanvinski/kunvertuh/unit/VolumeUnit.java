@@ -14,11 +14,11 @@ public enum VolumeUnit {
   QUARTS("qt", .8798789d),
   GALLONS("gal", .2199692d);
 
-  private String acronym;
+  private String abbreviation;
   private BigDecimal scale;
 
-  VolumeUnit(String acronym, double scale) {
-    this.acronym = acronym;
+  VolumeUnit(String abbreviation, double scale) {
+    this.abbreviation = abbreviation;
     this.scale = new BigDecimal(scale);
   }
 
@@ -29,8 +29,8 @@ public enum VolumeUnit {
     return liters.multiply(getScale());
   }
 
-  public String getAcronym() {
-    return acronym;
+  public String getAbbreviation() {
+    return abbreviation;
   }
 
   public BigDecimal getScale() {
@@ -39,7 +39,7 @@ public enum VolumeUnit {
 
   @Override
   public String toString() {
-    return String.format("%s (%s)", super.toString().toLowerCase(), getAcronym());
+    return String.format("%s (%s)", super.toString().toLowerCase(), getAbbreviation());
   }
 
   public BigDecimal toMillimeters(BigDecimal volume) {

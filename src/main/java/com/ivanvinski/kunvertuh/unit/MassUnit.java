@@ -14,11 +14,11 @@ public enum MassUnit {
   OUNCES("oz", .03527396d),
   POUNDS("lb", .002204623d);
 
-  private String acronym;
+  private String abbreviation;
   private BigDecimal scale;
 
-  MassUnit(String acronym, double scale) {
-    this.acronym = acronym;
+  MassUnit(String abbreviation, double scale) {
+    this.abbreviation = abbreviation;
     this.scale = new BigDecimal(scale);
   }
 
@@ -29,8 +29,8 @@ public enum MassUnit {
     return grams.multiply(getScale());
   }
 
-  public String getAcronym() {
-    return acronym;
+  public String getAbbreviation() {
+    return abbreviation;
   }
 
   public BigDecimal getScale() {
@@ -39,7 +39,7 @@ public enum MassUnit {
 
   @Override
   public String toString() {
-    return String.format("%s (%s)", super.toString().toLowerCase(), getAcronym());
+    return String.format("%s (%s)", super.toString().toLowerCase(), getAbbreviation());
   }
 
   public BigDecimal toGrams(BigDecimal mass) {

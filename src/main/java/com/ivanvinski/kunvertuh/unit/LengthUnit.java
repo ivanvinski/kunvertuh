@@ -16,11 +16,11 @@ public enum LengthUnit {
   YARDS("yd", 1.093613d),
   MILES("mi", .0006213712d);
 
-  private String acronym;
+  private String abbreviation;
   private BigDecimal scale;
 
-  LengthUnit(String acronym, double scale) {
-    this.acronym = acronym;
+  LengthUnit(String abbreviation, double scale) {
+    this.abbreviation = abbreviation;
     this.scale = new BigDecimal(scale);
   }
 
@@ -31,8 +31,8 @@ public enum LengthUnit {
     return meters.multiply(getScale());
   }
 
-  public String getAcronym() {
-    return acronym;
+  public String getAbbreviation() {
+    return abbreviation;
   }
 
   public BigDecimal getScale() {
@@ -41,7 +41,7 @@ public enum LengthUnit {
 
   @Override
   public String toString() {
-    return String.format("%s (%s)", super.toString().toLowerCase(), getAcronym());
+    return String.format("%s (%s)", super.toString().toLowerCase(), getAbbreviation());
   }
 
   public BigDecimal toMillimeters(BigDecimal length) {
