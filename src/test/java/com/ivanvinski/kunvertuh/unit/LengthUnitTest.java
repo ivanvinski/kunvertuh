@@ -1,6 +1,7 @@
 package com.ivanvinski.kunvertuh.unit;
 
 import static com.ivanvinski.kunvertuh.TestUtils.assertEqualsCompare;
+import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
 import org.junit.Test;
@@ -109,5 +110,45 @@ public class LengthUnitTest {
   @Test
   public void convertsMilesToMeters() {
     assertEqualsCompare(ONE_MILE_IN_METERS, LengthUnit.MILES.toMeters(SOURCE_LENGTH));
+  }
+
+  @Test
+  public void testMillimetersAbbreviation() {
+    assertEquals("mm", LengthUnit.MILLIMETERS.getAbbreviation());
+  }
+
+  @Test
+  public void testCentimetersAbbreviation() {
+    assertEquals("cm", LengthUnit.CENTIMETERS.getAbbreviation());
+  }
+
+  @Test
+  public void testMetersAbbreviation() {
+    assertEquals("m", LengthUnit.METERS.getAbbreviation());
+  }
+
+  @Test
+  public void testKilometersAbbreviation() {
+    assertEquals("km", LengthUnit.KILOMETERS.getAbbreviation());
+  }
+
+  @Test
+  public void testInchesAbbreviation() {
+    assertEquals("in", LengthUnit.INCHES.getAbbreviation());
+  }
+
+  @Test
+  public void testFeetAbbreviation() {
+    assertEquals("ft", LengthUnit.FEET.getAbbreviation());
+  }
+
+  @Test
+  public void testYardsAbbreviation() {
+    assertEquals("yd", LengthUnit.YARDS.getAbbreviation());
+  }
+
+  @Test
+  public void testMilesAbbreviation() {
+    assertEquals("mi", LengthUnit.MILES.getAbbreviation());
   }
 }

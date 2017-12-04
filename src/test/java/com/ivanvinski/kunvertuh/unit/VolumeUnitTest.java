@@ -1,6 +1,7 @@
 package com.ivanvinski.kunvertuh.unit;
 
 import static com.ivanvinski.kunvertuh.TestUtils.assertEqualsCompare;
+import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
 import org.junit.Test;
@@ -85,5 +86,35 @@ public class VolumeUnitTest {
   @Test
   public void convertsGallonsToLiters() {
     assertEqualsCompare(ONE_GALLON_IN_LITERS, VolumeUnit.GALLONS.toLiters(SOURCE_VOLUME));
+  }
+
+  @Test
+  public void testMillilitersAbbreviation() {
+    assertEquals("ml", VolumeUnit.MILLILITERS.getAbbreviation());
+  }
+
+  @Test
+  public void testDecilitersAbbreviation() {
+    assertEquals("dl", VolumeUnit.DECILITERS.getAbbreviation());
+  }
+
+  @Test
+  public void testLitersAbbreviation() {
+    assertEquals("l", VolumeUnit.LITERS.getAbbreviation());
+  }
+
+  @Test
+  public void testFluidOuncesAbbreviation() {
+    assertEquals("fl oz", VolumeUnit.FLUID_OUNCES.getAbbreviation());
+  }
+
+  @Test
+  public void testQuartsAbbreviation() {
+    assertEquals("qt", VolumeUnit.QUARTS.getAbbreviation());
+  }
+
+  @Test
+  public void testGallonsAbbreviation() {
+    assertEquals("gal", VolumeUnit.GALLONS.getAbbreviation());
   }
 }

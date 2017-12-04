@@ -1,6 +1,7 @@
 package com.ivanvinski.kunvertuh.unit;
 
 import static com.ivanvinski.kunvertuh.TestUtils.assertEqualsCompare;
+import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
 import org.junit.Test;
@@ -85,5 +86,35 @@ public class MassUnitTest {
   @Test
   public void convertsPoundsToGrams() {
     assertEqualsCompare(ONE_POUND_IN_GRAMS, MassUnit.POUNDS.toGrams(SOURCE_MASS));
+  }
+
+  @Test
+  public void testGramsAbbreviation() {
+    assertEquals("g", MassUnit.GRAMS.getAbbreviation());
+  }
+
+  @Test
+  public void testDekagramsAbbreviation() {
+    assertEquals("dag", MassUnit.DEKAGRAMS.getAbbreviation());
+  }
+
+  @Test
+  public void testKilogramsAbbreviation() {
+    assertEquals("kg", MassUnit.KILOGRAMS.getAbbreviation());
+  }
+
+  @Test
+  public void testGrainsAbbreviation() {
+    assertEquals("gr", MassUnit.GRAINS.getAbbreviation());
+  }
+
+  @Test
+  public void testOuncesAbbreviation() {
+    assertEquals("oz", MassUnit.OUNCES.getAbbreviation());
+  }
+
+  @Test
+  public void testPoundsAbbreviation() {
+    assertEquals("lb", MassUnit.POUNDS.getAbbreviation());
   }
 }
