@@ -7,7 +7,9 @@ import javafx.beans.property.StringProperty;
 public class LengthUnitsViewMock implements LengthUnitsView {
 
   private StringProperty millimeters, centimeters, meters, kilometers;
+  private Consumer<String> millimetersAction, centimetersAction, metersAction, kilometersAction;
   private StringProperty inches, feet, yards, miles;
+  private Consumer<String> inchesAction, feetAction, yardsAction, milesAction;
 
   public LengthUnitsViewMock() {
     millimeters = newStringProperty();
@@ -32,7 +34,11 @@ public class LengthUnitsViewMock implements LengthUnitsView {
 
   @Override
   public void setOnMillimetersActionEvent(Consumer<String> actionConsumer) {
-    millimeters.addListener((observable, oldValue, newValue) -> actionConsumer.accept(newValue));
+    millimetersAction = actionConsumer;
+  }
+
+  public void fireMillimetersActionEvent() {
+    millimetersAction.accept(getMillimeters());
   }
 
   @Override
@@ -47,7 +53,11 @@ public class LengthUnitsViewMock implements LengthUnitsView {
 
   @Override
   public void setOnCentimetersActionEvent(Consumer<String> actionConsumer) {
-    centimeters.addListener((observable, oldValue, newValue) -> actionConsumer.accept(newValue));
+    centimetersAction = actionConsumer;
+  }
+
+  public void fireCentimetersActionEvent() {
+    centimetersAction.accept(getCentimeters());
   }
 
   @Override
@@ -62,7 +72,11 @@ public class LengthUnitsViewMock implements LengthUnitsView {
 
   @Override
   public void setOnMetersActionEvent(Consumer<String> actionConsumer) {
-    meters.addListener((observable, oldValue, newValue) -> actionConsumer.accept(newValue));
+    metersAction = actionConsumer;
+  }
+
+  public void fireMetersActionEvent() {
+    metersAction.accept(getMeters());
   }
 
   @Override
@@ -77,7 +91,11 @@ public class LengthUnitsViewMock implements LengthUnitsView {
 
   @Override
   public void setOnKilometersActionEvent(Consumer<String> actionConsumer) {
-    kilometers.addListener((observable, oldValue, newValue) -> actionConsumer.accept(newValue));
+    kilometersAction = actionConsumer;
+  }
+
+  public void fireKilometersActionEvent() {
+    kilometersAction.accept(getKilometers());
   }
 
   @Override
@@ -92,7 +110,11 @@ public class LengthUnitsViewMock implements LengthUnitsView {
 
   @Override
   public void setOnInchesActionEvent(Consumer<String> actionConsumer) {
-    inches.addListener((observable, oldValue, newValue) -> actionConsumer.accept(newValue));
+    inchesAction = actionConsumer;
+  }
+
+  public void fireInchesActionEvent() {
+    inchesAction.accept(getInches());
   }
 
   @Override
@@ -107,7 +129,11 @@ public class LengthUnitsViewMock implements LengthUnitsView {
 
   @Override
   public void setOnFeetChanged(Consumer<String> actionConsumer) {
-    feet.addListener((observable, oldValue, newValue) -> actionConsumer.accept(newValue));
+    feetAction = actionConsumer;
+  }
+
+  public void fireFeetActionEvent() {
+    feetAction.accept(getFeet());
   }
 
   @Override
@@ -122,7 +148,11 @@ public class LengthUnitsViewMock implements LengthUnitsView {
 
   @Override
   public void setOnYardsChanged(Consumer<String> actionConsumer) {
-    yards.addListener((observable, oldValue, newValue) -> actionConsumer.accept(newValue));
+    yardsAction = actionConsumer;
+  }
+
+  public void fireYardsActionEvent() {
+    yardsAction.accept(getYards());
   }
 
   @Override
@@ -137,7 +167,11 @@ public class LengthUnitsViewMock implements LengthUnitsView {
 
   @Override
   public void setOnMilesChanged(Consumer<String> actionConsumer) {
-    miles.addListener((observable, oldValue, newValue) -> actionConsumer.accept(newValue));
+    milesAction = actionConsumer;
+  }
+
+  public void fireMilesActionEvent() {
+    milesAction.accept(getMiles());
   }
 
   private StringProperty newStringProperty() {
