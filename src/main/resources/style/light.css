@@ -1,0 +1,44 @@
+.jfx-text-field {
+  -jfx-label-float: TRUE;
+}
+
+.card {
+  -fx-background-color: white;
+  -fx-hgap: 20px;
+  -fx-vgap: 20px;
+  -fx-padding: 10px;
+}
+
+.card .label {
+  -fx-font-size: 18px;
+}
+
+.card .jfx-text-field {
+  -fx-font-size: 14px;
+}
+
+.nav {
+  -fx-background-color: #4CAF50;
+  -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, .35), 10, .1, 0, -1);
+}
+
+.nav .jfx-button {
+  -fx-background-color: #4CAF50;
+  -fx-background-radius: 0;
+  -fx-font-size: 16px;
+  -fx-content-display: TOP;
+  -fx-graphic-text-gap: 4px;
+  -fx-padding: 8px;
+}
+
+.nav .jfx-button:active {
+  -fx-background-color: #4CAF50;
+}
+
+.nav .jfx-button .glyph-icon {
+  -glyph-size: 26px;
+}
+
+.elevated {
+  -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, .35), 10, .1, 0, 0);
+}
