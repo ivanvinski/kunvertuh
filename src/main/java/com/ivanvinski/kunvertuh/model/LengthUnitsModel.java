@@ -1,72 +1,24 @@
 package com.ivanvinski.kunvertuh.model;
 
-import com.ivanvinski.kunvertuh.unit.LengthUnit;
 import java.math.BigDecimal;
-import java.util.Objects;
-import javafx.beans.property.ReadOnlyObjectProperty;
-import javafx.beans.property.ReadOnlyObjectWrapper;
 
-public final class LengthUnitsModel {
+public interface LengthUnitsModel<U> {
 
-  private ReadOnlyObjectWrapper<BigDecimal> millimeters, centimeters, meters, kilometers;
-  private ReadOnlyObjectWrapper<BigDecimal> inches, feet, yards, miles;
+  void convert(BigDecimal sourceLength, U sourceUnit);
 
-  public LengthUnitsModel() {
-    millimeters = newBigDecimalProperty();
-    centimeters = newBigDecimalProperty();
-    meters = newBigDecimalProperty();
-    kilometers = newBigDecimalProperty();
-    inches = newBigDecimalProperty();
-    feet = newBigDecimalProperty();
-    yards = newBigDecimalProperty();
-    miles = newBigDecimalProperty();
-  }
+  BigDecimal getMillimeters();
 
-  public void convert(BigDecimal sourceLength, LengthUnit sourceUnit) {
-    Objects.requireNonNull(sourceUnit, "Can't convert null length unit");
-    millimeters.setValue(sourceUnit.toMillimeters(sourceLength));
-    centimeters.setValue(sourceUnit.toCentimeters(sourceLength));
-    meters.setValue(sourceUnit.toMeters(sourceLength));
-    kilometers.setValue(sourceUnit.toKilometers(sourceLength));
-    inches.setValue(sourceUnit.toInches(sourceLength));
-    feet.setValue(sourceUnit.toFeet(sourceLength));
-    yards.setValue(sourceUnit.toYards(sourceLength));
-    miles.setValue(sourceUnit.toMiles(sourceLength));
-  }
+  BigDecimal getCentimeters();
 
-  public ReadOnlyObjectProperty<BigDecimal> millimetersProperty() {
-    return millimeters.getReadOnlyProperty();
-  }
+  BigDecimal getMeters();
 
-  public ReadOnlyObjectProperty<BigDecimal> centimetersProperty() {
-    return centimeters.getReadOnlyProperty();
-  }
+  BigDecimal getKilometers();
 
-  public ReadOnlyObjectProperty<BigDecimal> metersProperty() {
-    return meters.getReadOnlyProperty();
-  }
+  BigDecimal getInches();
 
-  public ReadOnlyObjectProperty<BigDecimal> kilometersProperty() {
-    return kilometers.getReadOnlyProperty();
-  }
+  BigDecimal getFeet();
 
-  public ReadOnlyObjectProperty<BigDecimal> inchesProperty() {
-    return inches.getReadOnlyProperty();
-  }
+  BigDecimal getYards();
 
-  public ReadOnlyObjectProperty<BigDecimal> feetProperty() {
-    return feet.getReadOnlyProperty();
-  }
-
-  public ReadOnlyObjectProperty<BigDecimal> yardsProperty() {
-    return yards.getReadOnlyProperty();
-  }
-
-  public ReadOnlyObjectProperty<BigDecimal> milesProperty() {
-    return miles.getReadOnlyProperty();
-  }
-
-  private ReadOnlyObjectWrapper<BigDecimal> newBigDecimalProperty() {
-    return new ReadOnlyObjectWrapper<>(new BigDecimal(0d));
-  }
+  BigDecimal getMiles();
 }
