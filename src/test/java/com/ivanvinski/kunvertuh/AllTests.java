@@ -1,5 +1,6 @@
 package com.ivanvinski.kunvertuh;
 
+import com.ivanvinski.kunvertuh.model.TestAbstractUnitsModel;
 import com.ivanvinski.kunvertuh.model.TestLengthUnitsModelImpl;
 import com.ivanvinski.kunvertuh.model.TestMassUnitModelImpl;
 import com.ivanvinski.kunvertuh.model.TestVolumeUnitsModelImpl;
@@ -12,6 +13,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({
+    TestAbstractUnitsModel.class,
     TestLengthUnitsModelImpl.class,
     TestLengthUnitsPresenter.class,
     TestMassUnitModelImpl.class,
