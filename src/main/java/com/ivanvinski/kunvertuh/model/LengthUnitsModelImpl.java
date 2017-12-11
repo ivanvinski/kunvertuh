@@ -14,7 +14,8 @@ import java.util.Objects;
 import javax.measure.quantity.Length;
 import javax.measure.unit.Unit;
 
-public class LengthUnitsModelImpl implements LengthUnitsModel<Unit<Length>> {
+public class LengthUnitsModelImpl extends AbstractUnitsModel<Length> implements
+    LengthUnitsModel<Unit<Length>> {
 
   private BigDecimal millimeters, centimeters, meters, kilometers;
   private BigDecimal inches, feet, yards, miles;
@@ -22,14 +23,14 @@ public class LengthUnitsModelImpl implements LengthUnitsModel<Unit<Length>> {
   @Override
   public void convert(BigDecimal sourceLength, Unit<Length> sourceUnit) {
     Objects.requireNonNull(sourceUnit, "Can't convert null source unit");
-    millimeters = convert(sourceLength, sourceUnit, MILLIMETER);
-    centimeters = convert(sourceLength, sourceUnit, CENTIMETER);
-    meters = convert(sourceLength, sourceUnit, METER);
-    kilometers = convert(sourceLength, sourceUnit, KILOMETER);
-    inches = convert(sourceLength, sourceUnit, INCH);
-    feet = convert(sourceLength, sourceUnit, FOOT);
-    yards = convert(sourceLength, sourceUnit, YARD);
-    miles = convert(sourceLength, sourceUnit, MILE);
+    millimeters = convertSafely(sourceLength, sourceUnit, MILLIMETER);
+    centimeters = convertSafely(sourceLength, sourceUnit, CENTIMETER);
+    meters = convertSafely(sourceLength, sourceUnit, METER);
+    kilometers = convertSafely(sourceLength, sourceUnit, KILOMETER);
+    inches = convertSafely(sourceLength, sourceUnit, INCH);
+    feet = convertSafely(sourceLength, sourceUnit, FOOT);
+    yards = convertSafely(sourceLength, sourceUnit, YARD);
+    miles = convertSafely(sourceLength, sourceUnit, MILE);
   }
 
   @Override
@@ -70,12 +71,5 @@ public class LengthUnitsModelImpl implements LengthUnitsModel<Unit<Length>> {
   @Override
   public BigDecimal getMiles() {
     return miles;
-  }
-
-  private BigDecimal convert(BigDecimal sourceLength, Unit<Length> sourceUnit,
-      Unit<Length> toUnit) {
-    return sourceLength == null ? null : new BigDecimal(sourceUnit
-        .getConverterTo(toUnit)
-        .convert(sourceLength.doubleValue()));
   }
 }

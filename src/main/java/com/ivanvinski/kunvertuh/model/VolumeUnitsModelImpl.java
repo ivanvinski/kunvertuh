@@ -9,17 +9,18 @@ import java.math.BigDecimal;
 import javax.measure.quantity.Volume;
 import javax.measure.unit.Unit;
 
-public class VolumeUnitsModelImpl implements VolumeUnitsModel<Unit<Volume>> {
+public class VolumeUnitsModelImpl extends AbstractUnitsModel<Volume> implements
+    VolumeUnitsModel<Unit<Volume>> {
 
   private BigDecimal liters, cubicMeters;
   private BigDecimal gallons, cubicInches;
 
   @Override
   public void convert(BigDecimal sourceVolume, Unit<Volume> sourceUnit) {
-    liters = convert(sourceVolume, sourceUnit, LITER);
-    cubicMeters = convert(sourceVolume, sourceUnit, CUBIC_METRE);
-    gallons = convert(sourceVolume, sourceUnit, GALLON_UK);
-    cubicInches = convert(sourceVolume, sourceUnit, CUBIC_INCH);
+    liters = convertSafely(sourceVolume, sourceUnit, LITER);
+    cubicMeters = convertSafely(sourceVolume, sourceUnit, CUBIC_METRE);
+    gallons = convertSafely(sourceVolume, sourceUnit, GALLON_UK);
+    cubicInches = convertSafely(sourceVolume, sourceUnit, CUBIC_INCH);
   }
 
   @Override
@@ -40,12 +41,5 @@ public class VolumeUnitsModelImpl implements VolumeUnitsModel<Unit<Volume>> {
   @Override
   public BigDecimal getCubicInches() {
     return cubicInches;
-  }
-
-  private BigDecimal convert(BigDecimal sourceVolume, Unit<Volume> sourceUnit,
-      Unit<Volume> toUnit) {
-    return sourceVolume == null ? null : new BigDecimal(sourceUnit
-        .getConverterTo(toUnit)
-        .convert(sourceVolume.doubleValue()));
   }
 }
