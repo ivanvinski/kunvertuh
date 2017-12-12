@@ -11,6 +11,7 @@ repositories {
 dependencies {
     compile 'org.jscience:jscience:4.3.1'
     compile 'com.google.guava:guava:23.3-jre'
+    compile 'com.google.inject:guice:4.1.0'
     compile 'org.reactfx:reactfx:1.4.1'
     compile 'com.jfoenix:jfoenix:1.9.0'
     compile 'de.jensd:fontawesomefx-commons:8.15'
