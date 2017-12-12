@@ -7,24 +7,26 @@ import static javax.measure.unit.NonSI.TON_UK;
 import static javax.measure.unit.SI.GRAM;
 import static javax.measure.unit.SI.KILOGRAM;
 
+import com.ivanvinski.kunvertuh.util.SimpleUnitConverter;
+import com.ivanvinski.kunvertuh.util.UnitConverter;
 import java.math.BigDecimal;
 import javax.measure.quantity.Mass;
 import javax.measure.unit.Unit;
 
-public class MassUnitsModelImpl extends AbstractUnitsModel<Mass> implements
-    MassUnitsModel<Unit<Mass>> {
+public class MassUnitsModelImpl implements MassUnitsModel<Unit<Mass>> {
 
+  private UnitConverter<Unit<Mass>> unitConverter = new SimpleUnitConverter<>();
   private BigDecimal grams, kilograms, metricTons;
   private BigDecimal ounces, pounds, imperialTons;
 
   @Override
   public void convert(BigDecimal sourceMass, Unit<Mass> sourceUnit) {
-    grams = convertSafely(sourceMass, sourceUnit, GRAM);
-    kilograms = convertSafely(sourceMass, sourceUnit, KILOGRAM);
-    metricTons = convertSafely(sourceMass, sourceUnit, METRIC_TON);
-    ounces = convertSafely(sourceMass, sourceUnit, OUNCE);
-    pounds = convertSafely(sourceMass, sourceUnit, POUND);
-    imperialTons = convertSafely(sourceMass, sourceUnit, TON_UK);
+    grams = unitConverter.convert(sourceMass, sourceUnit, GRAM);
+    kilograms = unitConverter.convert(sourceMass, sourceUnit, KILOGRAM);
+    metricTons = unitConverter.convert(sourceMass, sourceUnit, METRIC_TON);
+    ounces = unitConverter.convert(sourceMass, sourceUnit, OUNCE);
+    pounds = unitConverter.convert(sourceMass, sourceUnit, POUND);
+    imperialTons = unitConverter.convert(sourceMass, sourceUnit, TON_UK);
   }
 
   @Override

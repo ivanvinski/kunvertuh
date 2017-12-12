@@ -9,28 +9,28 @@ import static javax.measure.unit.SI.KILOMETER;
 import static javax.measure.unit.SI.METER;
 import static javax.measure.unit.SI.MILLIMETER;
 
+import com.ivanvinski.kunvertuh.util.SimpleUnitConverter;
+import com.ivanvinski.kunvertuh.util.UnitConverter;
 import java.math.BigDecimal;
-import java.util.Objects;
 import javax.measure.quantity.Length;
 import javax.measure.unit.Unit;
 
-public class LengthUnitsModelImpl extends AbstractUnitsModel<Length> implements
-    LengthUnitsModel<Unit<Length>> {
+public class LengthUnitsModelImpl implements LengthUnitsModel<Unit<Length>> {
 
+  private UnitConverter<Unit<Length>> unitConverter = new SimpleUnitConverter<>();
   private BigDecimal millimeters, centimeters, meters, kilometers;
   private BigDecimal inches, feet, yards, miles;
 
   @Override
   public void convert(BigDecimal sourceLength, Unit<Length> sourceUnit) {
-    Objects.requireNonNull(sourceUnit, "Can't convert null source unit");
-    millimeters = convertSafely(sourceLength, sourceUnit, MILLIMETER);
-    centimeters = convertSafely(sourceLength, sourceUnit, CENTIMETER);
-    meters = convertSafely(sourceLength, sourceUnit, METER);
-    kilometers = convertSafely(sourceLength, sourceUnit, KILOMETER);
-    inches = convertSafely(sourceLength, sourceUnit, INCH);
-    feet = convertSafely(sourceLength, sourceUnit, FOOT);
-    yards = convertSafely(sourceLength, sourceUnit, YARD);
-    miles = convertSafely(sourceLength, sourceUnit, MILE);
+    millimeters = unitConverter.convert(sourceLength, sourceUnit, MILLIMETER);
+    centimeters = unitConverter.convert(sourceLength, sourceUnit, CENTIMETER);
+    meters = unitConverter.convert(sourceLength, sourceUnit, METER);
+    kilometers = unitConverter.convert(sourceLength, sourceUnit, KILOMETER);
+    inches = unitConverter.convert(sourceLength, sourceUnit, INCH);
+    feet = unitConverter.convert(sourceLength, sourceUnit, FOOT);
+    yards = unitConverter.convert(sourceLength, sourceUnit, YARD);
+    miles = unitConverter.convert(sourceLength, sourceUnit, MILE);
   }
 
   @Override
