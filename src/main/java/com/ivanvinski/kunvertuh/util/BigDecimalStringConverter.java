@@ -26,7 +26,7 @@ public class BigDecimalStringConverter implements Converter<String, BigDecimal> 
   @Override
   public BigDecimal parse(String value) {
     try {
-      return new BigDecimal(valueFormat.parse(value).longValue());
+      return value == null ? null : new BigDecimal(valueFormat.parse(value).doubleValue());
     } catch (ParseException e) {
       return null;
     }
