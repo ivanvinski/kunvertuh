@@ -11,7 +11,7 @@ import javafx.scene.Parent;
 
 public class ViewLoader {
 
-  private Map<Class<?>, Object> loadedViews = new HashMap<>();
+  private Map<Class<? extends Parent>, Parent> loadedViews = new HashMap<>();
 
   public void load(URL fxmlFile) {
     FXMLLoader loader = new FXMLLoader(fxmlFile);
@@ -24,13 +24,13 @@ public class ViewLoader {
     }
   }
 
-  public Map<Class<?>, Object> getLoadedViews() {
+  public Map<Class<? extends Parent>, Parent> getLoadedViews() {
     return loadedViews;
   }
 
   private void registerView(URL fxmlFile, Parent view) {
     Objects.requireNonNull(view, "View class not set for: " + fxmlFile);
-    final Class<?> viewType = view.getClass();
+    final Class<? extends Parent> viewType = view.getClass();
     if (loadedViews.containsKey(viewType)) {
       throw new IllegalArgumentException("View already loaded: " + viewType);
     } else {
