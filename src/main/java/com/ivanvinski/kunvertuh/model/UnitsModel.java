@@ -4,5 +4,5 @@ import java.math.BigDecimal;
 
 public interface UnitsModel<U> {
 
-  void convert(BigDecimal sourceValue, U sourceUnit);
+  void convert(BigDecimal sourceLength, U sourceUnit);
 }
