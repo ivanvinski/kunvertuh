@@ -10,7 +10,7 @@ import static javax.measure.unit.SI.METER;
 import static javax.measure.unit.SI.MILLIMETER;
 
 import com.ivanvinski.kunvertuh.model.LengthUnitsModel;
-import com.ivanvinski.kunvertuh.util.Converter;
+import com.ivanvinski.kunvertuh.util.StringConverter;
 import com.ivanvinski.kunvertuh.view.LengthUnitsView;
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -21,10 +21,10 @@ public class LengthUnitsPresenter implements UnitsPresenter<Unit<Length>> {
 
   private LengthUnitsView view;
   private LengthUnitsModel<Unit<Length>> model;
-  private Converter<String, BigDecimal> valueConverter;
+  private StringConverter<BigDecimal> valueConverter;
 
   public LengthUnitsPresenter(LengthUnitsView view, LengthUnitsModel<Unit<Length>> model,
-      Converter<String, BigDecimal> valueConverter) {
+      StringConverter<BigDecimal> valueConverter) {
     this.view = Objects.requireNonNull(view, "View can't be null");
     this.model = Objects.requireNonNull(model, "Model can't be null");
     this.valueConverter = Objects.requireNonNull(valueConverter, "Value converter can't be null");

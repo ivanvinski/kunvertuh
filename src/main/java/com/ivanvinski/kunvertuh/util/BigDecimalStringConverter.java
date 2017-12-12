@@ -6,7 +6,7 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Objects;
 
-public class BigDecimalStringConverter implements Converter<String, BigDecimal> {
+public class BigDecimalStringConverter implements StringConverter<BigDecimal> {
 
   private NumberFormat valueFormat;
 

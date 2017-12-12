@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 import com.ivanvinski.kunvertuh.model.MassUnitsModel;
 import com.ivanvinski.kunvertuh.model.MassUnitsModelImpl;
 import com.ivanvinski.kunvertuh.util.BigDecimalStringConverter;
-import com.ivanvinski.kunvertuh.util.Converter;
+import com.ivanvinski.kunvertuh.util.StringConverter;
 import com.ivanvinski.kunvertuh.view.MassUnitsViewMock;
 import java.math.BigDecimal;
 import org.junit.Test;
@@ -22,7 +22,7 @@ public class TestMassUnitsPresenter {
 
   private static final String SOURCE_MASS = "5";
 
-  private Converter<String, BigDecimal> valueConverter = new BigDecimalStringConverter();
+  private StringConverter<BigDecimal> valueConverter = new BigDecimalStringConverter();
   private String formattedSourceMass = valueConverter.format(valueConverter.parse(SOURCE_MASS));
 
   private MassUnitsViewMock view = new MassUnitsViewMock();

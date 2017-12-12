@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 import com.ivanvinski.kunvertuh.model.VolumeUnitsModel;
 import com.ivanvinski.kunvertuh.model.VolumeUnitsModelImpl;
 import com.ivanvinski.kunvertuh.util.BigDecimalStringConverter;
-import com.ivanvinski.kunvertuh.util.Converter;
+import com.ivanvinski.kunvertuh.util.StringConverter;
 import com.ivanvinski.kunvertuh.view.VolumeUnitsViewMock;
 import java.math.BigDecimal;
 import org.junit.Test;
@@ -20,7 +20,7 @@ public class TestVolumeUnitsPresenter {
 
   private static final String SOURCE_VOLUME = "15";
 
-  private Converter<String, BigDecimal> valueConverter = new BigDecimalStringConverter();
+  private StringConverter<BigDecimal> valueConverter = new BigDecimalStringConverter();
   private String formattedSourceVolume = valueConverter.format(valueConverter.parse(SOURCE_VOLUME));
 
   private VolumeUnitsViewMock view = new VolumeUnitsViewMock();

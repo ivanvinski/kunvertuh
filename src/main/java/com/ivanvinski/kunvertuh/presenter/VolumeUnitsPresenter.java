@@ -6,7 +6,7 @@ import static javax.measure.unit.NonSI.LITER;
 import static javax.measure.unit.SI.CUBIC_METRE;
 
 import com.ivanvinski.kunvertuh.model.VolumeUnitsModel;
-import com.ivanvinski.kunvertuh.util.Converter;
+import com.ivanvinski.kunvertuh.util.StringConverter;
 import com.ivanvinski.kunvertuh.view.VolumeUnitsView;
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -17,10 +17,10 @@ public class VolumeUnitsPresenter implements UnitsPresenter<Unit<Volume>> {
 
   private VolumeUnitsView view;
   private VolumeUnitsModel<Unit<Volume>> model;
-  private Converter<String, BigDecimal> valueConverter;
+  private StringConverter<BigDecimal> valueConverter;
 
   public VolumeUnitsPresenter(VolumeUnitsView view, VolumeUnitsModel<Unit<Volume>> model,
-      Converter<String, BigDecimal> valueConverter) {
+      StringConverter<BigDecimal> valueConverter) {
     this.view = Objects.requireNonNull(view, "View can't be null");
     this.model = Objects.requireNonNull(model, "Model can't be null");
     this.valueConverter = Objects.requireNonNull(valueConverter, "Value converter can't be null");

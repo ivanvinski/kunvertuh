@@ -1,6 +1,5 @@
 package com.ivanvinski.kunvertuh.model;
 
-import com.ivanvinski.kunvertuh.util.Converter;
 import java.math.BigDecimal;
 
 public interface VolumeUnitsModel<U> extends UnitsModel<U> {

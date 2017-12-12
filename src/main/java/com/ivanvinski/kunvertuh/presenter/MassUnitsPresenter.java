@@ -8,7 +8,7 @@ import static javax.measure.unit.SI.GRAM;
 import static javax.measure.unit.SI.KILOGRAM;
 
 import com.ivanvinski.kunvertuh.model.MassUnitsModel;
-import com.ivanvinski.kunvertuh.util.Converter;
+import com.ivanvinski.kunvertuh.util.StringConverter;
 import com.ivanvinski.kunvertuh.view.MassUnitsView;
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -19,10 +19,10 @@ public class MassUnitsPresenter implements UnitsPresenter<Unit<Mass>> {
 
   private MassUnitsView view;
   private MassUnitsModel<Unit<Mass>> model;
-  private Converter<String, BigDecimal> valueConverter;
+  private StringConverter<BigDecimal> valueConverter;
 
   public MassUnitsPresenter(MassUnitsView view, MassUnitsModel<Unit<Mass>> model,
-      Converter<String, BigDecimal> valueConverter) {
+      StringConverter<BigDecimal> valueConverter) {
     this.view = Objects.requireNonNull(view, "View can't be null");
     this.model = Objects.requireNonNull(model, "Model can't be null");
     this.valueConverter = Objects.requireNonNull(valueConverter, "Value converter can't be null");
