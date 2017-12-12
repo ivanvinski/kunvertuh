@@ -10,33 +10,36 @@ import static org.junit.Assert.assertEquals;
 
 import com.ivanvinski.kunvertuh.model.VolumeUnitsModel;
 import com.ivanvinski.kunvertuh.model.VolumeUnitsModelImpl;
+import com.ivanvinski.kunvertuh.util.BigDecimalStringConverter;
+import com.ivanvinski.kunvertuh.util.Converter;
 import com.ivanvinski.kunvertuh.view.VolumeUnitsViewMock;
 import java.math.BigDecimal;
-import org.junit.Before;
 import org.junit.Test;
 
 public class TestVolumeUnitsPresenter {
 
   private static final String SOURCE_VOLUME = "15";
-  private String formattedSourceVolume;
+
+  private Converter<String, BigDecimal> valueConverter = new BigDecimalStringConverter();
+  private String formattedSourceVolume = valueConverter.format(valueConverter.parse(SOURCE_VOLUME));
 
   private VolumeUnitsViewMock view = new VolumeUnitsViewMock();
   private VolumeUnitsModel model = new VolumeUnitsModelImpl();
-  private VolumeUnitsPresenter presenter = new VolumeUnitsPresenter(view, model);
-
-  @Before
-  public void setUp() {
-    formattedSourceVolume = presenter.getDecimalFormat().format(new BigDecimal(SOURCE_VOLUME));
-  }
+  private VolumeUnitsPresenter presenter = new VolumeUnitsPresenter(view, model, valueConverter);
 
   @Test(expected = NullPointerException.class)
   public void nullViewInstantiationThrowsException() {
-    new VolumeUnitsPresenter(null, model);
+    new VolumeUnitsPresenter(null, model, valueConverter);
   }
 
   @Test(expected = NullPointerException.class)
   public void nullModelInstantiationThrowsException() {
-    new VolumeUnitsPresenter(view, null);
+    new VolumeUnitsPresenter(view, null, valueConverter);
+  }
+
+  @Test(expected = NullPointerException.class)
+  public void nullValueConverterInstantiationThrowsException() {
+    new VolumeUnitsPresenter(view, model, null);
   }
 
   @Test

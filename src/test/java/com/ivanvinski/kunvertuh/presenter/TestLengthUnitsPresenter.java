@@ -14,33 +14,36 @@ import static org.junit.Assert.assertEquals;
 
 import com.ivanvinski.kunvertuh.model.LengthUnitsModel;
 import com.ivanvinski.kunvertuh.model.LengthUnitsModelImpl;
+import com.ivanvinski.kunvertuh.util.BigDecimalStringConverter;
+import com.ivanvinski.kunvertuh.util.Converter;
 import com.ivanvinski.kunvertuh.view.LengthUnitsViewMock;
 import java.math.BigDecimal;
-import org.junit.Before;
 import org.junit.Test;
 
 public class TestLengthUnitsPresenter {
 
   private static final String SOURCE_LENGTH = "500";
-  private String formattedSourceLength;
+
+  private Converter<String, BigDecimal> valueConverter = new BigDecimalStringConverter();
+  private String formattedSourceLength = valueConverter.format(valueConverter.parse(SOURCE_LENGTH));
 
   private LengthUnitsViewMock view = new LengthUnitsViewMock();
   private LengthUnitsModel model = new LengthUnitsModelImpl();
-  private LengthUnitsPresenter presenter = new LengthUnitsPresenter(view, model);
-
-  @Before
-  public void setUp() {
-    formattedSourceLength = presenter.getDecimalFormat().format(new BigDecimal(SOURCE_LENGTH));
-  }
+  private LengthUnitsPresenter presenter = new LengthUnitsPresenter(view, model, valueConverter);
 
   @Test(expected = NullPointerException.class)
   public void nullViewInstantiationThrowsException() {
-    new LengthUnitsPresenter(null, model);
+    new LengthUnitsPresenter(null, model, valueConverter);
   }
 
   @Test(expected = NullPointerException.class)
   public void nullModelInstantiationThrowsException() {
-    new LengthUnitsPresenter(view, null);
+    new LengthUnitsPresenter(view, null, valueConverter);
+  }
+
+  @Test(expected = NullPointerException.class)
+  public void nullValueConverterInstantiationThrowsException() {
+    new LengthUnitsPresenter(view, model, null);
   }
 
   @Test

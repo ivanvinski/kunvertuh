@@ -12,33 +12,36 @@ import static org.junit.Assert.assertEquals;
 
 import com.ivanvinski.kunvertuh.model.MassUnitsModel;
 import com.ivanvinski.kunvertuh.model.MassUnitsModelImpl;
+import com.ivanvinski.kunvertuh.util.BigDecimalStringConverter;
+import com.ivanvinski.kunvertuh.util.Converter;
 import com.ivanvinski.kunvertuh.view.MassUnitsViewMock;
 import java.math.BigDecimal;
-import org.junit.Before;
 import org.junit.Test;
 
 public class TestMassUnitsPresenter {
 
   private static final String SOURCE_MASS = "5";
-  private String formattedSourceMass;
+
+  private Converter<String, BigDecimal> valueConverter = new BigDecimalStringConverter();
+  private String formattedSourceMass = valueConverter.format(valueConverter.parse(SOURCE_MASS));
 
   private MassUnitsViewMock view = new MassUnitsViewMock();
   private MassUnitsModel model = new MassUnitsModelImpl();
-  private MassUnitsPresenter presenter = new MassUnitsPresenter(view, model);
-
-  @Before
-  public void setUp() {
-    formattedSourceMass = presenter.getDecimalFormat().format(new BigDecimal(SOURCE_MASS));
-  }
+  private MassUnitsPresenter presenter = new MassUnitsPresenter(view, model, valueConverter);
 
   @Test(expected = NullPointerException.class)
   public void nullViewInstantiationThrowsException() {
-    new MassUnitsPresenter(null, model);
+    new MassUnitsPresenter(null, model, valueConverter);
   }
 
   @Test(expected = NullPointerException.class)
   public void nullModelInstantiationThrowsException() {
-    new MassUnitsPresenter(view, null);
+    new MassUnitsPresenter(view, null, valueConverter);
+  }
+
+  @Test(expected = NullPointerException.class)
+  public void nullValueConverterInstantiationThrowsException() {
+    new MassUnitsPresenter(view, model, null);
   }
 
   @Test
