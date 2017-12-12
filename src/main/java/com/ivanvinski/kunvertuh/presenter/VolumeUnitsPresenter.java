@@ -6,59 +6,41 @@ import static javax.measure.unit.NonSI.LITER;
 import static javax.measure.unit.SI.CUBIC_METRE;
 
 import com.ivanvinski.kunvertuh.model.VolumeUnitsModel;
+import com.ivanvinski.kunvertuh.util.Converter;
 import com.ivanvinski.kunvertuh.view.VolumeUnitsView;
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.util.Objects;
+import javax.measure.quantity.Volume;
+import javax.measure.unit.Unit;
 
-public class VolumeUnitsPresenter {
+public class VolumeUnitsPresenter implements UnitsPresenter<Unit<Volume>> {
 
   private VolumeUnitsView view;
-  private VolumeUnitsModel model;
-  private DecimalFormat decimalFormat = new DecimalFormat("#0.##########");
+  private VolumeUnitsModel<Unit<Volume>> model;
+  private Converter<String, BigDecimal> valueConverter;
 
-  public VolumeUnitsPresenter(VolumeUnitsView view, VolumeUnitsModel model) {
-    Objects.requireNonNull(view, "MassUnitsView can't be null");
-    Objects.requireNonNull(model, "MassUnitsModel can't be null");
-    this.view = view;
-    this.model = model;
-    bindEventsToImplementation();
+  public VolumeUnitsPresenter(VolumeUnitsView view, VolumeUnitsModel<Unit<Volume>> model,
+      Converter<String, BigDecimal> valueConverter) {
+    this.view = Objects.requireNonNull(view, "View can't be null");
+    this.model = Objects.requireNonNull(model, "Model can't be null");
+    this.valueConverter = Objects.requireNonNull(valueConverter, "Value converter can't be null");
+    wireModelAndPresenter();
   }
 
-  public void convert(String sourceMass, Object sourceUnit) {
-    BigDecimal conversionValue = toBigDecimal(sourceMass);
+  @Override
+  public void convert(String sourceMass, Unit<Volume> sourceUnit) {
+    BigDecimal conversionValue = valueConverter.parse(sourceMass);
     model.convert(conversionValue, sourceUnit);
-    view.setLiters(formatBigDecimal(model.getLiters()));
-    view.setCubicMeters(formatBigDecimal(model.getCubicMeters()));
-    view.setGallons(formatBigDecimal(model.getGallons()));
-    view.setCubicInches(formatBigDecimal(model.getCubicInches()));
+    view.setLiters(valueConverter.format(model.getLiters()));
+    view.setCubicMeters(valueConverter.format(model.getCubicMeters()));
+    view.setGallons(valueConverter.format(model.getGallons()));
+    view.setCubicInches(valueConverter.format(model.getCubicInches()));
   }
 
-  public DecimalFormat getDecimalFormat() {
-    return decimalFormat;
-  }
-
-  private void bindEventsToImplementation() {
+  private void wireModelAndPresenter() {
     view.setOnLitersActionEvent(liters -> convert(liters, LITER));
     view.setOnCubicMetersActionEvent(cubicMeters -> convert(cubicMeters, CUBIC_METRE));
     view.setOnGallonsActionEvent(gallons -> convert(gallons, GALLON_UK));
     view.setOnCubicInchesActionEvent(cubicInches -> convert(cubicInches, CUBIC_INCH));
-  }
-
-  private BigDecimal toBigDecimal(String value) {
-    try {
-      return new BigDecimal(getDecimalFormat().parse(value).doubleValue());
-    } catch (ParseException e) {
-      return null;
-    }
-  }
-
-  private String formatBigDecimal(BigDecimal value) {
-    try {
-      return getDecimalFormat().format(value);
-    } catch (IllegalArgumentException e) {
-      return "";
-    }
   }
 }

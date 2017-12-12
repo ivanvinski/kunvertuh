@@ -10,44 +10,42 @@ import static javax.measure.unit.SI.METER;
 import static javax.measure.unit.SI.MILLIMETER;
 
 import com.ivanvinski.kunvertuh.model.LengthUnitsModel;
+import com.ivanvinski.kunvertuh.util.Converter;
 import com.ivanvinski.kunvertuh.view.LengthUnitsView;
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.util.Objects;
+import javax.measure.quantity.Length;
+import javax.measure.unit.Unit;
 
-public class LengthUnitsPresenter {
+public class LengthUnitsPresenter implements UnitsPresenter<Unit<Length>> {
 
   private LengthUnitsView view;
-  private LengthUnitsModel model;
-  private DecimalFormat decimalFormat = new DecimalFormat("#0.##########");
+  private LengthUnitsModel<Unit<Length>> model;
+  private Converter<String, BigDecimal> valueConverter;
 
-  public LengthUnitsPresenter(LengthUnitsView view, LengthUnitsModel model) {
-    Objects.requireNonNull(view, "LengthUnitsView can't be null");
-    Objects.requireNonNull(model, "LengthUnitsModel can't be null");
-    this.view = view;
-    this.model = model;
-    bindEventsToImplementation();
+  public LengthUnitsPresenter(LengthUnitsView view, LengthUnitsModel<Unit<Length>> model,
+      Converter<String, BigDecimal> valueConverter) {
+    this.view = Objects.requireNonNull(view, "View can't be null");
+    this.model = Objects.requireNonNull(model, "Model can't be null");
+    this.valueConverter = Objects.requireNonNull(valueConverter, "Value converter can't be null");
+    wireModelAndPresenter();
   }
 
-  public void convert(String sourceLength, Object sourceUnit) {
-    BigDecimal conversionValue = toBigDecimal(sourceLength);
+  @Override
+  public void convert(String sourceLength, Unit<Length> sourceUnit) {
+    BigDecimal conversionValue = valueConverter.parse(sourceLength);
     model.convert(conversionValue, sourceUnit);
-    view.setMillimeters(formatBigDecimal(model.getMillimeters()));
-    view.setCentimeters(formatBigDecimal(model.getCentimeters()));
-    view.setMeters(formatBigDecimal(model.getMeters()));
-    view.setKilometers(formatBigDecimal(model.getKilometers()));
-    view.setInches(formatBigDecimal(model.getInches()));
-    view.setFeet(formatBigDecimal(model.getFeet()));
-    view.setYards(formatBigDecimal(model.getYards()));
-    view.setMiles(formatBigDecimal(model.getMiles()));
+    view.setMillimeters(valueConverter.format(model.getMillimeters()));
+    view.setCentimeters(valueConverter.format(model.getCentimeters()));
+    view.setMeters(valueConverter.format(model.getMeters()));
+    view.setKilometers(valueConverter.format(model.getKilometers()));
+    view.setInches(valueConverter.format(model.getInches()));
+    view.setFeet(valueConverter.format(model.getFeet()));
+    view.setYards(valueConverter.format(model.getYards()));
+    view.setMiles(valueConverter.format(model.getMiles()));
   }
 
-  public DecimalFormat getDecimalFormat() {
-    return decimalFormat;
-  }
-
-  private void bindEventsToImplementation() {
+  private void wireModelAndPresenter() {
     view.setOnMillimetersActionEvent(millimeters -> convert(millimeters, MILLIMETER));
     view.setOnCentimetersActionEvent(centimeters -> convert(centimeters, CENTIMETER));
     view.setOnMetersActionEvent(meters -> convert(meters, METER));
@@ -56,21 +54,5 @@ public class LengthUnitsPresenter {
     view.setOnFeetChanged(feet -> convert(feet, FOOT));
     view.setOnYardsChanged(yards -> convert(yards, YARD));
     view.setOnMilesChanged(miles -> convert(miles, MILE));
-  }
-
-  private BigDecimal toBigDecimal(String value) {
-    try {
-      return new BigDecimal(getDecimalFormat().parse(value).doubleValue());
-    } catch (ParseException e) {
-      return null;
-    }
-  }
-
-  private String formatBigDecimal(BigDecimal value) {
-    try {
-      return getDecimalFormat().format(value);
-    } catch (IllegalArgumentException e) {
-      return "";
-    }
   }
 }
