@@ -6,10 +6,12 @@ import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 public class MainViewImpl extends StackPane implements MainView<Parent> {
 
@@ -25,6 +27,7 @@ public class MainViewImpl extends StackPane implements MainView<Parent> {
   private JFXButton length, mass, volume;
 
   private Map<Class<? extends Parent>, JFXButton> viewButtonMap = new LinkedHashMap<>();
+  private Parent activeView;
 
   public void initialize() {
     getChildren().setAll(root);
@@ -39,8 +42,13 @@ public class MainViewImpl extends StackPane implements MainView<Parent> {
 
   @Override
   public void setActiveView(Parent view) {
-    viewContainer.getChildren().setAll(view);
     setSelectedButtonByView(view);
+    if (activeView == null) {
+      viewContainer.getChildren().setAll(view);
+    } else {
+      changeViewWithFading(view);
+    }
+    activeView = view;
   }
 
   @Override
@@ -98,5 +106,17 @@ public class MainViewImpl extends StackPane implements MainView<Parent> {
     if (button != null) {
       button.getStyleClass().add(SELECTED_CLASS);
     }
+  }
+
+  private void changeViewWithFading(Parent nextView) {
+    viewContainer.getChildren().add(0, nextView);
+    FadeTransition fadeOut = new FadeTransition(Duration.millis(200d), activeView);
+    fadeOut.setOnFinished(event -> {
+      viewContainer.getChildren().setAll(nextView);
+      fadeOut.getNode().setOpacity(1d);
+    });
+    fadeOut.setFromValue(1d);
+    fadeOut.setToValue(0d);
+    fadeOut.play();
   }
 }
