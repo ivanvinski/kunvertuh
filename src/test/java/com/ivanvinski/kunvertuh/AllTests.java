@@ -8,7 +8,6 @@ import com.ivanvinski.kunvertuh.presenter.TestMassUnitsPresenter;
 import com.ivanvinski.kunvertuh.presenter.TestVolumeUnitsPresenter;
 import com.ivanvinski.kunvertuh.util.TestBigDecimalStringConverter;
 import com.ivanvinski.kunvertuh.util.TestSimpleUnitConverter;
-import com.ivanvinski.kunvertuh.view.TestViewChanger;
 import com.ivanvinski.kunvertuh.view.TestViewLoader;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -25,7 +24,6 @@ import org.junit.runners.Suite.SuiteClasses;
     TestBigDecimalStringConverter.class,
     TestSimpleUnitConverter.class,
     TestViewLoader.class,
-    TestViewChanger.class,
 })
 public class AllTests {
 
