@@ -14,6 +14,7 @@ import com.ivanvinski.kunvertuh.util.BigDecimalStringConverter;
 import com.ivanvinski.kunvertuh.util.StringConverter;
 import com.ivanvinski.kunvertuh.view.VolumeUnitsViewMock;
 import java.math.BigDecimal;
+import org.junit.Before;
 import org.junit.Test;
 
 public class TestVolumeUnitsPresenter {
@@ -26,6 +27,11 @@ public class TestVolumeUnitsPresenter {
   private VolumeUnitsViewMock view = new VolumeUnitsViewMock();
   private VolumeUnitsModel model = new VolumeUnitsModelImpl();
   private VolumeUnitsPresenter presenter = new VolumeUnitsPresenter(view, model, valueConverter);
+
+  @Before
+  public void setUp() {
+    presenter.initialize();
+  }
 
   @Test(expected = NullPointerException.class)
   public void nullViewInstantiationThrowsException() {

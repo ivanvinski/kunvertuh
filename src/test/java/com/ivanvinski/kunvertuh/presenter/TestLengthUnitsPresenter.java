@@ -18,6 +18,7 @@ import com.ivanvinski.kunvertuh.util.BigDecimalStringConverter;
 import com.ivanvinski.kunvertuh.util.StringConverter;
 import com.ivanvinski.kunvertuh.view.LengthUnitsViewMock;
 import java.math.BigDecimal;
+import org.junit.Before;
 import org.junit.Test;
 
 public class TestLengthUnitsPresenter {
@@ -30,6 +31,11 @@ public class TestLengthUnitsPresenter {
   private LengthUnitsViewMock view = new LengthUnitsViewMock();
   private LengthUnitsModel model = new LengthUnitsModelImpl();
   private LengthUnitsPresenter presenter = new LengthUnitsPresenter(view, model, valueConverter);
+
+  @Before
+  public void setUp() {
+    presenter.initialize();
+  }
 
   @Test(expected = NullPointerException.class)
   public void nullViewInstantiationThrowsException() {

@@ -16,6 +16,7 @@ import com.ivanvinski.kunvertuh.util.BigDecimalStringConverter;
 import com.ivanvinski.kunvertuh.util.StringConverter;
 import com.ivanvinski.kunvertuh.view.MassUnitsViewMock;
 import java.math.BigDecimal;
+import org.junit.Before;
 import org.junit.Test;
 
 public class TestMassUnitsPresenter {
@@ -28,6 +29,11 @@ public class TestMassUnitsPresenter {
   private MassUnitsViewMock view = new MassUnitsViewMock();
   private MassUnitsModel model = new MassUnitsModelImpl();
   private MassUnitsPresenter presenter = new MassUnitsPresenter(view, model, valueConverter);
+
+  @Before
+  public void setUp() {
+    presenter.initialize();
+  }
 
   @Test(expected = NullPointerException.class)
   public void nullViewInstantiationThrowsException() {
