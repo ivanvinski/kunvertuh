@@ -17,8 +17,7 @@ public class MainViewImpl extends StackPane implements MainView<Parent> {
 
   @FXML
   private Parent root;
-  @FXML
-  private StackPane viewContainer;
+  private StackPane viewContainer = new StackPane();
   @FXML
   private JFXButton menu;
   @FXML
@@ -32,8 +31,10 @@ public class MainViewImpl extends StackPane implements MainView<Parent> {
     createAndRegisterNavigationButtons();
     menu.setOnAction(event -> toggleDrawer());
     VBox navigationContent = new VBox();
+    navigationContent.getStyleClass().add("nav-content");
     navigationContent.getChildren().setAll(viewButtonMap.values());
     navigation.setSidePane(navigationContent);
+    navigation.setContent(viewContainer);
   }
 
   @Override

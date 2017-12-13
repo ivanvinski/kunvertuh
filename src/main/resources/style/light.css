@@ -1,44 +1,125 @@
-.jfx-text-field {
-  -jfx-label-float: TRUE;
+* {
+  -primary-color: #4CAF50;
+  -light-primary-color: #C8E6C9;
+  -primary-text-and-icons-color: rgba(0, 0, 0, .7);
+  -secondary-text-and-icons-color: rgba(255, 255, 255, .7);
 }
 
-.card {
-  -fx-background-color: white;
-  -fx-hgap: 20px;
-  -fx-vgap: 20px;
-  -fx-padding: 10px;
+/*
+ * BASIC
+ */
+.label {
+  -fx-text-fill: -primary-text-and-icons-color;
+  -fx-font-size: 15px;
 }
 
-.card .label {
-  -fx-font-size: 18px;
+.button {
+  -fx-text-fill: -primary-text-and-icons-color;
+  -fx-fill: -primary-text-and-icons-color;
+  -fx-font-size: 15px;
 }
 
-.card .jfx-text-field {
-  -fx-font-size: 14px;
+.text-field {
+  -fx-text-fill: -primary-text-and-icons-color;
 }
 
-.nav {
-  -fx-background-color: #4CAF50;
-  -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, .35), 10, .1, 0, -1);
-}
-
-.nav .jfx-button {
-  -fx-background-color: #4CAF50;
-  -fx-background-radius: 0;
-  -fx-font-size: 16px;
-  -fx-content-display: TOP;
-  -fx-graphic-text-gap: 4px;
-  -fx-padding: 8px;
-}
-
-.nav .jfx-button:active {
-  -fx-background-color: #4CAF50;
-}
-
-.nav .jfx-button .glyph-icon {
+.glyph-icon {
+  -fx-fill: -primary-text-and-icons-color;
   -glyph-size: 26px;
+}
+
+.heading, .app-bar .jfx-button .glyph-icon {
+  -fx-font-size: 24px;
+  -glyph-size: 32px;
+}
+
+.subheading {
+  -fx-font-size: 20px;
+}
+
+.jfx-text-field {
+  -jfx-focus-color: -primary-color;
+  -jfx-unfocus-color: -primary-text-and-icons-color;
+  -jfx-label-float: TRUE;
 }
 
 .elevated {
   -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, .35), 10, .1, 0, 0);
+}
+
+/*
+ * APP BAR
+ */
+.app-bar {
+  -fx-alignment: center_left;
+  -fx-padding: 8px 16px;
+  -fx-background-color: -primary-color;
+  -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, .35), 10, .1, 0, -1);
+  -fx-text-fill: -secondary-text-and-icons-color;
+  -fx-fill: -secondary-text-and-icons-color;
+  -fx-pref-height: 60px;
+  -fx-min-height: -fx-pref-height;
+  -fx-max-height: -fx-pref-height;
+}
+
+.app-bar .jfx-button {
+  -fx-background-radius: 100px;
+  -fx-pref-width: 50px;
+  -fx-pref-height: 50px;
+}
+
+.app-bar .jfx-button .jfx-rippler {
+  -jfx-rippler-fill: -light-primary-color;
+}
+
+/*
+ * NAV
+ */
+.nav-content {
+  -fx-padding: 8px 0px;
+}
+
+.nav .jfx-button {
+  -fx-background-color: -primary-color;
+  -fx-background-radius: 0;
+  -fx-padding: 8px;
+}
+
+.nav .jfx-button {
+  -fx-background-color: white;
+  -fx-alignment: center_left;
+  -fx-graphic-text-gap: 16px;
+  -fx-padding: 8px 16px;
+}
+
+.nav .jfx-button .glyph-icon {
+  -fx-fill: inherit;
+}
+
+.nav .selected {
+  -fx-background-color: -light-primary-color;
+  -fx-text-fill: -primary-color;
+  -fx-fill: -primary-color;
+}
+
+/*
+ * CARD
+ */
+.card, .table-card {
+  -fx-background-color: white;
+  -fx-padding: 20px;
+  -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, .35), 10, .1, 0, 0);
+}
+
+.table-card {
+  -fx-hgap: 25px;
+  -fx-vgap: 25px;
+}
+
+.card .label, .table-card .label {
+  -fx-font-size: 18px;
+}
+
+.card .jfx-text-field, .table-card .jfx-text-field {
+  -fx-font-size: 14px;
 }
