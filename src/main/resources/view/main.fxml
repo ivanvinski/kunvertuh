@@ -5,7 +5,6 @@
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <BorderPane fx:id="root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
@@ -14,13 +13,11 @@
   fx:controller="com.ivanvinski.kunvertuh.presenter.MainPresenter">
   <center>
     <JFXDrawer fx:id="navigation" defaultDrawerSize="200.0" layoutX="65.0" layoutY="211.0"
-      styleClass="nav" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0"/>
+      styleClass="nav"/>
   </center>
   <top>
     <HBox layoutX="-39.0" layoutY="-17.0" maxHeight="-Infinity" minHeight="-Infinity"
-      prefHeight="50.0" prefWidth="200.0" styleClass="app-bar" AnchorPane.leftAnchor="0.0"
-      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      prefHeight="50.0" prefWidth="200.0" styleClass="app-bar">
       <children>
         <JFXButton fx:id="menu">
           <graphic>
