@@ -1,6 +1,7 @@
 package com.ivanvinski.kunvertuh;
 
 import com.ivanvinski.kunvertuh.model.TestLengthUnitsModelImpl;
+import com.ivanvinski.kunvertuh.model.TestMainModelImpl;
 import com.ivanvinski.kunvertuh.model.TestMassUnitModelImpl;
 import com.ivanvinski.kunvertuh.model.TestVolumeUnitsModelImpl;
 import com.ivanvinski.kunvertuh.presenter.TestLengthUnitsPresenter;
@@ -22,6 +23,7 @@ import org.junit.runners.Suite.SuiteClasses;
     TestMassUnitsPresenter.class,
     TestVolumeUnitsModelImpl.class,
     TestVolumeUnitsPresenter.class,
+    TestMainModelImpl.class,
     TestBigDecimalStringConverter.class,
     TestSimpleUnitConverter.class,
     TestViewAssembler.class,
