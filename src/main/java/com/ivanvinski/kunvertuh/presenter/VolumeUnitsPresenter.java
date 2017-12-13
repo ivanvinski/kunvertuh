@@ -19,12 +19,19 @@ public class VolumeUnitsPresenter implements UnitsPresenter<Unit<Volume>> {
   private VolumeUnitsModel<Unit<Volume>> model;
   private StringConverter<BigDecimal> valueConverter;
 
-  public VolumeUnitsPresenter(VolumeUnitsView view, VolumeUnitsModel<Unit<Volume>> model,
-      StringConverter<BigDecimal> valueConverter) {
+  public VolumeUnitsPresenter(VolumeUnitsView view, VolumeUnitsModel model,
+      StringConverter valueConverter) {
     this.view = Objects.requireNonNull(view, "View can't be null");
     this.model = Objects.requireNonNull(model, "Model can't be null");
     this.valueConverter = Objects.requireNonNull(valueConverter, "Value converter can't be null");
-    wireModelAndPresenter();
+  }
+
+  @Override
+  public void initialize() {
+    view.setOnLitersActionEvent(liters -> convert(liters, LITER));
+    view.setOnCubicMetersActionEvent(cubicMeters -> convert(cubicMeters, CUBIC_METRE));
+    view.setOnGallonsActionEvent(gallons -> convert(gallons, GALLON_UK));
+    view.setOnCubicInchesActionEvent(cubicInches -> convert(cubicInches, CUBIC_INCH));
   }
 
   @Override
@@ -37,10 +44,13 @@ public class VolumeUnitsPresenter implements UnitsPresenter<Unit<Volume>> {
     view.setCubicInches(valueConverter.format(model.getCubicInches()));
   }
 
-  private void wireModelAndPresenter() {
-    view.setOnLitersActionEvent(liters -> convert(liters, LITER));
-    view.setOnCubicMetersActionEvent(cubicMeters -> convert(cubicMeters, CUBIC_METRE));
-    view.setOnGallonsActionEvent(gallons -> convert(gallons, GALLON_UK));
-    view.setOnCubicInchesActionEvent(cubicInches -> convert(cubicInches, CUBIC_INCH));
+  @Override
+  public VolumeUnitsView getView() {
+    return view;
+  }
+
+  @Override
+  public VolumeUnitsModel<Unit<Volume>> getModel() {
+    return model;
   }
 }

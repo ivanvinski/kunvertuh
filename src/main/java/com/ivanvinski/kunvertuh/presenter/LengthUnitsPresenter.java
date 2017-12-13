@@ -23,12 +23,23 @@ public class LengthUnitsPresenter implements UnitsPresenter<Unit<Length>> {
   private LengthUnitsModel<Unit<Length>> model;
   private StringConverter<BigDecimal> valueConverter;
 
-  public LengthUnitsPresenter(LengthUnitsView view, LengthUnitsModel<Unit<Length>> model,
-      StringConverter<BigDecimal> valueConverter) {
+  public LengthUnitsPresenter(LengthUnitsView view, LengthUnitsModel model,
+      StringConverter valueConverter) {
     this.view = Objects.requireNonNull(view, "View can't be null");
     this.model = Objects.requireNonNull(model, "Model can't be null");
     this.valueConverter = Objects.requireNonNull(valueConverter, "Value converter can't be null");
-    wireModelAndPresenter();
+  }
+
+  @Override
+  public void initialize() {
+    view.setOnMillimetersActionEvent(millimeters -> convert(millimeters, MILLIMETER));
+    view.setOnCentimetersActionEvent(centimeters -> convert(centimeters, CENTIMETER));
+    view.setOnMetersActionEvent(meters -> convert(meters, METER));
+    view.setOnKilometersActionEvent(kilometers -> convert(kilometers, KILOMETER));
+    view.setOnInchesActionEvent(inches -> convert(inches, INCH));
+    view.setOnFeetChanged(feet -> convert(feet, FOOT));
+    view.setOnYardsChanged(yards -> convert(yards, YARD));
+    view.setOnMilesChanged(miles -> convert(miles, MILE));
   }
 
   @Override
@@ -45,14 +56,13 @@ public class LengthUnitsPresenter implements UnitsPresenter<Unit<Length>> {
     view.setMiles(valueConverter.format(model.getMiles()));
   }
 
-  private void wireModelAndPresenter() {
-    view.setOnMillimetersActionEvent(millimeters -> convert(millimeters, MILLIMETER));
-    view.setOnCentimetersActionEvent(centimeters -> convert(centimeters, CENTIMETER));
-    view.setOnMetersActionEvent(meters -> convert(meters, METER));
-    view.setOnKilometersActionEvent(kilometers -> convert(kilometers, KILOMETER));
-    view.setOnInchesActionEvent(inches -> convert(inches, INCH));
-    view.setOnFeetChanged(feet -> convert(feet, FOOT));
-    view.setOnYardsChanged(yards -> convert(yards, YARD));
-    view.setOnMilesChanged(miles -> convert(miles, MILE));
+  @Override
+  public LengthUnitsView getView() {
+    return view;
+  }
+
+  @Override
+  public LengthUnitsModel<Unit<Length>> getModel() {
+    return model;
   }
 }
