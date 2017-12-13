@@ -1,8 +1,13 @@
+@font-face {
+    src: url('../font/Roboto-Regular.ttf');
+}
+
 * {
   -primary-color: #4CAF50;
   -light-primary-color: #C8E6C9;
   -primary-text-and-icons-color: rgba(0, 0, 0, .7);
   -secondary-text-and-icons-color: rgba(255, 255, 255, .7);
+  -fx-font-family: 'Roboto';
 }
 
 /*
