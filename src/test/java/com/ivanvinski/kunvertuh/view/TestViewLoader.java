@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import com.google.inject.AbstractModule;
 import com.ivanvinski.kunvertuh.module.TestParentViewPresenterModule;
+import java.io.UncheckedIOException;
 import java.net.URL;
 import org.junit.Test;
 
@@ -31,7 +32,7 @@ public class TestViewLoader {
     viewLoader.load(TEST_PARENT_LOCATION, null);
   }
 
-  @Test(expected = ClassCastException.class)
+  @Test(expected = UncheckedIOException.class)
   public void nonParentViewClassLoadingThrowsException() {
     viewLoader.load(TEST_NON_PARENT_LOCATION, moduleStub);
   }
