@@ -9,6 +9,7 @@ import static javax.measure.unit.SI.KILOMETER;
 import static javax.measure.unit.SI.METER;
 import static javax.measure.unit.SI.MILLIMETER;
 
+import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.model.LengthUnitsModel;
 import com.ivanvinski.kunvertuh.util.StringConverter;
 import com.ivanvinski.kunvertuh.view.LengthUnitsView;
@@ -23,6 +24,7 @@ public class LengthUnitsPresenter implements UnitsPresenter<Unit<Length>> {
   private LengthUnitsModel<Unit<Length>> model;
   private StringConverter<BigDecimal> valueConverter;
 
+  @Inject
   public LengthUnitsPresenter(LengthUnitsView view, LengthUnitsModel model,
       StringConverter valueConverter) {
     this.view = Objects.requireNonNull(view, "View can't be null");

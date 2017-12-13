@@ -14,6 +14,7 @@ public class MainPresenter implements Presenter<MainView<Parent>, MainModel<Pare
   private MainView<Parent> view;
   private MainModel<Parent> model;
 
+  @Inject
   public MainPresenter(MainView view, MainModel model) {
     this.view = Objects.requireNonNull(view, "View can't be null");
     this.model = Objects.requireNonNull(model, "Model can't be null");

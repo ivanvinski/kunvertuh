@@ -5,6 +5,7 @@ import static javax.measure.unit.NonSI.GALLON_UK;
 import static javax.measure.unit.NonSI.LITER;
 import static javax.measure.unit.SI.CUBIC_METRE;
 
+import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.model.VolumeUnitsModel;
 import com.ivanvinski.kunvertuh.util.StringConverter;
 import com.ivanvinski.kunvertuh.view.VolumeUnitsView;
@@ -19,6 +20,7 @@ public class VolumeUnitsPresenter implements UnitsPresenter<Unit<Volume>> {
   private VolumeUnitsModel<Unit<Volume>> model;
   private StringConverter<BigDecimal> valueConverter;
 
+  @Inject
   public VolumeUnitsPresenter(VolumeUnitsView view, VolumeUnitsModel model,
       StringConverter valueConverter) {
     this.view = Objects.requireNonNull(view, "View can't be null");

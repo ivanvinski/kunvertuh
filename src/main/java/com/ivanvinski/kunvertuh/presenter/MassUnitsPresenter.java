@@ -7,6 +7,7 @@ import static javax.measure.unit.NonSI.TON_UK;
 import static javax.measure.unit.SI.GRAM;
 import static javax.measure.unit.SI.KILOGRAM;
 
+import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.model.MassUnitsModel;
 import com.ivanvinski.kunvertuh.util.StringConverter;
 import com.ivanvinski.kunvertuh.view.MassUnitsView;
@@ -21,6 +22,7 @@ public class MassUnitsPresenter implements UnitsPresenter<Unit<Mass>> {
   private MassUnitsModel<Unit<Mass>> model;
   private StringConverter<BigDecimal> valueConverter;
 
+  @Inject
   public MassUnitsPresenter(MassUnitsView view, MassUnitsModel model,
       StringConverter valueConverter) {
     this.view = Objects.requireNonNull(view, "View can't be null");
