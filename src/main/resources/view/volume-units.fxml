@@ -5,28 +5,23 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<GridPane fx:id="root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-  prefHeight="400.0" prefWidth="600.0" styleClass="card" xmlns="http://javafx.com/javafx/8.0.141"
-  xmlns:fx="http://javafx.com/fxml/1"
-  fx:controller="com.ivanvinski.kunvertuh.view.VolumeUnitsViewImpl">
+
+<GridPane fx:id="root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="600.0" styleClass="card" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ivanvinski.kunvertuh.presenter.VolumeUnitsPresenter">
   <columnConstraints>
-    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0"
-      vgrow="SOMETIMES"/>
-    <RowConstraints vgrow="NEVER"/>
-    <RowConstraints vgrow="NEVER"/>
+    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" vgrow="SOMETIMES" />
+    <RowConstraints vgrow="NEVER" />
+    <RowConstraints vgrow="NEVER" />
   </rowConstraints>
   <children>
-    <JFXTextField fx:id="liters" promptText="Liters" GridPane.rowIndex="1"/>
-    <JFXTextField fx:id="gallons" promptText="Gallons" GridPane.columnIndex="1"
-      GridPane.rowIndex="1"/>
-    <JFXTextField fx:id="cubicMeters" promptText="Cubic Meters" GridPane.rowIndex="2"/>
-    <JFXTextField fx:id="cubicInches" promptText="Cubic Inches" GridPane.columnIndex="1"
-      GridPane.rowIndex="2"/>
-    <Label text="Metric"/>
-    <Label text="Imperial" GridPane.columnIndex="1"/>
+    <JFXTextField fx:id="liters" promptText="Liters" GridPane.rowIndex="1" />
+    <JFXTextField fx:id="gallons" promptText="Gallons" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <JFXTextField fx:id="cubicMeters" promptText="Cubic Meters" GridPane.rowIndex="2" />
+    <JFXTextField fx:id="cubicInches" promptText="Cubic Inches" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <Label text="Metric" />
+    <Label text="Imperial" GridPane.columnIndex="1" />
   </children>
 </GridPane>

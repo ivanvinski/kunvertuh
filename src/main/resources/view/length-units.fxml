@@ -6,35 +6,28 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane fx:id="root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-  prefHeight="400.0" prefWidth="600.0" styleClass="card" xmlns="http://javafx.com/javafx/8.0.141"
-  xmlns:fx="http://javafx.com/fxml/1"
-  fx:controller="com.ivanvinski.kunvertuh.view.LengthUnitsViewImpl">
+<GridPane fx:id="root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="600.0" styleClass="card" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ivanvinski.kunvertuh.presenter.LengthUnitsPresenter">
   <columnConstraints>
-    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0"
-      prefWidth="100.0"/>
-    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0"
-      prefWidth="100.0"/>
+    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0"
-      vgrow="SOMETIMES"/>
-    <RowConstraints vgrow="NEVER"/>
-    <RowConstraints vgrow="NEVER"/>
-    <RowConstraints vgrow="NEVER"/>
-    <RowConstraints vgrow="NEVER"/>
+    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" vgrow="SOMETIMES" />
+    <RowConstraints vgrow="NEVER" />
+    <RowConstraints vgrow="NEVER" />
+    <RowConstraints vgrow="NEVER" />
+    <RowConstraints vgrow="NEVER" />
   </rowConstraints>
   <children>
-    <JFXTextField fx:id="millimeters" promptText="Millimeters" GridPane.rowIndex="1"/>
-    <JFXTextField fx:id="inches" promptText="Inches" GridPane.columnIndex="1"
-      GridPane.rowIndex="1"/>
-    <JFXTextField fx:id="centimeters" promptText="Centimeters" GridPane.rowIndex="2"/>
-    <JFXTextField fx:id="feet" promptText="Feet" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-    <JFXTextField fx:id="meters" promptText="Meters" GridPane.rowIndex="3"/>
-    <JFXTextField fx:id="yards" promptText="Yards" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-    <JFXTextField fx:id="kilometers" promptText="Kilometers" GridPane.rowIndex="4"/>
-    <JFXTextField fx:id="miles" promptText="Miles" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-    <Label text="Metric"/>
-    <Label text="Imperial" GridPane.columnIndex="1"/>
+    <JFXTextField fx:id="millimeters" promptText="Millimeters" GridPane.rowIndex="1" />
+    <JFXTextField fx:id="inches" promptText="Inches" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <JFXTextField fx:id="centimeters" promptText="Centimeters" GridPane.rowIndex="2" />
+    <JFXTextField fx:id="feet" promptText="Feet" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <JFXTextField fx:id="meters" promptText="Meters" GridPane.rowIndex="3" />
+    <JFXTextField fx:id="yards" promptText="Yards" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <JFXTextField fx:id="kilometers" promptText="Kilometers" GridPane.rowIndex="4" />
+    <JFXTextField fx:id="miles" promptText="Miles" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    <Label text="Metric" />
+    <Label text="Imperial" GridPane.columnIndex="1" />
   </children>
 </GridPane>
