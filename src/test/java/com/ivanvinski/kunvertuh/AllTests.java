@@ -10,6 +10,7 @@ import com.ivanvinski.kunvertuh.presenter.TestMassUnitsPresenter;
 import com.ivanvinski.kunvertuh.presenter.TestVolumeUnitsPresenter;
 import com.ivanvinski.kunvertuh.unit.TestLengthUnit;
 import com.ivanvinski.kunvertuh.unit.TestMassUnit;
+import com.ivanvinski.kunvertuh.unit.TestVolumeUnit;
 import com.ivanvinski.kunvertuh.util.TestBigDecimalStringConverter;
 import com.ivanvinski.kunvertuh.util.TestSimpleUnitConverter;
 import com.ivanvinski.kunvertuh.view.TestViewAssembler;
@@ -22,6 +23,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
     TestLengthUnit.class,
     TestMassUnit.class,
+    TestVolumeUnit.class,
     TestLengthUnitsModelImpl.class,
     TestLengthUnitsPresenter.class,
     TestMassUnitModelImpl.class,
