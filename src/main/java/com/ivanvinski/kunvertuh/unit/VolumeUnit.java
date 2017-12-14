@@ -10,11 +10,11 @@ public enum VolumeUnit {
 
   LITERS(new BaseUnit<>("l")),
   MILLILITERS(LITERS.volumeUnit.times(1000d)),
-  CUBIC_METER(LITERS.volumeUnit.divide(1000d)),
+  CUBIC_METERS(LITERS.volumeUnit.divide(1000d)),
 
   FLUID_OUNCES(LITERS.volumeUnit.times(35.195d)),
   PINTS(LITERS.volumeUnit.times(1.7598d)),
-  GALLON(LITERS.volumeUnit.times(0.21997d));
+  GALLONS(LITERS.volumeUnit.times(0.21997d));
 
   private Unit<Volume> volumeUnit;
 
@@ -40,7 +40,7 @@ public enum VolumeUnit {
   }
 
   public Double toCubicMeters(Double sourceVolume) {
-    return CUBIC_METER.convert(sourceVolume, this);
+    return CUBIC_METERS.convert(sourceVolume, this);
   }
 
   public Double toFluidOunces(Double sourceVolume) {
@@ -52,6 +52,6 @@ public enum VolumeUnit {
   }
 
   public Double toGallons(Double sourceVolume) {
-    return GALLON.convert(sourceVolume, this);
+    return GALLONS.convert(sourceVolume, this);
   }
 }

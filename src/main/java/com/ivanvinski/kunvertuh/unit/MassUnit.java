@@ -9,7 +9,7 @@ import javax.measure.unit.Unit;
 public enum MassUnit {
 
   GRAMS(new BaseUnit<>("g")),
-  MILLIGRAM(GRAMS.massUnit.times(1000d)),
+  MILLIGRAMS(GRAMS.massUnit.times(1000d)),
   DEKAGRAMS(GRAMS.massUnit.divide(10d)),
   KILOGRAMS(GRAMS.massUnit.divide(1000d)),
 
@@ -34,7 +34,7 @@ public enum MassUnit {
   }
 
   public Double toMilligrams(Double sourceMass) {
-    return MILLIGRAM.convert(sourceMass, this);
+    return MILLIGRAMS.convert(sourceMass, this);
   }
 
   public Double toGrams(Double sourceMass) {
