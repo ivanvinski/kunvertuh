@@ -1,12 +1,27 @@
 package com.ivanvinski.kunvertuh.model;
 
 import com.ivanvinski.kunvertuh.view.View;
+import com.ivanvinski.kunvertuh.view.ViewCatalog;
+import java.util.Objects;
 
-public interface MainModel {
+public class MainModel {
 
-  View getActiveView();
+  private ViewCatalog catalog;
+  private View activeView;
 
-  void setActiveView(View view);
+  public MainModel(ViewCatalog catalog) {
+    this.catalog = Objects.requireNonNull(catalog, "View catalog can't be null");
+  }
 
-  View getView(Class<? extends View> viewType);
+  public View getActiveView() {
+    return activeView;
+  }
+
+  public void setActiveView(View view) {
+    activeView = view;
+  }
+
+  public View getView(Class<? extends View> viewType) {
+    return catalog.get(viewType);
+  }
 }

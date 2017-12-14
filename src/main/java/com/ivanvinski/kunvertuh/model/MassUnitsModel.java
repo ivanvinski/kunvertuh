@@ -1,25 +1,55 @@
 package com.ivanvinski.kunvertuh.model;
 
 import com.ivanvinski.kunvertuh.unit.MassUnit;
+import java.util.Objects;
 
-public interface MassUnitsModel extends UnitsModel<MassUnit> {
+public class MassUnitsModel implements UnitsModel<MassUnit> {
+
+  private Double milligrams, grams, dekagrams, kilograms;
+  private Double grains, drams, ounces, pounds;
 
   @Override
-  void convert(Double sourceMass, MassUnit sourceUnit);
+  public void convert(Double sourceMass, MassUnit sourceUnit) {
+    Objects.requireNonNull(sourceUnit, "Source unit can't be null");
+    milligrams = sourceUnit.toMilligrams(sourceMass);
+    grams = sourceUnit.toGrams(sourceMass);
+    dekagrams = sourceUnit.toDekagrams(sourceMass);
+    kilograms = sourceUnit.toKilograms(sourceMass);
+    grains = sourceUnit.toGrains(sourceMass);
+    drams = sourceUnit.toDrams(sourceMass);
+    ounces = sourceUnit.toOunces(sourceMass);
+    pounds = sourceUnit.toPounds(sourceMass);
+  }
 
-  Double getMilligrams();
+  public Double getMilligrams() {
+    return milligrams;
+  }
 
-  Double getGrams();
+  public Double getGrams() {
+    return grams;
+  }
 
-  Double getDekagrams();
+  public Double getDekagrams() {
+    return dekagrams;
+  }
 
-  Double getKilograms();
+  public Double getKilograms() {
+    return kilograms;
+  }
 
-  Double getGrains();
+  public Double getGrains() {
+    return grains;
+  }
 
-  Double getDrams();
+  public Double getDrams() {
+    return drams;
+  }
 
-  Double getOunces();
+  public Double getOunces() {
+    return ounces;
+  }
 
-  Double getPounds();
+  public Double getPounds() {
+    return pounds;
+  }
 }

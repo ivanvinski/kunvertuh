@@ -1,27 +1,60 @@
 package com.ivanvinski.kunvertuh.model;
 
 import com.ivanvinski.kunvertuh.unit.LengthUnit;
+import java.util.Objects;
 
-public interface LengthUnitsModel extends UnitsModel<LengthUnit> {
+public class LengthUnitsModel implements UnitsModel<LengthUnit> {
+
+  private Double millimeters, centimeters, decimeters, meters, kilometers;
+  private Double inches, feet, yards, miles;
 
   @Override
-  void convert(Double sourceLength, LengthUnit sourceUnit);
+  public void convert(Double sourceLength, LengthUnit sourceUnit) {
+    Objects.requireNonNull(sourceUnit, "Source unit can't be null");
+    millimeters = sourceUnit.toMillimeters(sourceLength);
+    centimeters = sourceUnit.toCentimeters(sourceLength);
+    decimeters = sourceUnit.toDecimeters(sourceLength);
+    meters = sourceUnit.toMeters(sourceLength);
+    kilometers = sourceUnit.toKilometers(sourceLength);
+    inches = sourceUnit.toInches(sourceLength);
+    feet = sourceUnit.toFeet(sourceLength);
+    yards = sourceUnit.toYards(sourceLength);
+    miles = sourceUnit.toMiles(sourceLength);
+  }
 
-  Double getMillimeters();
+  public Double getMillimeters() {
+    return millimeters;
+  }
 
-  Double getCentimeters();
+  public Double getCentimeters() {
+    return centimeters;
+  }
 
-  Double getDecimeters();
+  public Double getDecimeters() {
+    return decimeters;
+  }
 
-  Double getMeters();
+  public Double getMeters() {
+    return meters;
+  }
 
-  Double getKilometers();
+  public Double getKilometers() {
+    return kilometers;
+  }
 
-  Double getInches();
+  public Double getInches() {
+    return inches;
+  }
 
-  Double getFeet();
+  public Double getFeet() {
+    return feet;
+  }
 
-  Double getYards();
+  public Double getYards() {
+    return yards;
+  }
 
-  Double getMiles();
+  public Double getMiles() {
+    return miles;
+  }
 }
