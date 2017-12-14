@@ -5,10 +5,9 @@ import com.ivanvinski.kunvertuh.module.MainPresenterModule;
 import com.ivanvinski.kunvertuh.module.MassUnitsPresenterModule;
 import com.ivanvinski.kunvertuh.module.VolumeUnitsPresenterModule;
 import com.ivanvinski.kunvertuh.view.MainViewImpl;
+import com.ivanvinski.kunvertuh.view.ViewCatalog;
 import com.ivanvinski.kunvertuh.view.ViewLoader;
-import java.util.Map;
 import javafx.application.Application;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -20,8 +19,8 @@ public class Kunvertuh extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    Map<Class<? extends Parent>, Parent> views = loadAllViews();
-    MainViewImpl mainView = (MainViewImpl) views.get(MainViewImpl.class);
+    ViewCatalog catalog = loadAllViews();
+    MainViewImpl mainView = (MainViewImpl) catalog.get(MainViewImpl.class);
     Scene scene = new Scene(mainView, 800, 600);
     scene.getStylesheets().add(getClass().getResource("/style/light.css").toExternalForm());
     primaryStage.setScene(scene);
@@ -29,7 +28,7 @@ public class Kunvertuh extends Application {
     primaryStage.show();
   }
 
-  private Map<Class<? extends Parent>, Parent> loadAllViews() {
+  private ViewCatalog loadAllViews() {
     ViewLoader viewLoader = new ViewLoader();
     viewLoader.load(getClass().getResource("/view/length-units.fxml"),
         new LengthUnitsPresenterModule());
