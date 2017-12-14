@@ -14,10 +14,12 @@ import com.ivanvinski.kunvertuh.unit.TestVolumeUnit;
 import com.ivanvinski.kunvertuh.util.TestBigDecimalStringConverter;
 import com.ivanvinski.kunvertuh.util.TestSimpleUnitConverter;
 import com.ivanvinski.kunvertuh.view.TestViewAssembler;
+import com.ivanvinski.kunvertuh.view.TestViewCatalog;
 import com.ivanvinski.kunvertuh.view.TestViewLoader;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
+
 
 @RunWith(Suite.class)
 @SuiteClasses({
@@ -35,6 +37,7 @@ import org.junit.runners.Suite.SuiteClasses;
     TestBigDecimalStringConverter.class,
     TestSimpleUnitConverter.class,
     TestViewAssembler.class,
+    TestViewCatalog.class,
     TestViewLoader.class,
 })
 public class AllTests {
