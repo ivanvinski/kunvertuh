@@ -5,14 +5,14 @@ import com.ivanvinski.kunvertuh.model.MainModel;
 import com.ivanvinski.kunvertuh.view.LengthUnitsViewImpl;
 import com.ivanvinski.kunvertuh.view.MainView;
 import com.ivanvinski.kunvertuh.view.MassUnitsViewImpl;
+import com.ivanvinski.kunvertuh.view.View;
 import com.ivanvinski.kunvertuh.view.VolumeUnitsViewImpl;
 import java.util.Objects;
-import javafx.scene.Parent;
 
-public class MainPresenter implements Presenter<MainView<Parent>, MainModel<Parent>> {
+public class MainPresenter implements Presenter<MainView, MainModel> {
 
-  private MainView<Parent> view;
-  private MainModel<Parent> model;
+  private MainView view;
+  private MainModel model;
 
   @Inject
   public MainPresenter(MainView view, MainModel model) {
@@ -30,20 +30,20 @@ public class MainPresenter implements Presenter<MainView<Parent>, MainModel<Pare
   }
 
   @Override
-  public MainView<Parent> getView() {
+  public MainView getView() {
     return view;
   }
 
   @Override
-  public MainModel<Parent> getModel() {
+  public MainModel getModel() {
     return model;
   }
 
-  private void changeView(Class<? extends Parent> nextViewType) {
+  private void changeView(Class<? extends View> nextViewType) {
     if (model.getActiveView() != null && nextViewType == model.getActiveView().getClass()) {
       return;
     }
-    Parent nextView = model.getView(nextViewType);
+    View nextView = model.getView(nextViewType);
     view.setActiveView(nextView);
     model.setActiveView(nextView);
   }

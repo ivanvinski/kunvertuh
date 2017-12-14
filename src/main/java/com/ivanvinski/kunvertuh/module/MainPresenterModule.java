@@ -5,15 +5,14 @@ import com.ivanvinski.kunvertuh.model.MainModel;
 import com.ivanvinski.kunvertuh.model.MainModelImpl;
 import com.ivanvinski.kunvertuh.view.MainView;
 import com.ivanvinski.kunvertuh.view.MainViewImpl;
-import java.util.Map;
-import javafx.scene.Parent;
+import com.ivanvinski.kunvertuh.view.ViewCatalog;
 
 public class MainPresenterModule extends AbstractModule {
 
-  private MainModel<Parent> model;
+  private MainModel model;
 
-  public MainPresenterModule(Map<Class<? extends Parent>, Parent> views) {
-    model = new MainModelImpl(views);
+  public MainPresenterModule(ViewCatalog catalog) {
+    model = new MainModelImpl(catalog);
   }
 
   @Override
