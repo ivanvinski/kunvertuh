@@ -1,55 +1,46 @@
 package com.ivanvinski.kunvertuh.presenter;
 
-import static javax.measure.unit.NonSI.FOOT;
-import static javax.measure.unit.NonSI.INCH;
-import static javax.measure.unit.NonSI.MILE;
-import static javax.measure.unit.NonSI.YARD;
-import static javax.measure.unit.SI.CENTIMETER;
-import static javax.measure.unit.SI.KILOMETER;
-import static javax.measure.unit.SI.METER;
-import static javax.measure.unit.SI.MILLIMETER;
-
 import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.model.LengthUnitsModel;
+import com.ivanvinski.kunvertuh.unit.LengthUnit;
 import com.ivanvinski.kunvertuh.util.StringConverter;
 import com.ivanvinski.kunvertuh.view.LengthUnitsView;
 import java.math.BigDecimal;
 import java.util.Objects;
-import javax.measure.quantity.Length;
-import javax.measure.unit.Unit;
 
-public class LengthUnitsPresenter implements UnitsPresenter<Unit<Length>> {
+public class LengthUnitsPresenter implements Presenter<LengthUnitsView, LengthUnitsModel> {
 
   private LengthUnitsView view;
-  private LengthUnitsModel<Unit<Length>> model;
+  private LengthUnitsModel model;
   private StringConverter<BigDecimal> valueConverter;
 
   @Inject
   public LengthUnitsPresenter(LengthUnitsView view, LengthUnitsModel model,
       StringConverter valueConverter) {
-    this.view = Objects.requireNonNull(view, "View can't be null");
-    this.model = Objects.requireNonNull(model, "Model can't be null");
+    this.view = Objects.requireNonNull(view, "LengthUnitsView can't be null");
+    this.model = Objects.requireNonNull(model, "LengthUnitsModel can't be null");
     this.valueConverter = Objects.requireNonNull(valueConverter, "Value converter can't be null");
   }
 
   @Override
   public void initialize() {
-    view.setOnMillimetersActionEvent(millimeters -> convert(millimeters, MILLIMETER));
-    view.setOnCentimetersActionEvent(centimeters -> convert(centimeters, CENTIMETER));
-    view.setOnMetersActionEvent(meters -> convert(meters, METER));
-    view.setOnKilometersActionEvent(kilometers -> convert(kilometers, KILOMETER));
-    view.setOnInchesActionEvent(inches -> convert(inches, INCH));
-    view.setOnFeetChanged(feet -> convert(feet, FOOT));
-    view.setOnYardsChanged(yards -> convert(yards, YARD));
-    view.setOnMilesChanged(miles -> convert(miles, MILE));
+    view.setOnMillimetersActionEvent(millimeters -> convert(millimeters, LengthUnit.MILLIMETERS));
+    view.setOnCentimetersActionEvent(centimeters -> convert(centimeters, LengthUnit.CENTIMETERS));
+    view.setOnDecimetersActionEvent(decimeters -> convert(decimeters, LengthUnit.DECIMETERS));
+    view.setOnMetersActionEvent(meters -> convert(meters, LengthUnit.METERS));
+    view.setOnKilometersActionEvent(kilometers -> convert(kilometers, LengthUnit.KILOMETERS));
+    view.setOnInchesActionEvent(inches -> convert(inches, LengthUnit.INCHES));
+    view.setOnFeetChanged(feet -> convert(feet, LengthUnit.FEET));
+    view.setOnYardsChanged(yards -> convert(yards, LengthUnit.YARDS));
+    view.setOnMilesChanged(miles -> convert(miles, LengthUnit.MILES));
   }
 
-  @Override
-  public void convert(String sourceLength, Unit<Length> sourceUnit) {
-    BigDecimal conversionValue = valueConverter.parse(sourceLength);
+  public void convert(String sourceLength, LengthUnit sourceUnit) {
+    Double conversionValue = valueConverter.parse(sourceLength);
     model.convert(conversionValue, sourceUnit);
     view.setMillimeters(valueConverter.format(model.getMillimeters()));
     view.setCentimeters(valueConverter.format(model.getCentimeters()));
+    view.setDecimeters(valueConverter.format(model.getDecimeters()));
     view.setMeters(valueConverter.format(model.getMeters()));
     view.setKilometers(valueConverter.format(model.getKilometers()));
     view.setInches(valueConverter.format(model.getInches()));
@@ -64,7 +55,7 @@ public class LengthUnitsPresenter implements UnitsPresenter<Unit<Length>> {
   }
 
   @Override
-  public LengthUnitsModel<Unit<Length>> getModel() {
+  public LengthUnitsModel getModel() {
     return model;
   }
 }

@@ -1,12 +1,8 @@
 package com.ivanvinski.kunvertuh.presenter;
 
-import static javax.measure.unit.NonSI.CUBIC_INCH;
-import static javax.measure.unit.NonSI.GALLON_UK;
-import static javax.measure.unit.NonSI.LITER;
-import static javax.measure.unit.SI.CUBIC_METRE;
-
 import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.model.VolumeUnitsModel;
+import com.ivanvinski.kunvertuh.unit.VolumeUnit;
 import com.ivanvinski.kunvertuh.util.StringConverter;
 import com.ivanvinski.kunvertuh.view.VolumeUnitsView;
 import java.math.BigDecimal;
@@ -14,10 +10,10 @@ import java.util.Objects;
 import javax.measure.quantity.Volume;
 import javax.measure.unit.Unit;
 
-public class VolumeUnitsPresenter implements UnitsPresenter<Unit<Volume>> {
+public class VolumeUnitsPresenter implements Presenter<VolumeUnitsView, VolumeUnitsModel> {
 
   private VolumeUnitsView view;
-  private VolumeUnitsModel<Unit<Volume>> model;
+  private VolumeUnitsModel model;
   private StringConverter<BigDecimal> valueConverter;
 
   @Inject
@@ -30,20 +26,23 @@ public class VolumeUnitsPresenter implements UnitsPresenter<Unit<Volume>> {
 
   @Override
   public void initialize() {
-    view.setOnLitersActionEvent(liters -> convert(liters, LITER));
-    view.setOnCubicMetersActionEvent(cubicMeters -> convert(cubicMeters, CUBIC_METRE));
-    view.setOnGallonsActionEvent(gallons -> convert(gallons, GALLON_UK));
-    view.setOnCubicInchesActionEvent(cubicInches -> convert(cubicInches, CUBIC_INCH));
+    view.setOnMillilitersActionEvent(milliliters -> convert(milliliters, VolumeUnit.MILLILITERS));
+    view.setOnLitersActionEvent(liters -> convert(liters, VolumeUnit.LITERS));
+    view.setOnCubicMetersActionEvent(cubicMeters -> convert(cubicMeters, VolumeUnit.CUBIC_METERS));
+    view.setOnFluidOuncesActionEvent(fluidOunces -> convert(fluidOunces, VolumeUnit.FLUID_OUNCES));
+    view.setOnPintsActionEvent(pints -> convert(pints, VolumeUnit.PINTS));
+    view.setOnGallonsActionEvent(gallons -> convert(gallons, VolumeUnit.GALLONS));
   }
 
-  @Override
-  public void convert(String sourceMass, Unit<Volume> sourceUnit) {
-    BigDecimal conversionValue = valueConverter.parse(sourceMass);
+  public void convert(String sourceMass, VolumeUnit sourceUnit) {
+    Double conversionValue = valueConverter.parse(sourceMass);
     model.convert(conversionValue, sourceUnit);
+    view.setMilliliters(valueConverter.format(model.getMilliliters()));
     view.setLiters(valueConverter.format(model.getLiters()));
     view.setCubicMeters(valueConverter.format(model.getCubicMeters()));
+    view.setFluidOunces(valueConverter.format(model.getFluidOunces()));
+    view.setPints(valueConverter.format(model.getPints()));
     view.setGallons(valueConverter.format(model.getGallons()));
-    view.setCubicInches(valueConverter.format(model.getCubicInches()));
   }
 
   @Override

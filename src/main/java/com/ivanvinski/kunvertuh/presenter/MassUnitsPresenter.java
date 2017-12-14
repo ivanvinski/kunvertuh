@@ -1,25 +1,17 @@
 package com.ivanvinski.kunvertuh.presenter;
 
-import static javax.measure.unit.NonSI.METRIC_TON;
-import static javax.measure.unit.NonSI.OUNCE;
-import static javax.measure.unit.NonSI.POUND;
-import static javax.measure.unit.NonSI.TON_UK;
-import static javax.measure.unit.SI.GRAM;
-import static javax.measure.unit.SI.KILOGRAM;
-
 import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.model.MassUnitsModel;
+import com.ivanvinski.kunvertuh.unit.MassUnit;
 import com.ivanvinski.kunvertuh.util.StringConverter;
 import com.ivanvinski.kunvertuh.view.MassUnitsView;
 import java.math.BigDecimal;
 import java.util.Objects;
-import javax.measure.quantity.Mass;
-import javax.measure.unit.Unit;
 
-public class MassUnitsPresenter implements UnitsPresenter<Unit<Mass>> {
+public class MassUnitsPresenter implements Presenter<MassUnitsView, MassUnitsModel> {
 
   private MassUnitsView view;
-  private MassUnitsModel<Unit<Mass>> model;
+  private MassUnitsModel model;
   private StringConverter<BigDecimal> valueConverter;
 
   @Inject
@@ -32,24 +24,28 @@ public class MassUnitsPresenter implements UnitsPresenter<Unit<Mass>> {
 
   @Override
   public void initialize() {
-    view.setOnGramsActionEvent(grams -> convert(grams, GRAM));
-    view.setOnKilogramsActionEvent(kilograms -> convert(kilograms, KILOGRAM));
-    view.setOnMetricTonsActionEvent(tons -> convert(tons, METRIC_TON));
-    view.setOnOuncesActionEvent(ounces -> convert(ounces, OUNCE));
-    view.setOnPoundsActionEvent(pounds -> convert(pounds, POUND));
-    view.setOnImperialTonsActionEvent(tons -> convert(tons, TON_UK));
+    view.setOnMilligramsActionEvent(milligrams -> convert(milligrams, MassUnit.MILLIGRAMS));
+    view.setOnGramsActionEvent(grams -> convert(grams, MassUnit.GRAMS));
+    view.setOnDekagramsActionEvent(dekagrams -> convert(dekagrams, MassUnit.DEKAGRAMS));
+    view.setOnKilogramsActionEvent(kilograms -> convert(kilograms, MassUnit.KILOGRAMS));
+    view.setOnGrainsActionEvent(grains -> convert(grains, MassUnit.GRAINS));
+    view.setOnDramsActionEvent(drams -> convert(drams, MassUnit.DRAMS));
+    view.setOnOuncesActionEvent(ounces -> convert(ounces, MassUnit.OUNCES));
+    view.setOnPoundsActionEvent(pounds -> convert(pounds, MassUnit.POUNDS));
   }
 
   @Override
-  public void convert(String sourceMass, Unit<Mass> sourceUnit) {
-    BigDecimal conversionValue = valueConverter.parse(sourceMass);
+  public void convert(String sourceMass, MassUnit sourceUnit) {
+    Double conversionValue = valueConverter.parse(sourceMass);
     model.convert(conversionValue, sourceUnit);
+    view.setMilligrams(valueConverter.format(model.getMilligrams()));
     view.setGrams(valueConverter.format(model.getGrams()));
+    view.setDekagrams(valueConverter.format(model.getDekagrams()));
     view.setKilograms(valueConverter.format(model.getKilograms()));
-    view.setMetricTons(valueConverter.format(model.getMetricTons()));
+    view.setGrains(valueConverter.format(model.getGrains()));
+    view.setDrams(valueConverter.format(model.getDrams()));
     view.setOunces(valueConverter.format(model.getOunces()));
     view.setPounds(valueConverter.format(model.getPounds()));
-    view.setImperialTons(valueConverter.format(model.getImperialTons()));
   }
 
   @Override
@@ -58,7 +54,7 @@ public class MassUnitsPresenter implements UnitsPresenter<Unit<Mass>> {
   }
 
   @Override
-  public MassUnitsModel<Unit<Mass>> getModel() {
+  public MassUnitsModel getModel() {
     return model;
   }
 }
