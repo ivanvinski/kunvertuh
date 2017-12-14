@@ -4,11 +4,23 @@ import java.util.function.Consumer;
 
 public interface MassUnitsView extends View {
 
+  String getMilligrams();
+
+  void setMilligrams(String milligrams);
+
+  void setOnMilligramsActionEvent(Consumer<String> actionConsumer);
+
   String getGrams();
 
   void setGrams(String grams);
 
   void setOnGramsActionEvent(Consumer<String> actionConsumer);
+
+  String getDekagrams();
+
+  void setDekagrams(String dekagrams);
+
+  void setOnDekagramsActionEvent(Consumer<String> actionConsumer);
 
   String getKilograms();
 
@@ -16,11 +28,17 @@ public interface MassUnitsView extends View {
 
   void setOnKilogramsActionEvent(Consumer<String> actionConsumer);
 
-  String getMetricTons();
+  String getGrains();
 
-  void setMetricTons(String metricTons);
+  void setGrains(String grains);
 
-  void setOnMetricTonsActionEvent(Consumer<String> actionConsumer);
+  void setOnGrainsActionEvent(Consumer<String> actionConsumer);
+
+  String getDrams();
+
+  void setDrams(String drams);
+
+  void setOnDramsActionEvent(Consumer<String> actionConsumer);
 
   String getOunces();
 
@@ -33,10 +51,4 @@ public interface MassUnitsView extends View {
   void setPounds(String pounds);
 
   void setOnPoundsActionEvent(Consumer<String> actionConsumer);
-
-  String getImperialTons();
-
-  void setImperialTons(String imperialTons);
-
-  void setOnImperialTonsActionEvent(Consumer<String> actionConsumer);
 }

@@ -16,6 +16,12 @@ public interface LengthUnitsView extends View {
 
   void setOnCentimetersActionEvent(Consumer<String> actionConsumer);
 
+  String getDecimeters();
+
+  void setDecimeters(String decimeters);
+
+  void setOnDecimetersActionEvent(Consumer<String> actionConsumer);
+
   String getMeters();
 
   void setMeters(String meters);
