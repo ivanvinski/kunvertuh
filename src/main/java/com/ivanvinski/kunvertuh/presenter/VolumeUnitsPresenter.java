@@ -3,22 +3,19 @@ package com.ivanvinski.kunvertuh.presenter;
 import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.model.VolumeUnitsModel;
 import com.ivanvinski.kunvertuh.unit.VolumeUnit;
-import com.ivanvinski.kunvertuh.util.StringConverter;
+import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 import com.ivanvinski.kunvertuh.view.VolumeUnitsView;
-import java.math.BigDecimal;
 import java.util.Objects;
-import javax.measure.quantity.Volume;
-import javax.measure.unit.Unit;
 
 public class VolumeUnitsPresenter implements Presenter<VolumeUnitsView, VolumeUnitsModel> {
 
   private VolumeUnitsView view;
   private VolumeUnitsModel model;
-  private StringConverter<BigDecimal> valueConverter;
+  private DoubleStringConverter valueConverter;
 
   @Inject
   public VolumeUnitsPresenter(VolumeUnitsView view, VolumeUnitsModel model,
-      StringConverter valueConverter) {
+      DoubleStringConverter valueConverter) {
     this.view = Objects.requireNonNull(view, "View can't be null");
     this.model = Objects.requireNonNull(model, "Model can't be null");
     this.valueConverter = Objects.requireNonNull(valueConverter, "Value converter can't be null");
@@ -51,7 +48,7 @@ public class VolumeUnitsPresenter implements Presenter<VolumeUnitsView, VolumeUn
   }
 
   @Override
-  public VolumeUnitsModel<Unit<Volume>> getModel() {
+  public VolumeUnitsModel getModel() {
     return model;
   }
 }

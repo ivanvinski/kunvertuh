@@ -3,20 +3,19 @@ package com.ivanvinski.kunvertuh.presenter;
 import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.model.MassUnitsModel;
 import com.ivanvinski.kunvertuh.unit.MassUnit;
-import com.ivanvinski.kunvertuh.util.StringConverter;
+import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 import com.ivanvinski.kunvertuh.view.MassUnitsView;
-import java.math.BigDecimal;
 import java.util.Objects;
 
 public class MassUnitsPresenter implements Presenter<MassUnitsView, MassUnitsModel> {
 
   private MassUnitsView view;
   private MassUnitsModel model;
-  private StringConverter<BigDecimal> valueConverter;
+  private DoubleStringConverter valueConverter;
 
   @Inject
   public MassUnitsPresenter(MassUnitsView view, MassUnitsModel model,
-      StringConverter valueConverter) {
+      DoubleStringConverter valueConverter) {
     this.view = Objects.requireNonNull(view, "View can't be null");
     this.model = Objects.requireNonNull(model, "Model can't be null");
     this.valueConverter = Objects.requireNonNull(valueConverter, "Value converter can't be null");
@@ -34,7 +33,6 @@ public class MassUnitsPresenter implements Presenter<MassUnitsView, MassUnitsMod
     view.setOnPoundsActionEvent(pounds -> convert(pounds, MassUnit.POUNDS));
   }
 
-  @Override
   public void convert(String sourceMass, MassUnit sourceUnit) {
     Double conversionValue = valueConverter.parse(sourceMass);
     model.convert(conversionValue, sourceUnit);

@@ -3,20 +3,19 @@ package com.ivanvinski.kunvertuh.presenter;
 import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.model.LengthUnitsModel;
 import com.ivanvinski.kunvertuh.unit.LengthUnit;
-import com.ivanvinski.kunvertuh.util.StringConverter;
+import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 import com.ivanvinski.kunvertuh.view.LengthUnitsView;
-import java.math.BigDecimal;
 import java.util.Objects;
 
 public class LengthUnitsPresenter implements Presenter<LengthUnitsView, LengthUnitsModel> {
 
   private LengthUnitsView view;
   private LengthUnitsModel model;
-  private StringConverter<BigDecimal> valueConverter;
+  private DoubleStringConverter valueConverter;
 
   @Inject
   public LengthUnitsPresenter(LengthUnitsView view, LengthUnitsModel model,
-      StringConverter valueConverter) {
+      DoubleStringConverter valueConverter) {
     this.view = Objects.requireNonNull(view, "LengthUnitsView can't be null");
     this.model = Objects.requireNonNull(model, "LengthUnitsModel can't be null");
     this.valueConverter = Objects.requireNonNull(valueConverter, "Value converter can't be null");
