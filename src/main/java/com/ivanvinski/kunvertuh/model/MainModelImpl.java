@@ -1,30 +1,30 @@
 package com.ivanvinski.kunvertuh.model;
 
-import java.util.Map;
+import com.ivanvinski.kunvertuh.view.View;
+import com.ivanvinski.kunvertuh.view.ViewCatalog;
 import java.util.Objects;
-import javafx.scene.Parent;
 
-public class MainModelImpl implements MainModel<Parent> {
+public class MainModelImpl implements MainModel {
 
-  private Map<Class<? extends Parent>, Parent> loadedViews;
-  private Parent activeView;
+  private ViewCatalog catalog;
+  private View activeView;
 
-  public MainModelImpl(Map<Class<? extends Parent>, Parent> loadedViews) {
-    this.loadedViews = Objects.requireNonNull(loadedViews, "Loaded views can't be null");
+  public MainModelImpl(ViewCatalog catalog) {
+    this.catalog = Objects.requireNonNull(catalog, "View catalog can't be null");
   }
 
   @Override
-  public Parent getActiveView() {
+  public View getActiveView() {
     return activeView;
   }
 
   @Override
-  public void setActiveView(Parent view) {
+  public void setActiveView(View view) {
     activeView = view;
   }
 
   @Override
-  public Parent getView(Class<? extends Parent> viewType) {
-    return loadedViews.get(viewType);
+  public View getView(Class<? extends View> viewType) {
+    return catalog.get(viewType);
   }
 }

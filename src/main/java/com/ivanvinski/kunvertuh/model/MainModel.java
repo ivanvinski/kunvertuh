@@ -1,10 +1,12 @@
 package com.ivanvinski.kunvertuh.model;
 
-public interface MainModel<V> {
+import com.ivanvinski.kunvertuh.view.View;
 
-  V getActiveView();
+public interface MainModel {
 
-  void setActiveView(V view);
+  View getActiveView();
 
-  V getView(Class<? extends V> viewType);
+  void setActiveView(View view);
+
+  View getView(Class<? extends View> viewType);
 }
