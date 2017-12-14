@@ -5,29 +5,35 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-
-<GridPane fx:id="root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="600.0" styleClass="table-card" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ivanvinski.kunvertuh.presenter.MassUnitsPresenter">
+<GridPane fx:id="root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+  prefWidth="600.0" styleClass="table-card" xmlns="http://javafx.com/javafx/8.0.141"
+  xmlns:fx="http://javafx.com/fxml/1"
+  fx:controller="com.ivanvinski.kunvertuh.presenter.MassUnitsPresenter">
   <columnConstraints>
-    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" vgrow="SOMETIMES" />
-      <RowConstraints vgrow="NEVER" />
-      <RowConstraints vgrow="NEVER" />
-    <RowConstraints vgrow="NEVER" />
-    <RowConstraints vgrow="NEVER" />
+    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0"
+      vgrow="SOMETIMES"/>
+    <RowConstraints vgrow="NEVER"/>
+    <RowConstraints vgrow="NEVER"/>
+    <RowConstraints vgrow="NEVER"/>
+    <RowConstraints vgrow="NEVER"/>
   </rowConstraints>
   <children>
-    <Label styleClass="subheading" text="Metric" />
-    <Label styleClass="subheading" text="Imperial" GridPane.columnIndex="1" />
-      <JFXTextField fx:id="milligrams" promptText="Milligrams" GridPane.rowIndex="1" />
-      <JFXTextField fx:id="grains" promptText="Grains" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-    <JFXTextField fx:id="grams" promptText="Grams" GridPane.rowIndex="2" />
-      <JFXTextField fx:id="drams" promptText="Drams" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <JFXTextField fx:id="dekagrams" promptText="Dekagrams" GridPane.rowIndex="3" />
-    <JFXTextField fx:id="ounces" promptText="Ounces" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-    <JFXTextField fx:id="kilograms" promptText="Kilograms" GridPane.rowIndex="4" />
-    <JFXTextField fx:id="pounds" promptText="Pounds" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    <Label styleClass="subheading" text="Metric"/>
+    <Label styleClass="subheading" text="Imperial" GridPane.columnIndex="1"/>
+    <JFXTextField fx:id="milligrams" promptText="Milligrams" GridPane.rowIndex="1"/>
+    <JFXTextField fx:id="grains" promptText="Grains" GridPane.columnIndex="1"
+      GridPane.rowIndex="1"/>
+    <JFXTextField fx:id="grams" promptText="Grams" GridPane.rowIndex="2"/>
+    <JFXTextField fx:id="drams" promptText="Drams" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+    <JFXTextField fx:id="dekagrams" promptText="Dekagrams" GridPane.rowIndex="3"/>
+    <JFXTextField fx:id="ounces" promptText="Ounces" GridPane.columnIndex="1"
+      GridPane.rowIndex="3"/>
+    <JFXTextField fx:id="kilograms" promptText="Kilograms" GridPane.rowIndex="4"/>
+    <JFXTextField fx:id="pounds" promptText="Pounds" GridPane.columnIndex="1"
+      GridPane.rowIndex="4"/>
   </children>
 </GridPane>
