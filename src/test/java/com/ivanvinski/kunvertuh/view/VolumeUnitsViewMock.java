@@ -6,16 +6,37 @@ import javafx.beans.property.StringProperty;
 
 public class VolumeUnitsViewMock implements VolumeUnitsView {
 
-  private StringProperty liters, cubicMeters;
-  private Consumer<String> litersAction, cubicMetersAction;
-  private StringProperty gallons, cubicInches;
-  private Consumer<String> gallonsAction, cubicInchesAction;
+  private StringProperty milliliters, liters, cubicMeters;
+  private Consumer<String> millilitersAction, litersAction, cubicMetersAction;
+  private StringProperty fluidOunces, pints, gallons;
+  private Consumer<String> fluidOuncesAction, pintsAction, gallonsAction;
 
   public VolumeUnitsViewMock() {
+    milliliters = newStringProperty();
     liters = newStringProperty();
     cubicMeters = newStringProperty();
+    fluidOunces = newStringProperty();
+    pints = newStringProperty();
     gallons = newStringProperty();
-    cubicInches = newStringProperty();
+  }
+
+  @Override
+  public String getMilliliters() {
+    return milliliters.getValue();
+  }
+
+  @Override
+  public void setMilliliters(String milliliters) {
+    this.milliliters.setValue(milliliters);
+  }
+
+  @Override
+  public void setOnMillilitersActionEvent(Consumer<String> actionConsumer) {
+    millilitersAction = actionConsumer;
+  }
+
+  public void fireMillilitersActionEvent() {
+    millilitersAction.accept(getMilliliters());
   }
 
   @Override
@@ -57,6 +78,44 @@ public class VolumeUnitsViewMock implements VolumeUnitsView {
   }
 
   @Override
+  public String getFluidOunces() {
+    return fluidOunces.getValue();
+  }
+
+  @Override
+  public void setFluidOunces(String fluidOunces) {
+    this.fluidOunces.setValue(fluidOunces);
+  }
+
+  @Override
+  public void setOnFluidOuncesActionEvent(Consumer<String> actionConsumer) {
+    fluidOuncesAction = actionConsumer;
+  }
+
+  public void fireFluidOuncesActionEvent() {
+    fluidOuncesAction.accept(getFluidOunces());
+  }
+
+  @Override
+  public String getPints() {
+    return pints.getValue();
+  }
+
+  @Override
+  public void setPints(String pints) {
+    this.pints.setValue(pints);
+  }
+
+  @Override
+  public void setOnPintsActionEvent(Consumer<String> actionConsumer) {
+    pintsAction = actionConsumer;
+  }
+
+  public void firePintsActionEvent() {
+    pintsAction.accept(getPints());
+  }
+
+  @Override
   public String getGallons() {
     return gallons.getValue();
   }
@@ -73,25 +132,6 @@ public class VolumeUnitsViewMock implements VolumeUnitsView {
 
   public void fireGallonsActionEvent() {
     gallonsAction.accept(getGallons());
-  }
-
-  @Override
-  public String getCubicInches() {
-    return cubicInches.getValue();
-  }
-
-  @Override
-  public void setCubicInches(String cubicInches) {
-    this.cubicInches.setValue(cubicInches);
-  }
-
-  @Override
-  public void setOnCubicInchesActionEvent(Consumer<String> actionConsumer) {
-    cubicInchesAction = actionConsumer;
-  }
-
-  public void fireCubicInchesActionEvent() {
-    cubicInchesAction.accept(getCubicInches());
   }
 
   private StringProperty newStringProperty() {

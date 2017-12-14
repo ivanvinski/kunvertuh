@@ -6,18 +6,39 @@ import javafx.beans.property.StringProperty;
 
 public class MassUnitsViewMock implements MassUnitsView {
 
-  private StringProperty grams, kilograms, metricTons;
-  private Consumer<String> gramsAction, kilogramsAction, metricTonsAction;
-  private StringProperty ounces, pounds, imperialTons;
-  private Consumer<String> ouncesAction, poundsAction, imperialTonsAction;
+  private StringProperty milligrams, grams, dekagrams, kilograms;
+  private Consumer<String> milligramsAction, gramsAction, dekagramsAction, kilogramsAction;
+  private StringProperty grains, drams, ounces, pounds;
+  private Consumer<String> grainsAction, dramsAction, ouncesAction, poundsAction;
 
   public MassUnitsViewMock() {
+    milligrams = newStringProperty();
     grams = newStringProperty();
+    dekagrams = newStringProperty();
     kilograms = newStringProperty();
-    metricTons = newStringProperty();
+    grains = newStringProperty();
+    drams = newStringProperty();
     ounces = newStringProperty();
     pounds = newStringProperty();
-    imperialTons = newStringProperty();
+  }
+
+  @Override
+  public String getMilligrams() {
+    return milligrams.getValue();
+  }
+
+  @Override
+  public void setMilligrams(String milligrams) {
+    this.milligrams.setValue(milligrams);
+  }
+
+  @Override
+  public void setOnMilligramsActionEvent(Consumer<String> actionConsumer) {
+    milligramsAction = actionConsumer;
+  }
+
+  public void fireMilligramsActionEvent() {
+    milligramsAction.accept(getMilligrams());
   }
 
   @Override
@@ -40,6 +61,25 @@ public class MassUnitsViewMock implements MassUnitsView {
   }
 
   @Override
+  public String getDekagrams() {
+    return dekagrams.getValue();
+  }
+
+  @Override
+  public void setDekagrams(String dekagrams) {
+    this.dekagrams.setValue(dekagrams);
+  }
+
+  @Override
+  public void setOnDekagramsActionEvent(Consumer<String> actionConsumer) {
+    dekagramsAction = actionConsumer;
+  }
+
+  public void fireDekagramsActionEvent() {
+    dekagramsAction.accept(getDekagrams());
+  }
+
+  @Override
   public String getKilograms() {
     return kilograms.getValue();
   }
@@ -59,22 +99,41 @@ public class MassUnitsViewMock implements MassUnitsView {
   }
 
   @Override
-  public String getMetricTons() {
-    return metricTons.getValue();
+  public String getGrains() {
+    return grains.getValue();
   }
 
   @Override
-  public void setMetricTons(String metricTons) {
-    this.metricTons.setValue(metricTons);
+  public void setGrains(String grains) {
+    this.grains.setValue(grains);
   }
 
   @Override
-  public void setOnMetricTonsActionEvent(Consumer<String> actionConsumer) {
-    metricTonsAction = actionConsumer;
+  public void setOnGrainsActionEvent(Consumer<String> actionConsumer) {
+    grainsAction = actionConsumer;
   }
 
-  public void fireMetricTonsActionEvent() {
-    metricTonsAction.accept(getMetricTons());
+  public void fireGrainsActionEvent() {
+    grainsAction.accept(getGrains());
+  }
+
+  @Override
+  public String getDrams() {
+    return drams.getValue();
+  }
+
+  @Override
+  public void setDrams(String drams) {
+    this.drams.setValue(drams);
+  }
+
+  @Override
+  public void setOnDramsActionEvent(Consumer<String> actionConsumer) {
+    dramsAction = actionConsumer;
+  }
+
+  public void fireDramsActionEvent() {
+    dramsAction.accept(getDrams());
   }
 
   @Override
@@ -113,25 +172,6 @@ public class MassUnitsViewMock implements MassUnitsView {
 
   public void firePoundsActionEvent() {
     poundsAction.accept(getPounds());
-  }
-
-  @Override
-  public String getImperialTons() {
-    return imperialTons.getValue();
-  }
-
-  @Override
-  public void setImperialTons(String imperialTons) {
-    this.imperialTons.setValue(imperialTons);
-  }
-
-  @Override
-  public void setOnImperialTonsActionEvent(Consumer<String> actionConsumer) {
-    imperialTonsAction = actionConsumer;
-  }
-
-  public void fireImperialTonsActionEvent() {
-    imperialTonsAction.accept(getImperialTons());
   }
 
   private StringProperty newStringProperty() {

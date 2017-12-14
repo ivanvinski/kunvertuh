@@ -6,14 +6,15 @@ import javafx.beans.property.StringProperty;
 
 public class LengthUnitsViewMock implements LengthUnitsView {
 
-  private StringProperty millimeters, centimeters, meters, kilometers;
-  private Consumer<String> millimetersAction, centimetersAction, metersAction, kilometersAction;
+  private StringProperty millimeters, centimeters, decimeters, meters, kilometers;
+  private Consumer<String> millimetersAction, centimetersAction, decimetersAction, metersAction, kilometersAction;
   private StringProperty inches, feet, yards, miles;
   private Consumer<String> inchesAction, feetAction, yardsAction, milesAction;
 
   public LengthUnitsViewMock() {
     millimeters = newStringProperty();
     centimeters = newStringProperty();
+    decimeters = newStringProperty();
     meters = newStringProperty();
     kilometers = newStringProperty();
     inches = newStringProperty();
@@ -58,6 +59,25 @@ public class LengthUnitsViewMock implements LengthUnitsView {
 
   public void fireCentimetersActionEvent() {
     centimetersAction.accept(getCentimeters());
+  }
+
+  @Override
+  public String getDecimeters() {
+    return decimeters.getValue();
+  }
+
+  @Override
+  public void setDecimeters(String decimeters) {
+    this.decimeters.setValue(decimeters);
+  }
+
+  @Override
+  public void setOnDecimetersActionEvent(Consumer<String> actionConsumer) {
+    decimetersAction = actionConsumer;
+  }
+
+  public void fireDecimetersActionEvent() {
+    decimetersAction.accept(getDecimeters());
   }
 
   @Override
