@@ -3,14 +3,14 @@ package com.ivanvinski.kunvertuh.view;
 public class MainViewMock implements MainView {
 
   private Runnable lengthAction, massAction, volumeAction;
-  private Object activeView;
+  private View activeView;
 
-  public Object getActiveView() {
+  public View getActiveView() {
     return activeView;
   }
 
   @Override
-  public void setActiveView(Object view) {
+  public void setActiveView(View view) {
     activeView = view;
   }
 

@@ -7,31 +7,28 @@ import com.ivanvinski.kunvertuh.model.MainModelImpl;
 import com.ivanvinski.kunvertuh.view.LengthUnitsViewImpl;
 import com.ivanvinski.kunvertuh.view.MainViewMock;
 import com.ivanvinski.kunvertuh.view.MassUnitsViewImpl;
+import com.ivanvinski.kunvertuh.view.ViewCatalog;
 import com.ivanvinski.kunvertuh.view.VolumeUnitsViewImpl;
-import java.util.HashMap;
-import java.util.Map;
-import javafx.scene.Parent;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 public class TestMainPresenter {
 
   private MainViewMock view = new MainViewMock();
-  private MainModel<Parent> model;
+  private MainModel model;
   private MainPresenter presenter;
 
-  private LengthUnitsViewImpl lengthView = Mockito.mock(LengthUnitsViewImpl.class);
-  private MassUnitsViewImpl massView = Mockito.mock(MassUnitsViewImpl.class);
-  private VolumeUnitsViewImpl volumeView = Mockito.mock(VolumeUnitsViewImpl.class);
+  private LengthUnitsViewImpl lengthView = new LengthUnitsViewImpl();
+  private MassUnitsViewImpl massView = new MassUnitsViewImpl();
+  private VolumeUnitsViewImpl volumeView = new VolumeUnitsViewImpl();
 
   @Before
   public void setUp() {
-    Map<Class<? extends Parent>, Parent> views = new HashMap<>();
-    views.put(LengthUnitsViewImpl.class, lengthView);
-    views.put(MassUnitsViewImpl.class, massView);
-    views.put(VolumeUnitsViewImpl.class, volumeView);
-    presenter = new MainPresenter(view, model = new MainModelImpl(views));
+    ViewCatalog catalog = new ViewCatalog();
+    catalog.add(lengthView);
+    catalog.add(massView);
+    catalog.add(volumeView);
+    presenter = new MainPresenter(view, model = new MainModelImpl(catalog));
     presenter.initialize();
   }
 
