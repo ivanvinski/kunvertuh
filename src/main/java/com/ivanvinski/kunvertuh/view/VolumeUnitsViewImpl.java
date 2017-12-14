@@ -11,12 +11,27 @@ public class VolumeUnitsViewImpl extends StackPane implements VolumeUnitsView {
   @FXML
   private Parent root;
   @FXML
-  private JFXTextField liters, cubicMeters;
+  private JFXTextField milliliters, liters, cubicMeters;
   @FXML
-  private JFXTextField gallons, cubicInches;
+  private JFXTextField fluidOunces, pints, gallons;
 
   public void initialize() {
     getChildren().setAll(root);
+  }
+
+  @Override
+  public String getMilliliters() {
+    return milliliters.getText();
+  }
+
+  @Override
+  public void setMilliliters(String milliliters) {
+    this.milliliters.setText(milliliters);
+  }
+
+  @Override
+  public void setOnMillilitersActionEvent(Consumer<String> actionConsumer) {
+    milliliters.setOnAction(event -> actionConsumer.accept(getMilliliters()));
   }
 
   @Override
@@ -50,6 +65,36 @@ public class VolumeUnitsViewImpl extends StackPane implements VolumeUnitsView {
   }
 
   @Override
+  public String getFluidOunces() {
+    return fluidOunces.getText();
+  }
+
+  @Override
+  public void setFluidOunces(String fluidOunces) {
+    this.fluidOunces.setText(fluidOunces);
+  }
+
+  @Override
+  public void setOnFluidOuncesActionEvent(Consumer<String> actionConsumer) {
+    fluidOunces.setOnAction(event -> actionConsumer.accept(getFluidOunces()));
+  }
+
+  @Override
+  public String getPints() {
+    return pints.getText();
+  }
+
+  @Override
+  public void setPints(String pints) {
+    this.pints.setText(pints);
+  }
+
+  @Override
+  public void setOnPintsActionEvent(Consumer<String> actionConsumer) {
+    pints.setOnAction(event -> actionConsumer.accept(getPints()));
+  }
+
+  @Override
   public String getGallons() {
     return gallons.getText();
   }
@@ -62,20 +107,5 @@ public class VolumeUnitsViewImpl extends StackPane implements VolumeUnitsView {
   @Override
   public void setOnGallonsActionEvent(Consumer<String> actionConsumer) {
     gallons.setOnAction(event -> actionConsumer.accept(getGallons()));
-  }
-
-  @Override
-  public String getCubicInches() {
-    return cubicInches.getText();
-  }
-
-  @Override
-  public void setCubicInches(String cubicInches) {
-    this.cubicInches.setText(cubicInches);
-  }
-
-  @Override
-  public void setOnCubicInchesActionEvent(Consumer<String> actionConsumer) {
-    cubicInches.setOnAction(event -> actionConsumer.accept(getCubicInches()));
   }
 }

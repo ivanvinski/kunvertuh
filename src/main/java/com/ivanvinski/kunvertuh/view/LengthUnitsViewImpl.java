@@ -11,7 +11,7 @@ public class LengthUnitsViewImpl extends StackPane implements LengthUnitsView {
   @FXML
   private Parent root;
   @FXML
-  private JFXTextField millimeters, centimeters, meters, kilometers;
+  private JFXTextField millimeters, decimeters, centimeters, meters, kilometers;
   @FXML
   private JFXTextField inches, feet, yards, miles;
 
@@ -32,6 +32,21 @@ public class LengthUnitsViewImpl extends StackPane implements LengthUnitsView {
   @Override
   public void setOnMillimetersActionEvent(Consumer<String> actionConsumer) {
     millimeters.setOnAction(event -> actionConsumer.accept(getMillimeters()));
+  }
+
+  @Override
+  public String getDecimeters() {
+    return decimeters.getText();
+  }
+
+  @Override
+  public void setDecimeters(String decimeters) {
+    this.decimeters.setText(decimeters);
+  }
+
+  @Override
+  public void setOnDecimetersActionEvent(Consumer<String> actionConsumer) {
+    decimeters.setOnAction(event -> actionConsumer.accept(getDecimeters()));
   }
 
   @Override

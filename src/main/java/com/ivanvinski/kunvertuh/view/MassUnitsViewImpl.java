@@ -11,12 +11,27 @@ public class MassUnitsViewImpl extends StackPane implements MassUnitsView {
   @FXML
   private Parent root;
   @FXML
-  private JFXTextField grams, kilograms, metricTons;
+  private JFXTextField milligrams, grams, dekagrams, kilograms;
   @FXML
-  private JFXTextField ounces, pounds, imperialTons;
+  private JFXTextField grains, drams, ounces, pounds;
 
   public void initialize() {
     getChildren().setAll(root);
+  }
+
+  @Override
+  public String getMilligrams() {
+    return milligrams.getText();
+  }
+
+  @Override
+  public void setMilligrams(String milligrams) {
+    this.milligrams.setText(milligrams);
+  }
+
+  @Override
+  public void setOnMilligramsActionEvent(Consumer<String> actionConsumer) {
+    milligrams.setOnAction(event -> actionConsumer.accept(getMilligrams()));
   }
 
   @Override
@@ -35,6 +50,21 @@ public class MassUnitsViewImpl extends StackPane implements MassUnitsView {
   }
 
   @Override
+  public String getDekagrams() {
+    return dekagrams.getText();
+  }
+
+  @Override
+  public void setDekagrams(String dekagrams) {
+    this.dekagrams.setText(dekagrams);
+  }
+
+  @Override
+  public void setOnDekagramsActionEvent(Consumer<String> actionConsumer) {
+    dekagrams.setOnAction(event -> actionConsumer.accept(getDekagrams()));
+  }
+
+  @Override
   public String getKilograms() {
     return kilograms.getText();
   }
@@ -50,18 +80,33 @@ public class MassUnitsViewImpl extends StackPane implements MassUnitsView {
   }
 
   @Override
-  public String getMetricTons() {
-    return metricTons.getText();
+  public String getGrains() {
+    return grains.getText();
   }
 
   @Override
-  public void setMetricTons(String metricTons) {
-    this.metricTons.setText(metricTons);
+  public void setGrains(String grains) {
+    this.grains.setText(grains);
   }
 
   @Override
-  public void setOnMetricTonsActionEvent(Consumer<String> actionConsumer) {
-    metricTons.setOnAction(event -> actionConsumer.accept(getMetricTons()));
+  public void setOnGrainsActionEvent(Consumer<String> actionConsumer) {
+    grains.setOnAction(event -> actionConsumer.accept(getGrains()));
+  }
+
+  @Override
+  public String getDrams() {
+    return drams.getText();
+  }
+
+  @Override
+  public void setDrams(String drams) {
+    this.drams.setText(drams);
+  }
+
+  @Override
+  public void setOnDramsActionEvent(Consumer<String> actionConsumer) {
+    drams.setOnAction(event -> actionConsumer.accept(getDrams()));
   }
 
   @Override
@@ -92,20 +137,5 @@ public class MassUnitsViewImpl extends StackPane implements MassUnitsView {
   @Override
   public void setOnPoundsActionEvent(Consumer<String> actionConsumer) {
     pounds.setOnAction(event -> actionConsumer.accept(getPounds()));
-  }
-
-  @Override
-  public String getImperialTons() {
-    return imperialTons.getText();
-  }
-
-  @Override
-  public void setImperialTons(String imperialTons) {
-    this.imperialTons.setText(imperialTons);
-  }
-
-  @Override
-  public void setOnImperialTonsActionEvent(Consumer<String> actionConsumer) {
-    imperialTons.setOnAction(event -> actionConsumer.accept(getImperialTons()));
   }
 }
