@@ -1,75 +1,69 @@
 package com.ivanvinski.kunvertuh.model;
 
-import static javax.measure.unit.NonSI.FOOT;
-import static javax.measure.unit.NonSI.INCH;
-import static javax.measure.unit.NonSI.MILE;
-import static javax.measure.unit.NonSI.YARD;
-import static javax.measure.unit.SI.CENTIMETER;
-import static javax.measure.unit.SI.KILOMETER;
-import static javax.measure.unit.SI.METER;
-import static javax.measure.unit.SI.MILLIMETER;
+import com.ivanvinski.kunvertuh.unit.LengthUnit;
+import java.util.Objects;
 
-import com.ivanvinski.kunvertuh.util.SimpleUnitConverter;
-import com.ivanvinski.kunvertuh.util.UnitConverter;
-import java.math.BigDecimal;
-import javax.measure.quantity.Length;
-import javax.measure.unit.Unit;
+public class LengthUnitsModelImpl implements LengthUnitsModel {
 
-public class LengthUnitsModelImpl implements LengthUnitsModel<Unit<Length>> {
-
-  private UnitConverter<Unit<Length>> unitConverter = new SimpleUnitConverter<>();
-  private BigDecimal millimeters, centimeters, meters, kilometers;
-  private BigDecimal inches, feet, yards, miles;
+  private Double millimeters, centimeters, decimeters, meters, kilometers;
+  private Double inches, feet, yards, miles;
 
   @Override
-  public void convert(BigDecimal sourceLength, Unit<Length> sourceUnit) {
-    millimeters = unitConverter.convert(sourceLength, sourceUnit, MILLIMETER);
-    centimeters = unitConverter.convert(sourceLength, sourceUnit, CENTIMETER);
-    meters = unitConverter.convert(sourceLength, sourceUnit, METER);
-    kilometers = unitConverter.convert(sourceLength, sourceUnit, KILOMETER);
-    inches = unitConverter.convert(sourceLength, sourceUnit, INCH);
-    feet = unitConverter.convert(sourceLength, sourceUnit, FOOT);
-    yards = unitConverter.convert(sourceLength, sourceUnit, YARD);
-    miles = unitConverter.convert(sourceLength, sourceUnit, MILE);
+  public void convert(Double sourceLength, LengthUnit sourceUnit) {
+    Objects.requireNonNull(sourceUnit, "Source unit can't be null");
+    millimeters = sourceUnit.toMillimeters(sourceLength);
+    centimeters = sourceUnit.toCentimeters(sourceLength);
+    decimeters = sourceUnit.toDecimeters(sourceLength);
+    meters = sourceUnit.toMeters(sourceLength);
+    kilometers = sourceUnit.toKilometers(sourceLength);
+    inches = sourceUnit.toInches(sourceLength);
+    feet = sourceUnit.toFeet(sourceLength);
+    yards = sourceUnit.toYards(sourceLength);
+    miles = sourceUnit.toMiles(sourceLength);
   }
 
   @Override
-  public BigDecimal getMillimeters() {
+  public Double getMillimeters() {
     return millimeters;
   }
 
   @Override
-  public BigDecimal getCentimeters() {
+  public Double getCentimeters() {
     return centimeters;
   }
 
   @Override
-  public BigDecimal getMeters() {
+  public Double getDecimeters() {
+    return decimeters;
+  }
+
+  @Override
+  public Double getMeters() {
     return meters;
   }
 
   @Override
-  public BigDecimal getKilometers() {
+  public Double getKilometers() {
     return kilometers;
   }
 
   @Override
-  public BigDecimal getInches() {
+  public Double getInches() {
     return inches;
   }
 
   @Override
-  public BigDecimal getFeet() {
+  public Double getFeet() {
     return feet;
   }
 
   @Override
-  public BigDecimal getYards() {
+  public Double getYards() {
     return yards;
   }
 
   @Override
-  public BigDecimal getMiles() {
+  public Double getMiles() {
     return miles;
   }
 }

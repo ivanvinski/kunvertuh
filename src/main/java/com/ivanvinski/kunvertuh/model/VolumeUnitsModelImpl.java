@@ -1,47 +1,51 @@
 package com.ivanvinski.kunvertuh.model;
 
-import static javax.measure.unit.NonSI.CUBIC_INCH;
-import static javax.measure.unit.NonSI.GALLON_UK;
-import static javax.measure.unit.NonSI.LITER;
-import static javax.measure.unit.SI.CUBIC_METRE;
+import com.ivanvinski.kunvertuh.unit.VolumeUnit;
+import java.util.Objects;
 
-import com.ivanvinski.kunvertuh.util.SimpleUnitConverter;
-import com.ivanvinski.kunvertuh.util.UnitConverter;
-import java.math.BigDecimal;
-import javax.measure.quantity.Volume;
-import javax.measure.unit.Unit;
+public class VolumeUnitsModelImpl implements VolumeUnitsModel {
 
-public class VolumeUnitsModelImpl implements VolumeUnitsModel<Unit<Volume>> {
-
-  private UnitConverter<Unit<Volume>> unitConverter = new SimpleUnitConverter<>();
-  private BigDecimal liters, cubicMeters;
-  private BigDecimal gallons, cubicInches;
+  private Double milliliters, liters, cubicMeters;
+  private Double fluidOunces, pints, gallons;
 
   @Override
-  public void convert(BigDecimal sourceVolume, Unit<Volume> sourceUnit) {
-    liters = unitConverter.convert(sourceVolume, sourceUnit, LITER);
-    cubicMeters = unitConverter.convert(sourceVolume, sourceUnit, CUBIC_METRE);
-    gallons = unitConverter.convert(sourceVolume, sourceUnit, GALLON_UK);
-    cubicInches = unitConverter.convert(sourceVolume, sourceUnit, CUBIC_INCH);
+  public void convert(Double sourceVolume, VolumeUnit sourceUnit) {
+    Objects.requireNonNull(sourceUnit, "Source unit can't be null");
+    milliliters = sourceUnit.toMilliliters(sourceVolume);
+    liters = sourceUnit.toLiters(sourceVolume);
+    cubicMeters = sourceUnit.toCubicMeters(sourceVolume);
+    fluidOunces = sourceUnit.toFluidOunces(sourceVolume);
+    pints = sourceUnit.toPints(sourceVolume);
+    gallons = sourceUnit.toGallons(sourceVolume);
   }
 
   @Override
-  public BigDecimal getLiters() {
+  public Double getMilliliters() {
+    return milliliters;
+  }
+
+  @Override
+  public Double getLiters() {
     return liters;
   }
 
   @Override
-  public BigDecimal getCubicMeters() {
+  public Double getCubicMeters() {
     return cubicMeters;
   }
 
   @Override
-  public BigDecimal getGallons() {
-    return gallons;
+  public Double getFluidOunces() {
+    return fluidOunces;
   }
 
   @Override
-  public BigDecimal getCubicInches() {
-    return cubicInches;
+  public Double getPints() {
+    return pints;
+  }
+
+  @Override
+  public Double getGallons() {
+    return gallons;
   }
 }
