@@ -2,20 +2,12 @@ package com.ivanvinski.kunvertuh.presenter;
 
 import static com.ivanvinski.kunvertuh.TestConstants.IMPERIAL_DELTA;
 import static com.ivanvinski.kunvertuh.TestConstants.METRIC_DELTA;
-import static javax.measure.unit.NonSI.METRIC_TON;
-import static javax.measure.unit.NonSI.OUNCE;
-import static javax.measure.unit.NonSI.POUND;
-import static javax.measure.unit.NonSI.TON_UK;
-import static javax.measure.unit.SI.GRAM;
-import static javax.measure.unit.SI.KILOGRAM;
 import static org.junit.Assert.assertEquals;
 
 import com.ivanvinski.kunvertuh.model.MassUnitsModel;
-import com.ivanvinski.kunvertuh.model.MassUnitsModelImpl;
-import com.ivanvinski.kunvertuh.util.BigDecimalStringConverter;
-import com.ivanvinski.kunvertuh.util.StringConverter;
+import com.ivanvinski.kunvertuh.unit.MassUnit;
+import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 import com.ivanvinski.kunvertuh.view.MassUnitsViewMock;
-import java.math.BigDecimal;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,11 +15,11 @@ public class TestMassUnitsPresenter {
 
   private static final String SOURCE_MASS = "5";
 
-  private StringConverter<BigDecimal> valueConverter = new BigDecimalStringConverter();
+  private DoubleStringConverter valueConverter = new DoubleStringConverter();
   private String formattedSourceMass = valueConverter.format(valueConverter.parse(SOURCE_MASS));
 
   private MassUnitsViewMock view = new MassUnitsViewMock();
-  private MassUnitsModel model = new MassUnitsModelImpl();
+  private MassUnitsModel model = new MassUnitsModel();
   private MassUnitsPresenter presenter = new MassUnitsPresenter(view, model, valueConverter);
 
   @Before
@@ -58,54 +50,93 @@ public class TestMassUnitsPresenter {
   }
 
   @Test
+  public void milligramsActionEventInvokesConversion() {
+    view.setMilligrams(SOURCE_MASS);
+    view.fireMilligramsActionEvent();
+    assertEquals(0.005d, model.getGrams(), METRIC_DELTA);
+  }
+
+  @Test
+  public void milligramsConversionUpdatesView() {
+    presenter.convert(SOURCE_MASS, MassUnit.MILLIGRAMS);
+    assertEquals(formattedSourceMass, view.getMilligrams());
+  }
+
+  @Test
   public void gramsActionEventInvokesConversion() {
     view.setGrams(SOURCE_MASS);
     view.fireGramsActionEvent();
-    assertEquals(5d, model.getGrams().doubleValue(), METRIC_DELTA);
+    assertEquals(5d, model.getGrams(), METRIC_DELTA);
   }
 
   @Test
   public void gramsConversionUpdatesView() {
-    presenter.convert(SOURCE_MASS, GRAM);
+    presenter.convert(SOURCE_MASS, MassUnit.GRAMS);
     assertEquals(formattedSourceMass, view.getGrams());
+  }
+
+  @Test
+  public void dekagramsActionEventInvokesConversion() {
+    view.setDekagrams(SOURCE_MASS);
+    view.fireDekagramsActionEvent();
+    assertEquals(50d, model.getGrams(), METRIC_DELTA);
+  }
+
+  @Test
+  public void dekagramsConversionUpdatesView() {
+    presenter.convert(SOURCE_MASS, MassUnit.DEKAGRAMS);
+    assertEquals(formattedSourceMass, view.getDekagrams());
   }
 
   @Test
   public void kilogramsActionEventInvokesConversion() {
     view.setKilograms(SOURCE_MASS);
     view.fireKilogramsActionEvent();
-    assertEquals(5000d, model.getGrams().doubleValue(), METRIC_DELTA);
+    assertEquals(5000d, model.getGrams(), METRIC_DELTA);
   }
 
   @Test
   public void kilogramConversionUpdatesView() {
-    presenter.convert(SOURCE_MASS, KILOGRAM);
+    presenter.convert(SOURCE_MASS, MassUnit.KILOGRAMS);
     assertEquals(formattedSourceMass, view.getKilograms());
   }
 
   @Test
-  public void metricTonsActionEventInvokesConversion() {
-    view.setMetricTons(SOURCE_MASS);
-    view.fireMetricTonsActionEvent();
-    assertEquals(5000000d, model.getGrams().doubleValue(), METRIC_DELTA);
+  public void grainsActionEventInvokesConversion() {
+    view.setGrains(SOURCE_MASS);
+    view.fireGrainsActionEvent();
+    assertEquals(0.32d, model.getGrams(), IMPERIAL_DELTA);
   }
 
   @Test
-  public void metricTonsConversionUpdatesView() {
-    presenter.convert(SOURCE_MASS, METRIC_TON);
-    assertEquals(formattedSourceMass, view.getMetricTons());
+  public void grainsConversionUpdatesView() {
+    presenter.convert(SOURCE_MASS, MassUnit.GRAINS);
+    assertEquals(formattedSourceMass, view.getGrains());
+  }
+
+  @Test
+  public void dramsActionEventInvokesConversion() {
+    view.setDrams(SOURCE_MASS);
+    view.fireDramsActionEvent();
+    assertEquals(8.86d, model.getGrams(), IMPERIAL_DELTA);
+  }
+
+  @Test
+  public void dramsConversionUpdatesView() {
+    presenter.convert(SOURCE_MASS, MassUnit.DRAMS);
+    assertEquals(formattedSourceMass, view.getDrams());
   }
 
   @Test
   public void ouncesActionEventInvokesConversion() {
     view.setOunces(SOURCE_MASS);
     view.fireOuncesActionEvent();
-    assertEquals(141.7476d, model.getGrams().doubleValue(), IMPERIAL_DELTA);
+    assertEquals(141.7476d, model.getGrams(), IMPERIAL_DELTA);
   }
 
   @Test
   public void ouncesConversionUpdatesView() {
-    presenter.convert(SOURCE_MASS, OUNCE);
+    presenter.convert(SOURCE_MASS, MassUnit.OUNCES);
     assertEquals(formattedSourceMass, view.getOunces());
   }
 
@@ -113,25 +144,12 @@ public class TestMassUnitsPresenter {
   public void poundsActionEventInvokesConversion() {
     view.setPounds(SOURCE_MASS);
     view.firePoundsActionEvent();
-    assertEquals(2267.962d, model.getGrams().doubleValue(), IMPERIAL_DELTA);
+    assertEquals(2267.962d, model.getGrams(), IMPERIAL_DELTA);
   }
 
   @Test
   public void poundsConversionUpdatesView() {
-    presenter.convert(SOURCE_MASS, POUND);
+    presenter.convert(SOURCE_MASS, MassUnit.POUNDS);
     assertEquals(formattedSourceMass, view.getPounds());
-  }
-
-  @Test
-  public void imperialTonsActionEventInvokesConversion() {
-    view.setImperialTons(SOURCE_MASS);
-    view.fireImperialTonsActionEvent();
-    assertEquals(5080234.544d, model.getGrams().doubleValue(), IMPERIAL_DELTA);
-  }
-
-  @Test
-  public void imperialTonsConversionUpdatesView() {
-    presenter.convert(SOURCE_MASS, TON_UK);
-    assertEquals(formattedSourceMass, view.getImperialTons());
   }
 }

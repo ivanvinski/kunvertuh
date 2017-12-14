@@ -2,18 +2,12 @@ package com.ivanvinski.kunvertuh.presenter;
 
 import static com.ivanvinski.kunvertuh.TestConstants.IMPERIAL_DELTA;
 import static com.ivanvinski.kunvertuh.TestConstants.METRIC_DELTA;
-import static javax.measure.unit.NonSI.CUBIC_INCH;
-import static javax.measure.unit.NonSI.GALLON_UK;
-import static javax.measure.unit.NonSI.LITER;
-import static javax.measure.unit.SI.CUBIC_METRE;
 import static org.junit.Assert.assertEquals;
 
 import com.ivanvinski.kunvertuh.model.VolumeUnitsModel;
-import com.ivanvinski.kunvertuh.model.VolumeUnitsModelImpl;
-import com.ivanvinski.kunvertuh.util.BigDecimalStringConverter;
-import com.ivanvinski.kunvertuh.util.StringConverter;
+import com.ivanvinski.kunvertuh.unit.VolumeUnit;
+import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 import com.ivanvinski.kunvertuh.view.VolumeUnitsViewMock;
-import java.math.BigDecimal;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,11 +15,11 @@ public class TestVolumeUnitsPresenter {
 
   private static final String SOURCE_VOLUME = "15";
 
-  private StringConverter<BigDecimal> valueConverter = new BigDecimalStringConverter();
+  private DoubleStringConverter valueConverter = new DoubleStringConverter();
   private String formattedSourceVolume = valueConverter.format(valueConverter.parse(SOURCE_VOLUME));
 
   private VolumeUnitsViewMock view = new VolumeUnitsViewMock();
-  private VolumeUnitsModel model = new VolumeUnitsModelImpl();
+  private VolumeUnitsModel model = new VolumeUnitsModel();
   private VolumeUnitsPresenter presenter = new VolumeUnitsPresenter(view, model, valueConverter);
 
   @Before
@@ -56,15 +50,28 @@ public class TestVolumeUnitsPresenter {
   }
 
   @Test
+  public void millilitersActionEventInvokesConversion() {
+    view.setMilliliters(SOURCE_VOLUME);
+    view.fireMillilitersActionEvent();
+    assertEquals(0.015d, model.getLiters(), METRIC_DELTA);
+  }
+
+  @Test
+  public void millilitersConversionUpdatesView() {
+    presenter.convert(SOURCE_VOLUME, VolumeUnit.MILLILITERS);
+    assertEquals(formattedSourceVolume, view.getMilliliters());
+  }
+
+  @Test
   public void litersActionEventInvokesConversion() {
     view.setLiters(SOURCE_VOLUME);
     view.fireLitersActionEvent();
-    assertEquals(15d, model.getLiters().doubleValue(), METRIC_DELTA);
+    assertEquals(15d, model.getLiters(), METRIC_DELTA);
   }
 
   @Test
   public void litersConversionUpdatesView() {
-    presenter.convert(SOURCE_VOLUME, LITER);
+    presenter.convert(SOURCE_VOLUME, VolumeUnit.LITERS);
     assertEquals(formattedSourceVolume, view.getLiters());
   }
 
@@ -72,38 +79,51 @@ public class TestVolumeUnitsPresenter {
   public void cubicMetersActionEventInvokesConversion() {
     view.setCubicMeters(SOURCE_VOLUME);
     view.fireCubicMetersActionEvent();
-    assertEquals(15000d, model.getLiters().doubleValue(), METRIC_DELTA);
+    assertEquals(15000d, model.getLiters(), METRIC_DELTA);
   }
 
   @Test
   public void cubicMetersConversionUpdatesView() {
-    presenter.convert(SOURCE_VOLUME, CUBIC_METRE);
+    presenter.convert(SOURCE_VOLUME, VolumeUnit.CUBIC_METERS);
     assertEquals(formattedSourceVolume, view.getCubicMeters());
+  }
+
+  @Test
+  public void fluidOuncesActionEventInvokesConversion() {
+    view.setFluidOunces(SOURCE_VOLUME);
+    view.fireFluidOuncesActionEvent();
+    assertEquals(0.43d, model.getLiters(), IMPERIAL_DELTA);
+  }
+
+  @Test
+  public void fluidOuncesConversionUpdatesView() {
+    presenter.convert(SOURCE_VOLUME, VolumeUnit.FLUID_OUNCES);
+    assertEquals(formattedSourceVolume, view.getFluidOunces());
+  }
+
+  @Test
+  public void pintsActionEventInvokesConversion() {
+    view.setPints(SOURCE_VOLUME);
+    view.firePintsActionEvent();
+    assertEquals(8.52d, model.getLiters(), IMPERIAL_DELTA);
+  }
+
+  @Test
+  public void pintsConversionUpdatesView() {
+    presenter.convert(SOURCE_VOLUME, VolumeUnit.PINTS);
+    assertEquals(formattedSourceVolume, view.getPints());
   }
 
   @Test
   public void gallonsActionEventInvokesConversion() {
     view.setGallons(SOURCE_VOLUME);
     view.fireGallonsActionEvent();
-    assertEquals(68.191d, model.getLiters().doubleValue(), IMPERIAL_DELTA);
+    assertEquals(68.191d, model.getLiters(), IMPERIAL_DELTA);
   }
 
   @Test
   public void gallonsConversionUpdatesView() {
-    presenter.convert(SOURCE_VOLUME, GALLON_UK);
+    presenter.convert(SOURCE_VOLUME, VolumeUnit.GALLONS);
     assertEquals(formattedSourceVolume, view.getGallons());
-  }
-
-  @Test
-  public void cubicInchesActionEventInvokesConversion() {
-    view.setCubicInches(SOURCE_VOLUME);
-    view.fireCubicInchesActionEvent();
-    assertEquals(0.246d, model.getLiters().doubleValue(), IMPERIAL_DELTA);
-  }
-
-  @Test
-  public void cubicInchesConversionUpdatesView() {
-    presenter.convert(SOURCE_VOLUME, CUBIC_INCH);
-    assertEquals(formattedSourceVolume, view.getCubicInches());
   }
 }

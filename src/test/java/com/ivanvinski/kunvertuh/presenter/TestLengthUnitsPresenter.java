@@ -2,22 +2,12 @@ package com.ivanvinski.kunvertuh.presenter;
 
 import static com.ivanvinski.kunvertuh.TestConstants.IMPERIAL_DELTA;
 import static com.ivanvinski.kunvertuh.TestConstants.METRIC_DELTA;
-import static javax.measure.unit.NonSI.FOOT;
-import static javax.measure.unit.NonSI.INCH;
-import static javax.measure.unit.NonSI.MILE;
-import static javax.measure.unit.NonSI.YARD;
-import static javax.measure.unit.SI.CENTIMETER;
-import static javax.measure.unit.SI.KILOMETER;
-import static javax.measure.unit.SI.METER;
-import static javax.measure.unit.SI.MILLIMETER;
 import static org.junit.Assert.assertEquals;
 
 import com.ivanvinski.kunvertuh.model.LengthUnitsModel;
-import com.ivanvinski.kunvertuh.model.LengthUnitsModelImpl;
-import com.ivanvinski.kunvertuh.util.BigDecimalStringConverter;
-import com.ivanvinski.kunvertuh.util.StringConverter;
+import com.ivanvinski.kunvertuh.unit.LengthUnit;
+import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 import com.ivanvinski.kunvertuh.view.LengthUnitsViewMock;
-import java.math.BigDecimal;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,11 +15,11 @@ public class TestLengthUnitsPresenter {
 
   private static final String SOURCE_LENGTH = "500";
 
-  private StringConverter<BigDecimal> valueConverter = new BigDecimalStringConverter();
+  private DoubleStringConverter valueConverter = new DoubleStringConverter();
   private String formattedSourceLength = valueConverter.format(valueConverter.parse(SOURCE_LENGTH));
 
   private LengthUnitsViewMock view = new LengthUnitsViewMock();
-  private LengthUnitsModel model = new LengthUnitsModelImpl();
+  private LengthUnitsModel model = new LengthUnitsModel();
   private LengthUnitsPresenter presenter = new LengthUnitsPresenter(view, model, valueConverter);
 
   @Before
@@ -63,12 +53,12 @@ public class TestLengthUnitsPresenter {
   public void millimetersActionEventInvokesConversion() {
     view.setMillimeters(SOURCE_LENGTH);
     view.fireMillimetersActionEvent();
-    assertEquals(0.5d, model.getMeters().doubleValue(), METRIC_DELTA);
+    assertEquals(0.5d, model.getMeters(), METRIC_DELTA);
   }
 
   @Test
   public void millimetersConversionUpdatesView() {
-    presenter.convert(SOURCE_LENGTH, MILLIMETER);
+    presenter.convert(SOURCE_LENGTH, LengthUnit.MILLIMETERS);
     assertEquals(formattedSourceLength, view.getMillimeters());
   }
 
@@ -76,25 +66,38 @@ public class TestLengthUnitsPresenter {
   public void centimetersActionEventInvokesConversion() {
     view.setCentimeters(SOURCE_LENGTH);
     view.fireCentimetersActionEvent();
-    assertEquals(5d, model.getMeters().doubleValue(), METRIC_DELTA);
+    assertEquals(5d, model.getMeters(), METRIC_DELTA);
   }
 
   @Test
   public void centimetersConversionUpdatesView() {
-    presenter.convert(SOURCE_LENGTH, CENTIMETER);
+    presenter.convert(SOURCE_LENGTH, LengthUnit.CENTIMETERS);
     assertEquals(formattedSourceLength, view.getCentimeters());
+  }
+
+  @Test
+  public void decimetersActionEventInvokesConversion() {
+    view.setDecimeters(SOURCE_LENGTH);
+    view.fireDecimetersActionEvent();
+    assertEquals(50d, model.getMeters(), METRIC_DELTA);
+  }
+
+  @Test
+  public void decimetersConversionUpdateView() {
+    presenter.convert(SOURCE_LENGTH, LengthUnit.DECIMETERS);
+    assertEquals(formattedSourceLength, view.getDecimeters());
   }
 
   @Test
   public void metersActionEventInvokesConversion() {
     view.setMeters(SOURCE_LENGTH);
     view.fireMetersActionEvent();
-    assertEquals(50000d, model.getCentimeters().doubleValue(), METRIC_DELTA);
+    assertEquals(50000d, model.getCentimeters(), METRIC_DELTA);
   }
 
   @Test
   public void metersConversionUpdatesView() {
-    presenter.convert(SOURCE_LENGTH, METER);
+    presenter.convert(SOURCE_LENGTH, LengthUnit.METERS);
     assertEquals(formattedSourceLength, view.getMeters());
   }
 
@@ -102,12 +105,12 @@ public class TestLengthUnitsPresenter {
   public void kilometersActionEventInvokesConversion() {
     view.setKilometers(SOURCE_LENGTH);
     view.fireKilometersActionEvent();
-    assertEquals(500000d, model.getMeters().doubleValue(), METRIC_DELTA);
+    assertEquals(500000d, model.getMeters(), METRIC_DELTA);
   }
 
   @Test
   public void kilometersConversionUpdatesView() {
-    presenter.convert(SOURCE_LENGTH, KILOMETER);
+    presenter.convert(SOURCE_LENGTH, LengthUnit.KILOMETERS);
     assertEquals(formattedSourceLength, view.getKilometers());
   }
 
@@ -115,12 +118,12 @@ public class TestLengthUnitsPresenter {
   public void inchesActionEventInvokesConversion() {
     view.setInches(SOURCE_LENGTH);
     view.fireInchesActionEvent();
-    assertEquals(12.7d, model.getMeters().doubleValue(), IMPERIAL_DELTA);
+    assertEquals(12.7d, model.getMeters(), IMPERIAL_DELTA);
   }
 
   @Test
   public void inchesConversionUpdatesView() {
-    presenter.convert(SOURCE_LENGTH, INCH);
+    presenter.convert(SOURCE_LENGTH, LengthUnit.INCHES);
     assertEquals(formattedSourceLength, view.getInches());
   }
 
@@ -128,12 +131,12 @@ public class TestLengthUnitsPresenter {
   public void feetActionEventInvokesConversion() {
     view.setFeet(SOURCE_LENGTH);
     view.fireFeetActionEvent();
-    assertEquals(152.4d, model.getMeters().doubleValue(), IMPERIAL_DELTA);
+    assertEquals(152.4d, model.getMeters(), IMPERIAL_DELTA);
   }
 
   @Test
   public void feetConversionUpdatesView() {
-    presenter.convert(SOURCE_LENGTH, FOOT);
+    presenter.convert(SOURCE_LENGTH, LengthUnit.FEET);
     assertEquals(formattedSourceLength, view.getFeet());
   }
 
@@ -141,12 +144,12 @@ public class TestLengthUnitsPresenter {
   public void yardsActionEventInvokesConversion() {
     view.setYards(SOURCE_LENGTH);
     view.fireYardsActionEvent();
-    assertEquals(457.2d, model.getMeters().doubleValue(), IMPERIAL_DELTA);
+    assertEquals(457.2d, model.getMeters(), IMPERIAL_DELTA);
   }
 
   @Test
   public void yardsConversionUpdatesView() {
-    presenter.convert(SOURCE_LENGTH, YARD);
+    presenter.convert(SOURCE_LENGTH, LengthUnit.YARDS);
     assertEquals(formattedSourceLength, view.getYards());
   }
 
@@ -154,12 +157,12 @@ public class TestLengthUnitsPresenter {
   public void milesActionEventInvokesConversion() {
     view.setMiles(SOURCE_LENGTH);
     view.fireMilesActionEvent();
-    assertEquals(804.672d, model.getKilometers().doubleValue(), IMPERIAL_DELTA);
+    assertEquals(804.672d, model.getKilometers(), IMPERIAL_DELTA);
   }
 
   @Test
   public void milesConversionUpdatesView() {
-    presenter.convert(SOURCE_LENGTH, MILE);
+    presenter.convert(SOURCE_LENGTH, LengthUnit.MILES);
     assertEquals(formattedSourceLength, view.getMiles());
   }
 }

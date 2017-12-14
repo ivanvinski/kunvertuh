@@ -3,7 +3,6 @@ package com.ivanvinski.kunvertuh.presenter;
 import static org.junit.Assert.assertEquals;
 
 import com.ivanvinski.kunvertuh.model.MainModel;
-import com.ivanvinski.kunvertuh.model.MainModelImpl;
 import com.ivanvinski.kunvertuh.view.LengthUnitsViewImpl;
 import com.ivanvinski.kunvertuh.view.MainViewMock;
 import com.ivanvinski.kunvertuh.view.MassUnitsViewImpl;
@@ -28,7 +27,7 @@ public class TestMainPresenter {
     catalog.add(lengthView);
     catalog.add(massView);
     catalog.add(volumeView);
-    presenter = new MainPresenter(view, model = new MainModelImpl(catalog));
+    presenter = new MainPresenter(view, model = new MainModel(catalog));
     presenter.initialize();
   }
 
