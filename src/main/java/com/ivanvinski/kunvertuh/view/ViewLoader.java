@@ -4,15 +4,13 @@ import com.google.inject.AbstractModule;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
 public class ViewLoader {
 
-  private Map<Class<? extends Parent>, Parent> loadedViews = new HashMap<>();
+  private ViewCatalog loadedViews = new ViewCatalog();
 
   public void load(URL fxmlFile, AbstractModule module) {
     FXMLLoader loader = new FXMLLoader(fxmlFile);
@@ -20,7 +18,6 @@ public class ViewLoader {
     loader.setControllerFactory(assembler);
     try {
       loader.load();
-      // Controller is actually view because fx:controller points to view class
       registerView(fxmlFile, loader.getController());
       assembler.getPresenter().initialize();
     } catch (IOException e) {
@@ -28,17 +25,19 @@ public class ViewLoader {
     }
   }
 
-  public Map<Class<? extends Parent>, Parent> getLoadedViews() {
+  public ViewCatalog getLoadedViews() {
     return loadedViews;
   }
 
-  private void registerView(URL fxmlFile, Parent view) {
+  private void registerView(URL fxmlFile, View view) {
     Objects.requireNonNull(view, "View class not set for: " + fxmlFile);
-    final Class<? extends Parent> viewType = view.getClass();
-    if (loadedViews.containsKey(viewType)) {
-      throw new IllegalArgumentException("View already loaded: " + viewType);
-    } else {
-      loadedViews.put(viewType, view);
+    throwExceptionIfNotParentSubclass(fxmlFile, view.getClass());
+    loadedViews.add(view);
+  }
+
+  private void throwExceptionIfNotParentSubclass(URL fxmlFile, Class<? extends View> view) {
+    if (!Parent.class.isAssignableFrom(view)) {
+      throw new IllegalArgumentException("Not a Parent subclass: " + fxmlFile);
     }
   }
 }
