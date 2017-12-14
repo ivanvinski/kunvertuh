@@ -46,7 +46,7 @@ public class TestLengthUnitsModel {
 
   @Test
   public void convertsNonNullLengthToMeters() {
-    assertEquals(2017000d, model.getMeters(), METRIC_DELTA);
+    assertEquals(2017d, model.getMeters(), METRIC_DELTA);
   }
 
   @Test
@@ -56,7 +56,7 @@ public class TestLengthUnitsModel {
 
   @Test
   public void convertsNonNullLengthToInches() {
-    assertEquals(79409.45d, model.getInches(), IMPERIAL_DELTA);
+    assertEquals(79409.29d, model.getInches(), IMPERIAL_DELTA);
   }
 
   @Test

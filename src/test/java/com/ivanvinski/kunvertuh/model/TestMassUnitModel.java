@@ -51,12 +51,12 @@ public class TestMassUnitModel {
 
   @Test
   public void convertsNonNullMassToGrains() {
-    assertEquals(30833.85d, model.getGrains(), IMPERIAL_DELTA);
+    assertEquals(30833.14d, model.getGrains(), IMPERIAL_DELTA);
   }
 
   @Test
   public void convertsNonNullMassToDrams() {
-    assertEquals(1127.64d, model.getDrams(), IMPERIAL_DELTA);
+    assertEquals(1127.54d, model.getDrams(), IMPERIAL_DELTA);
   }
 
   @Test

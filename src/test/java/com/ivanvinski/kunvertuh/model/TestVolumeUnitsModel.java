@@ -46,12 +46,12 @@ public class TestVolumeUnitsModel {
 
   @Test
   public void convertsNonNullVolumeToFluidOunces() {
-    assertEquals(367084.2d, model.getFluidOunces(), IMPERIAL_DELTA);
+    assertEquals(367083.85d, model.getFluidOunces(), IMPERIAL_DELTA);
   }
 
   @Test
   public void convertsNonNullVolumeToPints() {
-    assertEquals(18354.23d, model.getPints(), IMPERIAL_DELTA);
+    assertEquals(18354.72d, model.getPints(), IMPERIAL_DELTA);
   }
 
   @Test
