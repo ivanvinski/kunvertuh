@@ -13,7 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
-public class MainViewImpl extends StackPane implements MainView<Parent> {
+public class MainViewImpl extends StackPane implements MainView {
 
   private static final String SELECTED_CLASS = "selected";
 
@@ -26,7 +26,7 @@ public class MainViewImpl extends StackPane implements MainView<Parent> {
   private JFXDrawer navigation;
   private JFXButton length, mass, volume;
 
-  private Map<Class<? extends Parent>, JFXButton> viewButtonMap = new LinkedHashMap<>();
+  private Map<Class<? extends View>, JFXButton> viewButtonMap = new LinkedHashMap<>();
   private Parent activeView;
 
   public void initialize() {
@@ -41,14 +41,14 @@ public class MainViewImpl extends StackPane implements MainView<Parent> {
   }
 
   @Override
-  public void setActiveView(Parent view) {
-    setSelectedButtonByView(view);
+  public void setActiveView(View view) {
+    setSelectedButtonByView((Parent) view);
     if (activeView == null) {
-      viewContainer.getChildren().setAll(view);
+      viewContainer.getChildren().setAll((Parent) view);
     } else {
-      changeViewWithFading(view);
+      changeViewWithFading((Parent) view);
     }
-    activeView = view;
+    activeView = (Parent) view;
   }
 
   @Override
@@ -81,7 +81,7 @@ public class MainViewImpl extends StackPane implements MainView<Parent> {
     return button;
   }
 
-  private void registerNavigationButton(JFXButton button, Class<? extends Parent> viewType) {
+  private void registerNavigationButton(JFXButton button, Class<? extends View> viewType) {
     viewButtonMap.put(viewType, button);
   }
 

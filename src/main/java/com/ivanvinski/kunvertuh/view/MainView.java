@@ -1,8 +1,8 @@
 package com.ivanvinski.kunvertuh.view;
 
-public interface MainView<V> extends View {
+public interface MainView extends View {
 
-  void setActiveView(V view);
+  void setActiveView(View view);
 
   void setOnLengthActionEvent(Runnable action);
 
