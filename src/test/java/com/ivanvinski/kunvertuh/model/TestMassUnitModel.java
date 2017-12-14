@@ -2,62 +2,70 @@ package com.ivanvinski.kunvertuh.model;
 
 import static com.ivanvinski.kunvertuh.TestConstants.IMPERIAL_DELTA;
 import static com.ivanvinski.kunvertuh.TestConstants.METRIC_DELTA;
-import static javax.measure.unit.SI.GRAM;
 import static org.junit.Assert.assertEquals;
 
-import java.math.BigDecimal;
+import com.ivanvinski.kunvertuh.unit.MassUnit;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestMassUnitModelImpl {
+public class TestMassUnitModel {
 
-  private static final BigDecimal SOURCE_LENGTH = new BigDecimal(1998d);
-
-  private MassUnitsModel model = new MassUnitsModelImpl();
+  private static final Double SOURCE_MASS = 1998d;
+  private MassUnitsModel model = new MassUnitsModel();
 
   @Before
   public void setUp() {
-    model.convert(SOURCE_LENGTH, GRAM);
+    model.convert(SOURCE_MASS, MassUnit.GRAMS);
   }
 
   @Test(expected = NullPointerException.class)
   public void throwsExceptionWhenSourceUnitIsNull() {
-    model.convert(new BigDecimal(0d), null);
+    model.convert(0d, null);
   }
 
   @Test
   public void convertsNullSourceMassToNullValues() {
-    model.convert(null, GRAM);
-    assertEquals(null, model.getKilograms());
+    model.convert(null, MassUnit.GRAMS);
+    assertEquals(null, model.getGrams());
+  }
+
+  @Test
+  public void convertsNonNullMassToMilligrams() {
+    assertEquals(1998000d, model.getMilligrams(), METRIC_DELTA);
   }
 
   @Test
   public void convertsNonNullMassToGrams() {
-    assertEquals(1998d, model.getGrams().doubleValue(), METRIC_DELTA);
+    assertEquals(1998d, model.getGrams(), METRIC_DELTA);
+  }
+
+  @Test
+  public void convertsNonNullMassToDekagrams() {
+    assertEquals(199.8d, model.getDekagrams(), METRIC_DELTA);
   }
 
   @Test
   public void convertsNonNullMassToKilograms() {
-    assertEquals(1.998d, model.getKilograms().doubleValue(), METRIC_DELTA);
+    assertEquals(1.998d, model.getKilograms(), METRIC_DELTA);
   }
 
   @Test
-  public void convertsNonNullMassToMetricTons() {
-    assertEquals(0.001998d, model.getMetricTons().doubleValue(), METRIC_DELTA);
+  public void convertsNonNullMassToGrains() {
+    assertEquals(30833.85d, model.getGrains(), IMPERIAL_DELTA);
+  }
+
+  @Test
+  public void convertsNonNullMassToDrams() {
+    assertEquals(1127.64d, model.getDrams(), IMPERIAL_DELTA);
   }
 
   @Test
   public void convertsNonNullMassToOunces() {
-    assertEquals(70.477d, model.getOunces().doubleValue(), IMPERIAL_DELTA);
+    assertEquals(70.477d, model.getOunces(), IMPERIAL_DELTA);
   }
 
   @Test
   public void convertsNonNullMassToPounds() {
-    assertEquals(4.405d, model.getPounds().doubleValue(), IMPERIAL_DELTA);
-  }
-
-  @Test
-  public void convertsNonNullMassToImperialTons() {
-    assertEquals(0.00197d, model.getImperialTons().doubleValue(), IMPERIAL_DELTA);
+    assertEquals(4.405d, model.getPounds(), IMPERIAL_DELTA);
   }
 }
