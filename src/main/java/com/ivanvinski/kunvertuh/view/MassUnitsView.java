@@ -2,7 +2,7 @@ package com.ivanvinski.kunvertuh.view;
 
 import java.util.function.Consumer;
 
-public interface MassUnitsView {
+public interface MassUnitsView extends View {
 
   String getGrams();
 

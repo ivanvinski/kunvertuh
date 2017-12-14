@@ -2,7 +2,7 @@ package com.ivanvinski.kunvertuh.view;
 
 import java.util.function.Consumer;
 
-public interface VolumeUnitsView {
+public interface VolumeUnitsView extends View {
 
   String getLiters();
 
