@@ -1,25 +1,27 @@
 package com.ivanvinski.kunvertuh.model;
 
-import java.math.BigDecimal;
+import com.ivanvinski.kunvertuh.unit.LengthUnit;
 
-public interface LengthUnitsModel<U> extends UnitsModel<U> {
+public interface LengthUnitsModel extends UnitsModel<LengthUnit> {
 
   @Override
-  void convert(BigDecimal sourceLength, U sourceUnit);
+  void convert(Double sourceLength, LengthUnit sourceUnit);
 
-  BigDecimal getMillimeters();
+  Double getMillimeters();
 
-  BigDecimal getCentimeters();
+  Double getCentimeters();
 
-  BigDecimal getMeters();
+  Double getDecimeters();
 
-  BigDecimal getKilometers();
+  Double getMeters();
 
-  BigDecimal getInches();
+  Double getKilometers();
 
-  BigDecimal getFeet();
+  Double getInches();
 
-  BigDecimal getYards();
+  Double getFeet();
 
-  BigDecimal getMiles();
+  Double getYards();
+
+  Double getMiles();
 }

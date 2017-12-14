@@ -1,17 +1,21 @@
 package com.ivanvinski.kunvertuh.model;
 
-import java.math.BigDecimal;
+import com.ivanvinski.kunvertuh.unit.VolumeUnit;
 
-public interface VolumeUnitsModel<U> extends UnitsModel<U> {
+public interface VolumeUnitsModel extends UnitsModel<VolumeUnit> {
 
   @Override
-  void convert(BigDecimal sourceVolume, U sourceUnit);
+  void convert(Double sourceVolume, VolumeUnit sourceUnit);
 
-  BigDecimal getLiters();
+  Double getMilliliters();
 
-  BigDecimal getCubicMeters();
+  Double getLiters();
 
-  BigDecimal getGallons();
+  Double getCubicMeters();
 
-  BigDecimal getCubicInches();
+  Double getFluidOunces();
+
+  Double getPints();
+
+  Double getGallons();
 }

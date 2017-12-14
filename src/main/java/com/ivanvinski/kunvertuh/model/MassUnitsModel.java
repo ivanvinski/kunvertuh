@@ -1,21 +1,25 @@
 package com.ivanvinski.kunvertuh.model;
 
-import java.math.BigDecimal;
+import com.ivanvinski.kunvertuh.unit.MassUnit;
 
-public interface MassUnitsModel<U> extends UnitsModel<U> {
+public interface MassUnitsModel extends UnitsModel<MassUnit> {
 
   @Override
-  void convert(BigDecimal sourceMass, U sourceUnit);
+  void convert(Double sourceMass, MassUnit sourceUnit);
 
-  BigDecimal getGrams();
+  Double getMilligrams();
 
-  BigDecimal getKilograms();
+  Double getGrams();
 
-  BigDecimal getMetricTons();
+  Double getDekagrams();
 
-  BigDecimal getOunces();
+  Double getKilograms();
 
-  BigDecimal getPounds();
+  Double getGrains();
 
-  BigDecimal getImperialTons();
+  Double getDrams();
+
+  Double getOunces();
+
+  Double getPounds();
 }
