@@ -2,19 +2,18 @@ package com.ivanvinski.kunvertuh.util;
 
 import static org.junit.Assert.assertEquals;
 
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import org.junit.Test;
 
-public class TestBigDecimalStringConverter {
+public class TestDoubleStringConverter {
 
   private NumberFormat valueFormat = new DecimalFormat("#0.00");
-  private BigDecimalStringConverter converter = new BigDecimalStringConverter(valueFormat);
+  private DoubleStringConverter converter = new DoubleStringConverter(valueFormat);
 
   @Test(expected = NullPointerException.class)
   public void nullNumberFormatInstantiationThrowsException() {
-    new BigDecimalStringConverter(null);
+    new DoubleStringConverter(null);
   }
 
   @Test
@@ -24,7 +23,7 @@ public class TestBigDecimalStringConverter {
 
   @Test
   public void formattingNonNullBigDecimalReturnsFormattedString() {
-    assertEquals("150.12", converter.format(new BigDecimal(150.125d)));
+    assertEquals("150.12", converter.format(150.125d));
   }
 
   @Test
@@ -39,6 +38,6 @@ public class TestBigDecimalStringConverter {
 
   @Test
   public void parsingValidNumberReturnsBigDecimal() {
-    assertEquals(150.125d, converter.parse("150.125").doubleValue(), 0d);
+    assertEquals(150.125d, converter.parse("150.125"), 0d);
   }
 }
