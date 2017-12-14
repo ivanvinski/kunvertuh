@@ -1,5 +1,5 @@
 package com.ivanvinski.kunvertuh.view;
 
-public class TestNonParentView {
+public class TestNonParentView implements View {
 
 }
