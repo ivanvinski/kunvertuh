@@ -2,10 +2,8 @@ package com.ivanvinski.kunvertuh.module;
 
 import com.google.inject.AbstractModule;
 import com.ivanvinski.kunvertuh.model.AboutModel;
-import com.ivanvinski.kunvertuh.model.AboutModelImpl;
 import com.ivanvinski.kunvertuh.view.AboutView;
 import com.ivanvinski.kunvertuh.view.javafx.AboutViewImpl;
-import javafx.application.HostServices;
 
 public class AboutPresenterModule extends AbstractModule {
 
