@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import com.ivanvinski.kunvertuh.model.MainModel;
 import com.ivanvinski.kunvertuh.view.ViewCatalog;
+import com.ivanvinski.kunvertuh.view.mock.AboutViewMock;
 import com.ivanvinski.kunvertuh.view.mock.LengthUnitsViewMock;
 import com.ivanvinski.kunvertuh.view.mock.MainViewMock;
 import com.ivanvinski.kunvertuh.view.mock.MassUnitsViewMock;
@@ -22,6 +23,7 @@ public class MainPresenterTest {
     catalog.add(new LengthUnitsViewMock());
     catalog.add(new MassUnitsViewMock());
     catalog.add(new VolumeUnitsViewMock());
+    catalog.add(new AboutViewMock());
     new MainPresenter(view, model = new MainModel(catalog)).initialize();
   }
 
@@ -57,5 +59,11 @@ public class MainPresenterTest {
   public void volumeActionEventSetsVolumeUnitsView() {
     view.fireVolumeActionEvent();
     assertEquals(VolumeUnitsViewMock.class, view.getActiveView().getClass());
+  }
+
+  @Test
+  public void aboutActionEventSetsAboutView() {
+    view.fireAboutActionEvent();
+    assertEquals(AboutViewMock.class, view.getActiveView().getClass());
   }
 }

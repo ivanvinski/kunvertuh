@@ -5,7 +5,7 @@ import com.ivanvinski.kunvertuh.view.View;
 
 public class MainViewMock implements MainView {
 
-  private Runnable lengthAction, massAction, volumeAction;
+  private Runnable lengthAction, massAction, volumeAction, aboutAction;
   private View activeView;
 
   public View getActiveView() {
@@ -42,5 +42,14 @@ public class MainViewMock implements MainView {
 
   public void fireVolumeActionEvent() {
     volumeAction.run();
+  }
+
+  @Override
+  public void setOnAboutActionEvent(Runnable action) {
+    aboutAction = action;
+  }
+
+  public void fireAboutActionEvent() {
+    aboutAction.run();
   }
 }
