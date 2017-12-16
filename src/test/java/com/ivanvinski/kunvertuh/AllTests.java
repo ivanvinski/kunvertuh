@@ -14,7 +14,7 @@ import com.ivanvinski.kunvertuh.unit.VolumeUnitTest;
 import com.ivanvinski.kunvertuh.util.DoubleStringConverterTest;
 import com.ivanvinski.kunvertuh.view.javafx.ViewAssemblerTest;
 import com.ivanvinski.kunvertuh.view.ViewCatalogTest;
-import com.ivanvinski.kunvertuh.view.javafx.ViewLoaderTest;
+import com.ivanvinski.kunvertuh.view.javafx.ViewLoaderImplTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -36,7 +36,7 @@ import org.junit.runners.Suite.SuiteClasses;
     DoubleStringConverterTest.class,
     ViewAssemblerTest.class,
     ViewCatalogTest.class,
-    ViewLoaderTest.class,
+    ViewLoaderImplTest.class,
 })
 public class AllTests {
 

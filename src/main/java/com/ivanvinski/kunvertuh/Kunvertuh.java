@@ -4,9 +4,10 @@ import com.ivanvinski.kunvertuh.module.LengthUnitsPresenterModule;
 import com.ivanvinski.kunvertuh.module.MainPresenterModule;
 import com.ivanvinski.kunvertuh.module.MassUnitsPresenterModule;
 import com.ivanvinski.kunvertuh.module.VolumeUnitsPresenterModule;
-import com.ivanvinski.kunvertuh.view.javafx.MainViewImpl;
 import com.ivanvinski.kunvertuh.view.ViewCatalog;
-import com.ivanvinski.kunvertuh.view.javafx.ViewLoader;
+import com.ivanvinski.kunvertuh.view.ViewLoader;
+import com.ivanvinski.kunvertuh.view.javafx.MainViewImpl;
+import com.ivanvinski.kunvertuh.view.javafx.ViewLoaderImpl;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -29,7 +30,7 @@ public class Kunvertuh extends Application {
   }
 
   private ViewCatalog loadAllViews() {
-    ViewLoader viewLoader = new ViewLoader();
+    ViewLoader viewLoader = new ViewLoaderImpl();
     viewLoader.load(getClass().getResource("/view/length-units.fxml"),
         new LengthUnitsPresenterModule());
     viewLoader.load(getClass().getResource("/view/mass-units.fxml"),

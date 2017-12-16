@@ -5,15 +5,16 @@ import static org.junit.Assert.assertEquals;
 import com.google.inject.AbstractModule;
 import com.ivanvinski.kunvertuh.module.TestParentViewPresenterModule;
 import com.ivanvinski.kunvertuh.view.TestParentView;
+import com.ivanvinski.kunvertuh.view.ViewLoader;
 import java.io.UncheckedIOException;
 import java.net.URL;
 import org.junit.Test;
 
-public class ViewLoaderTest {
+public class ViewLoaderImplTest {
 
-  private static final URL TEST_PARENT_LOCATION = ViewLoaderTest.class
+  private static final URL TEST_PARENT_LOCATION = ViewLoaderImplTest.class
       .getResource("/view/test-parent.fxml");
-  private static final URL TEST_NON_PARENT_LOCATION = ViewLoaderTest.class
+  private static final URL TEST_NON_PARENT_LOCATION = ViewLoaderImplTest.class
       .getResource("/view/test-non-parent.fxml");
   private static final AbstractModule moduleStub = new AbstractModule() {
     @Override
@@ -21,7 +22,7 @@ public class ViewLoaderTest {
     }
   };
 
-  private ViewLoader viewLoader = new ViewLoader();
+  private ViewLoader viewLoader = new ViewLoaderImpl();
 
   @Test(expected = IllegalStateException.class)
   public void nullUrlLoadingThrowsException() {

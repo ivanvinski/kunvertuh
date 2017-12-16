@@ -3,6 +3,7 @@ package com.ivanvinski.kunvertuh.view.javafx;
 import com.google.inject.AbstractModule;
 import com.ivanvinski.kunvertuh.view.View;
 import com.ivanvinski.kunvertuh.view.ViewCatalog;
+import com.ivanvinski.kunvertuh.view.ViewLoader;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.net.URL;
@@ -10,20 +11,21 @@ import java.util.Objects;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
-public class ViewLoader {
+public class ViewLoaderImpl implements ViewLoader {
 
   private ViewCatalog loadedViews = new ViewCatalog();
 
-  public void load(URL fxmlFile, AbstractModule module) {
-    FXMLLoader loader = new FXMLLoader(fxmlFile);
-    ViewAssembler assembler = new ViewAssembler(module);
+  @Override
+  public void load(URL location, AbstractModule presenterModule) {
+    FXMLLoader loader = new FXMLLoader(location);
+    ViewAssembler assembler = new ViewAssembler(presenterModule);
     loader.setControllerFactory(assembler);
     try {
       loader.load();
-      registerView(fxmlFile, loader.getController());
+      registerView(location, loader.getController());
       assembler.getPresenter().initialize();
     } catch (IOException e) {
-      throw new UncheckedIOException("Can't load view: " + fxmlFile, e);
+      throw new UncheckedIOException("Can't load view: " + location, e);
     }
   }
 
