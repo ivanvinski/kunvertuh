@@ -4,7 +4,7 @@ import com.google.inject.AbstractModule;
 import com.ivanvinski.kunvertuh.model.MassUnitsModel;
 import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 import com.ivanvinski.kunvertuh.view.MassUnitsView;
-import com.ivanvinski.kunvertuh.view.MassUnitsViewImpl;
+import com.ivanvinski.kunvertuh.view.javafx.MassUnitsViewImpl;
 
 public class MassUnitsPresenterModule extends AbstractModule {
 

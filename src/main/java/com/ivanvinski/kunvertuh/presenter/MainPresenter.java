@@ -2,11 +2,11 @@ package com.ivanvinski.kunvertuh.presenter;
 
 import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.model.MainModel;
-import com.ivanvinski.kunvertuh.view.LengthUnitsViewImpl;
+import com.ivanvinski.kunvertuh.view.javafx.LengthUnitsViewImpl;
 import com.ivanvinski.kunvertuh.view.MainView;
-import com.ivanvinski.kunvertuh.view.MassUnitsViewImpl;
+import com.ivanvinski.kunvertuh.view.javafx.MassUnitsViewImpl;
 import com.ivanvinski.kunvertuh.view.View;
-import com.ivanvinski.kunvertuh.view.VolumeUnitsViewImpl;
+import com.ivanvinski.kunvertuh.view.javafx.VolumeUnitsViewImpl;
 import java.util.Objects;
 
 public class MainPresenter implements Presenter<MainView, MainModel> {

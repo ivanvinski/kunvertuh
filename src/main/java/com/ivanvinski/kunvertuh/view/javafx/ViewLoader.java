@@ -1,6 +1,8 @@
-package com.ivanvinski.kunvertuh.view;
+package com.ivanvinski.kunvertuh.view.javafx;
 
 import com.google.inject.AbstractModule;
+import com.ivanvinski.kunvertuh.view.View;
+import com.ivanvinski.kunvertuh.view.ViewCatalog;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.net.URL;

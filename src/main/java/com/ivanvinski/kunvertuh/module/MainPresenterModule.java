@@ -3,7 +3,7 @@ package com.ivanvinski.kunvertuh.module;
 import com.google.inject.AbstractModule;
 import com.ivanvinski.kunvertuh.model.MainModel;
 import com.ivanvinski.kunvertuh.view.MainView;
-import com.ivanvinski.kunvertuh.view.MainViewImpl;
+import com.ivanvinski.kunvertuh.view.javafx.MainViewImpl;
 import com.ivanvinski.kunvertuh.view.ViewCatalog;
 
 public class MainPresenterModule extends AbstractModule {

@@ -1,5 +1,7 @@
-package com.ivanvinski.kunvertuh.view;
+package com.ivanvinski.kunvertuh.view.javafx;
 
+import com.ivanvinski.kunvertuh.view.MainView;
+import com.ivanvinski.kunvertuh.view.View;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;

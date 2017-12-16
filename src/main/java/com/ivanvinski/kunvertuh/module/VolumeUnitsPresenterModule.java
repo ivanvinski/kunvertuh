@@ -4,7 +4,7 @@ import com.google.inject.AbstractModule;
 import com.ivanvinski.kunvertuh.model.VolumeUnitsModel;
 import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 import com.ivanvinski.kunvertuh.view.VolumeUnitsView;
-import com.ivanvinski.kunvertuh.view.VolumeUnitsViewImpl;
+import com.ivanvinski.kunvertuh.view.javafx.VolumeUnitsViewImpl;
 
 public class VolumeUnitsPresenterModule extends AbstractModule {
 

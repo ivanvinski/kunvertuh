@@ -1,4 +1,4 @@
-package com.ivanvinski.kunvertuh.view;
+package com.ivanvinski.kunvertuh.view.javafx;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;

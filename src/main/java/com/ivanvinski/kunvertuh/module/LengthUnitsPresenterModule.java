@@ -4,7 +4,7 @@ import com.google.inject.AbstractModule;
 import com.ivanvinski.kunvertuh.model.LengthUnitsModel;
 import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 import com.ivanvinski.kunvertuh.view.LengthUnitsView;
-import com.ivanvinski.kunvertuh.view.LengthUnitsViewImpl;
+import com.ivanvinski.kunvertuh.view.javafx.LengthUnitsViewImpl;
 
 public final class LengthUnitsPresenterModule extends AbstractModule {
 

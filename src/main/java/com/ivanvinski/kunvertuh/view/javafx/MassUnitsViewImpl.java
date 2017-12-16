@@ -1,5 +1,6 @@
-package com.ivanvinski.kunvertuh.view;
+package com.ivanvinski.kunvertuh.view.javafx;
 
+import com.ivanvinski.kunvertuh.view.MassUnitsView;
 import com.jfoenix.controls.JFXTextField;
 import java.util.function.Consumer;
 import javafx.fxml.FXML;
