@@ -1,6 +1,8 @@
 package com.ivanvinski.kunvertuh.presenter;
 
-public interface Presenter<V, M> {
+import com.ivanvinski.kunvertuh.view.View;
+
+public interface Presenter<V extends View, M> {
 
   void initialize();
 
