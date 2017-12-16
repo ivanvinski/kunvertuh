@@ -8,48 +8,33 @@ import com.ivanvinski.kunvertuh.view.MainView;
 import com.ivanvinski.kunvertuh.view.MassUnitsView;
 import com.ivanvinski.kunvertuh.view.View;
 import com.ivanvinski.kunvertuh.view.VolumeUnitsView;
-import java.util.Objects;
 
-public class MainPresenter implements Presenter<MainView, MainModel> {
-
-  private MainView view;
-  private MainModel model;
+public class MainPresenter extends AbstractPresenter<MainView, MainModel> {
 
   @Inject
   public MainPresenter(MainView view, MainModel model) {
-    this.view = Objects.requireNonNull(view, "View can't be null");
-    this.model = Objects.requireNonNull(model, "Model can't be null");
+    super(view, model);
   }
 
   @Override
   public void initialize() {
-    view.setOnLengthActionEvent(() -> requestViewChange(LengthUnitsView.class));
-    view.setOnMassActionEvent(() -> requestViewChange(MassUnitsView.class));
-    view.setOnVolumeActionEvent(() -> requestViewChange(VolumeUnitsView.class));
-    view.setOnAboutActionEvent(() -> requestViewChange(AboutView.class));
+    getView().setOnLengthActionEvent(() -> requestViewChange(LengthUnitsView.class));
+    getView().setOnMassActionEvent(() -> requestViewChange(MassUnitsView.class));
+    getView().setOnVolumeActionEvent(() -> requestViewChange(VolumeUnitsView.class));
+    getView().setOnAboutActionEvent(() -> requestViewChange(AboutView.class));
     requestViewChange(LengthUnitsView.class);
   }
 
-  @Override
-  public MainView getView() {
-    return view;
-  }
-
-  @Override
-  public MainModel getModel() {
-    return model;
-  }
-
   private void requestViewChange(Class<? extends View> viewType) {
-    View nextView = model.getView(viewType);
+    View nextView = getModel().getView(viewType);
     if (!isActiveView(nextView.getClass())) {
-      view.setActiveView(nextView);
-      model.setActiveView(nextView);
+      getView().setActiveView(nextView);
+      getModel().setActiveView(nextView);
     }
   }
 
   private boolean isActiveView(Class<? extends View> nextViewType) {
-    View activeView = model.getActiveView();
+    View activeView = getModel().getActiveView();
     Class<? extends View> activeViewType = activeView == null ? null : activeView.getClass();
     return nextViewType == activeViewType;
   }

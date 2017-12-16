@@ -7,36 +7,21 @@ import com.ivanvinski.kunvertuh.util.SoftwareBuilder;
 import com.ivanvinski.kunvertuh.view.AboutView;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-public class AboutPresenter implements Presenter<AboutView, AboutModel> {
-
-  private AboutView view;
-  private AboutModel model;
+public class AboutPresenter extends AbstractPresenter<AboutView, AboutModel> {
 
   @Inject
   public AboutPresenter(AboutView view, AboutModel model) {
-    this.view = Objects.requireNonNull(view, "About view can't be null");
-    this.model = Objects.requireNonNull(model, "About model can't be null");
+    super(view, model);
   }
 
   @Override
   public void initialize() {
-    view.setAuthor("Ivan Vinski");
-    view.setAuthorWebsite("https://ivanvinski.com/");
-    view.setRepositoryWebsite("https://github.com/ivanvinski/kunvertuh");
-    view.setOnURIAction(model::openInBrowser);
-    view.setUsedOpenSourceSoftware(getUsedSoftware());
-  }
-
-  @Override
-  public AboutView getView() {
-    return view;
-  }
-
-  @Override
-  public AboutModel getModel() {
-    return model;
+    getView().setAuthor("Ivan Vinski");
+    getView().setAuthorWebsite("https://ivanvinski.com/");
+    getView().setRepositoryWebsite("https://github.com/ivanvinski/kunvertuh");
+    getView().setOnURIAction(getModel()::openInBrowser);
+    getView().setUsedOpenSourceSoftware(getUsedSoftware());
   }
 
   private List<Software> getUsedSoftware() {

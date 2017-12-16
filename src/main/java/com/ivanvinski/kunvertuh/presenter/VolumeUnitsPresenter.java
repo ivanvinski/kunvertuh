@@ -7,48 +7,38 @@ import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 import com.ivanvinski.kunvertuh.view.VolumeUnitsView;
 import java.util.Objects;
 
-public class VolumeUnitsPresenter implements Presenter<VolumeUnitsView, VolumeUnitsModel> {
+public class VolumeUnitsPresenter extends AbstractPresenter<VolumeUnitsView, VolumeUnitsModel> {
 
-  private VolumeUnitsView view;
-  private VolumeUnitsModel model;
   private DoubleStringConverter valueConverter;
 
   @Inject
   public VolumeUnitsPresenter(VolumeUnitsView view, VolumeUnitsModel model,
       DoubleStringConverter valueConverter) {
-    this.view = Objects.requireNonNull(view, "View can't be null");
-    this.model = Objects.requireNonNull(model, "Model can't be null");
+    super(view, model);
     this.valueConverter = Objects.requireNonNull(valueConverter, "Value converter can't be null");
   }
 
   @Override
   public void initialize() {
-    view.setOnMillilitersActionEvent(milliliters -> convert(milliliters, VolumeUnit.MILLILITERS));
-    view.setOnLitersActionEvent(liters -> convert(liters, VolumeUnit.LITERS));
-    view.setOnCubicMetersActionEvent(cubicMeters -> convert(cubicMeters, VolumeUnit.CUBIC_METERS));
-    view.setOnFluidOuncesActionEvent(fluidOunces -> convert(fluidOunces, VolumeUnit.FLUID_OUNCES));
-    view.setOnPintsActionEvent(pints -> convert(pints, VolumeUnit.PINTS));
-    view.setOnGallonsActionEvent(gallons -> convert(gallons, VolumeUnit.GALLONS));
+    getView()
+        .setOnMillilitersActionEvent(milliliters -> convert(milliliters, VolumeUnit.MILLILITERS));
+    getView().setOnLitersActionEvent(liters -> convert(liters, VolumeUnit.LITERS));
+    getView()
+        .setOnCubicMetersActionEvent(cubicMeters -> convert(cubicMeters, VolumeUnit.CUBIC_METERS));
+    getView()
+        .setOnFluidOuncesActionEvent(fluidOunces -> convert(fluidOunces, VolumeUnit.FLUID_OUNCES));
+    getView().setOnPintsActionEvent(pints -> convert(pints, VolumeUnit.PINTS));
+    getView().setOnGallonsActionEvent(gallons -> convert(gallons, VolumeUnit.GALLONS));
   }
 
   public void convert(String sourceMass, VolumeUnit sourceUnit) {
     Double conversionValue = valueConverter.parse(sourceMass);
-    model.convert(conversionValue, sourceUnit);
-    view.setMilliliters(valueConverter.format(model.getMilliliters()));
-    view.setLiters(valueConverter.format(model.getLiters()));
-    view.setCubicMeters(valueConverter.format(model.getCubicMeters()));
-    view.setFluidOunces(valueConverter.format(model.getFluidOunces()));
-    view.setPints(valueConverter.format(model.getPints()));
-    view.setGallons(valueConverter.format(model.getGallons()));
-  }
-
-  @Override
-  public VolumeUnitsView getView() {
-    return view;
-  }
-
-  @Override
-  public VolumeUnitsModel getModel() {
-    return model;
+    getModel().convert(conversionValue, sourceUnit);
+    getView().setMilliliters(valueConverter.format(getModel().getMilliliters()));
+    getView().setLiters(valueConverter.format(getModel().getLiters()));
+    getView().setCubicMeters(valueConverter.format(getModel().getCubicMeters()));
+    getView().setFluidOunces(valueConverter.format(getModel().getFluidOunces()));
+    getView().setPints(valueConverter.format(getModel().getPints()));
+    getView().setGallons(valueConverter.format(getModel().getGallons()));
   }
 }
