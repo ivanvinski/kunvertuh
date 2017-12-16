@@ -3,7 +3,6 @@ package com.ivanvinski.kunvertuh.view.javafx;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.ivanvinski.kunvertuh.module.ViewModule;
 import com.ivanvinski.kunvertuh.presenter.Presenter;
 import java.util.Objects;
 import javafx.util.Callback;
@@ -22,8 +21,6 @@ public class ViewAssembler implements Callback<Class<?>, Object> {
   public Object call(Class<?> presenterType) {
     throwExceptionIfNotImplementPresenter(presenterType);
     presenter = (Presenter) presenterCreator.getInstance(presenterType);
-    Injector presenterInjector = Guice.createInjector(new ViewModule(presenter));
-    presenterInjector.injectMembers(presenter.getView());
     return presenter.getView();
   }
 
