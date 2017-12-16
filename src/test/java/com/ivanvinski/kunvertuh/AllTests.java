@@ -12,7 +12,6 @@ import com.ivanvinski.kunvertuh.unit.LengthUnitTest;
 import com.ivanvinski.kunvertuh.unit.MassUnitTest;
 import com.ivanvinski.kunvertuh.unit.VolumeUnitTest;
 import com.ivanvinski.kunvertuh.util.DoubleStringConverterTest;
-import com.ivanvinski.kunvertuh.util.SimpleUnitConverterTest;
 import com.ivanvinski.kunvertuh.view.ViewAssemblerTest;
 import com.ivanvinski.kunvertuh.view.ViewCatalogTest;
 import com.ivanvinski.kunvertuh.view.ViewLoaderTest;
@@ -35,7 +34,6 @@ import org.junit.runners.Suite.SuiteClasses;
     MainModelTest.class,
     MainPresenterTest.class,
     DoubleStringConverterTest.class,
-    SimpleUnitConverterTest.class,
     ViewAssemblerTest.class,
     ViewCatalogTest.class,
     ViewLoaderTest.class,
