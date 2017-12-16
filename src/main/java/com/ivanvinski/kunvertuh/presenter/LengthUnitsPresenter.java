@@ -7,7 +7,8 @@ import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 import com.ivanvinski.kunvertuh.view.LengthUnitsView;
 import java.util.Objects;
 
-public class LengthUnitsPresenter extends AbstractPresenter<LengthUnitsView, LengthUnitsModel> {
+public final class LengthUnitsPresenter extends
+    AbstractPresenter<LengthUnitsView, LengthUnitsModel> {
 
   private DoubleStringConverter valueConverter;
 

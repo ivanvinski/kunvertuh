@@ -7,7 +7,8 @@ import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 import com.ivanvinski.kunvertuh.view.VolumeUnitsView;
 import java.util.Objects;
 
-public class VolumeUnitsPresenter extends AbstractPresenter<VolumeUnitsView, VolumeUnitsModel> {
+public final class VolumeUnitsPresenter extends
+    AbstractPresenter<VolumeUnitsView, VolumeUnitsModel> {
 
   private DoubleStringConverter valueConverter;
 

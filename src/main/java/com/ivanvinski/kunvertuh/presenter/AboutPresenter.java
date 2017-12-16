@@ -8,7 +8,7 @@ import com.ivanvinski.kunvertuh.view.AboutView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AboutPresenter extends AbstractPresenter<AboutView, AboutModel> {
+public final class AboutPresenter extends AbstractPresenter<AboutView, AboutModel> {
 
   @Inject
   public AboutPresenter(AboutView view, AboutModel model) {

@@ -9,7 +9,7 @@ import com.ivanvinski.kunvertuh.view.MassUnitsView;
 import com.ivanvinski.kunvertuh.view.View;
 import com.ivanvinski.kunvertuh.view.VolumeUnitsView;
 
-public class MainPresenter extends AbstractPresenter<MainView, MainModel> {
+public final class MainPresenter extends AbstractPresenter<MainView, MainModel> {
 
   @Inject
   public MainPresenter(MainView view, MainModel model) {

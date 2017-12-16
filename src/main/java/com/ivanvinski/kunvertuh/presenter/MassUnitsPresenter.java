@@ -7,7 +7,7 @@ import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 import com.ivanvinski.kunvertuh.view.MassUnitsView;
 import java.util.Objects;
 
-public class MassUnitsPresenter extends AbstractPresenter<MassUnitsView, MassUnitsModel> {
+public final class MassUnitsPresenter extends AbstractPresenter<MassUnitsView, MassUnitsModel> {
 
   private DoubleStringConverter valueConverter;
 
