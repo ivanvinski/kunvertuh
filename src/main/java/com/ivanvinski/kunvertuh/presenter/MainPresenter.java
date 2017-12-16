@@ -2,6 +2,7 @@ package com.ivanvinski.kunvertuh.presenter;
 
 import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.model.MainModel;
+import com.ivanvinski.kunvertuh.view.AboutView;
 import com.ivanvinski.kunvertuh.view.LengthUnitsView;
 import com.ivanvinski.kunvertuh.view.MainView;
 import com.ivanvinski.kunvertuh.view.MassUnitsView;
@@ -25,6 +26,7 @@ public class MainPresenter implements Presenter<MainView, MainModel> {
     view.setOnLengthActionEvent(() -> requestViewChange(LengthUnitsView.class));
     view.setOnMassActionEvent(() -> requestViewChange(MassUnitsView.class));
     view.setOnVolumeActionEvent(() -> requestViewChange(VolumeUnitsView.class));
+    view.setOnAboutActionEvent(() -> requestViewChange(AboutView.class));
     requestViewChange(LengthUnitsView.class);
   }
 

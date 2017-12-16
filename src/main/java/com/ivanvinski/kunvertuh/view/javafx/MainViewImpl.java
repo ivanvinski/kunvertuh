@@ -11,6 +11,7 @@ import java.util.Map;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -26,7 +27,7 @@ public class MainViewImpl extends StackPane implements MainView {
   private JFXButton menu;
   @FXML
   private JFXDrawer navigation;
-  private JFXButton length, mass, volume;
+  private JFXButton length, mass, volume, about;
 
   private Map<Class<? extends View>, JFXButton> viewButtonMap = new LinkedHashMap<>();
   private Parent activeView;
@@ -38,6 +39,7 @@ public class MainViewImpl extends StackPane implements MainView {
     VBox navigationContent = new VBox();
     navigationContent.getStyleClass().add("nav-content");
     navigationContent.getChildren().setAll(viewButtonMap.values());
+    navigationContent.getChildren().add(3, new Separator());
     navigation.setSidePane(navigationContent);
     navigation.setContent(viewContainer);
   }
@@ -68,6 +70,11 @@ public class MainViewImpl extends StackPane implements MainView {
     volume.setOnAction(event -> closeDrawerAndRunActionIsNotNull(action));
   }
 
+  @Override
+  public void setOnAboutActionEvent(Runnable action) {
+    about.setOnAction(event -> closeDrawerAndRunActionIsNotNull(action));
+  }
+
   private void createAndRegisterNavigationButtons() {
     length = newNavigationButton("Length", MaterialDesignIcon.RULER);
     registerNavigationButton(length, LengthUnitsViewImpl.class);
@@ -75,6 +82,8 @@ public class MainViewImpl extends StackPane implements MainView {
     registerNavigationButton(mass, MassUnitsViewImpl.class);
     volume = newNavigationButton("Volume", MaterialDesignIcon.CUBE_OUTLINE);
     registerNavigationButton(volume, VolumeUnitsViewImpl.class);
+    about = newNavigationButton("About", MaterialDesignIcon.HELP_CIRCLE);
+    registerNavigationButton(about, AboutViewImpl.class);
   }
 
   private JFXButton newNavigationButton(String text, MaterialDesignIcon icon) {

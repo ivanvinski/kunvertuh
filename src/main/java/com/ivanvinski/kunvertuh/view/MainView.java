@@ -9,4 +9,6 @@ public interface MainView extends View {
   void setOnMassActionEvent(Runnable action);
 
   void setOnVolumeActionEvent(Runnable action);
+
+  void setOnAboutActionEvent(Runnable action);
 }
