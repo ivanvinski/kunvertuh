@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 import com.ivanvinski.kunvertuh.model.LengthUnitsModel;
 import com.ivanvinski.kunvertuh.unit.LengthUnit;
 import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
-import com.ivanvinski.kunvertuh.view.LengthUnitsViewMock;
+import com.ivanvinski.kunvertuh.view.mock.LengthUnitsViewMock;
 import org.junit.Before;
 import org.junit.Test;
 

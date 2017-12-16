@@ -3,11 +3,11 @@ package com.ivanvinski.kunvertuh.presenter;
 import static org.junit.Assert.assertEquals;
 
 import com.ivanvinski.kunvertuh.model.MainModel;
-import com.ivanvinski.kunvertuh.view.LengthUnitsViewImpl;
-import com.ivanvinski.kunvertuh.view.MainViewMock;
-import com.ivanvinski.kunvertuh.view.MassUnitsViewImpl;
+import com.ivanvinski.kunvertuh.view.javafx.LengthUnitsViewImpl;
+import com.ivanvinski.kunvertuh.view.mock.MainViewMock;
+import com.ivanvinski.kunvertuh.view.javafx.MassUnitsViewImpl;
 import com.ivanvinski.kunvertuh.view.ViewCatalog;
-import com.ivanvinski.kunvertuh.view.VolumeUnitsViewImpl;
+import com.ivanvinski.kunvertuh.view.javafx.VolumeUnitsViewImpl;
 import org.junit.Before;
 import org.junit.Test;
 

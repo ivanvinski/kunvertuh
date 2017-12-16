@@ -1,4 +1,7 @@
-package com.ivanvinski.kunvertuh.view;
+package com.ivanvinski.kunvertuh.view.mock;
+
+import com.ivanvinski.kunvertuh.view.MainView;
+import com.ivanvinski.kunvertuh.view.View;
 
 public class MainViewMock implements MainView {
 

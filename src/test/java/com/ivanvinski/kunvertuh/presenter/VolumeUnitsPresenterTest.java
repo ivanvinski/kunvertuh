@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 import com.ivanvinski.kunvertuh.model.VolumeUnitsModel;
 import com.ivanvinski.kunvertuh.unit.VolumeUnit;
 import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
-import com.ivanvinski.kunvertuh.view.VolumeUnitsViewMock;
+import com.ivanvinski.kunvertuh.view.mock.VolumeUnitsViewMock;
 import org.junit.Before;
 import org.junit.Test;
 

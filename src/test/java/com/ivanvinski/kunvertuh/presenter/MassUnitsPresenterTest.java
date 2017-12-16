@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 import com.ivanvinski.kunvertuh.model.MassUnitsModel;
 import com.ivanvinski.kunvertuh.unit.MassUnit;
 import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
-import com.ivanvinski.kunvertuh.view.MassUnitsViewMock;
+import com.ivanvinski.kunvertuh.view.mock.MassUnitsViewMock;
 import org.junit.Before;
 import org.junit.Test;
 

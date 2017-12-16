@@ -1,10 +1,11 @@
-package com.ivanvinski.kunvertuh.view;
+package com.ivanvinski.kunvertuh.view.javafx;
 
 import static org.junit.Assert.assertEquals;
 
 import com.google.inject.AbstractModule;
 import com.ivanvinski.kunvertuh.module.TestParentViewPresenterModule;
 import com.ivanvinski.kunvertuh.presenter.TestParentViewPresenter;
+import com.ivanvinski.kunvertuh.view.TestParentView;
 import org.junit.Test;
 
 public class ViewAssemblerTest {
