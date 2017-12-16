@@ -1,5 +1,6 @@
 package com.ivanvinski.kunvertuh.view;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -16,6 +17,10 @@ public class ViewCatalog {
     } else {
       views.put(viewType, view);
     }
+  }
+
+  public Collection<View> getViews() {
+    return views.values();
   }
 
   public View get(Class<? extends View> viewType) {
