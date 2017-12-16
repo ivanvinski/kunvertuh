@@ -22,6 +22,15 @@ public class MainModel {
   }
 
   public View getView(Class<? extends View> viewType) {
-    return catalog.get(viewType);
+    return getViewByType(viewType);
+  }
+
+  private View getViewByType(Class<? extends View> viewType) {
+    for (View view : catalog.getViews()) {
+      if (viewType.isAssignableFrom(view.getClass())) {
+        return view;
+      }
+    }
+    throw new NullPointerException("View not found: " + viewType);
   }
 }
