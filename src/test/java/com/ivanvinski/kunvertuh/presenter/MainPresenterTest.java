@@ -11,7 +11,7 @@ import com.ivanvinski.kunvertuh.view.VolumeUnitsViewImpl;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestMainPresenter {
+public class MainPresenterTest {
 
   private MainViewMock view = new MainViewMock();
   private MainModel model;

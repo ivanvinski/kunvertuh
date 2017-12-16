@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class TestMassUnit {
+public class MassUnitTest {
 
   private static final double SOURCE_MASS = 100d;
 

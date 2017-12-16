@@ -8,7 +8,7 @@ import com.ivanvinski.kunvertuh.unit.MassUnit;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestMassUnitModel {
+public class MassUnitModelTest {
 
   private static final Double SOURCE_MASS = 1998d;
   private MassUnitsModel model = new MassUnitsModel();

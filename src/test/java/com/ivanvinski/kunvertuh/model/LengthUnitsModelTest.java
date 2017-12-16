@@ -8,7 +8,7 @@ import com.ivanvinski.kunvertuh.unit.LengthUnit;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestLengthUnitsModel {
+public class LengthUnitsModelTest {
 
   private static final Double SOURCE_LENGTH = 2017d;
   private LengthUnitsModel model = new LengthUnitsModel();

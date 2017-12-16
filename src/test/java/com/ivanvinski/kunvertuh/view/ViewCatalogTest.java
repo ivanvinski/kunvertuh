@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class TestViewCatalog {
+public class ViewCatalogTest {
 
   private ViewCatalog viewCatalog = new ViewCatalog();
   private View view = new View() {

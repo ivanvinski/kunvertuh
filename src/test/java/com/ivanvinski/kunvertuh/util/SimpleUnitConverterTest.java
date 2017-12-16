@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 import java.math.BigDecimal;
 import org.junit.Test;
 
-public class TestSimpleUnitConverter {
+public class SimpleUnitConverterTest {
 
   private SimpleUnitConverter converter = new SimpleUnitConverter();
 

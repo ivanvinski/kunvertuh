@@ -8,11 +8,11 @@ import java.io.UncheckedIOException;
 import java.net.URL;
 import org.junit.Test;
 
-public class TestViewLoader {
+public class ViewLoaderTest {
 
-  private static final URL TEST_PARENT_LOCATION = TestViewLoader.class
+  private static final URL TEST_PARENT_LOCATION = ViewLoaderTest.class
       .getResource("/view/test-parent.fxml");
-  private static final URL TEST_NON_PARENT_LOCATION = TestViewLoader.class
+  private static final URL TEST_NON_PARENT_LOCATION = ViewLoaderTest.class
       .getResource("/view/test-non-parent.fxml");
   private static final AbstractModule moduleStub = new AbstractModule() {
     @Override

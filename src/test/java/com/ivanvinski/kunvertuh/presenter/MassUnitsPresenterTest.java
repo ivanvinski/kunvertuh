@@ -11,7 +11,7 @@ import com.ivanvinski.kunvertuh.view.MassUnitsViewMock;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestMassUnitsPresenter {
+public class MassUnitsPresenterTest {
 
   private static final String SOURCE_MASS = "5";
 

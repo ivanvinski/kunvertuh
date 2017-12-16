@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class TestLengthUnit {
+public class LengthUnitTest {
 
   private static final double SOURCE_LENGTH = 50d;
 

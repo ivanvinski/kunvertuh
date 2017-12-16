@@ -11,7 +11,7 @@ import com.ivanvinski.kunvertuh.view.VolumeUnitsViewMock;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestVolumeUnitsPresenter {
+public class VolumeUnitsPresenterTest {
 
   private static final String SOURCE_VOLUME = "15";
 

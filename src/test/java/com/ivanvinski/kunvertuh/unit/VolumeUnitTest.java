@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class TestVolumeUnit {
+public class VolumeUnitTest {
 
   private static final double SOURCE_VOLUME = 25d;
 

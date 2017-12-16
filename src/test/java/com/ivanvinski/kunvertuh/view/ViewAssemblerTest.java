@@ -7,7 +7,7 @@ import com.ivanvinski.kunvertuh.module.TestParentViewPresenterModule;
 import com.ivanvinski.kunvertuh.presenter.TestParentViewPresenter;
 import org.junit.Test;
 
-public class TestViewAssembler {
+public class ViewAssemblerTest {
 
   @Test(expected = NullPointerException.class)
   public void nullModuleInitializationThrowsException() {

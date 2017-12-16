@@ -8,7 +8,7 @@ import com.ivanvinski.kunvertuh.unit.VolumeUnit;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestVolumeUnitsModel {
+public class VolumeUnitsModelTest {
 
   private static final Double SOURCE_VOLUME = 10430d;
   private VolumeUnitsModel model = new VolumeUnitsModel();

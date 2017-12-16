@@ -11,7 +11,7 @@ import com.ivanvinski.kunvertuh.view.LengthUnitsViewMock;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestLengthUnitsPresenter {
+public class LengthUnitsPresenterTest {
 
   private static final String SOURCE_LENGTH = "500";
 

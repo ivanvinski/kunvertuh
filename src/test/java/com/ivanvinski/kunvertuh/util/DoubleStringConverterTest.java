@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import org.junit.Test;
 
-public class TestDoubleStringConverter {
+public class DoubleStringConverterTest {
 
   private NumberFormat valueFormat = new DecimalFormat("#0.00");
   private DoubleStringConverter converter = new DoubleStringConverter(valueFormat);
