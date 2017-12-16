@@ -4,6 +4,7 @@ import com.ivanvinski.kunvertuh.model.LengthUnitsModelTest;
 import com.ivanvinski.kunvertuh.model.MainModelTest;
 import com.ivanvinski.kunvertuh.model.MassUnitModelTest;
 import com.ivanvinski.kunvertuh.model.VolumeUnitsModelTest;
+import com.ivanvinski.kunvertuh.presenter.AboutPresenterTest;
 import com.ivanvinski.kunvertuh.presenter.LengthUnitsPresenterTest;
 import com.ivanvinski.kunvertuh.presenter.MainPresenterTest;
 import com.ivanvinski.kunvertuh.presenter.MassUnitsPresenterTest;
@@ -33,6 +34,7 @@ import org.junit.runners.Suite.SuiteClasses;
     VolumeUnitsPresenterTest.class,
     MainModelTest.class,
     MainPresenterTest.class,
+    AboutPresenterTest.class,
     DoubleStringConverterTest.class,
     ViewAssemblerTest.class,
     ViewCatalogTest.class,
