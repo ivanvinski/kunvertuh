@@ -3,11 +3,11 @@ package com.ivanvinski.kunvertuh.presenter;
 import static org.junit.Assert.assertEquals;
 
 import com.ivanvinski.kunvertuh.model.MainModel;
-import com.ivanvinski.kunvertuh.view.javafx.LengthUnitsViewImpl;
-import com.ivanvinski.kunvertuh.view.mock.MainViewMock;
-import com.ivanvinski.kunvertuh.view.javafx.MassUnitsViewImpl;
 import com.ivanvinski.kunvertuh.view.ViewCatalog;
-import com.ivanvinski.kunvertuh.view.javafx.VolumeUnitsViewImpl;
+import com.ivanvinski.kunvertuh.view.mock.LengthUnitsViewMock;
+import com.ivanvinski.kunvertuh.view.mock.MainViewMock;
+import com.ivanvinski.kunvertuh.view.mock.MassUnitsViewMock;
+import com.ivanvinski.kunvertuh.view.mock.VolumeUnitsViewMock;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,20 +15,14 @@ public class MainPresenterTest {
 
   private MainViewMock view = new MainViewMock();
   private MainModel model;
-  private MainPresenter presenter;
-
-  private LengthUnitsViewImpl lengthView = new LengthUnitsViewImpl();
-  private MassUnitsViewImpl massView = new MassUnitsViewImpl();
-  private VolumeUnitsViewImpl volumeView = new VolumeUnitsViewImpl();
 
   @Before
   public void setUp() {
     ViewCatalog catalog = new ViewCatalog();
-    catalog.add(lengthView);
-    catalog.add(massView);
-    catalog.add(volumeView);
-    presenter = new MainPresenter(view, model = new MainModel(catalog));
-    presenter.initialize();
+    catalog.add(new LengthUnitsViewMock());
+    catalog.add(new MassUnitsViewMock());
+    catalog.add(new VolumeUnitsViewMock());
+    new MainPresenter(view, model = new MainModel(catalog)).initialize();
   }
 
   @Test(expected = NullPointerException.class)
@@ -43,25 +37,25 @@ public class MainPresenterTest {
 
   @Test
   public void initializationSetsCorrectInitialView() {
-    assertEquals(lengthView, view.getActiveView());
+    assertEquals(LengthUnitsViewMock.class, model.getActiveView().getClass());
   }
 
   @Test
   public void lengthActionEventSetsLengthUnitsView() {
     view.fireMassActionEvent();
     view.fireLengthActionEvent();
-    assertEquals(lengthView, view.getActiveView());
+    assertEquals(LengthUnitsViewMock.class, view.getActiveView().getClass());
   }
 
   @Test
   public void massActionEventSetsMassUnitsView() {
     view.fireMassActionEvent();
-    assertEquals(massView, view.getActiveView());
+    assertEquals(MassUnitsViewMock.class, view.getActiveView().getClass());
   }
 
   @Test
   public void volumeActionEventSetsVolumeUnitsView() {
     view.fireVolumeActionEvent();
-    assertEquals(volumeView, view.getActiveView());
+    assertEquals(VolumeUnitsViewMock.class, view.getActiveView().getClass());
   }
 }
