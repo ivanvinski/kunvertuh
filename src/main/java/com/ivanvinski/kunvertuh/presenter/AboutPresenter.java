@@ -26,11 +26,6 @@ public final class AboutPresenter extends AbstractPresenter<AboutView, AboutMode
 
   private List<Software> getUsedSoftware() {
     List<Software> usedSoftware = new ArrayList<>();
-    usedSoftware.add(new SoftwareBuilder("JScience")
-        .setVersion("4.3.1")
-        .setLicense("JScience BSD License")
-        .setWebsite("http://jscience.org/")
-        .build());
     usedSoftware.add(new SoftwareBuilder("Guava")
         .setVersion("23.3-jre")
         .setLicense("Apache 2.0")

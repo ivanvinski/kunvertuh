@@ -9,7 +9,6 @@ repositories {
 }
 
 dependencies {
-    compile 'org.jscience:jscience:4.3.1'
     compile 'com.google.guava:guava:23.3-jre'
     compile 'com.google.inject:guice:4.1.0'
     compile 'com.jfoenix:jfoenix:1.9.0'
