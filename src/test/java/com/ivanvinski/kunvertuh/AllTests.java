@@ -12,6 +12,10 @@ import com.ivanvinski.kunvertuh.presenter.VolumeUnitsPresenterTest;
 import com.ivanvinski.kunvertuh.unit.LengthUnitTest;
 import com.ivanvinski.kunvertuh.unit.MassUnitTest;
 import com.ivanvinski.kunvertuh.unit.VolumeUnitTest;
+import com.ivanvinski.kunvertuh.unit.converter.LengthUnitConverterTest;
+import com.ivanvinski.kunvertuh.unit.converter.MassUnitConverterTest;
+import com.ivanvinski.kunvertuh.unit.converter.MeasurementUnitConverterTest;
+import com.ivanvinski.kunvertuh.unit.converter.VolumeUnitConverterTest;
 import com.ivanvinski.kunvertuh.util.DoubleStringConverterTest;
 import com.ivanvinski.kunvertuh.view.ViewCatalogTest;
 import com.ivanvinski.kunvertuh.view.javafx.ViewAssemblerTest;
@@ -26,6 +30,10 @@ import org.junit.runners.Suite.SuiteClasses;
     LengthUnitTest.class,
     MassUnitTest.class,
     VolumeUnitTest.class,
+    MeasurementUnitConverterTest.class,
+    LengthUnitConverterTest.class,
+    MassUnitConverterTest.class,
+    VolumeUnitConverterTest.class,
     LengthUnitsModelTest.class,
     LengthUnitsPresenterTest.class,
     MassUnitModelTest.class,
