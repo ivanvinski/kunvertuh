@@ -11,7 +11,7 @@ public class MeasurementUnitConverter<U extends MeasurementUnit> {
     if (sourceValue == null) {
       return null;
     }
-    double baseUnitValue = sourceValue / sourceUnit.getBaseUnitFactor();
-    return baseUnitValue * outputUnit.getBaseUnitFactor();
+    double baseUnitValue = sourceValue * sourceUnit.getBaseUnitFactor();
+    return baseUnitValue / outputUnit.getBaseUnitFactor();
   }
 }
