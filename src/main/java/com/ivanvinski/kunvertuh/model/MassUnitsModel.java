@@ -1,24 +1,29 @@
 package com.ivanvinski.kunvertuh.model;
 
 import com.ivanvinski.kunvertuh.unit.MassUnit;
-import java.util.Objects;
+import com.ivanvinski.kunvertuh.unit.converter.MassUnitConverter;
 
 public class MassUnitsModel implements UnitsModel<MassUnit> {
 
+  private MassUnitConverter unitConverter = new MassUnitConverter();
   private Double milligrams, grams, dekagrams, kilograms;
   private Double grains, drams, ounces, pounds;
 
   @Override
   public void convert(Double sourceMass, MassUnit sourceUnit) {
-    Objects.requireNonNull(sourceUnit, "Source unit can't be null");
-    milligrams = sourceUnit.toMilligrams(sourceMass);
-    grams = sourceUnit.toGrams(sourceMass);
-    dekagrams = sourceUnit.toDekagrams(sourceMass);
-    kilograms = sourceUnit.toKilograms(sourceMass);
-    grains = sourceUnit.toGrains(sourceMass);
-    drams = sourceUnit.toDrams(sourceMass);
-    ounces = sourceUnit.toOunces(sourceMass);
-    pounds = sourceUnit.toPounds(sourceMass);
+    milligrams = getUnitConverter().toMilligrams(sourceMass, sourceUnit);
+    grams = getUnitConverter().toGrams(sourceMass, sourceUnit);
+    dekagrams = getUnitConverter().toDekagrams(sourceMass, sourceUnit);
+    kilograms = getUnitConverter().toKilograms(sourceMass, sourceUnit);
+    grains = getUnitConverter().toGrains(sourceMass, sourceUnit);
+    drams = getUnitConverter().toDrams(sourceMass, sourceUnit);
+    ounces = getUnitConverter().toOunces(sourceMass, sourceUnit);
+    pounds = getUnitConverter().toPounds(sourceMass, sourceUnit);
+  }
+
+  @Override
+  public MassUnitConverter getUnitConverter() {
+    return unitConverter;
   }
 
   public Double getMilligrams() {

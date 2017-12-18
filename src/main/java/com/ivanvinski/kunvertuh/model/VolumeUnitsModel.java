@@ -1,22 +1,27 @@
 package com.ivanvinski.kunvertuh.model;
 
 import com.ivanvinski.kunvertuh.unit.VolumeUnit;
-import java.util.Objects;
+import com.ivanvinski.kunvertuh.unit.converter.VolumeUnitConverter;
 
 public class VolumeUnitsModel implements UnitsModel<VolumeUnit> {
 
+  private VolumeUnitConverter unitConverter = new VolumeUnitConverter();
   private Double milliliters, liters, cubicMeters;
   private Double fluidOunces, pints, gallons;
 
   @Override
   public void convert(Double sourceVolume, VolumeUnit sourceUnit) {
-    Objects.requireNonNull(sourceUnit, "Source unit can't be null");
-    milliliters = sourceUnit.toMilliliters(sourceVolume);
-    liters = sourceUnit.toLiters(sourceVolume);
-    cubicMeters = sourceUnit.toCubicMeters(sourceVolume);
-    fluidOunces = sourceUnit.toFluidOunces(sourceVolume);
-    pints = sourceUnit.toPints(sourceVolume);
-    gallons = sourceUnit.toGallons(sourceVolume);
+    milliliters = getUnitConverter().toMilliliters(sourceVolume, sourceUnit);
+    liters = getUnitConverter().toLiters(sourceVolume, sourceUnit);
+    cubicMeters = getUnitConverter().toCubicMeters(sourceVolume, sourceUnit);
+    fluidOunces = getUnitConverter().toFluidOunces(sourceVolume, sourceUnit);
+    pints = getUnitConverter().toPints(sourceVolume, sourceUnit);
+    gallons = getUnitConverter().toGallons(sourceVolume, sourceUnit);
+  }
+
+  @Override
+  public VolumeUnitConverter getUnitConverter() {
+    return unitConverter;
   }
 
   public Double getMilliliters() {

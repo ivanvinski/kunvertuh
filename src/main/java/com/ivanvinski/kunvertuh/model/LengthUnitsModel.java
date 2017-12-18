@@ -1,25 +1,30 @@
 package com.ivanvinski.kunvertuh.model;
 
 import com.ivanvinski.kunvertuh.unit.LengthUnit;
-import java.util.Objects;
+import com.ivanvinski.kunvertuh.unit.converter.LengthUnitConverter;
 
 public class LengthUnitsModel implements UnitsModel<LengthUnit> {
 
+  private LengthUnitConverter unitConverter = new LengthUnitConverter();
   private Double millimeters, centimeters, decimeters, meters, kilometers;
   private Double inches, feet, yards, miles;
 
   @Override
   public void convert(Double sourceLength, LengthUnit sourceUnit) {
-    Objects.requireNonNull(sourceUnit, "Source unit can't be null");
-    millimeters = sourceUnit.toMillimeters(sourceLength);
-    centimeters = sourceUnit.toCentimeters(sourceLength);
-    decimeters = sourceUnit.toDecimeters(sourceLength);
-    meters = sourceUnit.toMeters(sourceLength);
-    kilometers = sourceUnit.toKilometers(sourceLength);
-    inches = sourceUnit.toInches(sourceLength);
-    feet = sourceUnit.toFeet(sourceLength);
-    yards = sourceUnit.toYards(sourceLength);
-    miles = sourceUnit.toMiles(sourceLength);
+    millimeters = getUnitConverter().toMillimeters(sourceLength, sourceUnit);
+    centimeters = getUnitConverter().toCentimeters(sourceLength, sourceUnit);
+    decimeters = getUnitConverter().toDecimeters(sourceLength, sourceUnit);
+    meters = getUnitConverter().toMeters(sourceLength, sourceUnit);
+    kilometers = getUnitConverter().toKilometers(sourceLength, sourceUnit);
+    inches = getUnitConverter().toInches(sourceLength, sourceUnit);
+    feet = getUnitConverter().toFeet(sourceLength, sourceUnit);
+    yards = getUnitConverter().toYards(sourceLength, sourceUnit);
+    miles = getUnitConverter().toMiles(sourceLength, sourceUnit);
+  }
+
+  @Override
+  public LengthUnitConverter getUnitConverter() {
+    return unitConverter;
   }
 
   public Double getMillimeters() {
