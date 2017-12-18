@@ -2,75 +2,75 @@ package com.ivanvinski.kunvertuh.model;
 
 import static com.ivanvinski.kunvertuh.TestConstants.IMPERIAL_DELTA;
 import static com.ivanvinski.kunvertuh.TestConstants.METRIC_DELTA;
+import static com.ivanvinski.kunvertuh.unit.LengthUnit.METERS;
 import static org.junit.Assert.assertEquals;
 
-import com.ivanvinski.kunvertuh.unit.LengthUnit;
 import org.junit.Before;
 import org.junit.Test;
 
 public class LengthUnitsModelTest {
 
-  private static final Double SOURCE_LENGTH = 2017d;
-  private LengthUnitsModel model = new LengthUnitsModel();
+  private final LengthUnitsModel model = new LengthUnitsModel();
+  private final double sourceLength = 2017d;
 
   @Before
   public void setUp() {
-    model.convert(SOURCE_LENGTH, LengthUnit.METERS);
-  }
-
-  @Test(expected = NullPointerException.class)
-  public void throwsExceptionWhenSourceUnitIsNull() {
-    model.convert(0d, null);
+    model.convert(sourceLength, METERS);
   }
 
   @Test
-  public void convertsNullSourceLengthToNullValues() {
-    model.convert(null, LengthUnit.METERS);
+  public void nullSourceLengthConversionReturnsNull() {
+    model.convert(null, METERS);
     assertEquals(null, model.getMeters());
   }
 
+  @Test(expected = NullPointerException.class)
+  public void nullSourceUnitConversionThrowsException() {
+    model.convert(sourceLength, null);
+  }
+
   @Test
-  public void convertsNonNullLengthToMillimeters() {
+  public void convertsToMillimeters() {
     assertEquals(2017000d, model.getMillimeters(), METRIC_DELTA);
   }
 
   @Test
-  public void convertsNonNullLengthToCentimeters() {
+  public void convertsToCentimeters() {
     assertEquals(201700d, model.getCentimeters(), METRIC_DELTA);
   }
 
   @Test
-  public void convertsNonNullLengthToDecimeters() {
+  public void convertsToDecimeters() {
     assertEquals(20170d, model.getDecimeters(), METRIC_DELTA);
   }
 
   @Test
-  public void convertsNonNullLengthToMeters() {
+  public void convertsToMeters() {
     assertEquals(2017d, model.getMeters(), METRIC_DELTA);
   }
 
   @Test
-  public void convertsNonNullLengthToKilometers() {
+  public void convertsToKilometers() {
     assertEquals(2.017d, model.getKilometers(), METRIC_DELTA);
   }
 
   @Test
-  public void convertsNonNullLengthToInches() {
-    assertEquals(79409.29d, model.getInches(), IMPERIAL_DELTA);
+  public void convertsToInches() {
+    assertEquals(79409.449d, model.getInches(), IMPERIAL_DELTA);
   }
 
   @Test
-  public void convertsNonNullLengthToFeet() {
-    assertEquals(6617.45d, model.getFeet(), IMPERIAL_DELTA);
+  public void convertsToFeet() {
+    assertEquals(6617.454d, model.getFeet(), IMPERIAL_DELTA);
   }
 
   @Test
-  public void convertsNonNullLengthToYards() {
-    assertEquals(2205.81d, model.getYards(), IMPERIAL_DELTA);
+  public void convertsToYards() {
+    assertEquals(2205.818d, model.getYards(), IMPERIAL_DELTA);
   }
 
   @Test
-  public void convertsNonNullLengthToMiles() {
-    assertEquals(1.25d, model.getMiles(), IMPERIAL_DELTA);
+  public void convertsToMiles() {
+    assertEquals(1.253d, model.getMiles(), IMPERIAL_DELTA);
   }
 }

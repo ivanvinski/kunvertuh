@@ -2,60 +2,60 @@ package com.ivanvinski.kunvertuh.model;
 
 import static com.ivanvinski.kunvertuh.TestConstants.IMPERIAL_DELTA;
 import static com.ivanvinski.kunvertuh.TestConstants.METRIC_DELTA;
+import static com.ivanvinski.kunvertuh.unit.VolumeUnit.LITERS;
 import static org.junit.Assert.assertEquals;
 
-import com.ivanvinski.kunvertuh.unit.VolumeUnit;
 import org.junit.Before;
 import org.junit.Test;
 
 public class VolumeUnitsModelTest {
 
-  private static final Double SOURCE_VOLUME = 10430d;
-  private VolumeUnitsModel model = new VolumeUnitsModel();
+  private final VolumeUnitsModel model = new VolumeUnitsModel();
+  private final Double sourceVolume = 10430d;
 
   @Before
   public void setUp() {
-    model.convert(SOURCE_VOLUME, VolumeUnit.LITERS);
-  }
-
-  @Test(expected = NullPointerException.class)
-  public void throwsExceptionWhenSourceUnitIsNull() {
-    model.convert(0d, null);
+    model.convert(sourceVolume, LITERS);
   }
 
   @Test
-  public void convertsNullSourceVolumeToNullValues() {
-    model.convert(null, VolumeUnit.LITERS);
+  public void nullSourceVolumeConversionReturnsNull() {
+    model.convert(null, LITERS);
     assertEquals(null, model.getLiters());
   }
 
+  @Test(expected = NullPointerException.class)
+  public void nullSourceUnitConversionThrowsException() {
+    model.convert(sourceVolume, null);
+  }
+
   @Test
-  public void conversNonNullVolumeToMilliliters() {
+  public void convertsToMilliliters() {
     assertEquals(10430000d, model.getMilliliters(), METRIC_DELTA);
   }
 
   @Test
-  public void convertsNonNullVolumeToLiters() {
+  public void convertsToLiters() {
     assertEquals(10430d, model.getLiters(), METRIC_DELTA);
   }
 
   @Test
-  public void convertsNonNullVolumeToCubicMeters() {
+  public void convertsToCubicMeters() {
     assertEquals(10.43d, model.getCubicMeters(), METRIC_DELTA);
   }
 
   @Test
-  public void convertsNonNullVolumeToFluidOunces() {
-    assertEquals(367083.85d, model.getFluidOunces(), IMPERIAL_DELTA);
+  public void convertsToFluidOunces() {
+    assertEquals(367084.197d, model.getFluidOunces(), IMPERIAL_DELTA);
   }
 
   @Test
-  public void convertsNonNullVolumeToPints() {
-    assertEquals(18354.72d, model.getPints(), IMPERIAL_DELTA);
+  public void convertsToPints() {
+    assertEquals(18354.236d, model.getPints(), IMPERIAL_DELTA);
   }
 
   @Test
-  public void convertsNonNullVolumeToGallons() {
-    assertEquals(2294.28d, model.getGallons(), IMPERIAL_DELTA);
+  public void convertsToGallons() {
+    assertEquals(2294.279d, model.getGallons(), IMPERIAL_DELTA);
   }
 }
