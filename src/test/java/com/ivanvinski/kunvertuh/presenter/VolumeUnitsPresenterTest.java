@@ -92,7 +92,7 @@ public class VolumeUnitsPresenterTest {
   public void fluidOuncesActionEventInvokesConversion() {
     view.setFluidOunces(SOURCE_VOLUME);
     view.fireFluidOuncesActionEvent();
-    assertEquals(0.43d, model.getLiters(), IMPERIAL_DELTA);
+    assertEquals(.426d, model.getLiters(), IMPERIAL_DELTA);
   }
 
   @Test
@@ -105,7 +105,7 @@ public class VolumeUnitsPresenterTest {
   public void pintsActionEventInvokesConversion() {
     view.setPints(SOURCE_VOLUME);
     view.firePintsActionEvent();
-    assertEquals(8.52d, model.getLiters(), IMPERIAL_DELTA);
+    assertEquals(8.524d, model.getLiters(), IMPERIAL_DELTA);
   }
 
   @Test

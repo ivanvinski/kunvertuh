@@ -105,7 +105,7 @@ public class MassUnitsPresenterTest {
   public void grainsActionEventInvokesConversion() {
     view.setGrains(SOURCE_MASS);
     view.fireGrainsActionEvent();
-    assertEquals(0.32d, model.getGrams(), IMPERIAL_DELTA);
+    assertEquals(0.324d, model.getGrams(), IMPERIAL_DELTA);
   }
 
   @Test
