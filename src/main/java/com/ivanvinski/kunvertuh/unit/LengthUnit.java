@@ -1,72 +1,19 @@
 package com.ivanvinski.kunvertuh.unit;
 
-import java.util.Objects;
-import javax.measure.converter.UnitConverter;
-import javax.measure.quantity.Length;
-import javax.measure.unit.BaseUnit;
-import javax.measure.unit.Unit;
+public final class LengthUnit extends MeasurementUnit {
 
-public enum LengthUnit {
+  public static final LengthUnit MILLIMETERS = new LengthUnit("mm", .001d);
+  public static final LengthUnit CENTIMETERS = new LengthUnit("cm", .01d);
+  public static final LengthUnit DECIMETERS = new LengthUnit("dm", .1d);
+  public static final LengthUnit METERS = new LengthUnit("m", 1d);
+  public static final LengthUnit KILOMETERS = new LengthUnit("km", 1000d);
 
-  METERS(new BaseUnit<>("m")),
-  MILLIMETERS(METERS.lengthUnit.times(1000d)),
-  CENTIMETERS(METERS.lengthUnit.times(100d)),
-  DECIMETERS(METERS.lengthUnit.times(10d)),
-  KILOMETERS(METERS.lengthUnit.divide(1000d)),
+  public static final LengthUnit INCHES = new LengthUnit("in", .0254d);
+  public static final LengthUnit FEET = new LengthUnit("ft", .3048d);
+  public static final LengthUnit YARDS = new LengthUnit("yd", .9144d);
+  public static final LengthUnit MILES = new LengthUnit("mi", 1609.344d);
 
-  INCHES(METERS.lengthUnit.times(39.370d)),
-  FEET(METERS.lengthUnit.times(3.2808d)),
-  YARDS(METERS.lengthUnit.times(1.0936d)),
-  MILES(METERS.lengthUnit.times(0.00062137d));
-
-  private Unit<Length> lengthUnit;
-
-  LengthUnit(Unit<Length> lengthUnit) {
-    this.lengthUnit = lengthUnit;
-  }
-
-  public Double convert(Double sourceLength, LengthUnit sourceUnit) {
-    if (sourceLength == null) {
-      return null;
-    }
-    Unit<Length> actualSourceUnit = Objects.requireNonNull(sourceUnit).lengthUnit;
-    UnitConverter converter = lengthUnit.getConverterTo(actualSourceUnit);
-    return converter.convert(sourceLength);
-  }
-
-  public Double toMillimeters(Double sourceLength) {
-    return MILLIMETERS.convert(sourceLength, this);
-  }
-
-  public Double toCentimeters(Double sourceLength) {
-    return CENTIMETERS.convert(sourceLength, this);
-  }
-
-  public Double toMeters(Double sourceLength) {
-    return METERS.convert(sourceLength, this);
-  }
-
-  public Double toDecimeters(Double sourceLength) {
-    return DECIMETERS.convert(sourceLength, this);
-  }
-
-  public Double toKilometers(Double sourceLength) {
-    return KILOMETERS.convert(sourceLength, this);
-  }
-
-  public Double toInches(Double sourceLength) {
-    return INCHES.convert(sourceLength, this);
-  }
-
-  public Double toFeet(Double sourceLength) {
-    return FEET.convert(sourceLength, this);
-  }
-
-  public Double toYards(Double sourceLength) {
-    return YARDS.convert(sourceLength, this);
-  }
-
-  public Double toMiles(Double sourceLength) {
-    return MILES.convert(sourceLength, this);
+  private LengthUnit(String abbreviation, double baseUnitFactor) {
+    super(abbreviation, baseUnitFactor);
   }
 }

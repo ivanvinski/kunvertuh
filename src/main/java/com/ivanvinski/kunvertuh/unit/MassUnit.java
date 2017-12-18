@@ -1,67 +1,18 @@
 package com.ivanvinski.kunvertuh.unit;
 
-import java.util.Objects;
-import javax.measure.converter.UnitConverter;
-import javax.measure.quantity.Mass;
-import javax.measure.unit.BaseUnit;
-import javax.measure.unit.Unit;
+public final class MassUnit extends MeasurementUnit {
 
-public enum MassUnit {
+  public static final MassUnit MILLIGRAMS = new MassUnit("mg", .001d);
+  public static final MassUnit GRAMS = new MassUnit("g", 1d);
+  public static final MassUnit DEKAGRAMS = new MassUnit("dag", 10d);
+  public static final MassUnit KILOGRAMS = new MassUnit("kg", 1000d);
 
-  GRAMS(new BaseUnit<>("g")),
-  MILLIGRAMS(GRAMS.massUnit.times(1000d)),
-  DEKAGRAMS(GRAMS.massUnit.divide(10d)),
-  KILOGRAMS(GRAMS.massUnit.divide(1000d)),
+  public static final MassUnit GRAINS = new MassUnit("gr", .06479891d);
+  public static final MassUnit DRAMS = new MassUnit("dr", 1.771845d);
+  public static final MassUnit OUNCES = new MassUnit("oz", 28.34952d);
+  public static final MassUnit POUNDS = new MassUnit("lb", 453.5924d);
 
-  GRAINS(GRAMS.massUnit.times(15.432d)),
-  DRAMS(GRAMS.massUnit.divide(1.772d)),
-  OUNCES(GRAMS.massUnit.times(0.035274d)),
-  POUNDS(GRAMS.massUnit.times(0.0022046d));
-
-  private Unit<Mass> massUnit;
-
-  MassUnit(Unit<Mass> massUnit) {
-    this.massUnit = massUnit;
-  }
-
-  public Double convert(Double sourceMass, MassUnit sourceUnit) {
-    if (sourceMass == null) {
-      return null;
-    }
-    Unit<Mass> actualSourceUnit = Objects.requireNonNull(sourceUnit).massUnit;
-    UnitConverter converter = massUnit.getConverterTo(actualSourceUnit);
-    return converter.convert(sourceMass);
-  }
-
-  public Double toMilligrams(Double sourceMass) {
-    return MILLIGRAMS.convert(sourceMass, this);
-  }
-
-  public Double toGrams(Double sourceMass) {
-    return GRAMS.convert(sourceMass, this);
-  }
-
-  public Double toDekagrams(Double sourceMass) {
-    return DEKAGRAMS.convert(sourceMass, this);
-  }
-
-  public Double toKilograms(Double sourceMass) {
-    return KILOGRAMS.convert(sourceMass, this);
-  }
-
-  public Double toGrains(Double sourceMass) {
-    return GRAINS.convert(sourceMass, this);
-  }
-
-  public Double toDrams(Double sourceMass) {
-    return DRAMS.convert(sourceMass, this);
-  }
-
-  public Double toOunces(Double sourceMass) {
-    return OUNCES.convert(sourceMass, this);
-  }
-
-  public Double toPounds(Double sourceMass) {
-    return POUNDS.convert(sourceMass, this);
+  private MassUnit(String abbreviation, double baseUnitFactor) {
+    super(abbreviation, baseUnitFactor);
   }
 }

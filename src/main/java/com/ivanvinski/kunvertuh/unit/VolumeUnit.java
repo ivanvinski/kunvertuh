@@ -1,57 +1,16 @@
 package com.ivanvinski.kunvertuh.unit;
 
-import java.util.Objects;
-import javax.measure.converter.UnitConverter;
-import javax.measure.quantity.Volume;
-import javax.measure.unit.BaseUnit;
-import javax.measure.unit.Unit;
+public final class VolumeUnit extends MeasurementUnit {
 
-public enum VolumeUnit {
+  public static final VolumeUnit MILLILITERS = new VolumeUnit("ml", .001d);
+  public static final VolumeUnit LITERS = new VolumeUnit("l", 1d);
+  public static final VolumeUnit CUBIC_METERS = new VolumeUnit("m3", 1000d);
 
-  LITERS(new BaseUnit<>("l")),
-  MILLILITERS(LITERS.volumeUnit.times(1000d)),
-  CUBIC_METERS(LITERS.volumeUnit.divide(1000d)),
+  public static final VolumeUnit FLUID_OUNCES = new VolumeUnit("fl oz", .0284131d);
+  public static final VolumeUnit PINTS = new VolumeUnit("pt", .5682612d);
+  public static final VolumeUnit GALLONS = new VolumeUnit("gal", 4.54609d);
 
-  FLUID_OUNCES(LITERS.volumeUnit.times(35.195d)),
-  PINTS(LITERS.volumeUnit.times(1.7598d)),
-  GALLONS(LITERS.volumeUnit.times(0.21997d));
-
-  private Unit<Volume> volumeUnit;
-
-  VolumeUnit(Unit<Volume> volumeUnit) {
-    this.volumeUnit = volumeUnit;
-  }
-
-  public Double convert(Double sourceVolume, VolumeUnit sourceUnit) {
-    if (sourceVolume == null) {
-      return null;
-    }
-    Unit<Volume> actualSourceUnit = Objects.requireNonNull(sourceUnit).volumeUnit;
-    UnitConverter converter = volumeUnit.getConverterTo(actualSourceUnit);
-    return converter.convert(sourceVolume);
-  }
-
-  public Double toMilliliters(Double sourceVolume) {
-    return MILLILITERS.convert(sourceVolume, this);
-  }
-
-  public Double toLiters(Double sourceVolume) {
-    return LITERS.convert(sourceVolume, this);
-  }
-
-  public Double toCubicMeters(Double sourceVolume) {
-    return CUBIC_METERS.convert(sourceVolume, this);
-  }
-
-  public Double toFluidOunces(Double sourceVolume) {
-    return FLUID_OUNCES.convert(sourceVolume, this);
-  }
-
-  public Double toPints(Double sourceVolume) {
-    return PINTS.convert(sourceVolume, this);
-  }
-
-  public Double toGallons(Double sourceVolume) {
-    return GALLONS.convert(sourceVolume, this);
+  private VolumeUnit(String abbreviation, double baseUnitFactor) {
+    super(abbreviation, baseUnitFactor);
   }
 }
