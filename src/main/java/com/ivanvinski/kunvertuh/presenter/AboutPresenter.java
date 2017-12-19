@@ -1,17 +1,17 @@
 package com.ivanvinski.kunvertuh.presenter;
 
 import com.google.inject.Inject;
-import com.ivanvinski.kunvertuh.model.AboutModel;
+import com.ivanvinski.kunvertuh.util.Browser;
 import com.ivanvinski.kunvertuh.util.Software;
 import com.ivanvinski.kunvertuh.util.SoftwareBuilder;
 import com.ivanvinski.kunvertuh.view.AboutView;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class AboutPresenter extends AbstractPresenter<AboutView, AboutModel> {
+public final class AboutPresenter extends AbstractPresenter<AboutView, Browser> {
 
   @Inject
-  public AboutPresenter(AboutView view, AboutModel model) {
+  public AboutPresenter(AboutView view, Browser model) {
     super(view, model);
   }
 
@@ -20,7 +20,7 @@ public final class AboutPresenter extends AbstractPresenter<AboutView, AboutMode
     getView().setAuthor("Ivan Vinski");
     getView().setAuthorWebsite("https://ivanvinski.com/");
     getView().setRepositoryWebsite("https://github.com/ivanvinski/kunvertuh");
-    getView().setOnURIAction(getModel()::openInBrowser);
+    getView().setOnURIAction(getModel()::open);
     getView().setUsedOpenSourceSoftware(getUsedSoftware());
   }
 

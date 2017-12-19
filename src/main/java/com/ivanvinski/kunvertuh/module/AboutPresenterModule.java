@@ -1,21 +1,23 @@
 package com.ivanvinski.kunvertuh.module;
 
 import com.google.inject.AbstractModule;
-import com.ivanvinski.kunvertuh.model.AboutModel;
+import com.ivanvinski.kunvertuh.util.Browser;
+import com.ivanvinski.kunvertuh.util.JFXBrowser;
 import com.ivanvinski.kunvertuh.view.AboutView;
 import com.ivanvinski.kunvertuh.view.javafx.AboutViewImpl;
+import javafx.application.HostServices;
 
 public class AboutPresenterModule extends AbstractModule {
 
-  private AboutModel model;
+  private HostServices hostServices;
 
-  public AboutPresenterModule(AboutModel model) {
-    this.model = model;
+  public AboutPresenterModule(HostServices hostServices) {
+    this.hostServices = hostServices;
   }
 
   @Override
   protected void configure() {
     bind(AboutView.class).to(AboutViewImpl.class);
-    bind(AboutModel.class).toInstance(model);
+    bind(Browser.class).toInstance(new JFXBrowser(hostServices));
   }
 }

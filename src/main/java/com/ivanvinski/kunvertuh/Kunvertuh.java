@@ -1,6 +1,5 @@
 package com.ivanvinski.kunvertuh;
 
-import com.ivanvinski.kunvertuh.model.AboutModelImpl;
 import com.ivanvinski.kunvertuh.module.AboutPresenterModule;
 import com.ivanvinski.kunvertuh.module.LengthUnitsPresenterModule;
 import com.ivanvinski.kunvertuh.module.MainPresenterModule;
@@ -42,7 +41,7 @@ public class Kunvertuh extends Application {
     viewLoader.load(getClass().getResource("/view/main.fxml"),
         new MainPresenterModule(viewLoader.getLoadedViews()));
     viewLoader.load(getClass().getResource("/view/about.fxml"),
-        new AboutPresenterModule(new AboutModelImpl(getHostServices())));
+        new AboutPresenterModule(getHostServices()));
     return viewLoader.getLoadedViews();
   }
 }
