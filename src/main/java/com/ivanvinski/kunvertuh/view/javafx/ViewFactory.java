@@ -7,12 +7,12 @@ import com.ivanvinski.kunvertuh.presenter.Presenter;
 import java.util.Objects;
 import javafx.util.Callback;
 
-public class ViewAssembler implements Callback<Class<?>, Object> {
+public class ViewFactory implements Callback<Class<?>, Object> {
 
   private final Injector presenterCreator;
   private Presenter presenter;
 
-  public ViewAssembler(AbstractModule presenterModule) {
+  public ViewFactory(AbstractModule presenterModule) {
     Objects.requireNonNull(presenterModule, "Can't assemble view with null module");
     presenterCreator = Guice.createInjector(presenterModule);
   }
