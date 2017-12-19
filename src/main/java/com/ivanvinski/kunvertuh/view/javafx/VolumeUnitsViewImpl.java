@@ -1,8 +1,15 @@
 package com.ivanvinski.kunvertuh.view.javafx;
 
+import static com.ivanvinski.kunvertuh.unit.VolumeUnit.CUBIC_METERS;
+import static com.ivanvinski.kunvertuh.unit.VolumeUnit.FLUID_OUNCES;
+import static com.ivanvinski.kunvertuh.unit.VolumeUnit.GALLONS;
+import static com.ivanvinski.kunvertuh.unit.VolumeUnit.LITERS;
+import static com.ivanvinski.kunvertuh.unit.VolumeUnit.MILLILITERS;
+import static com.ivanvinski.kunvertuh.unit.VolumeUnit.PINTS;
+
+import com.ivanvinski.kunvertuh.presenter.VolumeUnitsPresenter;
 import com.ivanvinski.kunvertuh.view.VolumeUnitsView;
 import com.jfoenix.controls.JFXTextField;
-import java.util.function.Consumer;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
@@ -16,8 +23,14 @@ public class VolumeUnitsViewImpl extends StackPane implements VolumeUnitsView {
   @FXML
   private JFXTextField fluidOunces, pints, gallons;
 
-  public void initialize() {
-    getChildren().setAll(root);
+  @Override
+  public void attach(VolumeUnitsPresenter presenter) {
+    milliliters.setOnAction(e -> presenter.conversionRequested(getMilliliters(), MILLILITERS));
+    liters.setOnAction(e -> presenter.conversionRequested(getLiters(), LITERS));
+    cubicMeters.setOnAction(e -> presenter.conversionRequested(getCubicMeters(), CUBIC_METERS));
+    fluidOunces.setOnAction(e -> presenter.conversionRequested(getFluidOunces(), FLUID_OUNCES));
+    pints.setOnAction(e -> presenter.conversionRequested(getPints(), PINTS));
+    gallons.setOnAction(e -> presenter.conversionRequested(getGallons(), GALLONS));
   }
 
   @Override
@@ -31,11 +44,6 @@ public class VolumeUnitsViewImpl extends StackPane implements VolumeUnitsView {
   }
 
   @Override
-  public void setOnMillilitersActionEvent(Consumer<String> actionConsumer) {
-    milliliters.setOnAction(event -> actionConsumer.accept(getMilliliters()));
-  }
-
-  @Override
   public String getLiters() {
     return liters.getText();
   }
@@ -43,11 +51,6 @@ public class VolumeUnitsViewImpl extends StackPane implements VolumeUnitsView {
   @Override
   public void setLiters(String liters) {
     this.liters.setText(liters);
-  }
-
-  @Override
-  public void setOnLitersActionEvent(Consumer<String> actionConsumer) {
-    liters.setOnAction(event -> actionConsumer.accept(getLiters()));
   }
 
   @Override
@@ -61,11 +64,6 @@ public class VolumeUnitsViewImpl extends StackPane implements VolumeUnitsView {
   }
 
   @Override
-  public void setOnCubicMetersActionEvent(Consumer<String> actionConsumer) {
-    cubicMeters.setOnAction(event -> actionConsumer.accept(getCubicMeters()));
-  }
-
-  @Override
   public String getFluidOunces() {
     return fluidOunces.getText();
   }
@@ -73,11 +71,6 @@ public class VolumeUnitsViewImpl extends StackPane implements VolumeUnitsView {
   @Override
   public void setFluidOunces(String fluidOunces) {
     this.fluidOunces.setText(fluidOunces);
-  }
-
-  @Override
-  public void setOnFluidOuncesActionEvent(Consumer<String> actionConsumer) {
-    fluidOunces.setOnAction(event -> actionConsumer.accept(getFluidOunces()));
   }
 
   @Override
@@ -91,11 +84,6 @@ public class VolumeUnitsViewImpl extends StackPane implements VolumeUnitsView {
   }
 
   @Override
-  public void setOnPintsActionEvent(Consumer<String> actionConsumer) {
-    pints.setOnAction(event -> actionConsumer.accept(getPints()));
-  }
-
-  @Override
   public String getGallons() {
     return gallons.getText();
   }
@@ -105,8 +93,8 @@ public class VolumeUnitsViewImpl extends StackPane implements VolumeUnitsView {
     this.gallons.setText(gallons);
   }
 
-  @Override
-  public void setOnGallonsActionEvent(Consumer<String> actionConsumer) {
-    gallons.setOnAction(event -> actionConsumer.accept(getGallons()));
+  @FXML
+  private void initialize() {
+    getChildren().setAll(root);
   }
 }

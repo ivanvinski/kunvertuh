@@ -1,5 +1,6 @@
 package com.ivanvinski.kunvertuh.view.javafx;
 
+import com.ivanvinski.kunvertuh.presenter.MainPresenter;
 import com.ivanvinski.kunvertuh.view.MainView;
 import com.ivanvinski.kunvertuh.view.View;
 import com.jfoenix.controls.JFXButton;
@@ -30,18 +31,21 @@ public class MainViewImpl extends StackPane implements MainView {
   private JFXButton length, mass, volume, about;
 
   private Map<Class<? extends View>, JFXButton> viewButtonMap = new LinkedHashMap<>();
-  private Parent activeView;
+  private View activeView;
 
-  public void initialize() {
+  @Override
+  public void attach(MainPresenter presenter) {
     getChildren().setAll(root);
-    createAndRegisterNavigationButtons();
-    menu.setOnAction(event -> toggleDrawer());
-    VBox navigationContent = new VBox();
-    navigationContent.getStyleClass().add("nav-content");
-    navigationContent.getChildren().setAll(viewButtonMap.values());
-    navigationContent.getChildren().add(3, new Separator());
-    navigation.setSidePane(navigationContent);
-    navigation.setContent(viewContainer);
+    prepareMenuButtonAndNavigationDrawer();
+    length.setOnAction(e -> changeViewAndCloseDrawer(presenter, LengthUnitsViewImpl.class));
+    mass.setOnAction(e -> changeViewAndCloseDrawer(presenter, MassUnitsViewImpl.class));
+    volume.setOnAction(e -> changeViewAndCloseDrawer(presenter, VolumeUnitsViewImpl.class));
+    about.setOnAction(e -> changeViewAndCloseDrawer(presenter, AboutViewImpl.class));
+  }
+
+  @Override
+  public View getActiveView() {
+    return activeView;
   }
 
   @Override
@@ -52,27 +56,19 @@ public class MainViewImpl extends StackPane implements MainView {
     } else {
       changeViewWithFading((Parent) view);
     }
-    activeView = (Parent) view;
+    activeView = view;
   }
 
-  @Override
-  public void setOnLengthActionEvent(Runnable action) {
-    length.setOnAction(event -> closeDrawerAndRunActionIsNotNull(action));
-  }
-
-  @Override
-  public void setOnMassActionEvent(Runnable action) {
-    mass.setOnAction(event -> closeDrawerAndRunActionIsNotNull(action));
-  }
-
-  @Override
-  public void setOnVolumeActionEvent(Runnable action) {
-    volume.setOnAction(event -> closeDrawerAndRunActionIsNotNull(action));
-  }
-
-  @Override
-  public void setOnAboutActionEvent(Runnable action) {
-    about.setOnAction(event -> closeDrawerAndRunActionIsNotNull(action));
+  private void prepareMenuButtonAndNavigationDrawer() {
+    getChildren().setAll(root);
+    createAndRegisterNavigationButtons();
+    menu.setOnAction(event -> toggleDrawer());
+    VBox navigationContent = new VBox();
+    navigationContent.getStyleClass().add("nav-content");
+    navigationContent.getChildren().setAll(viewButtonMap.values());
+    navigationContent.getChildren().add(3, new Separator());
+    navigation.setSidePane(navigationContent);
+    navigation.setContent(viewContainer);
   }
 
   private void createAndRegisterNavigationButtons() {
@@ -104,11 +100,9 @@ public class MainViewImpl extends StackPane implements MainView {
     }
   }
 
-  private void closeDrawerAndRunActionIsNotNull(Runnable action) {
+  private void changeViewAndCloseDrawer(MainPresenter presenter, Class<? extends View> viewType) {
+    presenter.viewChangeRequested(viewType);
     navigation.close();
-    if (action != null) {
-      action.run();
-    }
   }
 
   private void setSelectedButtonByView(Parent view) {
@@ -121,7 +115,7 @@ public class MainViewImpl extends StackPane implements MainView {
 
   private void changeViewWithFading(Parent nextView) {
     viewContainer.getChildren().add(0, nextView);
-    FadeTransition fadeOut = new FadeTransition(Duration.millis(200d), activeView);
+    FadeTransition fadeOut = new FadeTransition(Duration.millis(200d), (Parent) activeView);
     fadeOut.setOnFinished(event -> {
       viewContainer.getChildren().setAll(nextView);
       fadeOut.getNode().setOpacity(1d);

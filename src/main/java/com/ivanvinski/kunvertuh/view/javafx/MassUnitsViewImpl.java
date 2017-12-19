@@ -1,8 +1,17 @@
 package com.ivanvinski.kunvertuh.view.javafx;
 
+import static com.ivanvinski.kunvertuh.unit.MassUnit.DEKAGRAMS;
+import static com.ivanvinski.kunvertuh.unit.MassUnit.DRAMS;
+import static com.ivanvinski.kunvertuh.unit.MassUnit.GRAINS;
+import static com.ivanvinski.kunvertuh.unit.MassUnit.GRAMS;
+import static com.ivanvinski.kunvertuh.unit.MassUnit.KILOGRAMS;
+import static com.ivanvinski.kunvertuh.unit.MassUnit.MILLIGRAMS;
+import static com.ivanvinski.kunvertuh.unit.MassUnit.OUNCES;
+import static com.ivanvinski.kunvertuh.unit.MassUnit.POUNDS;
+
+import com.ivanvinski.kunvertuh.presenter.MassUnitsPresenter;
 import com.ivanvinski.kunvertuh.view.MassUnitsView;
 import com.jfoenix.controls.JFXTextField;
-import java.util.function.Consumer;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
@@ -16,8 +25,16 @@ public class MassUnitsViewImpl extends StackPane implements MassUnitsView {
   @FXML
   private JFXTextField grains, drams, ounces, pounds;
 
-  public void initialize() {
-    getChildren().setAll(root);
+  @Override
+  public void attach(MassUnitsPresenter presenter) {
+    milligrams.setOnAction(e -> presenter.conversionRequested(getMilligrams(), MILLIGRAMS));
+    grams.setOnAction(e -> presenter.conversionRequested(getGrams(), GRAMS));
+    dekagrams.setOnAction(e -> presenter.conversionRequested(getDekagrams(), DEKAGRAMS));
+    kilograms.setOnAction(e -> presenter.conversionRequested(getKilograms(), KILOGRAMS));
+    grains.setOnAction(e -> presenter.conversionRequested(getGrams(), GRAINS));
+    drams.setOnAction(e -> presenter.conversionRequested(getDrams(), DRAMS));
+    ounces.setOnAction(e -> presenter.conversionRequested(getOunces(), OUNCES));
+    pounds.setOnAction(e -> presenter.conversionRequested(getPounds(), POUNDS));
   }
 
   @Override
@@ -31,11 +48,6 @@ public class MassUnitsViewImpl extends StackPane implements MassUnitsView {
   }
 
   @Override
-  public void setOnMilligramsActionEvent(Consumer<String> actionConsumer) {
-    milligrams.setOnAction(event -> actionConsumer.accept(getMilligrams()));
-  }
-
-  @Override
   public String getGrams() {
     return grams.getText();
   }
@@ -43,11 +55,6 @@ public class MassUnitsViewImpl extends StackPane implements MassUnitsView {
   @Override
   public void setGrams(String grams) {
     this.grams.setText(grams);
-  }
-
-  @Override
-  public void setOnGramsActionEvent(Consumer<String> actionConsumer) {
-    grams.setOnAction(event -> actionConsumer.accept(getGrams()));
   }
 
   @Override
@@ -61,11 +68,6 @@ public class MassUnitsViewImpl extends StackPane implements MassUnitsView {
   }
 
   @Override
-  public void setOnDekagramsActionEvent(Consumer<String> actionConsumer) {
-    dekagrams.setOnAction(event -> actionConsumer.accept(getDekagrams()));
-  }
-
-  @Override
   public String getKilograms() {
     return kilograms.getText();
   }
@@ -73,11 +75,6 @@ public class MassUnitsViewImpl extends StackPane implements MassUnitsView {
   @Override
   public void setKilograms(String kilograms) {
     this.kilograms.setText(kilograms);
-  }
-
-  @Override
-  public void setOnKilogramsActionEvent(Consumer<String> actionConsumer) {
-    kilograms.setOnAction(event -> actionConsumer.accept(getKilograms()));
   }
 
   @Override
@@ -91,11 +88,6 @@ public class MassUnitsViewImpl extends StackPane implements MassUnitsView {
   }
 
   @Override
-  public void setOnGrainsActionEvent(Consumer<String> actionConsumer) {
-    grains.setOnAction(event -> actionConsumer.accept(getGrains()));
-  }
-
-  @Override
   public String getDrams() {
     return drams.getText();
   }
@@ -103,11 +95,6 @@ public class MassUnitsViewImpl extends StackPane implements MassUnitsView {
   @Override
   public void setDrams(String drams) {
     this.drams.setText(drams);
-  }
-
-  @Override
-  public void setOnDramsActionEvent(Consumer<String> actionConsumer) {
-    drams.setOnAction(event -> actionConsumer.accept(getDrams()));
   }
 
   @Override
@@ -121,11 +108,6 @@ public class MassUnitsViewImpl extends StackPane implements MassUnitsView {
   }
 
   @Override
-  public void setOnOuncesActionEvent(Consumer<String> actionConsumer) {
-    ounces.setOnAction(event -> actionConsumer.accept(getOunces()));
-  }
-
-  @Override
   public String getPounds() {
     return pounds.getText();
   }
@@ -135,8 +117,8 @@ public class MassUnitsViewImpl extends StackPane implements MassUnitsView {
     this.pounds.setText(pounds);
   }
 
-  @Override
-  public void setOnPoundsActionEvent(Consumer<String> actionConsumer) {
-    pounds.setOnAction(event -> actionConsumer.accept(getPounds()));
+  @FXML
+  private void initialize() {
+    getChildren().setAll(root);
   }
 }

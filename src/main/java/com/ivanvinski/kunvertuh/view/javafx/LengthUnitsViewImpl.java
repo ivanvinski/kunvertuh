@@ -1,8 +1,18 @@
 package com.ivanvinski.kunvertuh.view.javafx;
 
+import static com.ivanvinski.kunvertuh.unit.LengthUnit.CENTIMETERS;
+import static com.ivanvinski.kunvertuh.unit.LengthUnit.DECIMETERS;
+import static com.ivanvinski.kunvertuh.unit.LengthUnit.FEET;
+import static com.ivanvinski.kunvertuh.unit.LengthUnit.INCHES;
+import static com.ivanvinski.kunvertuh.unit.LengthUnit.KILOMETERS;
+import static com.ivanvinski.kunvertuh.unit.LengthUnit.METERS;
+import static com.ivanvinski.kunvertuh.unit.LengthUnit.MILES;
+import static com.ivanvinski.kunvertuh.unit.LengthUnit.MILLIMETERS;
+import static com.ivanvinski.kunvertuh.unit.LengthUnit.YARDS;
+
+import com.ivanvinski.kunvertuh.presenter.LengthUnitsPresenter;
 import com.ivanvinski.kunvertuh.view.LengthUnitsView;
 import com.jfoenix.controls.JFXTextField;
-import java.util.function.Consumer;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
@@ -12,12 +22,21 @@ public class LengthUnitsViewImpl extends StackPane implements LengthUnitsView {
   @FXML
   private Parent root;
   @FXML
-  private JFXTextField millimeters, decimeters, centimeters, meters, kilometers;
+  private JFXTextField millimeters, centimeters, decimeters, meters, kilometers;
   @FXML
   private JFXTextField inches, feet, yards, miles;
 
-  public void initialize() {
-    getChildren().setAll(root);
+  @Override
+  public void attach(LengthUnitsPresenter presenter) {
+    millimeters.setOnAction(e -> presenter.conversionRequested(getMillimeters(), MILLIMETERS));
+    centimeters.setOnAction(e -> presenter.conversionRequested(getCentimeters(), CENTIMETERS));
+    decimeters.setOnAction(e -> presenter.conversionRequested(getDecimeters(), DECIMETERS));
+    meters.setOnAction(e -> presenter.conversionRequested(getMeters(), METERS));
+    kilometers.setOnAction(e -> presenter.conversionRequested(getKilometers(), KILOMETERS));
+    inches.setOnAction(e -> presenter.conversionRequested(getInches(), INCHES));
+    feet.setOnAction(e -> presenter.conversionRequested(getFeet(), FEET));
+    yards.setOnAction(e -> presenter.conversionRequested(getYards(), YARDS));
+    miles.setOnAction(e -> presenter.conversionRequested(getMiles(), MILES));
   }
 
   @Override
@@ -31,8 +50,13 @@ public class LengthUnitsViewImpl extends StackPane implements LengthUnitsView {
   }
 
   @Override
-  public void setOnMillimetersActionEvent(Consumer<String> actionConsumer) {
-    millimeters.setOnAction(event -> actionConsumer.accept(getMillimeters()));
+  public String getCentimeters() {
+    return centimeters.getText();
+  }
+
+  @Override
+  public void setCentimeters(String centimeters) {
+    this.centimeters.setText(centimeters);
   }
 
   @Override
@@ -46,26 +70,6 @@ public class LengthUnitsViewImpl extends StackPane implements LengthUnitsView {
   }
 
   @Override
-  public void setOnDecimetersActionEvent(Consumer<String> actionConsumer) {
-    decimeters.setOnAction(event -> actionConsumer.accept(getDecimeters()));
-  }
-
-  @Override
-  public String getCentimeters() {
-    return centimeters.getText();
-  }
-
-  @Override
-  public void setCentimeters(String centimeters) {
-    this.centimeters.setText(centimeters);
-  }
-
-  @Override
-  public void setOnCentimetersActionEvent(Consumer<String> actionConsumer) {
-    centimeters.setOnAction(event -> actionConsumer.accept(getCentimeters()));
-  }
-
-  @Override
   public String getMeters() {
     return meters.getText();
   }
@@ -73,11 +77,6 @@ public class LengthUnitsViewImpl extends StackPane implements LengthUnitsView {
   @Override
   public void setMeters(String meters) {
     this.meters.setText(meters);
-  }
-
-  @Override
-  public void setOnMetersActionEvent(Consumer<String> actionConsumer) {
-    meters.setOnAction(event -> actionConsumer.accept(getMeters()));
   }
 
   @Override
@@ -91,11 +90,6 @@ public class LengthUnitsViewImpl extends StackPane implements LengthUnitsView {
   }
 
   @Override
-  public void setOnKilometersActionEvent(Consumer<String> actionConsumer) {
-    kilometers.setOnAction(event -> actionConsumer.accept(getKilometers()));
-  }
-
-  @Override
   public String getInches() {
     return inches.getText();
   }
@@ -103,11 +97,6 @@ public class LengthUnitsViewImpl extends StackPane implements LengthUnitsView {
   @Override
   public void setInches(String inches) {
     this.inches.setText(inches);
-  }
-
-  @Override
-  public void setOnInchesActionEvent(Consumer<String> actionConsumer) {
-    inches.setOnAction(event -> actionConsumer.accept(getInches()));
   }
 
   @Override
@@ -121,11 +110,6 @@ public class LengthUnitsViewImpl extends StackPane implements LengthUnitsView {
   }
 
   @Override
-  public void setOnFeetChanged(Consumer<String> actionConsumer) {
-    feet.setOnAction(event -> actionConsumer.accept(getFeet()));
-  }
-
-  @Override
   public String getYards() {
     return yards.getText();
   }
@@ -133,11 +117,6 @@ public class LengthUnitsViewImpl extends StackPane implements LengthUnitsView {
   @Override
   public void setYards(String yards) {
     this.yards.setText(yards);
-  }
-
-  @Override
-  public void setOnYardsChanged(Consumer<String> actionConsumer) {
-    yards.setOnAction(event -> actionConsumer.accept(getYards()));
   }
 
   @Override
@@ -150,8 +129,8 @@ public class LengthUnitsViewImpl extends StackPane implements LengthUnitsView {
     this.miles.setText(miles);
   }
 
-  @Override
-  public void setOnMilesChanged(Consumer<String> actionConsumer) {
-    miles.setOnAction(event -> actionConsumer.accept(getMiles()));
+  @FXML
+  private void initialize() {
+    getChildren().setAll(root);
   }
 }

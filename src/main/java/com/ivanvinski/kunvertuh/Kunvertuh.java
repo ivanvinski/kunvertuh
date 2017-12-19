@@ -6,9 +6,8 @@ import com.ivanvinski.kunvertuh.module.MainPresenterModule;
 import com.ivanvinski.kunvertuh.module.MassUnitsPresenterModule;
 import com.ivanvinski.kunvertuh.module.VolumeUnitsPresenterModule;
 import com.ivanvinski.kunvertuh.view.ViewCatalog;
-import com.ivanvinski.kunvertuh.view.ViewLoader;
+import com.ivanvinski.kunvertuh.view.javafx.JFXViewLoader;
 import com.ivanvinski.kunvertuh.view.javafx.MainViewImpl;
-import com.ivanvinski.kunvertuh.view.javafx.ViewLoaderImpl;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -31,17 +30,17 @@ public class Kunvertuh extends Application {
   }
 
   private ViewCatalog loadAllViews() {
-    ViewLoader viewLoader = new ViewLoaderImpl();
-    viewLoader.load(getClass().getResource("/view/length-units.fxml"),
-        new LengthUnitsPresenterModule());
-    viewLoader.load(getClass().getResource("/view/mass-units.fxml"),
-        new MassUnitsPresenterModule());
-    viewLoader.load(getClass().getResource("/view/volume-units.fxml"),
-        new VolumeUnitsPresenterModule());
-    viewLoader.load(getClass().getResource("/view/main.fxml"),
-        new MainPresenterModule(viewLoader.getLoadedViews()));
-    viewLoader.load(getClass().getResource("/view/about.fxml"),
-        new AboutPresenterModule(getHostServices()));
-    return viewLoader.getLoadedViews();
+    ViewCatalog views = new ViewCatalog();
+    views.add(new JFXViewLoader(getClass().getResource("/view/length-units.fxml"),
+        new LengthUnitsPresenterModule()).load());
+    views.add(new JFXViewLoader(getClass().getResource("/view/mass-units.fxml"),
+        new MassUnitsPresenterModule()).load());
+    views.add(new JFXViewLoader(getClass().getResource("/view/volume-units.fxml"),
+        new VolumeUnitsPresenterModule()).load());
+    views.add(new JFXViewLoader(getClass().getResource("/view/main.fxml"),
+        new MainPresenterModule(views)).load());
+    views.add(new JFXViewLoader(getClass().getResource("/view/about.fxml"),
+        new AboutPresenterModule(getHostServices())).load());
+    return views;
   }
 }
