@@ -1,18 +1,18 @@
 package com.ivanvinski.kunvertuh.view;
 
-import com.ivanvinski.kunvertuh.util.Software;
-import java.util.List;
-import java.util.function.Consumer;
+import com.ivanvinski.kunvertuh.presenter.AboutPresenter;
 
-public interface AboutView extends View {
+public interface AboutView extends View<AboutPresenter> {
 
-  void setAuthor(String author);
+  String getAuthorName();
 
-  void setAuthorWebsite(String authorWebsiteURI);
+  String getAuthorPage();
 
-  void setRepositoryWebsite(String repositoryWebsiteURI);
+  void setAuthor(String name, String pageUri);
 
-  void setOnURIAction(Consumer<String> actionConsumer);
+  String getRepositoryText();
 
-  void setUsedOpenSourceSoftware(List<Software> software);
+  String getRepositoryPage();
+
+  void setRepository(String text, String pageUri);
 }

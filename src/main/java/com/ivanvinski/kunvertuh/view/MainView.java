@@ -1,14 +1,10 @@
 package com.ivanvinski.kunvertuh.view;
 
-public interface MainView extends View {
+import com.ivanvinski.kunvertuh.presenter.MainPresenter;
+
+public interface MainView extends View<MainPresenter> {
+
+  View getActiveView();
 
   void setActiveView(View view);
-
-  void setOnLengthActionEvent(Runnable action);
-
-  void setOnMassActionEvent(Runnable action);
-
-  void setOnVolumeActionEvent(Runnable action);
-
-  void setOnAboutActionEvent(Runnable action);
 }
