@@ -21,18 +21,9 @@ public final class VolumeUnitsPresenter extends
 
   @Override
   public void initialize() {
-    getView()
-        .setOnMillilitersActionEvent(milliliters -> convert(milliliters, VolumeUnit.MILLILITERS));
-    getView().setOnLitersActionEvent(liters -> convert(liters, VolumeUnit.LITERS));
-    getView()
-        .setOnCubicMetersActionEvent(cubicMeters -> convert(cubicMeters, VolumeUnit.CUBIC_METERS));
-    getView()
-        .setOnFluidOuncesActionEvent(fluidOunces -> convert(fluidOunces, VolumeUnit.FLUID_OUNCES));
-    getView().setOnPintsActionEvent(pints -> convert(pints, VolumeUnit.PINTS));
-    getView().setOnGallonsActionEvent(gallons -> convert(gallons, VolumeUnit.GALLONS));
   }
 
-  public void convert(String sourceMass, VolumeUnit sourceUnit) {
+  public void conversionRequested(String sourceMass, VolumeUnit sourceUnit) {
     Double conversionValue = valueConverter.parse(sourceMass);
     getModel().convert(conversionValue, sourceUnit);
     getView().setMilliliters(valueConverter.format(getModel().getMilliliters()));

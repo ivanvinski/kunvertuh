@@ -20,17 +20,9 @@ public final class MassUnitsPresenter extends AbstractPresenter<MassUnitsView, M
 
   @Override
   public void initialize() {
-    getView().setOnMilligramsActionEvent(milligrams -> convert(milligrams, MassUnit.MILLIGRAMS));
-    getView().setOnGramsActionEvent(grams -> convert(grams, MassUnit.GRAMS));
-    getView().setOnDekagramsActionEvent(dekagrams -> convert(dekagrams, MassUnit.DEKAGRAMS));
-    getView().setOnKilogramsActionEvent(kilograms -> convert(kilograms, MassUnit.KILOGRAMS));
-    getView().setOnGrainsActionEvent(grains -> convert(grains, MassUnit.GRAINS));
-    getView().setOnDramsActionEvent(drams -> convert(drams, MassUnit.DRAMS));
-    getView().setOnOuncesActionEvent(ounces -> convert(ounces, MassUnit.OUNCES));
-    getView().setOnPoundsActionEvent(pounds -> convert(pounds, MassUnit.POUNDS));
   }
 
-  public void convert(String sourceMass, MassUnit sourceUnit) {
+  public void conversionRequested(String sourceMass, MassUnit sourceUnit) {
     Double conversionValue = valueConverter.parse(sourceMass);
     getModel().convert(conversionValue, sourceUnit);
     getView().setMilligrams(valueConverter.format(getModel().getMilligrams()));

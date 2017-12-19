@@ -21,20 +21,9 @@ public final class LengthUnitsPresenter extends
 
   @Override
   public void initialize() {
-    getView()
-        .setOnMillimetersActionEvent(millimeters -> convert(millimeters, LengthUnit.MILLIMETERS));
-    getView()
-        .setOnCentimetersActionEvent(centimeters -> convert(centimeters, LengthUnit.CENTIMETERS));
-    getView().setOnDecimetersActionEvent(decimeters -> convert(decimeters, LengthUnit.DECIMETERS));
-    getView().setOnMetersActionEvent(meters -> convert(meters, LengthUnit.METERS));
-    getView().setOnKilometersActionEvent(kilometers -> convert(kilometers, LengthUnit.KILOMETERS));
-    getView().setOnInchesActionEvent(inches -> convert(inches, LengthUnit.INCHES));
-    getView().setOnFeetChanged(feet -> convert(feet, LengthUnit.FEET));
-    getView().setOnYardsChanged(yards -> convert(yards, LengthUnit.YARDS));
-    getView().setOnMilesChanged(miles -> convert(miles, LengthUnit.MILES));
   }
 
-  public void convert(String sourceLength, LengthUnit sourceUnit) {
+  public void conversionRequested(String sourceLength, LengthUnit sourceUnit) {
     Double conversionValue = valueConverter.parse(sourceLength);
     getModel().convert(conversionValue, sourceUnit);
     getView().setMillimeters(valueConverter.format(getModel().getMillimeters()));
