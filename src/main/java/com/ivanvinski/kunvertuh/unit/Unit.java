@@ -19,12 +19,12 @@
 
 package com.ivanvinski.kunvertuh.unit;
 
-public class MeasurementUnit {
+public class Unit {
 
   private String abbreviation;
   private double baseUnitFactor;
 
-  public MeasurementUnit(String abbreviation, double baseUnitFactor) {
+  public Unit(String abbreviation, double baseUnitFactor) {
     this.abbreviation = abbreviation;
     this.baseUnitFactor = baseUnitFactor;
   }

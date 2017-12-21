@@ -21,13 +21,13 @@ package com.ivanvinski.kunvertuh.unit;
 
 import java.util.Objects;
 
-public final class UnitConverter<U extends MeasurementUnit> {
+public final class UnitConverter<U extends Unit> {
 
   public UnitConversion<U> convert(Double value, U unit) {
     return new UnitConversion<>(value, unit);
   }
 
-  public static final class UnitConversion<U extends MeasurementUnit> {
+  public static final class UnitConversion<U extends Unit> {
 
     private Double sourceValue;
     private U sourceUnit;
