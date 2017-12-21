@@ -24,6 +24,7 @@ import com.ivanvinski.kunvertuh.view.AboutView;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 
 public class JFXAboutView extends StackPane implements AboutView {
@@ -31,48 +32,69 @@ public class JFXAboutView extends StackPane implements AboutView {
   @FXML
   private Parent root;
   @FXML
-  private Hyperlink author, repository;
+  private Label version, license, author;
+  @FXML
+  private Hyperlink repository, contact, authorPage, authorGithub;
 
   @Override
   public void attach(AboutPresenter presenter) {
-    author.setOnAction(e -> presenter.getModel().open(getAuthorPage()));
-    repository.setOnAction(e -> presenter.getModel().open(getRepositoryPage()));
+    openInBrowserOnActionEvent(presenter, repository);
+    openInBrowserOnActionEvent(presenter, contact);
+    openInBrowserOnActionEvent(presenter, authorPage);
+    openInBrowserOnActionEvent(presenter, authorGithub);
   }
 
   @Override
-  public String getAuthorName() {
-    return author.getText();
+  public void setVersion(String version) {
+    this.version.setText(version);
   }
 
   @Override
-  public String getAuthorPage() {
-    return (String) author.getUserData();
+  public void setRepositoryText(String text) {
+    this.repository.setText(text);
   }
 
   @Override
-  public void setAuthor(String name, String pageUri) {
-    author.setText(name);
-    author.setUserData(pageUri);
+  public void setRepositoryPage(String repositoryUri) {
+    repository.setUserData(repositoryUri);
   }
 
   @Override
-  public String getRepositoryText() {
-    return repository.getText();
+  public void setLicense(String license) {
+    this.license.setText(license);
   }
 
   @Override
-  public String getRepositoryPage() {
-    return (String) repository.getUserData();
+  public void setContactText(String text) {
+    contact.setText(text);
   }
 
   @Override
-  public void setRepository(String text, String pageUri) {
-    repository.setText(text);
-    repository.setUserData(pageUri);
+  public void setContactPage(String contactUri) {
+    contact.setUserData(contactUri);
+  }
+
+  @Override
+  public void setAuthor(String author) {
+    this.author.setText(author);
+  }
+
+  @Override
+  public void setAuthorPage(String authorUri) {
+    authorPage.setUserData(authorUri);
+  }
+
+  @Override
+  public void setAuthorGithub(String githubUri) {
+    authorGithub.setUserData(githubUri);
   }
 
   @FXML
   private void initialize() {
     getChildren().setAll(root);
+  }
+
+  private void openInBrowserOnActionEvent(AboutPresenter presenter, Hyperlink link) {
+    link.setOnAction(e -> presenter.openInBrowser((String) link.getUserData()));
   }
 }

@@ -23,15 +23,21 @@ import com.ivanvinski.kunvertuh.presenter.AboutPresenter;
 
 public interface AboutView extends View<AboutPresenter> {
 
-  String getAuthorName();
+  void setVersion(String version);
 
-  String getAuthorPage();
+  void setRepositoryText(String text);
 
-  void setAuthor(String name, String pageUri);
+  void setRepositoryPage(String repositoryUri);
 
-  String getRepositoryText();
+  void setLicense(String license);
 
-  String getRepositoryPage();
+  void setContactText(String text);
 
-  void setRepository(String text, String pageUri);
+  void setContactPage(String contactUri);
+
+  void setAuthor(String author);
+
+  void setAuthorPage(String authorUri);
+
+  void setAuthorGithub(String githubUri);
 }
