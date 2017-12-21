@@ -47,6 +47,7 @@ public final class VolumePresenter extends
     updateMetricValues();
     updateImperialValues();
     updateUsValues();
+    getView().setCubicInchesValue(valueConverter.format(getModel().getCubicInches()));
   }
 
   private void updateMetricValues() {
