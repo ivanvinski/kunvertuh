@@ -31,6 +31,8 @@ public final class LengthUnit extends MeasurementUnit {
   public static final LengthUnit FOOT = new LengthUnit("ft", .3048d);
   public static final LengthUnit YARD = new LengthUnit("yd", .9144d);
   public static final LengthUnit MILE = new LengthUnit("mi", 1609.344d);
+  public static final LengthUnit UK_LEAGUE = new LengthUnit("", 4828d);
+  public static final LengthUnit US_LEAGUE = new LengthUnit("", 4828.0417d);
 
   private LengthUnit(String abbreviation, double baseUnitFactor) {
     super(abbreviation, baseUnitFactor);
