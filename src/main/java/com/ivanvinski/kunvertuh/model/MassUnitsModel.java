@@ -30,14 +30,14 @@ public class MassUnitsModel implements UnitsModel<MassUnit> {
 
   @Override
   public void convert(Double sourceMass, MassUnit sourceUnit) {
-    milligrams = getUnitConverter().toMilligrams(sourceMass, sourceUnit);
-    grams = getUnitConverter().toGrams(sourceMass, sourceUnit);
-    dekagrams = getUnitConverter().toDekagrams(sourceMass, sourceUnit);
-    kilograms = getUnitConverter().toKilograms(sourceMass, sourceUnit);
-    grains = getUnitConverter().toGrains(sourceMass, sourceUnit);
-    drams = getUnitConverter().toDrams(sourceMass, sourceUnit);
-    ounces = getUnitConverter().toOunces(sourceMass, sourceUnit);
-    pounds = getUnitConverter().toPounds(sourceMass, sourceUnit);
+    milligrams = getUnitConverter().toMilligram(sourceMass, sourceUnit);
+    grams = getUnitConverter().toGram(sourceMass, sourceUnit);
+    dekagrams = getUnitConverter().toDekagram(sourceMass, sourceUnit);
+    kilograms = getUnitConverter().toKilogram(sourceMass, sourceUnit);
+    grains = getUnitConverter().toGrain(sourceMass, sourceUnit);
+    drams = getUnitConverter().toDram(sourceMass, sourceUnit);
+    ounces = getUnitConverter().toOunce(sourceMass, sourceUnit);
+    pounds = getUnitConverter().toPound(sourceMass, sourceUnit);
   }
 
   @Override

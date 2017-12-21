@@ -23,35 +23,35 @@ import com.ivanvinski.kunvertuh.unit.MassUnit;
 
 public final class MassUnitConverter extends MeasurementUnitConverter<MassUnit> {
 
-  public Double toMilligrams(Double sourceMass, MassUnit sourceUnit) {
-    return convert(sourceMass, sourceUnit, MassUnit.MILLIGRAMS);
+  public Double toMilligram(Double sourceMass, MassUnit sourceUnit) {
+    return convert(sourceMass, sourceUnit, MassUnit.MILLIGRAM);
   }
 
-  public Double toGrams(Double sourceMass, MassUnit sourceUnit) {
-    return convert(sourceMass, sourceUnit, MassUnit.GRAMS);
+  public Double toGram(Double sourceMass, MassUnit sourceUnit) {
+    return convert(sourceMass, sourceUnit, MassUnit.GRAM);
   }
 
-  public Double toDekagrams(Double sourceMass, MassUnit sourceUnit) {
-    return convert(sourceMass, sourceUnit, MassUnit.DEKAGRAMS);
+  public Double toDekagram(Double sourceMass, MassUnit sourceUnit) {
+    return convert(sourceMass, sourceUnit, MassUnit.DEKAGRAM);
   }
 
-  public Double toKilograms(Double sourceMass, MassUnit sourceUnit) {
-    return convert(sourceMass, sourceUnit, MassUnit.KILOGRAMS);
+  public Double toKilogram(Double sourceMass, MassUnit sourceUnit) {
+    return convert(sourceMass, sourceUnit, MassUnit.KILOGRAM);
   }
 
-  public Double toGrains(Double sourceMass, MassUnit sourceUnit) {
-    return convert(sourceMass, sourceUnit, MassUnit.GRAINS);
+  public Double toGrain(Double sourceMass, MassUnit sourceUnit) {
+    return convert(sourceMass, sourceUnit, MassUnit.GRAIN);
   }
 
-  public Double toDrams(Double sourceMass, MassUnit sourceUnit) {
-    return convert(sourceMass, sourceUnit, MassUnit.DRAMS);
+  public Double toDram(Double sourceMass, MassUnit sourceUnit) {
+    return convert(sourceMass, sourceUnit, MassUnit.DRAM);
   }
 
-  public Double toOunces(Double sourceMass, MassUnit sourceUnit) {
-    return convert(sourceMass, sourceUnit, MassUnit.OUNCES);
+  public Double toOunce(Double sourceMass, MassUnit sourceUnit) {
+    return convert(sourceMass, sourceUnit, MassUnit.OUNCE);
   }
 
-  public Double toPounds(Double sourceMass, MassUnit sourceUnit) {
-    return convert(sourceMass, sourceUnit, MassUnit.POUNDS);
+  public Double toPound(Double sourceMass, MassUnit sourceUnit) {
+    return convert(sourceMass, sourceUnit, MassUnit.POUND);
   }
 }

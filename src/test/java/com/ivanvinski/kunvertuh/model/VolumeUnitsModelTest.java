@@ -21,7 +21,7 @@ package com.ivanvinski.kunvertuh.model;
 
 import static com.ivanvinski.kunvertuh.TestConstants.IMPERIAL_DELTA;
 import static com.ivanvinski.kunvertuh.TestConstants.METRIC_DELTA;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.LITERS;
+import static com.ivanvinski.kunvertuh.unit.VolumeUnit.LITER;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
@@ -34,12 +34,12 @@ public class VolumeUnitsModelTest {
 
   @Before
   public void setUp() {
-    model.convert(sourceVolume, LITERS);
+    model.convert(sourceVolume, LITER);
   }
 
   @Test
   public void nullSourceVolumeConversionReturnsNull() {
-    model.convert(null, LITERS);
+    model.convert(null, LITER);
     assertEquals(null, model.getLiters());
   }
 

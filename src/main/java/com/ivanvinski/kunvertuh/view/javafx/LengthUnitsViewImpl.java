@@ -19,15 +19,15 @@
 
 package com.ivanvinski.kunvertuh.view.javafx;
 
-import static com.ivanvinski.kunvertuh.unit.LengthUnit.CENTIMETERS;
-import static com.ivanvinski.kunvertuh.unit.LengthUnit.DECIMETERS;
-import static com.ivanvinski.kunvertuh.unit.LengthUnit.FEET;
-import static com.ivanvinski.kunvertuh.unit.LengthUnit.INCHES;
-import static com.ivanvinski.kunvertuh.unit.LengthUnit.KILOMETERS;
-import static com.ivanvinski.kunvertuh.unit.LengthUnit.METERS;
-import static com.ivanvinski.kunvertuh.unit.LengthUnit.MILES;
-import static com.ivanvinski.kunvertuh.unit.LengthUnit.MILLIMETERS;
-import static com.ivanvinski.kunvertuh.unit.LengthUnit.YARDS;
+import static com.ivanvinski.kunvertuh.unit.LengthUnit.CENTIMETER;
+import static com.ivanvinski.kunvertuh.unit.LengthUnit.DECIMETER;
+import static com.ivanvinski.kunvertuh.unit.LengthUnit.FOOT;
+import static com.ivanvinski.kunvertuh.unit.LengthUnit.INCH;
+import static com.ivanvinski.kunvertuh.unit.LengthUnit.KILOMETER;
+import static com.ivanvinski.kunvertuh.unit.LengthUnit.METER;
+import static com.ivanvinski.kunvertuh.unit.LengthUnit.MILE;
+import static com.ivanvinski.kunvertuh.unit.LengthUnit.MILLIMETER;
+import static com.ivanvinski.kunvertuh.unit.LengthUnit.YARD;
 
 import com.ivanvinski.kunvertuh.presenter.LengthUnitsPresenter;
 import com.ivanvinski.kunvertuh.view.LengthUnitsView;
@@ -47,15 +47,15 @@ public class LengthUnitsViewImpl extends StackPane implements LengthUnitsView {
 
   @Override
   public void attach(LengthUnitsPresenter presenter) {
-    millimeters.setOnAction(e -> presenter.conversionRequested(getMillimeters(), MILLIMETERS));
-    centimeters.setOnAction(e -> presenter.conversionRequested(getCentimeters(), CENTIMETERS));
-    decimeters.setOnAction(e -> presenter.conversionRequested(getDecimeters(), DECIMETERS));
-    meters.setOnAction(e -> presenter.conversionRequested(getMeters(), METERS));
-    kilometers.setOnAction(e -> presenter.conversionRequested(getKilometers(), KILOMETERS));
-    inches.setOnAction(e -> presenter.conversionRequested(getInches(), INCHES));
-    feet.setOnAction(e -> presenter.conversionRequested(getFeet(), FEET));
-    yards.setOnAction(e -> presenter.conversionRequested(getYards(), YARDS));
-    miles.setOnAction(e -> presenter.conversionRequested(getMiles(), MILES));
+    millimeters.setOnAction(e -> presenter.conversionRequested(getMillimeters(), MILLIMETER));
+    centimeters.setOnAction(e -> presenter.conversionRequested(getCentimeters(), CENTIMETER));
+    decimeters.setOnAction(e -> presenter.conversionRequested(getDecimeters(), DECIMETER));
+    meters.setOnAction(e -> presenter.conversionRequested(getMeters(), METER));
+    kilometers.setOnAction(e -> presenter.conversionRequested(getKilometers(), KILOMETER));
+    inches.setOnAction(e -> presenter.conversionRequested(getInches(), INCH));
+    feet.setOnAction(e -> presenter.conversionRequested(getFeet(), FOOT));
+    yards.setOnAction(e -> presenter.conversionRequested(getYards(), YARD));
+    miles.setOnAction(e -> presenter.conversionRequested(getMiles(), MILE));
   }
 
   @Override

@@ -30,12 +30,12 @@ public class VolumeUnitsModel implements UnitsModel<VolumeUnit> {
 
   @Override
   public void convert(Double sourceVolume, VolumeUnit sourceUnit) {
-    milliliters = getUnitConverter().toMilliliters(sourceVolume, sourceUnit);
-    liters = getUnitConverter().toLiters(sourceVolume, sourceUnit);
-    cubicMeters = getUnitConverter().toCubicMeters(sourceVolume, sourceUnit);
-    fluidOunces = getUnitConverter().toFluidOunces(sourceVolume, sourceUnit);
-    pints = getUnitConverter().toPints(sourceVolume, sourceUnit);
-    gallons = getUnitConverter().toGallons(sourceVolume, sourceUnit);
+    milliliters = getUnitConverter().toMilliliter(sourceVolume, sourceUnit);
+    liters = getUnitConverter().toLiter(sourceVolume, sourceUnit);
+    cubicMeters = getUnitConverter().toCubicMeter(sourceVolume, sourceUnit);
+    fluidOunces = getUnitConverter().toUKFluidOunce(sourceVolume, sourceUnit);
+    pints = getUnitConverter().toPint(sourceVolume, sourceUnit);
+    gallons = getUnitConverter().toUKGallon(sourceVolume, sourceUnit);
   }
 
   @Override

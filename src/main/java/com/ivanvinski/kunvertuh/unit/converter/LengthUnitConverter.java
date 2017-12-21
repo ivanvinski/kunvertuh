@@ -23,39 +23,39 @@ import com.ivanvinski.kunvertuh.unit.LengthUnit;
 
 public final class LengthUnitConverter extends MeasurementUnitConverter<LengthUnit> {
 
-  public Double toMillimeters(Double sourceLength, LengthUnit sourceUnit) {
-    return convert(sourceLength, sourceUnit, LengthUnit.MILLIMETERS);
+  public Double toMillimeter(Double sourceLength, LengthUnit sourceUnit) {
+    return convert(sourceLength, sourceUnit, LengthUnit.MILLIMETER);
   }
 
-  public Double toCentimeters(Double sourceLength, LengthUnit sourceUnit) {
-    return convert(sourceLength, sourceUnit, LengthUnit.CENTIMETERS);
+  public Double toCentimeter(Double sourceLength, LengthUnit sourceUnit) {
+    return convert(sourceLength, sourceUnit, LengthUnit.CENTIMETER);
   }
 
-  public Double toDecimeters(Double sourceLength, LengthUnit sourceUnit) {
-    return convert(sourceLength, sourceUnit, LengthUnit.DECIMETERS);
+  public Double toDecimeter(Double sourceLength, LengthUnit sourceUnit) {
+    return convert(sourceLength, sourceUnit, LengthUnit.DECIMETER);
   }
 
-  public Double toMeters(Double sourceLength, LengthUnit sourceUnit) {
-    return convert(sourceLength, sourceUnit, LengthUnit.METERS);
+  public Double toMeter(Double sourceLength, LengthUnit sourceUnit) {
+    return convert(sourceLength, sourceUnit, LengthUnit.METER);
   }
 
-  public Double toKilometers(Double sourceLength, LengthUnit sourceUnit) {
-    return convert(sourceLength, sourceUnit, LengthUnit.KILOMETERS);
+  public Double toKilometer(Double sourceLength, LengthUnit sourceUnit) {
+    return convert(sourceLength, sourceUnit, LengthUnit.KILOMETER);
   }
 
-  public Double toInches(Double sourceLength, LengthUnit sourceUnit) {
-    return convert(sourceLength, sourceUnit, LengthUnit.INCHES);
+  public Double toInch(Double sourceLength, LengthUnit sourceUnit) {
+    return convert(sourceLength, sourceUnit, LengthUnit.INCH);
   }
 
-  public Double toFeet(Double sourceLength, LengthUnit sourceUnit) {
-    return convert(sourceLength, sourceUnit, LengthUnit.FEET);
+  public Double toFoot(Double sourceLength, LengthUnit sourceUnit) {
+    return convert(sourceLength, sourceUnit, LengthUnit.FOOT);
   }
 
-  public Double toYards(Double sourceLength, LengthUnit sourceUnit) {
-    return convert(sourceLength, sourceUnit, LengthUnit.YARDS);
+  public Double toYard(Double sourceLength, LengthUnit sourceUnit) {
+    return convert(sourceLength, sourceUnit, LengthUnit.YARD);
   }
 
-  public Double toMiles(Double sourceLength, LengthUnit sourceUnit) {
-    return convert(sourceLength, sourceUnit, LengthUnit.MILES);
+  public Double toMile(Double sourceLength, LengthUnit sourceUnit) {
+    return convert(sourceLength, sourceUnit, LengthUnit.MILE);
   }
 }

@@ -27,31 +27,31 @@ public class VolumeUnitTest {
 
   @Test
   public void validateMillilitersAbbreviation() {
-    assertEquals("ml", VolumeUnit.MILLILITERS.getAbbreviation());
+    assertEquals("ml", VolumeUnit.MILLILITER.getAbbreviation());
   }
 
   @Test
   public void validateLitersAbbreviation() {
-    assertEquals("l", VolumeUnit.LITERS.getAbbreviation());
+    assertEquals("l", VolumeUnit.LITER.getAbbreviation());
   }
 
   @Test
   public void validateCubicMetersAbbreviation() {
-    assertEquals("m3", VolumeUnit.CUBIC_METERS.getAbbreviation());
+    assertEquals("m3", VolumeUnit.CUBIC_METER.getAbbreviation());
   }
 
   @Test
   public void validateFluidOuncesAbbreviation() {
-    assertEquals("fl oz", VolumeUnit.FLUID_OUNCES.getAbbreviation());
+    assertEquals("fl oz", VolumeUnit.UK_FLUID_OUNCE.getAbbreviation());
   }
 
   @Test
   public void validatePintsAbbreviation() {
-    assertEquals("pt", VolumeUnit.PINTS.getAbbreviation());
+    assertEquals("pt", VolumeUnit.PINT.getAbbreviation());
   }
 
   @Test
   public void validateGallonsAbbreviation() {
-    assertEquals("gal", VolumeUnit.GALLONS.getAbbreviation());
+    assertEquals("gal", VolumeUnit.UK_GALLON.getAbbreviation());
   }
 }

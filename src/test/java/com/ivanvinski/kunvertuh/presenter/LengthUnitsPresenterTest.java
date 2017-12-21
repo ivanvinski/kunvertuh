@@ -77,7 +77,7 @@ public class LengthUnitsPresenterTest {
 
   @Test
   public void millimetersConversionUpdatesView() {
-    presenter.convert(SOURCE_LENGTH, LengthUnit.MILLIMETERS);
+    presenter.convert(SOURCE_LENGTH, LengthUnit.MILLIMETER);
     assertEquals(formattedSourceLength, view.getMillimeters());
   }
 
@@ -90,7 +90,7 @@ public class LengthUnitsPresenterTest {
 
   @Test
   public void centimetersConversionUpdatesView() {
-    presenter.convert(SOURCE_LENGTH, LengthUnit.CENTIMETERS);
+    presenter.convert(SOURCE_LENGTH, LengthUnit.CENTIMETER);
     assertEquals(formattedSourceLength, view.getCentimeters());
   }
 
@@ -103,7 +103,7 @@ public class LengthUnitsPresenterTest {
 
   @Test
   public void decimetersConversionUpdateView() {
-    presenter.convert(SOURCE_LENGTH, LengthUnit.DECIMETERS);
+    presenter.convert(SOURCE_LENGTH, LengthUnit.DECIMETER);
     assertEquals(formattedSourceLength, view.getDecimeters());
   }
 
@@ -116,7 +116,7 @@ public class LengthUnitsPresenterTest {
 
   @Test
   public void metersConversionUpdatesView() {
-    presenter.convert(SOURCE_LENGTH, LengthUnit.METERS);
+    presenter.convert(SOURCE_LENGTH, LengthUnit.METER);
     assertEquals(formattedSourceLength, view.getMeters());
   }
 
@@ -129,7 +129,7 @@ public class LengthUnitsPresenterTest {
 
   @Test
   public void kilometersConversionUpdatesView() {
-    presenter.convert(SOURCE_LENGTH, LengthUnit.KILOMETERS);
+    presenter.convert(SOURCE_LENGTH, LengthUnit.KILOMETER);
     assertEquals(formattedSourceLength, view.getKilometers());
   }
 
@@ -142,7 +142,7 @@ public class LengthUnitsPresenterTest {
 
   @Test
   public void inchesConversionUpdatesView() {
-    presenter.convert(SOURCE_LENGTH, LengthUnit.INCHES);
+    presenter.convert(SOURCE_LENGTH, LengthUnit.INCH);
     assertEquals(formattedSourceLength, view.getInches());
   }
 
@@ -155,7 +155,7 @@ public class LengthUnitsPresenterTest {
 
   @Test
   public void feetConversionUpdatesView() {
-    presenter.convert(SOURCE_LENGTH, LengthUnit.FEET);
+    presenter.convert(SOURCE_LENGTH, LengthUnit.FOOT);
     assertEquals(formattedSourceLength, view.getFeet());
   }
 
@@ -168,7 +168,7 @@ public class LengthUnitsPresenterTest {
 
   @Test
   public void yardsConversionUpdatesView() {
-    presenter.convert(SOURCE_LENGTH, LengthUnit.YARDS);
+    presenter.convert(SOURCE_LENGTH, LengthUnit.YARD);
     assertEquals(formattedSourceLength, view.getYards());
   }
 
@@ -181,7 +181,7 @@ public class LengthUnitsPresenterTest {
 
   @Test
   public void milesConversionUpdatesView() {
-    presenter.convert(SOURCE_LENGTH, LengthUnit.MILES);
+    presenter.convert(SOURCE_LENGTH, LengthUnit.MILE);
     assertEquals(formattedSourceLength, view.getMiles());
   }
 }

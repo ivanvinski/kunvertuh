@@ -19,14 +19,14 @@
 
 package com.ivanvinski.kunvertuh.view.javafx;
 
-import static com.ivanvinski.kunvertuh.unit.MassUnit.DEKAGRAMS;
-import static com.ivanvinski.kunvertuh.unit.MassUnit.DRAMS;
-import static com.ivanvinski.kunvertuh.unit.MassUnit.GRAINS;
-import static com.ivanvinski.kunvertuh.unit.MassUnit.GRAMS;
-import static com.ivanvinski.kunvertuh.unit.MassUnit.KILOGRAMS;
-import static com.ivanvinski.kunvertuh.unit.MassUnit.MILLIGRAMS;
-import static com.ivanvinski.kunvertuh.unit.MassUnit.OUNCES;
-import static com.ivanvinski.kunvertuh.unit.MassUnit.POUNDS;
+import static com.ivanvinski.kunvertuh.unit.MassUnit.DEKAGRAM;
+import static com.ivanvinski.kunvertuh.unit.MassUnit.DRAM;
+import static com.ivanvinski.kunvertuh.unit.MassUnit.GRAIN;
+import static com.ivanvinski.kunvertuh.unit.MassUnit.GRAM;
+import static com.ivanvinski.kunvertuh.unit.MassUnit.KILOGRAM;
+import static com.ivanvinski.kunvertuh.unit.MassUnit.MILLIGRAM;
+import static com.ivanvinski.kunvertuh.unit.MassUnit.OUNCE;
+import static com.ivanvinski.kunvertuh.unit.MassUnit.POUND;
 
 import com.ivanvinski.kunvertuh.presenter.MassUnitsPresenter;
 import com.ivanvinski.kunvertuh.view.MassUnitsView;
@@ -46,14 +46,14 @@ public class MassUnitsViewImpl extends StackPane implements MassUnitsView {
 
   @Override
   public void attach(MassUnitsPresenter presenter) {
-    milligrams.setOnAction(e -> presenter.conversionRequested(getMilligrams(), MILLIGRAMS));
-    grams.setOnAction(e -> presenter.conversionRequested(getGrams(), GRAMS));
-    dekagrams.setOnAction(e -> presenter.conversionRequested(getDekagrams(), DEKAGRAMS));
-    kilograms.setOnAction(e -> presenter.conversionRequested(getKilograms(), KILOGRAMS));
-    grains.setOnAction(e -> presenter.conversionRequested(getGrams(), GRAINS));
-    drams.setOnAction(e -> presenter.conversionRequested(getDrams(), DRAMS));
-    ounces.setOnAction(e -> presenter.conversionRequested(getOunces(), OUNCES));
-    pounds.setOnAction(e -> presenter.conversionRequested(getPounds(), POUNDS));
+    milligrams.setOnAction(e -> presenter.conversionRequested(getMilligrams(), MILLIGRAM));
+    grams.setOnAction(e -> presenter.conversionRequested(getGrams(), GRAM));
+    dekagrams.setOnAction(e -> presenter.conversionRequested(getDekagrams(), DEKAGRAM));
+    kilograms.setOnAction(e -> presenter.conversionRequested(getKilograms(), KILOGRAM));
+    grains.setOnAction(e -> presenter.conversionRequested(getGrams(), GRAIN));
+    drams.setOnAction(e -> presenter.conversionRequested(getDrams(), DRAM));
+    ounces.setOnAction(e -> presenter.conversionRequested(getOunces(), OUNCE));
+    pounds.setOnAction(e -> presenter.conversionRequested(getPounds(), POUND));
   }
 
   @Override

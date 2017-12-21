@@ -21,7 +21,7 @@ package com.ivanvinski.kunvertuh.model;
 
 import static com.ivanvinski.kunvertuh.TestConstants.IMPERIAL_DELTA;
 import static com.ivanvinski.kunvertuh.TestConstants.METRIC_DELTA;
-import static com.ivanvinski.kunvertuh.unit.LengthUnit.METERS;
+import static com.ivanvinski.kunvertuh.unit.LengthUnit.METER;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
@@ -34,12 +34,12 @@ public class LengthUnitsModelTest {
 
   @Before
   public void setUp() {
-    model.convert(sourceLength, METERS);
+    model.convert(sourceLength, METER);
   }
 
   @Test
   public void nullSourceLengthConversionReturnsNull() {
-    model.convert(null, METERS);
+    model.convert(null, METER);
     assertEquals(null, model.getMeters());
   }
 

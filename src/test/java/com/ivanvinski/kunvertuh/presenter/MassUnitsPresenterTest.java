@@ -77,7 +77,7 @@ public class MassUnitsPresenterTest {
 
   @Test
   public void milligramsConversionUpdatesView() {
-    presenter.convert(SOURCE_MASS, MassUnit.MILLIGRAMS);
+    presenter.convert(SOURCE_MASS, MassUnit.MILLIGRAM);
     assertEquals(formattedSourceMass, view.getMilligrams());
   }
 
@@ -90,7 +90,7 @@ public class MassUnitsPresenterTest {
 
   @Test
   public void gramsConversionUpdatesView() {
-    presenter.convert(SOURCE_MASS, MassUnit.GRAMS);
+    presenter.convert(SOURCE_MASS, MassUnit.GRAM);
     assertEquals(formattedSourceMass, view.getGrams());
   }
 
@@ -103,7 +103,7 @@ public class MassUnitsPresenterTest {
 
   @Test
   public void dekagramsConversionUpdatesView() {
-    presenter.convert(SOURCE_MASS, MassUnit.DEKAGRAMS);
+    presenter.convert(SOURCE_MASS, MassUnit.DEKAGRAM);
     assertEquals(formattedSourceMass, view.getDekagrams());
   }
 
@@ -116,7 +116,7 @@ public class MassUnitsPresenterTest {
 
   @Test
   public void kilogramConversionUpdatesView() {
-    presenter.convert(SOURCE_MASS, MassUnit.KILOGRAMS);
+    presenter.convert(SOURCE_MASS, MassUnit.KILOGRAM);
     assertEquals(formattedSourceMass, view.getKilograms());
   }
 
@@ -129,7 +129,7 @@ public class MassUnitsPresenterTest {
 
   @Test
   public void grainsConversionUpdatesView() {
-    presenter.convert(SOURCE_MASS, MassUnit.GRAINS);
+    presenter.convert(SOURCE_MASS, MassUnit.GRAIN);
     assertEquals(formattedSourceMass, view.getGrains());
   }
 
@@ -142,7 +142,7 @@ public class MassUnitsPresenterTest {
 
   @Test
   public void dramsConversionUpdatesView() {
-    presenter.convert(SOURCE_MASS, MassUnit.DRAMS);
+    presenter.convert(SOURCE_MASS, MassUnit.DRAM);
     assertEquals(formattedSourceMass, view.getDrams());
   }
 
@@ -155,7 +155,7 @@ public class MassUnitsPresenterTest {
 
   @Test
   public void ouncesConversionUpdatesView() {
-    presenter.convert(SOURCE_MASS, MassUnit.OUNCES);
+    presenter.convert(SOURCE_MASS, MassUnit.OUNCE);
     assertEquals(formattedSourceMass, view.getOunces());
   }
 
@@ -168,7 +168,7 @@ public class MassUnitsPresenterTest {
 
   @Test
   public void poundsConversionUpdatesView() {
-    presenter.convert(SOURCE_MASS, MassUnit.POUNDS);
+    presenter.convert(SOURCE_MASS, MassUnit.POUND);
     assertEquals(formattedSourceMass, view.getPounds());
   }
 }

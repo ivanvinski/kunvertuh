@@ -77,7 +77,7 @@ public class VolumeUnitsPresenterTest {
 
   @Test
   public void millilitersConversionUpdatesView() {
-    presenter.convert(SOURCE_VOLUME, VolumeUnit.MILLILITERS);
+    presenter.convert(SOURCE_VOLUME, VolumeUnit.MILLILITER);
     assertEquals(formattedSourceVolume, view.getMilliliters());
   }
 
@@ -90,7 +90,7 @@ public class VolumeUnitsPresenterTest {
 
   @Test
   public void litersConversionUpdatesView() {
-    presenter.convert(SOURCE_VOLUME, VolumeUnit.LITERS);
+    presenter.convert(SOURCE_VOLUME, VolumeUnit.LITER);
     assertEquals(formattedSourceVolume, view.getLiters());
   }
 
@@ -103,7 +103,7 @@ public class VolumeUnitsPresenterTest {
 
   @Test
   public void cubicMetersConversionUpdatesView() {
-    presenter.convert(SOURCE_VOLUME, VolumeUnit.CUBIC_METERS);
+    presenter.convert(SOURCE_VOLUME, VolumeUnit.CUBIC_METER);
     assertEquals(formattedSourceVolume, view.getCubicMeters());
   }
 
@@ -116,7 +116,7 @@ public class VolumeUnitsPresenterTest {
 
   @Test
   public void fluidOuncesConversionUpdatesView() {
-    presenter.convert(SOURCE_VOLUME, VolumeUnit.FLUID_OUNCES);
+    presenter.convert(SOURCE_VOLUME, VolumeUnit.UK_FLUID_OUNCE);
     assertEquals(formattedSourceVolume, view.getFluidOunces());
   }
 
@@ -129,7 +129,7 @@ public class VolumeUnitsPresenterTest {
 
   @Test
   public void pintsConversionUpdatesView() {
-    presenter.convert(SOURCE_VOLUME, VolumeUnit.PINTS);
+    presenter.convert(SOURCE_VOLUME, VolumeUnit.PINT);
     assertEquals(formattedSourceVolume, view.getPints());
   }
 
@@ -142,7 +142,7 @@ public class VolumeUnitsPresenterTest {
 
   @Test
   public void gallonsConversionUpdatesView() {
-    presenter.convert(SOURCE_VOLUME, VolumeUnit.GALLONS);
+    presenter.convert(SOURCE_VOLUME, VolumeUnit.UK_GALLON);
     assertEquals(formattedSourceVolume, view.getGallons());
   }
 }

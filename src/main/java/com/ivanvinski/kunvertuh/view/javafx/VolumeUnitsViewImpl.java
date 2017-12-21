@@ -19,12 +19,12 @@
 
 package com.ivanvinski.kunvertuh.view.javafx;
 
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.CUBIC_METERS;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.FLUID_OUNCES;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.GALLONS;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.LITERS;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.MILLILITERS;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.PINTS;
+import static com.ivanvinski.kunvertuh.unit.VolumeUnit.CUBIC_METER;
+import static com.ivanvinski.kunvertuh.unit.VolumeUnit.UK_FLUID_OUNCE;
+import static com.ivanvinski.kunvertuh.unit.VolumeUnit.UK_GALLON;
+import static com.ivanvinski.kunvertuh.unit.VolumeUnit.LITER;
+import static com.ivanvinski.kunvertuh.unit.VolumeUnit.MILLILITER;
+import static com.ivanvinski.kunvertuh.unit.VolumeUnit.PINT;
 
 import com.ivanvinski.kunvertuh.presenter.VolumeUnitsPresenter;
 import com.ivanvinski.kunvertuh.view.VolumeUnitsView;
@@ -44,12 +44,12 @@ public class VolumeUnitsViewImpl extends StackPane implements VolumeUnitsView {
 
   @Override
   public void attach(VolumeUnitsPresenter presenter) {
-    milliliters.setOnAction(e -> presenter.conversionRequested(getMilliliters(), MILLILITERS));
-    liters.setOnAction(e -> presenter.conversionRequested(getLiters(), LITERS));
-    cubicMeters.setOnAction(e -> presenter.conversionRequested(getCubicMeters(), CUBIC_METERS));
-    fluidOunces.setOnAction(e -> presenter.conversionRequested(getFluidOunces(), FLUID_OUNCES));
-    pints.setOnAction(e -> presenter.conversionRequested(getPints(), PINTS));
-    gallons.setOnAction(e -> presenter.conversionRequested(getGallons(), GALLONS));
+    milliliters.setOnAction(e -> presenter.conversionRequested(getMilliliters(), MILLILITER));
+    liters.setOnAction(e -> presenter.conversionRequested(getLiters(), LITER));
+    cubicMeters.setOnAction(e -> presenter.conversionRequested(getCubicMeters(), CUBIC_METER));
+    fluidOunces.setOnAction(e -> presenter.conversionRequested(getFluidOunces(), UK_FLUID_OUNCE));
+    pints.setOnAction(e -> presenter.conversionRequested(getPints(), PINT));
+    gallons.setOnAction(e -> presenter.conversionRequested(getGallons(), UK_GALLON));
   }
 
   @Override

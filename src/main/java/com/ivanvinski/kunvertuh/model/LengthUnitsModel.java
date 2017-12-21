@@ -30,15 +30,15 @@ public class LengthUnitsModel implements UnitsModel<LengthUnit> {
 
   @Override
   public void convert(Double sourceLength, LengthUnit sourceUnit) {
-    millimeters = getUnitConverter().toMillimeters(sourceLength, sourceUnit);
-    centimeters = getUnitConverter().toCentimeters(sourceLength, sourceUnit);
-    decimeters = getUnitConverter().toDecimeters(sourceLength, sourceUnit);
-    meters = getUnitConverter().toMeters(sourceLength, sourceUnit);
-    kilometers = getUnitConverter().toKilometers(sourceLength, sourceUnit);
-    inches = getUnitConverter().toInches(sourceLength, sourceUnit);
-    feet = getUnitConverter().toFeet(sourceLength, sourceUnit);
-    yards = getUnitConverter().toYards(sourceLength, sourceUnit);
-    miles = getUnitConverter().toMiles(sourceLength, sourceUnit);
+    millimeters = getUnitConverter().toMillimeter(sourceLength, sourceUnit);
+    centimeters = getUnitConverter().toCentimeter(sourceLength, sourceUnit);
+    decimeters = getUnitConverter().toDecimeter(sourceLength, sourceUnit);
+    meters = getUnitConverter().toMeter(sourceLength, sourceUnit);
+    kilometers = getUnitConverter().toKilometer(sourceLength, sourceUnit);
+    inches = getUnitConverter().toInch(sourceLength, sourceUnit);
+    feet = getUnitConverter().toFoot(sourceLength, sourceUnit);
+    yards = getUnitConverter().toYard(sourceLength, sourceUnit);
+    miles = getUnitConverter().toMile(sourceLength, sourceUnit);
   }
 
   @Override

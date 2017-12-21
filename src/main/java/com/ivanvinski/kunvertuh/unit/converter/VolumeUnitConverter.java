@@ -23,27 +23,27 @@ import com.ivanvinski.kunvertuh.unit.VolumeUnit;
 
 public final class VolumeUnitConverter extends MeasurementUnitConverter<VolumeUnit> {
 
-  public Double toMilliliters(Double sourceVolume, VolumeUnit sourceUnit) {
-    return convert(sourceVolume, sourceUnit, VolumeUnit.MILLILITERS);
+  public Double toMilliliter(Double sourceVolume, VolumeUnit sourceUnit) {
+    return convert(sourceVolume, sourceUnit, VolumeUnit.MILLILITER);
   }
 
-  public Double toLiters(Double sourceVolume, VolumeUnit sourceUnit) {
-    return convert(sourceVolume, sourceUnit, VolumeUnit.LITERS);
+  public Double toLiter(Double sourceVolume, VolumeUnit sourceUnit) {
+    return convert(sourceVolume, sourceUnit, VolumeUnit.LITER);
   }
 
-  public Double toCubicMeters(Double sourceVolume, VolumeUnit sourceUnit) {
-    return convert(sourceVolume, sourceUnit, VolumeUnit.CUBIC_METERS);
+  public Double toCubicMeter(Double sourceVolume, VolumeUnit sourceUnit) {
+    return convert(sourceVolume, sourceUnit, VolumeUnit.CUBIC_METER);
   }
 
-  public Double toFluidOunces(Double sourceVolume, VolumeUnit sourceUnit) {
-    return convert(sourceVolume, sourceUnit, VolumeUnit.FLUID_OUNCES);
+  public Double toUKFluidOunce(Double sourceVolume, VolumeUnit sourceUnit) {
+    return convert(sourceVolume, sourceUnit, VolumeUnit.UK_FLUID_OUNCE);
   }
 
-  public Double toPints(Double sourceVolume, VolumeUnit sourceUnit) {
-    return convert(sourceVolume, sourceUnit, VolumeUnit.PINTS);
+  public Double toUKGallon(Double sourceVolume, VolumeUnit sourceUnit) {
+    return convert(sourceVolume, sourceUnit, VolumeUnit.UK_GALLON);
   }
 
-  public Double toGallons(Double sourceVolume, VolumeUnit sourceUnit) {
-    return convert(sourceVolume, sourceUnit, VolumeUnit.GALLONS);
+  public Double toPint(Double sourceVolume, VolumeUnit sourceUnit) {
+    return convert(sourceVolume, sourceUnit, VolumeUnit.PINT);
   }
 }

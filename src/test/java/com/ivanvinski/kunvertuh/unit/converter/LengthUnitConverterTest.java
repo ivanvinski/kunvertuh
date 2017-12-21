@@ -21,7 +21,7 @@ package com.ivanvinski.kunvertuh.unit.converter;
 
 import static com.ivanvinski.kunvertuh.TestConstants.IMPERIAL_DELTA;
 import static com.ivanvinski.kunvertuh.TestConstants.METRIC_DELTA;
-import static com.ivanvinski.kunvertuh.unit.LengthUnit.METERS;
+import static com.ivanvinski.kunvertuh.unit.LengthUnit.METER;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
@@ -33,46 +33,46 @@ public class LengthUnitConverterTest {
 
   @Test
   public void convertsMetersToMillimeters() {
-    assertEquals(1000d, unitConverter.toMillimeters(sourceLength, METERS), METRIC_DELTA);
+    assertEquals(1000d, unitConverter.toMillimeter(sourceLength, METER), METRIC_DELTA);
   }
 
   @Test
   public void convertsMetersToCentimeters() {
-    assertEquals(100d, unitConverter.toCentimeters(sourceLength, METERS), METRIC_DELTA);
+    assertEquals(100d, unitConverter.toCentimeter(sourceLength, METER), METRIC_DELTA);
   }
 
   @Test
   public void convertsMetersToDecimeters() {
-    assertEquals(10d, unitConverter.toDecimeters(sourceLength, METERS), METRIC_DELTA);
+    assertEquals(10d, unitConverter.toDecimeter(sourceLength, METER), METRIC_DELTA);
   }
 
   @Test
   public void convertsMetersToMeters() {
-    assertEquals(sourceLength, unitConverter.toMeters(sourceLength, METERS), METRIC_DELTA);
+    assertEquals(sourceLength, unitConverter.toMeter(sourceLength, METER), METRIC_DELTA);
   }
 
   @Test
   public void convertsMetersToKilometers() {
-    assertEquals(.001d, unitConverter.toKilometers(sourceLength, METERS), METRIC_DELTA);
+    assertEquals(.001d, unitConverter.toKilometer(sourceLength, METER), METRIC_DELTA);
   }
 
   @Test
   public void convertsMetersToInches() {
-    assertEquals(39.370d, unitConverter.toInches(sourceLength, METERS), IMPERIAL_DELTA);
+    assertEquals(39.370d, unitConverter.toInch(sourceLength, METER), IMPERIAL_DELTA);
   }
 
   @Test
   public void convertsMetersToFeet() {
-    assertEquals(3.281d, unitConverter.toFeet(sourceLength, METERS), IMPERIAL_DELTA);
+    assertEquals(3.281d, unitConverter.toFoot(sourceLength, METER), IMPERIAL_DELTA);
   }
 
   @Test
   public void convertsMetersToYards() {
-    assertEquals(1.094d, unitConverter.toYards(sourceLength, METERS), IMPERIAL_DELTA);
+    assertEquals(1.094d, unitConverter.toYard(sourceLength, METER), IMPERIAL_DELTA);
   }
 
   @Test
   public void convertsMetersToMiles() {
-    assertEquals(.0006d, unitConverter.toMiles(sourceLength, METERS), IMPERIAL_DELTA);
+    assertEquals(.0006d, unitConverter.toMile(sourceLength, METER), IMPERIAL_DELTA);
   }
 }

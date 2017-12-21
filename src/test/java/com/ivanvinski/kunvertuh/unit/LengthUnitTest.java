@@ -27,46 +27,46 @@ public class LengthUnitTest {
 
   @Test
   public void validateMillimetersAbbreviation() {
-    assertEquals("mm", LengthUnit.MILLIMETERS.getAbbreviation());
+    assertEquals("mm", LengthUnit.MILLIMETER.getAbbreviation());
   }
 
   @Test
   public void validateCentimetersAbbreviation() {
-    assertEquals("cm", LengthUnit.CENTIMETERS.getAbbreviation());
+    assertEquals("cm", LengthUnit.CENTIMETER.getAbbreviation());
   }
 
   @Test
   public void validateDecimetersAbbreviation() {
-    assertEquals("dm", LengthUnit.DECIMETERS.getAbbreviation());
+    assertEquals("dm", LengthUnit.DECIMETER.getAbbreviation());
   }
 
   @Test
   public void validateMetersAbbreviation() {
-    assertEquals("m", LengthUnit.METERS.getAbbreviation());
+    assertEquals("m", LengthUnit.METER.getAbbreviation());
   }
 
   @Test
   public void validateKilometersAbbreviation() {
-    assertEquals("km", LengthUnit.KILOMETERS.getAbbreviation());
+    assertEquals("km", LengthUnit.KILOMETER.getAbbreviation());
   }
 
   @Test
   public void validateInchesAbbreviation() {
-    assertEquals("in", LengthUnit.INCHES.getAbbreviation());
+    assertEquals("in", LengthUnit.INCH.getAbbreviation());
   }
 
   @Test
   public void validateFeetAbbreviation() {
-    assertEquals("ft", LengthUnit.FEET.getAbbreviation());
+    assertEquals("ft", LengthUnit.FOOT.getAbbreviation());
   }
 
   @Test
   public void validateYardsAbbreviation() {
-    assertEquals("yd", LengthUnit.YARDS.getAbbreviation());
+    assertEquals("yd", LengthUnit.YARD.getAbbreviation());
   }
 
   @Test
   public void validateMilesAbbreviation() {
-    assertEquals("mi", LengthUnit.MILES.getAbbreviation());
+    assertEquals("mi", LengthUnit.MILE.getAbbreviation());
   }
 }

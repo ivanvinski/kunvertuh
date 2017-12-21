@@ -27,41 +27,41 @@ public class MassUnitTest {
 
   @Test
   public void validateMilligramsAbbreviation() {
-    assertEquals("mg", MassUnit.MILLIGRAMS.getAbbreviation());
+    assertEquals("mg", MassUnit.MILLIGRAM.getAbbreviation());
   }
 
   @Test
   public void validateGramsAbbreviation() {
-    assertEquals("g", MassUnit.GRAMS.getAbbreviation());
+    assertEquals("g", MassUnit.GRAM.getAbbreviation());
   }
 
   @Test
   public void validateDekagramsAbbreviation() {
-    assertEquals("dag", MassUnit.DEKAGRAMS.getAbbreviation());
+    assertEquals("dag", MassUnit.DEKAGRAM.getAbbreviation());
   }
 
   @Test
   public void validateKilogramsAbbreviation() {
-    assertEquals("kg", MassUnit.KILOGRAMS.getAbbreviation());
+    assertEquals("kg", MassUnit.KILOGRAM.getAbbreviation());
   }
 
   @Test
   public void validateGrainsAbbreviation() {
-    assertEquals("gr", MassUnit.GRAINS.getAbbreviation());
+    assertEquals("gr", MassUnit.GRAIN.getAbbreviation());
   }
 
   @Test
   public void validateDramsAbbreviation() {
-    assertEquals("dr", MassUnit.DRAMS.getAbbreviation());
+    assertEquals("dr", MassUnit.DRAM.getAbbreviation());
   }
 
   @Test
   public void validateOuncesAbbreviation() {
-    assertEquals("oz", MassUnit.OUNCES.getAbbreviation());
+    assertEquals("oz", MassUnit.OUNCE.getAbbreviation());
   }
 
   @Test
   public void validatePoundsAbbreviation() {
-    assertEquals("lb", MassUnit.POUNDS.getAbbreviation());
+    assertEquals("lb", MassUnit.POUND.getAbbreviation());
   }
 }

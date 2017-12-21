@@ -21,7 +21,7 @@ package com.ivanvinski.kunvertuh.model;
 
 import static com.ivanvinski.kunvertuh.TestConstants.IMPERIAL_DELTA;
 import static com.ivanvinski.kunvertuh.TestConstants.METRIC_DELTA;
-import static com.ivanvinski.kunvertuh.unit.MassUnit.GRAMS;
+import static com.ivanvinski.kunvertuh.unit.MassUnit.GRAM;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
@@ -34,12 +34,12 @@ public class MassUnitModelTest {
 
   @Before
   public void setUp() {
-    model.convert(sourceMass, GRAMS);
+    model.convert(sourceMass, GRAM);
   }
 
   @Test
   public void nullSourceMassConversionReturnsNull() {
-    model.convert(null, GRAMS);
+    model.convert(null, GRAM);
     assertEquals(null, model.getGrams());
   }
 
