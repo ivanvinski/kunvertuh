@@ -19,6 +19,7 @@
 
 package com.ivanvinski.kunvertuh.util;
 
+import com.google.inject.Inject;
 import java.util.Objects;
 import javafx.application.HostServices;
 
@@ -26,6 +27,7 @@ public final class JFXBrowser implements Browser {
 
   private HostServices hostServices;
 
+  @Inject
   public JFXBrowser(HostServices hostServices) {
     this.hostServices = Objects.requireNonNull(hostServices, "Host services can't be null");
   }

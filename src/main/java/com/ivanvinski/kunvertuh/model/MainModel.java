@@ -19,6 +19,7 @@
 
 package com.ivanvinski.kunvertuh.model;
 
+import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.view.View;
 import com.ivanvinski.kunvertuh.view.ViewCatalog;
 import java.util.Objects;
@@ -28,6 +29,7 @@ public class MainModel {
   private ViewCatalog catalog;
   private View activeView;
 
+  @Inject
   public MainModel(ViewCatalog catalog) {
     this.catalog = Objects.requireNonNull(catalog, "View catalog can't be null");
   }
