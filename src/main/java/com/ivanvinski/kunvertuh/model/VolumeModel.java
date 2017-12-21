@@ -19,6 +19,7 @@
 
 package com.ivanvinski.kunvertuh.model;
 
+import static com.ivanvinski.kunvertuh.unit.VolumeUnit.CUBIC_INCH;
 import static com.ivanvinski.kunvertuh.unit.VolumeUnit.CUBIC_METER;
 import static com.ivanvinski.kunvertuh.unit.VolumeUnit.DECILITER;
 import static com.ivanvinski.kunvertuh.unit.VolumeUnit.HECTOLITER;
@@ -44,12 +45,14 @@ public final class VolumeModel extends AbstractUnitModel<VolumeUnit> {
   private Double milliliters, deciliters, liters, hectoliters, cubicMeters;
   private Double ukTeaspoons, ukTablespoons, ukCups, ukFluidOunces, ukPints, ukGallons;
   private Double usTeaspoons, usTablespoons, usCups, usFluidOunces, usPints, usGallons;
+  private Double cubicInches;
 
   @Override
   public void convert(Double volume, VolumeUnit unit) {
     convertToMetric(volume, unit);
     convertToImperial(volume, unit);
     convertToUS(volume, unit);
+    cubicInches = getUnitConverter().convert(volume, unit).to(CUBIC_INCH);
   }
 
   public Double getMilliliters() {
@@ -118,6 +121,10 @@ public final class VolumeModel extends AbstractUnitModel<VolumeUnit> {
 
   public Double getUsGallons() {
     return usGallons;
+  }
+
+  public Double getCubicInches() {
+    return cubicInches;
   }
 
   private void convertToMetric(Double volume, VolumeUnit unit) {
