@@ -32,7 +32,18 @@ public final class AboutPresenter extends AbstractPresenter<AboutView, Browser> 
 
   @Override
   public void initialize() {
-    getView().setAuthor("Ivan Vinski", "https://ivanvinski.com/");
-    getView().setRepository("GitHub repository", "https://github.com/ivanvinski/kunvertuh");
+    getView().setVersion("Version: -");
+    getView().setLicense("Licensed under GPL v3.0");
+    getView().setContactText("For more information, feel free to contact me.");
+    getView().setContactPage("https://ivanvinski.com/contact/");
+    getView().setRepositoryText("Fork me on Github");
+    getView().setRepositoryPage("https://github.com/ivanvinski/kunvertuh");
+    getView().setAuthor("Ivan Vinski");
+    getView().setAuthorPage("https://ivanvinski.com/");
+    getView().setAuthorGithub("https://github.com/ivanvinski");
+  }
+
+  public void openInBrowser(String uri) {
+    getModel().open(uri);
   }
 }
