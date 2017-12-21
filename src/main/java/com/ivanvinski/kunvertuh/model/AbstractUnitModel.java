@@ -20,11 +20,15 @@
 package com.ivanvinski.kunvertuh.model;
 
 import com.ivanvinski.kunvertuh.unit.MeasurementUnit;
-import com.ivanvinski.kunvertuh.unit.converter.MeasurementUnitConverter;
+import com.ivanvinski.kunvertuh.unit.UnitConverter;
 
-public interface UnitsModel<U extends MeasurementUnit> {
+public abstract class AbstractUnitModel<U extends MeasurementUnit> {
 
-  void convert(Double sourceValue, U sourceUnit);
+  private final UnitConverter<U> unitConverter = new UnitConverter<>();
 
-  MeasurementUnitConverter<U> getUnitConverter();
+  public abstract void convert(Double value, U unit);
+
+  public UnitConverter<U> getUnitConverter() {
+    return unitConverter;
+  }
 }
