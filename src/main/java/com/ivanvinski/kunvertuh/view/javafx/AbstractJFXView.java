@@ -17,9 +17,23 @@
  *
  */
 
-package com.ivanvinski.kunvertuh.view;
+package com.ivanvinski.kunvertuh.view.javafx;
 
-public interface ViewLoader {
+import com.ivanvinski.kunvertuh.event.EventStream;
+import com.ivanvinski.kunvertuh.view.View;
+import java.util.Objects;
+import javafx.scene.layout.StackPane;
 
-  View load();
+public abstract class AbstractJFXView extends StackPane implements View {
+
+  private EventStream eventStream;
+
+  public AbstractJFXView(EventStream eventStream) {
+    this.eventStream = Objects.requireNonNull(eventStream, "Event streams can't be null");
+  }
+
+  @Override
+  public void pushEvent(Object event) {
+    eventStream.push(event);
+  }
 }

@@ -19,10 +19,9 @@
 
 package com.ivanvinski.kunvertuh.view.javafx;
 
-import com.google.inject.AbstractModule;
-import com.ivanvinski.kunvertuh.presenter.Presenter;
+import com.google.inject.Injector;
 import com.ivanvinski.kunvertuh.view.View;
-import com.ivanvinski.kunvertuh.view.ViewLoader;
+import com.ivanvinski.kunvertuh.view.ViewCatalog;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.net.URL;
@@ -30,43 +29,31 @@ import java.util.Objects;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
-public final class JFXViewLoader implements ViewLoader {
+public final class JFXViewLoader {
 
-  private final URL fxmlLocation;
-  private final AbstractModule presenterModule;
+  private Injector injector;
+  private ViewCatalog loadedViews = new ViewCatalog();
 
-  public JFXViewLoader(URL fxmlLocation, AbstractModule presenterModule) {
-    this.fxmlLocation = Objects.requireNonNull(fxmlLocation, "View location can't be null");
-    this.presenterModule = Objects.requireNonNull(
-        presenterModule, "Presenter module can't be null");
+  public JFXViewLoader(Injector injector) {
+    this.injector = Objects.requireNonNull(injector, "Injector can't be null");
   }
 
-  @Override
-  public View load() {
+  public View load(URL fxmlLocation) {
     FXMLLoader loader = new FXMLLoader(fxmlLocation);
-    Presenter presenter = loadPresenter(loader);
-    View view = loader.getController();
-    throwExceptionIfNullOrNotParentSubclass(view);
-    view.attach(presenter);
-    presenter.initialize();
-    return view;
-  }
-
-  private Presenter loadPresenter(FXMLLoader loader) {
-    ViewFactory viewFactory = new ViewFactory(presenterModule);
-    loader.setControllerFactory(viewFactory);
+    loader.setControllerFactory(new MVPAssembler(injector));
     try {
-      loader.load();
-      return viewFactory.getPresenter();
+      Parent parent = loader.load();
+      AbstractJFXView view = loader.getController();
+      loadedViews.add(view);
+      view.getChildren().setAll(parent);
+      view.bindEvents();
+      return view;
     } catch (IOException e) {
-      throw new UncheckedIOException("Unable to load view: " + loader.getLocation(), e);
+      throw new UncheckedIOException("", e);
     }
   }
 
-  private void throwExceptionIfNullOrNotParentSubclass(View view) {
-    Objects.requireNonNull(view, "View class not set for: " + fxmlLocation);
-    if (!Parent.class.isAssignableFrom(view.getClass())) {
-      throw new IllegalArgumentException("Not a Parent subclass: " + fxmlLocation);
-    }
+  public ViewCatalog getLoadedViews() {
+    return loadedViews;
   }
 }

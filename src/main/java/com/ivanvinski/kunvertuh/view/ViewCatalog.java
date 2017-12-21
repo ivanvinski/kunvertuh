@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class ViewCatalog {
+public final class ViewCatalog {
 
   private Map<Class<? extends View>, View> views = new HashMap<>();
 
