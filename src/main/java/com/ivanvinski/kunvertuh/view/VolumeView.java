@@ -19,16 +19,16 @@
 
 package com.ivanvinski.kunvertuh.view;
 
-import com.ivanvinski.kunvertuh.presenter.VolumeUnitsPresenter;
+import com.ivanvinski.kunvertuh.presenter.VolumePresenter;
 
-public interface VolumeView extends View<VolumeUnitsPresenter> {
+public interface VolumeView extends View<VolumePresenter> {
 
   @Override
-  void attach(VolumeUnitsPresenter presenter);
+  void attach(VolumePresenter presenter);
 
-  void setMillimetersPrompt(String prompt);
+  void setMillilitersPrompt(String prompt);
 
-  void setMillimetersValue(String value);
+  void setMillilitersValue(String value);
 
   void setDecilitersPrompt(String prompt);
 

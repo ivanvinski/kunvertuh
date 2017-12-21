@@ -19,12 +19,12 @@
 
 package com.ivanvinski.kunvertuh.view;
 
-import com.ivanvinski.kunvertuh.presenter.MassUnitsPresenter;
+import com.ivanvinski.kunvertuh.presenter.MassPresenter;
 
-public interface MassView extends View<MassUnitsPresenter> {
+public interface MassView extends View<MassPresenter> {
 
   @Override
-  void attach(MassUnitsPresenter presenter);
+  void attach(MassPresenter presenter);
 
   void setMilligramsPrompt(String prompt);
 

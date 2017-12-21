@@ -19,12 +19,12 @@
 
 package com.ivanvinski.kunvertuh.view;
 
-import com.ivanvinski.kunvertuh.presenter.LengthUnitsPresenter;
+import com.ivanvinski.kunvertuh.presenter.LengthPresenter;
 
-public interface LengthView extends View<LengthUnitsPresenter> {
+public interface LengthView extends View<LengthPresenter> {
 
   @Override
-  void attach(LengthUnitsPresenter presenter);
+  void attach(LengthPresenter presenter);
 
   void setMillimetersPrompt(String prompt);
 

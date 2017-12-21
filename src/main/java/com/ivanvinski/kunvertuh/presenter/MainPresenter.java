@@ -21,7 +21,7 @@ package com.ivanvinski.kunvertuh.presenter;
 
 import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.model.MainModel;
-import com.ivanvinski.kunvertuh.view.LengthUnitsView;
+import com.ivanvinski.kunvertuh.view.LengthView;
 import com.ivanvinski.kunvertuh.view.MainView;
 import com.ivanvinski.kunvertuh.view.View;
 
@@ -34,7 +34,7 @@ public final class MainPresenter extends AbstractPresenter<MainView, MainModel> 
 
   @Override
   public void initialize() {
-    viewChangeRequested(LengthUnitsView.class);
+    viewChangeRequested(LengthView.class);
   }
 
   public void viewChangeRequested(Class<? extends View> viewType) {
