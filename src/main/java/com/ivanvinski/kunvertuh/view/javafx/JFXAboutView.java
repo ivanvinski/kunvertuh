@@ -26,7 +26,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.StackPane;
 
-public class AboutViewImpl extends StackPane implements AboutView {
+public class JFXAboutView extends StackPane implements AboutView {
 
   @FXML
   private Parent root;

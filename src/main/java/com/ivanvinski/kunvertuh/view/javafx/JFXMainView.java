@@ -36,7 +36,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
-public class MainViewImpl extends StackPane implements MainView {
+public class JFXMainView extends StackPane implements MainView {
 
   private static final String SELECTED_CLASS = "selected";
 
@@ -56,10 +56,10 @@ public class MainViewImpl extends StackPane implements MainView {
   public void attach(MainPresenter presenter) {
     getChildren().setAll(root);
     prepareMenuButtonAndNavigationDrawer();
-    length.setOnAction(e -> changeViewAndCloseDrawer(presenter, LengthUnitsViewImpl.class));
-    mass.setOnAction(e -> changeViewAndCloseDrawer(presenter, MassUnitsViewImpl.class));
-    volume.setOnAction(e -> changeViewAndCloseDrawer(presenter, VolumeUnitsViewImpl.class));
-    about.setOnAction(e -> changeViewAndCloseDrawer(presenter, AboutViewImpl.class));
+    length.setOnAction(e -> changeViewAndCloseDrawer(presenter, JFXLengthView.class));
+    mass.setOnAction(e -> changeViewAndCloseDrawer(presenter, JFXMassView.class));
+    volume.setOnAction(e -> changeViewAndCloseDrawer(presenter, JFXVolumeView.class));
+    about.setOnAction(e -> changeViewAndCloseDrawer(presenter, JFXAboutView.class));
   }
 
   @Override
@@ -92,13 +92,13 @@ public class MainViewImpl extends StackPane implements MainView {
 
   private void createAndRegisterNavigationButtons() {
     length = newNavigationButton("Length", MaterialDesignIcon.RULER);
-    registerNavigationButton(length, LengthUnitsViewImpl.class);
+    registerNavigationButton(length, JFXLengthView.class);
     mass = newNavigationButton("Mass", MaterialDesignIcon.WEIGHT);
-    registerNavigationButton(mass, MassUnitsViewImpl.class);
+    registerNavigationButton(mass, JFXMassView.class);
     volume = newNavigationButton("Volume", MaterialDesignIcon.CUBE_OUTLINE);
-    registerNavigationButton(volume, VolumeUnitsViewImpl.class);
+    registerNavigationButton(volume, JFXVolumeView.class);
     about = newNavigationButton("About", MaterialDesignIcon.HELP_CIRCLE);
-    registerNavigationButton(about, AboutViewImpl.class);
+    registerNavigationButton(about, JFXAboutView.class);
   }
 
   private JFXButton newNavigationButton(String text, MaterialDesignIcon icon) {
