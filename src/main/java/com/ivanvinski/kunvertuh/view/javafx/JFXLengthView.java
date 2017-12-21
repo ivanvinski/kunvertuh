@@ -37,7 +37,6 @@ import com.ivanvinski.kunvertuh.view.LengthView;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.TextInputControl;
 import javafx.scene.layout.StackPane;
 
 public final class JFXLengthView extends StackPane implements LengthView {
@@ -187,9 +186,9 @@ public final class JFXLengthView extends StackPane implements LengthView {
     bindInputEventToPresenter(presenter, usLeagues, US_LEAGUE);
   }
 
-  private void bindInputEventToPresenter(LengthPresenter presenter,
-      TextInputControl textField, Length unit) {
-    textField.setOnInputMethodTextChanged(e -> presenter
+  private void bindInputEventToPresenter(LengthPresenter presenter, JFXTextField textField,
+      Length unit) {
+    textField.setOnAction(e -> presenter
         .conversionRequested(textField.getText(), unit));
   }
 }

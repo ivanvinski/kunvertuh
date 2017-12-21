@@ -37,7 +37,6 @@ import com.ivanvinski.kunvertuh.view.MassView;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.TextInputControl;
 import javafx.scene.layout.StackPane;
 
 public final class JFXMassView extends StackPane implements MassView {
@@ -187,9 +186,9 @@ public final class JFXMassView extends StackPane implements MassView {
     bindInputEventToPresenter(presenter, usTons, US_TON);
   }
 
-  private void bindInputEventToPresenter(MassPresenter presenter,
-      TextInputControl textField, Mass unit) {
-    textField.setOnInputMethodTextChanged(e -> presenter
+  private void bindInputEventToPresenter(MassPresenter presenter, JFXTextField textField,
+      Mass unit) {
+    textField.setOnAction(e -> presenter
         .conversionRequested(textField.getText(), unit));
   }
 }

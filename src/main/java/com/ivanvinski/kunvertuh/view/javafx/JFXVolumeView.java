@@ -44,7 +44,6 @@ import com.ivanvinski.kunvertuh.view.VolumeView;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.TextInputControl;
 import javafx.scene.layout.StackPane;
 
 public final class JFXVolumeView extends StackPane implements VolumeView {
@@ -279,9 +278,9 @@ public final class JFXVolumeView extends StackPane implements VolumeView {
     bindInputEventToPresenter(presenter, usGallons, US_GALLON);
   }
 
-  private void bindInputEventToPresenter(VolumePresenter presenter,
-      TextInputControl textField, Volume unit) {
-    textField.setOnInputMethodTextChanged(e -> presenter
+  private void bindInputEventToPresenter(VolumePresenter presenter, JFXTextField textField,
+      Volume unit) {
+    textField.setOnAction(e -> presenter
         .conversionRequested(textField.getText(), unit));
   }
 }
