@@ -19,27 +19,27 @@
 
 package com.ivanvinski.kunvertuh.model;
 
-import static com.ivanvinski.kunvertuh.unit.MassUnit.DEKAGRAM;
-import static com.ivanvinski.kunvertuh.unit.MassUnit.DRAM;
-import static com.ivanvinski.kunvertuh.unit.MassUnit.GRAIN;
-import static com.ivanvinski.kunvertuh.unit.MassUnit.GRAM;
-import static com.ivanvinski.kunvertuh.unit.MassUnit.KILOGRAM;
-import static com.ivanvinski.kunvertuh.unit.MassUnit.METRIC_TON;
-import static com.ivanvinski.kunvertuh.unit.MassUnit.MILLIGRAM;
-import static com.ivanvinski.kunvertuh.unit.MassUnit.OUNCE;
-import static com.ivanvinski.kunvertuh.unit.MassUnit.POUND;
-import static com.ivanvinski.kunvertuh.unit.MassUnit.UK_TON;
-import static com.ivanvinski.kunvertuh.unit.MassUnit.US_TON;
+import static com.ivanvinski.kunvertuh.unit.Mass.DEKAGRAM;
+import static com.ivanvinski.kunvertuh.unit.Mass.DRAM;
+import static com.ivanvinski.kunvertuh.unit.Mass.GRAIN;
+import static com.ivanvinski.kunvertuh.unit.Mass.GRAM;
+import static com.ivanvinski.kunvertuh.unit.Mass.KILOGRAM;
+import static com.ivanvinski.kunvertuh.unit.Mass.METRIC_TON;
+import static com.ivanvinski.kunvertuh.unit.Mass.MILLIGRAM;
+import static com.ivanvinski.kunvertuh.unit.Mass.OUNCE;
+import static com.ivanvinski.kunvertuh.unit.Mass.POUND;
+import static com.ivanvinski.kunvertuh.unit.Mass.UK_TON;
+import static com.ivanvinski.kunvertuh.unit.Mass.US_TON;
 
-import com.ivanvinski.kunvertuh.unit.MassUnit;
+import com.ivanvinski.kunvertuh.unit.Mass;
 
-public final class MassModel extends AbstractUnitModel<MassUnit> {
+public final class MassModel extends AbstractUnitModel<Mass> {
 
   private Double milligrams, grams, dekagrams, kilograms, metricTons;
   private Double grains, drams, ounces, pounds, ukTons, usTons;
 
   @Override
-  public void convert(Double mass, MassUnit unit) {
+  public void convert(Double mass, Mass unit) {
     convertToMetric(mass, unit);
     convertToNonMetric(mass, unit);
   }
@@ -88,7 +88,7 @@ public final class MassModel extends AbstractUnitModel<MassUnit> {
     return usTons;
   }
 
-  private void convertToMetric(Double mass, MassUnit unit) {
+  private void convertToMetric(Double mass, Mass unit) {
     milligrams = getUnitConverter().convert(mass, unit).to(MILLIGRAM);
     grams = getUnitConverter().convert(mass, unit).to(GRAM);
     dekagrams = getUnitConverter().convert(mass, unit).to(DEKAGRAM);
@@ -96,7 +96,7 @@ public final class MassModel extends AbstractUnitModel<MassUnit> {
     metricTons = getUnitConverter().convert(mass, unit).to(METRIC_TON);
   }
 
-  private void convertToNonMetric(Double mass, MassUnit unit) {
+  private void convertToNonMetric(Double mass, Mass unit) {
     grains = getUnitConverter().convert(mass, unit).to(GRAIN);
     drams = getUnitConverter().convert(mass, unit).to(DRAM);
     ounces = getUnitConverter().convert(mass, unit).to(OUNCE);

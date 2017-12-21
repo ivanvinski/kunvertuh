@@ -19,10 +19,10 @@
 
 package com.ivanvinski.kunvertuh.model;
 
-import com.ivanvinski.kunvertuh.unit.MeasurementUnit;
+import com.ivanvinski.kunvertuh.unit.Unit;
 import com.ivanvinski.kunvertuh.unit.UnitConverter;
 
-public abstract class AbstractUnitModel<U extends MeasurementUnit> {
+public abstract class AbstractUnitModel<U extends Unit> {
 
   private final UnitConverter<U> unitConverter = new UnitConverter<>();
 

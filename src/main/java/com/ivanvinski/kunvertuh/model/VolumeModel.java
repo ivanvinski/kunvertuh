@@ -19,28 +19,28 @@
 
 package com.ivanvinski.kunvertuh.model;
 
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.CUBIC_INCH;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.CUBIC_METER;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.DECILITER;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.HECTOLITER;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.LITER;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.MILLILITER;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.UK_CUP;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.UK_FLUID_OUNCE;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.UK_GALLON;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.UK_PINT;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.UK_TABLESPOON;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.UK_TEASPOON;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.US_CUP;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.US_FLUID_OUNCE;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.US_GALLON;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.US_PINT;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.US_TABLESPOON;
-import static com.ivanvinski.kunvertuh.unit.VolumeUnit.US_TEASPOON;
+import static com.ivanvinski.kunvertuh.unit.Volume.CUBIC_INCH;
+import static com.ivanvinski.kunvertuh.unit.Volume.CUBIC_METER;
+import static com.ivanvinski.kunvertuh.unit.Volume.DECILITER;
+import static com.ivanvinski.kunvertuh.unit.Volume.HECTOLITER;
+import static com.ivanvinski.kunvertuh.unit.Volume.LITER;
+import static com.ivanvinski.kunvertuh.unit.Volume.MILLILITER;
+import static com.ivanvinski.kunvertuh.unit.Volume.UK_CUP;
+import static com.ivanvinski.kunvertuh.unit.Volume.UK_FLUID_OUNCE;
+import static com.ivanvinski.kunvertuh.unit.Volume.UK_GALLON;
+import static com.ivanvinski.kunvertuh.unit.Volume.UK_PINT;
+import static com.ivanvinski.kunvertuh.unit.Volume.UK_TABLESPOON;
+import static com.ivanvinski.kunvertuh.unit.Volume.UK_TEASPOON;
+import static com.ivanvinski.kunvertuh.unit.Volume.US_CUP;
+import static com.ivanvinski.kunvertuh.unit.Volume.US_FLUID_OUNCE;
+import static com.ivanvinski.kunvertuh.unit.Volume.US_GALLON;
+import static com.ivanvinski.kunvertuh.unit.Volume.US_PINT;
+import static com.ivanvinski.kunvertuh.unit.Volume.US_TABLESPOON;
+import static com.ivanvinski.kunvertuh.unit.Volume.US_TEASPOON;
 
-import com.ivanvinski.kunvertuh.unit.VolumeUnit;
+import com.ivanvinski.kunvertuh.unit.Volume;
 
-public final class VolumeModel extends AbstractUnitModel<VolumeUnit> {
+public final class VolumeModel extends AbstractUnitModel<Volume> {
 
   private Double milliliters, deciliters, liters, hectoliters, cubicMeters;
   private Double ukTeaspoons, ukTablespoons, ukCups, ukFluidOunces, ukPints, ukGallons;
@@ -48,7 +48,7 @@ public final class VolumeModel extends AbstractUnitModel<VolumeUnit> {
   private Double cubicInches;
 
   @Override
-  public void convert(Double volume, VolumeUnit unit) {
+  public void convert(Double volume, Volume unit) {
     convertToMetric(volume, unit);
     convertToImperial(volume, unit);
     convertToUS(volume, unit);
@@ -127,7 +127,7 @@ public final class VolumeModel extends AbstractUnitModel<VolumeUnit> {
     return cubicInches;
   }
 
-  private void convertToMetric(Double volume, VolumeUnit unit) {
+  private void convertToMetric(Double volume, Volume unit) {
     milliliters = getUnitConverter().convert(volume, unit).to(MILLILITER);
     deciliters = getUnitConverter().convert(volume, unit).to(DECILITER);
     liters = getUnitConverter().convert(volume, unit).to(LITER);
@@ -135,7 +135,7 @@ public final class VolumeModel extends AbstractUnitModel<VolumeUnit> {
     cubicMeters = getUnitConverter().convert(volume, unit).to(CUBIC_METER);
   }
 
-  private void convertToImperial(Double volume, VolumeUnit unit) {
+  private void convertToImperial(Double volume, Volume unit) {
     ukTeaspoons = getUnitConverter().convert(volume, unit).to(UK_TEASPOON);
     ukTablespoons = getUnitConverter().convert(volume, unit).to(UK_TABLESPOON);
     ukCups = getUnitConverter().convert(volume, unit).to(UK_CUP);
@@ -144,7 +144,7 @@ public final class VolumeModel extends AbstractUnitModel<VolumeUnit> {
     ukGallons = getUnitConverter().convert(volume, unit).to(UK_GALLON);
   }
 
-  private void convertToUS(Double volume, VolumeUnit unit) {
+  private void convertToUS(Double volume, Volume unit) {
     usTeaspoons = getUnitConverter().convert(volume, unit).to(US_TEASPOON);
     usTablespoons = getUnitConverter().convert(volume, unit).to(US_TABLESPOON);
     usCups = getUnitConverter().convert(volume, unit).to(US_CUP);
