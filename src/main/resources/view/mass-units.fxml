@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <!--
   ~ Kunvertuh
   ~ Copyright (C) 2017  Ivan Vinski
@@ -24,35 +19,50 @@
   ~
   -->
 
-<GridPane fx:id="root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-  prefWidth="600.0" styleClass="table-card" xmlns="http://javafx.com/javafx/8.0.141"
-  xmlns:fx="http://javafx.com/fxml/1"
-  fx:controller="com.ivanvinski.kunvertuh.presenter.MassUnitsPresenter">
-  <columnConstraints>
-    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0"
-      vgrow="SOMETIMES"/>
-    <RowConstraints vgrow="NEVER"/>
-    <RowConstraints vgrow="NEVER"/>
-    <RowConstraints vgrow="NEVER"/>
-    <RowConstraints vgrow="NEVER"/>
-  </rowConstraints>
-  <children>
-    <Label styleClass="subheading" text="Metric"/>
-    <Label styleClass="subheading" text="Imperial" GridPane.columnIndex="1"/>
-    <JFXTextField fx:id="milligrams" promptText="Milligrams" GridPane.rowIndex="1"/>
-    <JFXTextField fx:id="grains" promptText="Grains" GridPane.columnIndex="1"
-      GridPane.rowIndex="1"/>
-    <JFXTextField fx:id="grams" promptText="Grams" GridPane.rowIndex="2"/>
-    <JFXTextField fx:id="drams" promptText="Drams" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-    <JFXTextField fx:id="dekagrams" promptText="Dekagrams" GridPane.rowIndex="3"/>
-    <JFXTextField fx:id="ounces" promptText="Ounces" GridPane.columnIndex="1"
-      GridPane.rowIndex="3"/>
-    <JFXTextField fx:id="kilograms" promptText="Kilograms" GridPane.rowIndex="4"/>
-    <JFXTextField fx:id="pounds" promptText="Pounds" GridPane.columnIndex="1"
-      GridPane.rowIndex="4"/>
-  </children>
-</GridPane>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fx:id="root" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pannable="true" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ivanvinski.kunvertuh.presenter.MassPresenter">
+  <content>
+    <VBox maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" styleClass="card-container">
+      <children>
+        <Label fx:id="metricTitle" styleClass="subheading" text="Metric">
+               <VBox.margin>
+                  <Insets top="-8.0" />
+               </VBox.margin></Label>
+        <VBox prefWidth="100.0">
+          <children>
+            <JFXTextField fx:id="milligrams" promptText="Milligram" />
+            <JFXTextField fx:id="grams" promptText="Gram" />
+            <JFXTextField fx:id="dekagrams" promptText="Dekagram" />
+            <JFXTextField fx:id="kilograms" promptText="Kilogram" />
+            <JFXTextField fx:id="metricTons" promptText="Ton" />
+          </children>
+               <styleClass>
+                  <String fx:value="unit-card" />
+                  <String fx:value="card" />
+               </styleClass>
+        </VBox>
+        <Label fx:id="imperialUsTitle" styleClass="subheading" text="Imperial and US Customary" />
+        <VBox prefHeight="200.0" prefWidth="100.0">
+          <children>
+            <JFXTextField fx:id="grains" promptText="Inch" />
+            <JFXTextField fx:id="drams" promptText="Foot" />
+            <JFXTextField fx:id="ounces" promptText="Yard" />
+            <JFXTextField fx:id="pounds" promptText="Mile" />
+            <JFXTextField fx:id="ukTons" promptText="Imperial tons" />
+            <JFXTextField fx:id="usTons" promptText="US tons" />
+          </children>
+               <styleClass>
+                  <String fx:value="unit-card" />
+                  <String fx:value="card" />
+               </styleClass>
+        </VBox>
+      </children>
+    </VBox>
+  </content>
+</ScrollPane>

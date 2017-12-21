@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <!--
   ~ Kunvertuh
   ~ Copyright (C) 2017  Ivan Vinski
@@ -24,37 +19,50 @@
   ~
   -->
 
-<GridPane fx:id="root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-  prefWidth="600.0" styleClass="table-card" xmlns="http://javafx.com/javafx/8.0.141"
-  xmlns:fx="http://javafx.com/fxml/1"
-  fx:controller="com.ivanvinski.kunvertuh.presenter.LengthUnitsPresenter">
-  <columnConstraints>
-    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0"
-      prefWidth="100.0"/>
-    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0"
-      prefWidth="100.0"/>
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0"
-      vgrow="SOMETIMES"/>
-    <RowConstraints vgrow="NEVER"/>
-    <RowConstraints vgrow="NEVER"/>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER"/>
-    <RowConstraints vgrow="NEVER"/>
-    <RowConstraints vgrow="NEVER"/>
-  </rowConstraints>
-  <children>
-    <Label styleClass="subheading" text="Metric"/>
-    <Label styleClass="subheading" text="Imperial" GridPane.columnIndex="1"/>
-    <JFXTextField fx:id="millimeters" promptText="Millimeters" GridPane.rowIndex="1"/>
-    <JFXTextField fx:id="inches" promptText="Inches" GridPane.columnIndex="1"
-      GridPane.rowIndex="1"/>
-    <JFXTextField fx:id="centimeters" promptText="Centimeters" GridPane.rowIndex="2"/>
-    <JFXTextField fx:id="feet" promptText="Feet" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-    <JFXTextField fx:id="decimeters" promptText="Decimeters" GridPane.rowIndex="3"/>
-    <JFXTextField fx:id="yards" promptText="Yards" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-    <JFXTextField fx:id="meters" promptText="Meters" GridPane.rowIndex="4"/>
-    <JFXTextField fx:id="miles" promptText="Miles" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-    <JFXTextField fx:id="kilometers" promptText="Kilometers" GridPane.rowIndex="5"/>
-  </children>
-</GridPane>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fx:id="root" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pannable="true" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ivanvinski.kunvertuh.presenter.LengthPresenter">
+  <content>
+    <VBox maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" styleClass="card-container">
+      <children>
+        <Label fx:id="metricTitle" styleClass="subheading" text="Metric">
+               <VBox.margin>
+                  <Insets top="-8.0" />
+               </VBox.margin></Label>
+        <VBox prefWidth="100.0">
+          <children>
+            <JFXTextField fx:id="millimeters" promptText="Millimeter" />
+            <JFXTextField fx:id="centimeters" promptText="Centimeter" />
+            <JFXTextField fx:id="decimeters" promptText="Decimeter" />
+            <JFXTextField fx:id="meters" promptText="Meter" />
+            <JFXTextField fx:id="kilometers" promptText="Kilometer" />
+          </children>
+               <styleClass>
+                  <String fx:value="card" />
+                  <String fx:value="unit-card" />
+               </styleClass>
+        </VBox>
+        <Label fx:id="imperialUsTitle" styleClass="subheading" text="Imperial and American" />
+        <VBox prefHeight="200.0" prefWidth="100.0">
+          <children>
+            <JFXTextField fx:id="inches" promptText="Inch" />
+            <JFXTextField fx:id="feet" promptText="Foot" />
+            <JFXTextField fx:id="yards" promptText="Yard" />
+            <JFXTextField fx:id="miles" promptText="Mile" />
+            <JFXTextField fx:id="ukLeagues" promptText="Imperial league" />
+            <JFXTextField fx:id="usLeagues" promptText="US league" />
+          </children>
+               <styleClass>
+                  <String fx:value="card" />
+                  <String fx:value="unit-card" />
+               </styleClass>
+        </VBox>
+      </children>
+    </VBox>
+  </content>
+</ScrollPane>
