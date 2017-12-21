@@ -19,14 +19,11 @@
 
 package com.ivanvinski.kunvertuh;
 
-import com.ivanvinski.kunvertuh.module.AboutPresenterModule;
-import com.ivanvinski.kunvertuh.module.LengthUnitsPresenterModule;
-import com.ivanvinski.kunvertuh.module.MainPresenterModule;
-import com.ivanvinski.kunvertuh.module.MassUnitsPresenterModule;
-import com.ivanvinski.kunvertuh.module.VolumeUnitsPresenterModule;
+import com.ivanvinski.kunvertuh.module.ProductionModule;
+import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 import com.ivanvinski.kunvertuh.view.ViewCatalog;
+import com.ivanvinski.kunvertuh.view.javafx.JFXMainView;
 import com.ivanvinski.kunvertuh.view.javafx.JFXViewLoader;
-import com.ivanvinski.kunvertuh.view.javafx.MainViewImpl;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -40,7 +37,7 @@ public class Kunvertuh extends Application {
   @Override
   public void start(Stage primaryStage) throws Exception {
     ViewCatalog catalog = loadAllViews();
-    MainViewImpl mainView = (MainViewImpl) catalog.get(MainViewImpl.class);
+    JFXMainView mainView = (JFXMainView) catalog.get(JFXMainView.class);
     Scene scene = new Scene(mainView, 800, 600);
     scene.getStylesheets().add(getClass().getResource("/style/light.css").toExternalForm());
     primaryStage.setScene(scene);
@@ -50,16 +47,18 @@ public class Kunvertuh extends Application {
 
   private ViewCatalog loadAllViews() {
     ViewCatalog views = new ViewCatalog();
-    views.add(new JFXViewLoader(getClass().getResource("/view/length-units.fxml"),
-        new LengthUnitsPresenterModule()).load());
-    views.add(new JFXViewLoader(getClass().getResource("/view/mass-units.fxml"),
-        new MassUnitsPresenterModule()).load());
-    views.add(new JFXViewLoader(getClass().getResource("/view/volume-units.fxml"),
-        new VolumeUnitsPresenterModule()).load());
-    views.add(new JFXViewLoader(getClass().getResource("/view/main.fxml"),
-        new MainPresenterModule(views)).load());
-    views.add(new JFXViewLoader(getClass().getResource("/view/about.fxml"),
-        new AboutPresenterModule(getHostServices())).load());
+    DoubleStringConverter converter = new DoubleStringConverter();
+    ProductionModule module = new ProductionModule(views, converter, getHostServices());
+    views.add(new JFXViewLoader(getClass().getResource("/view/length-units.fxml"), module)
+        .load());
+    views.add(new JFXViewLoader(getClass().getResource("/view/mass-units.fxml"), module)
+        .load());
+    views.add(new JFXViewLoader(getClass().getResource("/view/volume-units.fxml"), module)
+        .load());
+    views.add(new JFXViewLoader(getClass().getResource("/view/main.fxml"), module)
+        .load());
+    views.add(new JFXViewLoader(getClass().getResource("/view/about.fxml"), module)
+        .load());
     return views;
   }
 }
