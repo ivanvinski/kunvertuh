@@ -19,9 +19,10 @@
 
 package com.ivanvinski.kunvertuh.presenter;
 
+import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
+import com.ivanvinski.kunvertuh.event.ViewChangeRequest;
 import com.ivanvinski.kunvertuh.model.MainModel;
-import com.ivanvinski.kunvertuh.view.LengthView;
 import com.ivanvinski.kunvertuh.view.MainView;
 import com.ivanvinski.kunvertuh.view.View;
 
@@ -32,13 +33,9 @@ public final class MainPresenter extends AbstractPresenter<MainView, MainModel> 
     super(view, model);
   }
 
-  @Override
-  public void initialize() {
-    viewChangeRequested(LengthView.class);
-  }
-
-  public void viewChangeRequested(Class<? extends View> viewType) {
-    View nextView = getModel().getView(viewType);
+  @Subscribe
+  public void onViewChangeRequst(ViewChangeRequest request) {
+    View nextView = getModel().getView(request.getViewType());
     if (!isActiveView(nextView.getClass())) {
       getView().setActiveView(nextView);
       getModel().setActiveView(nextView);

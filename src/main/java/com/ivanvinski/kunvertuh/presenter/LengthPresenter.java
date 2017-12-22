@@ -19,9 +19,10 @@
 
 package com.ivanvinski.kunvertuh.presenter;
 
+import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
+import com.ivanvinski.kunvertuh.event.conversion.LengthConversionRequest;
 import com.ivanvinski.kunvertuh.model.LengthModel;
-import com.ivanvinski.kunvertuh.unit.Length;
 import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 import com.ivanvinski.kunvertuh.view.LengthView;
 import java.util.Objects;
@@ -36,31 +37,28 @@ public final class LengthPresenter extends AbstractPresenter<LengthView, LengthM
     this.valueConverter = Objects.requireNonNull(valueConverter, "Value converter can't be null");
   }
 
-  @Override
-  public void initialize() {
-  }
-
-  public void conversionRequested(String sourceLength, Length sourceUnit) {
-    Double conversionValue = valueConverter.parse(sourceLength);
-    getModel().convert(conversionValue, sourceUnit);
+  @Subscribe
+  public void onConversionRequested(LengthConversionRequest request) {
+    Double length = valueConverter.parse(request.getValue());
+    getModel().convert(length, request.getUnit());
     updateMetricValues();
     updateNonMetricValues();
   }
 
   private void updateMetricValues() {
-    getView().setMillimetersValue(valueConverter.format(getModel().getMillimeters()));
-    getView().setCentimetersValue(valueConverter.format(getModel().getCentimeters()));
-    getView().setDecimetersValue(valueConverter.format(getModel().getDecimeters()));
-    getView().setMetersValue(valueConverter.format(getModel().getMeters()));
-    getView().setKilometersValue(valueConverter.format(getModel().getKilometers()));
+    getView().setMillimeters(valueConverter.format(getModel().getMillimeters()));
+    getView().setCentimeters(valueConverter.format(getModel().getCentimeters()));
+    getView().setDecimeters(valueConverter.format(getModel().getDecimeters()));
+    getView().setMeters(valueConverter.format(getModel().getMeters()));
+    getView().setKilometers(valueConverter.format(getModel().getKilometers()));
   }
 
   private void updateNonMetricValues() {
-    getView().setInchesValue(valueConverter.format(getModel().getInches()));
-    getView().setFeetValue(valueConverter.format(getModel().getFeet()));
-    getView().setYardsValue(valueConverter.format(getModel().getYards()));
-    getView().setMilesValue(valueConverter.format(getModel().getMiles()));
-    getView().setUkLeaguesValue(valueConverter.format(getModel().getUkLeagues()));
-    getView().setUsLeaguesValue(valueConverter.format(getModel().getUsLeagues()));
+    getView().setInches(valueConverter.format(getModel().getInches()));
+    getView().setFeet(valueConverter.format(getModel().getFeet()));
+    getView().setYards(valueConverter.format(getModel().getYards()));
+    getView().setMiles(valueConverter.format(getModel().getMiles()));
+    getView().setUkLeagues(valueConverter.format(getModel().getUkLeagues()));
+    getView().setUsLeagues(valueConverter.format(getModel().getUsLeagues()));
   }
 }

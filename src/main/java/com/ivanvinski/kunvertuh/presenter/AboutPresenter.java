@@ -19,7 +19,9 @@
 
 package com.ivanvinski.kunvertuh.presenter;
 
+import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
+import com.ivanvinski.kunvertuh.event.OpenInBrowserEvent;
 import com.ivanvinski.kunvertuh.util.Browser;
 import com.ivanvinski.kunvertuh.view.AboutView;
 
@@ -31,19 +33,20 @@ public final class AboutPresenter extends AbstractPresenter<AboutView, Browser> 
   }
 
   @Override
-  public void initialize() {
+  public void onInitialization() {
     getView().setVersion("Version: -");
     getView().setLicense("Licensed under GPL v3.0");
-    getView().setContactText("For more information, feel free to contact me.");
-    getView().setContactPage("https://ivanvinski.com/contact/");
-    getView().setRepositoryText("Fork me on Github");
+    getView().setContactPrompt("For more information, feel free to contact me.");
+    getView().setContactUri("https://ivanvinski.com/contact/");
+    getView().setRepositoryPrompt("Fork me on Github");
     getView().setRepositoryPage("https://github.com/ivanvinski/kunvertuh");
-    getView().setAuthor("Ivan Vinski");
-    getView().setAuthorPage("https://ivanvinski.com/");
-    getView().setAuthorGithub("https://github.com/ivanvinski");
+    getView().setAuthorName("Ivan Vinski");
+    getView().setAuthorUri("https://ivanvinski.com/");
+    getView().setAuthorGithubUri("https://github.com/ivanvinski");
   }
 
-  public void openInBrowser(String uri) {
-    getModel().open(uri);
+  @Subscribe
+  public void onOpenInBrowser(OpenInBrowserEvent event) {
+    getModel().open(event.getUri());
   }
 }

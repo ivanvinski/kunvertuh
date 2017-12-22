@@ -23,7 +23,8 @@ import com.ivanvinski.kunvertuh.view.View;
 
 public interface Presenter<V extends View, M> {
 
-  void initialize();
+  default void onInitialization() {
+  }
 
   V getView();
 

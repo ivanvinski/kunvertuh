@@ -19,15 +19,16 @@
 
 package com.ivanvinski.kunvertuh.presenter;
 
+import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
+import com.ivanvinski.kunvertuh.event.conversion.LengthConversionRequest;
+import com.ivanvinski.kunvertuh.event.conversion.VolumeConversionRequest;
 import com.ivanvinski.kunvertuh.model.VolumeModel;
-import com.ivanvinski.kunvertuh.unit.Volume;
 import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 import com.ivanvinski.kunvertuh.view.VolumeView;
 import java.util.Objects;
 
-public final class VolumePresenter extends
-    AbstractPresenter<VolumeView, VolumeModel> {
+public final class VolumePresenter extends AbstractPresenter<VolumeView, VolumeModel> {
 
   private DoubleStringConverter valueConverter;
 
@@ -37,42 +38,39 @@ public final class VolumePresenter extends
     this.valueConverter = Objects.requireNonNull(valueConverter, "Value converter can't be null");
   }
 
-  @Override
-  public void initialize() {
-  }
-
-  public void conversionRequested(String sourceMass, Volume sourceUnit) {
-    Double conversionValue = valueConverter.parse(sourceMass);
-    getModel().convert(conversionValue, sourceUnit);
+  @Subscribe
+  public void onConversionRequested(VolumeConversionRequest request) {
+    Double conversionValue = valueConverter.parse(request.getValue());
+    getModel().convert(conversionValue, request.getUnit());
     updateMetricValues();
     updateImperialValues();
     updateUsValues();
-    getView().setCubicInchesValue(valueConverter.format(getModel().getCubicInches()));
+    getView().setCubicInches(valueConverter.format(getModel().getCubicInches()));
   }
 
   private void updateMetricValues() {
-    getView().setMillilitersValue(valueConverter.format(getModel().getMilliliters()));
-    getView().setDecilitersValue(valueConverter.format(getModel().getDeciliters()));
-    getView().setLitersValue(valueConverter.format(getModel().getLiters()));
-    getView().setHectolitersValue(valueConverter.format(getModel().getHectoliters()));
-    getView().setCubicMetersValue(valueConverter.format(getModel().getCubicMeters()));
+    getView().setMilliliters(valueConverter.format(getModel().getMilliliters()));
+    getView().setDeciliters(valueConverter.format(getModel().getDeciliters()));
+    getView().setLiters(valueConverter.format(getModel().getLiters()));
+    getView().setHectoliters(valueConverter.format(getModel().getHectoliters()));
+    getView().setCubicMeters(valueConverter.format(getModel().getCubicMeters()));
   }
 
   private void updateImperialValues() {
-    getView().setUkTeaspoonsValue(valueConverter.format(getModel().getUkTeaspoons()));
-    getView().setUkTablespoonsValue(valueConverter.format(getModel().getUkTablespoons()));
-    getView().setUkCupsValue(valueConverter.format(getModel().getUkCups()));
-    getView().setUkFluidOuncesValue(valueConverter.format(getModel().getUkFluidOunces()));
-    getView().setUkPintsValue(valueConverter.format(getModel().getUkPints()));
-    getView().setUkGallonsValue(valueConverter.format(getModel().getUkGallons()));
+    getView().setUkTeaspoons(valueConverter.format(getModel().getUkTeaspoons()));
+    getView().setUkTablespoons(valueConverter.format(getModel().getUkTablespoons()));
+    getView().setUkCups(valueConverter.format(getModel().getUkCups()));
+    getView().setUkFluidOunces(valueConverter.format(getModel().getUkFluidOunces()));
+    getView().setUkPints(valueConverter.format(getModel().getUkPints()));
+    getView().setUkGallons(valueConverter.format(getModel().getUkGallons()));
   }
 
   private void updateUsValues() {
-    getView().setUsTeaspoonsValue(valueConverter.format(getModel().getUsTeaspoons()));
-    getView().setUsTablespoonsValue(valueConverter.format(getModel().getUsTablespoons()));
-    getView().setUsCupsValue(valueConverter.format(getModel().getUsCups()));
-    getView().setUsFluidOuncesValue(valueConverter.format(getModel().getUsFluidOunces()));
-    getView().setUsPintsValue(valueConverter.format(getModel().getUsPints()));
-    getView().setUsGallonsValue(valueConverter.format(getModel().getUsGallons()));
+    getView().setUsTeaspoons(valueConverter.format(getModel().getUsTeaspoons()));
+    getView().setUsTablespoons(valueConverter.format(getModel().getUsTablespoons()));
+    getView().setUsCups(valueConverter.format(getModel().getUsCups()));
+    getView().setUsFluidOunces(valueConverter.format(getModel().getUsFluidOunces()));
+    getView().setUsPints(valueConverter.format(getModel().getUsPints()));
+    getView().setUsGallons(valueConverter.format(getModel().getUsGallons()));
   }
 }
