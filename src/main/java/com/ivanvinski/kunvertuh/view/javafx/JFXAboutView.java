@@ -19,29 +19,37 @@
 
 package com.ivanvinski.kunvertuh.view.javafx;
 
-import com.ivanvinski.kunvertuh.presenter.AboutPresenter;
+import com.google.inject.Inject;
+import com.ivanvinski.kunvertuh.event.EventStream;
+import com.ivanvinski.kunvertuh.event.OpenInBrowserEvent;
 import com.ivanvinski.kunvertuh.view.AboutView;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 
-public class JFXAboutView extends StackPane implements AboutView {
+public final class JFXAboutView extends AbstractJFXView implements AboutView {
 
-  @FXML
-  private Parent root;
   @FXML
   private Label version, license, author;
   @FXML
   private Hyperlink repository, contact, authorPage, authorGithub;
 
+  @Inject
+  public JFXAboutView(EventStream eventStream) {
+    super(eventStream);
+  }
+
   @Override
-  public void attach(AboutPresenter presenter) {
-    openInBrowserOnActionEvent(presenter, repository);
-    openInBrowserOnActionEvent(presenter, contact);
-    openInBrowserOnActionEvent(presenter, authorPage);
-    openInBrowserOnActionEvent(presenter, authorGithub);
+  public void bindEvents() {
+    openHyperlinkInBrowserOnActionEvent(repository);
+    openHyperlinkInBrowserOnActionEvent(contact);
+    openHyperlinkInBrowserOnActionEvent(authorPage);
+    openHyperlinkInBrowserOnActionEvent(authorGithub);
+  }
+
+  @Override
+  public String getVersion() {
+    return version.getText();
   }
 
   @Override
@@ -50,8 +58,18 @@ public class JFXAboutView extends StackPane implements AboutView {
   }
 
   @Override
-  public void setRepositoryText(String text) {
-    this.repository.setText(text);
+  public String getRepositoryPrompt() {
+    return repository.getText();
+  }
+
+  @Override
+  public void setRepositoryPrompt(String text) {
+    repository.setText(text);
+  }
+
+  @Override
+  public String getRepositoryPage() {
+    return (String) repository.getUserData();
   }
 
   @Override
@@ -60,41 +78,66 @@ public class JFXAboutView extends StackPane implements AboutView {
   }
 
   @Override
+  public String getLicense() {
+    return license.getText();
+  }
+
+  @Override
   public void setLicense(String license) {
     this.license.setText(license);
   }
 
   @Override
-  public void setContactText(String text) {
+  public String getContactPrompt() {
+    return contact.getText();
+  }
+
+  @Override
+  public void setContactPrompt(String text) {
     contact.setText(text);
   }
 
   @Override
-  public void setContactPage(String contactUri) {
+  public String getContactUri() {
+    return (String) contact.getUserData();
+  }
+
+  @Override
+  public void setContactUri(String contactUri) {
     contact.setUserData(contactUri);
   }
 
   @Override
-  public void setAuthor(String author) {
-    this.author.setText(author);
+  public String getAuthorName() {
+    return author.getText();
   }
 
   @Override
-  public void setAuthorPage(String authorUri) {
+  public void setAuthorName(String name) {
+    author.setText(name);
+  }
+
+  @Override
+  public String getAuthorUri() {
+    return (String) authorPage.getUserData();
+  }
+
+  @Override
+  public void setAuthorUri(String authorUri) {
     authorPage.setUserData(authorUri);
   }
 
   @Override
-  public void setAuthorGithub(String githubUri) {
+  public String getAuthorGithubUri() {
+    return (String) authorGithub.getUserData();
+  }
+
+  @Override
+  public void setAuthorGithubUri(String githubUri) {
     authorGithub.setUserData(githubUri);
   }
 
-  @FXML
-  private void initialize() {
-    getChildren().setAll(root);
-  }
-
-  private void openInBrowserOnActionEvent(AboutPresenter presenter, Hyperlink link) {
-    link.setOnAction(e -> presenter.openInBrowser((String) link.getUserData()));
+  private void openHyperlinkInBrowserOnActionEvent(Hyperlink link) {
+    link.setOnAction(e -> pushEvent(new OpenInBrowserEvent((String) link.getUserData())));
   }
 }

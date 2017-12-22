@@ -32,28 +32,35 @@ import javafx.scene.Parent;
 public final class JFXViewLoader {
 
   private Injector injector;
-  private ViewCatalog loadedViews = new ViewCatalog();
+  private ViewCatalog loadedViews;
 
   public JFXViewLoader(Injector injector) {
     this.injector = Objects.requireNonNull(injector, "Injector can't be null");
+    loadedViews = injector.getInstance(ViewCatalog.class);
   }
 
   public View load(URL fxmlLocation) {
     FXMLLoader loader = new FXMLLoader(fxmlLocation);
-    loader.setControllerFactory(new MVPAssembler(injector));
-    try {
-      Parent parent = loader.load();
-      AbstractJFXView view = loader.getController();
-      loadedViews.add(view);
-      view.getChildren().setAll(parent);
-      view.bindEvents();
-      return view;
-    } catch (IOException e) {
-      throw new UncheckedIOException("", e);
-    }
+    MVPAssembler assembler = new MVPAssembler(injector);
+    loader.setControllerFactory(assembler);
+    Parent rootNode = loadOrThrowException(loader);
+    AbstractJFXView view = loader.getController();
+    view.getChildren().setAll(rootNode);
+    assembler.getPresenter().onInitialization();
+    view.bindEvents();
+    loadedViews.add(view);
+    return view;
   }
 
   public ViewCatalog getLoadedViews() {
     return loadedViews;
+  }
+
+  private Parent loadOrThrowException(FXMLLoader loader) {
+    try {
+      return loader.load();
+    } catch (IOException e) {
+      throw new UncheckedIOException("Unable to load view: " + loader.getLocation(), e);
+    }
   }
 }

@@ -19,82 +19,149 @@
 
 package com.ivanvinski.kunvertuh.view;
 
-import com.ivanvinski.kunvertuh.presenter.VolumePresenter;
+public interface VolumeView extends View {
 
-public interface VolumeView extends View<VolumePresenter> {
-
-  @Override
-  void attach(VolumePresenter presenter);
+  String getMillilitersPrompt();
 
   void setMillilitersPrompt(String prompt);
 
-  void setMillilitersValue(String value);
+  String getMilliliters();
+
+  void setMilliliters(String milliliters);
+
+  String getDecilitersPrompt();
 
   void setDecilitersPrompt(String prompt);
 
-  void setDecilitersValue(String value);
+  String getDeciliters();
+
+  void setDeciliters(String deciliters);
+
+  String getLitersPrompt();
 
   void setLitersPrompt(String prompt);
 
-  void setLitersValue(String value);
+  String getLiters();
+
+  void setLiters(String liters);
+
+  String getHectolitersPrompt();
 
   void setHectolitersPrompt(String prompt);
 
-  void setHectolitersValue(String value);
+  String getHectoliters();
+
+  void setHectoliters(String hectoliters);
+
+  String getCubicMetersPrompt();
 
   void setCubicMetersPrompt(String prompt);
 
-  void setCubicMetersValue(String value);
+  String getCubicMeters();
+
+  void setCubicMeters(String cubicMeters);
+
+  String getUkTeaspoonsPrompt();
 
   void setUkTeaspoonsPrompt(String prompt);
 
-  void setUkTeaspoonsValue(String value);
+  String getUkTeaspoons();
+
+  void setUkTeaspoons(String teaspoons);
+
+  String getUkTablespoonsPrompt();
 
   void setUkTablespoonsPrompt(String prompt);
 
-  void setUkTablespoonsValue(String value);
+  String getUkTablespoons();
+
+  void setUkTablespoons(String tablespoons);
+
+  String getUkCupsPrompt();
 
   void setUkCupsPrompt(String prompt);
 
-  void setUkCupsValue(String value);
+  String getUkCups();
+
+  void setUkCups(String cups);
+
+  String getUkFluidOuncesPrompt();
 
   void setUkFluidOuncesPrompt(String prompt);
 
-  void setUkFluidOuncesValue(String value);
+  String getUkFluidOunces();
+
+  void setUkFluidOunces(String fluidOunces);
+
+  String getUkPintsPrompt();
 
   void setUkPintsPrompt(String prompt);
 
-  void setUkPintsValue(String value);
+  String getUkPints();
+
+  void setUkPints(String pints);
+
+  String getUkGallonsPrompt();
 
   void setUkGallonsPrompt(String prompt);
 
-  void setUkGallonsValue(String value);
+  String getUkGallons();
+
+  void setUkGallons(String gallons);
+
+  String getUsTeaspoonsPrompt();
 
   void setUsTeaspoonsPrompt(String prompt);
 
-  void setUsTeaspoonsValue(String value);
+  String getUsTeaspoons();
+
+  void setUsTeaspoons(String teaspoons);
+
+  String getUsTablespoonsPrompt();
 
   void setUsTablespoonsPrompt(String prompt);
 
-  void setUsTablespoonsValue(String value);
+  String getUsTablespoons();
+
+  void setUsTablespoons(String tablespoons);
+
+  String getUsCupsPrompt();
 
   void setUsCupsPrompt(String prompt);
 
-  void setUsCupsValue(String value);
+  String getUsCups();
+
+  void setUsCups(String cups);
+
+  String getUsFluidOuncesPrompt();
 
   void setUsFluidOuncesPrompt(String prompt);
 
-  void setUsFluidOuncesValue(String value);
+  String getUsFluidOunces();
+
+  void setUsFluidOunces(String fluidOunces);
+
+  String getUsPintsPrompt();
 
   void setUsPintsPrompt(String prompt);
 
-  void setUsPintsValue(String value);
+  String getUsPints();
+
+  void setUsPints(String pints);
+
+  String getUsGallonsPrompt();
 
   void setUsGallonsPrompt(String prompt);
 
-  void setUsGallonsValue(String value);
+  String getUsGallons();
+
+  void setUsGallons(String gallons);
+
+  String getCubicInchesPrompt();
 
   void setCubicInchesPrompt(String prompt);
 
-  void setCubicInchesValue(String value);
+  String getCubicInches();
+
+  void setCubicInches(String cubicInches);
 }

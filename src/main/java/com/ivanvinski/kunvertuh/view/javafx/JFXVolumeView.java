@@ -38,18 +38,16 @@ import static com.ivanvinski.kunvertuh.unit.Volume.US_PINT;
 import static com.ivanvinski.kunvertuh.unit.Volume.US_TABLESPOON;
 import static com.ivanvinski.kunvertuh.unit.Volume.US_TEASPOON;
 
-import com.ivanvinski.kunvertuh.presenter.VolumePresenter;
+import com.google.inject.Inject;
+import com.ivanvinski.kunvertuh.event.EventStream;
+import com.ivanvinski.kunvertuh.event.conversion.VolumeConversionRequest;
 import com.ivanvinski.kunvertuh.unit.Volume;
 import com.ivanvinski.kunvertuh.view.VolumeView;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
-import javafx.scene.layout.StackPane;
 
-public final class JFXVolumeView extends StackPane implements VolumeView {
+public final class JFXVolumeView extends AbstractJFXView implements VolumeView {
 
-  @FXML
-  private Parent root;
   @FXML
   private JFXTextField milliliters, deciliters, liters, hectoliters, cubicMeters;
   @FXML
@@ -59,12 +57,22 @@ public final class JFXVolumeView extends StackPane implements VolumeView {
   @FXML
   private JFXTextField cubicInches;
 
+  @Inject
+  public JFXVolumeView(EventStream eventStream) {
+    super(eventStream);
+  }
+
   @Override
-  public void attach(VolumePresenter presenter) {
-    bindMetricInputEventsToPresenter(presenter);
-    bindImperialInputEventsToPresenter(presenter);
-    bindUsInputEventsToPresenter(presenter);
-    bindInputEventToPresenter(presenter, cubicInches, CUBIC_INCH);
+  public void bindEvents() {
+    bindMetricTextFieldActionEvents();
+    bindImperialTextFieldActionEvents();
+    bindUsTextFieldActionEvents();
+    bindTextFieldActionEvent(cubicInches, CUBIC_INCH);
+  }
+
+  @Override
+  public String getMillilitersPrompt() {
+    return milliliters.getPromptText();
   }
 
   @Override
@@ -73,8 +81,18 @@ public final class JFXVolumeView extends StackPane implements VolumeView {
   }
 
   @Override
-  public void setMillilitersValue(String value) {
-    milliliters.setText(value);
+  public String getMilliliters() {
+    return milliliters.getText();
+  }
+
+  @Override
+  public void setMilliliters(String milliliters) {
+    this.milliliters.setText(milliliters);
+  }
+
+  @Override
+  public String getDecilitersPrompt() {
+    return deciliters.getPromptText();
   }
 
   @Override
@@ -83,8 +101,18 @@ public final class JFXVolumeView extends StackPane implements VolumeView {
   }
 
   @Override
-  public void setDecilitersValue(String value) {
-    deciliters.setText(value);
+  public String getDeciliters() {
+    return deciliters.getText();
+  }
+
+  @Override
+  public void setDeciliters(String deciliters) {
+    this.deciliters.setText(deciliters);
+  }
+
+  @Override
+  public String getLitersPrompt() {
+    return liters.getPromptText();
   }
 
   @Override
@@ -93,8 +121,18 @@ public final class JFXVolumeView extends StackPane implements VolumeView {
   }
 
   @Override
-  public void setLitersValue(String value) {
-    liters.setText(value);
+  public String getLiters() {
+    return liters.getText();
+  }
+
+  @Override
+  public void setLiters(String liters) {
+    this.liters.setText(liters);
+  }
+
+  @Override
+  public String getHectolitersPrompt() {
+    return hectoliters.getPromptText();
   }
 
   @Override
@@ -103,8 +141,18 @@ public final class JFXVolumeView extends StackPane implements VolumeView {
   }
 
   @Override
-  public void setHectolitersValue(String value) {
-    hectoliters.setText(value);
+  public String getHectoliters() {
+    return hectoliters.getText();
+  }
+
+  @Override
+  public void setHectoliters(String hectoliters) {
+    this.hectoliters.setText(hectoliters);
+  }
+
+  @Override
+  public String getCubicMetersPrompt() {
+    return cubicMeters.getPromptText();
   }
 
   @Override
@@ -113,8 +161,18 @@ public final class JFXVolumeView extends StackPane implements VolumeView {
   }
 
   @Override
-  public void setCubicMetersValue(String value) {
-    cubicMeters.setText(value);
+  public String getCubicMeters() {
+    return cubicMeters.getText();
+  }
+
+  @Override
+  public void setCubicMeters(String cubicMeters) {
+    this.cubicMeters.setText(cubicMeters);
+  }
+
+  @Override
+  public String getUkTeaspoonsPrompt() {
+    return ukTeaspoons.getPromptText();
   }
 
   @Override
@@ -123,8 +181,18 @@ public final class JFXVolumeView extends StackPane implements VolumeView {
   }
 
   @Override
-  public void setUkTeaspoonsValue(String value) {
-    ukTeaspoons.setText(value);
+  public String getUkTeaspoons() {
+    return ukTeaspoons.getText();
+  }
+
+  @Override
+  public void setUkTeaspoons(String teaspoons) {
+    this.ukTeaspoons.setText(teaspoons);
+  }
+
+  @Override
+  public String getUkTablespoonsPrompt() {
+    return ukTablespoons.getPromptText();
   }
 
   @Override
@@ -133,8 +201,18 @@ public final class JFXVolumeView extends StackPane implements VolumeView {
   }
 
   @Override
-  public void setUkTablespoonsValue(String value) {
-    ukTablespoons.setText(value);
+  public String getUkTablespoons() {
+    return ukTablespoons.getText();
+  }
+
+  @Override
+  public void setUkTablespoons(String tablespoons) {
+    this.ukTablespoons.setText(tablespoons);
+  }
+
+  @Override
+  public String getUkCupsPrompt() {
+    return ukCups.getPromptText();
   }
 
   @Override
@@ -143,8 +221,18 @@ public final class JFXVolumeView extends StackPane implements VolumeView {
   }
 
   @Override
-  public void setUkCupsValue(String value) {
-    ukCups.setText(value);
+  public String getUkCups() {
+    return ukCups.getText();
+  }
+
+  @Override
+  public void setUkCups(String cups) {
+    ukCups.setText(cups);
+  }
+
+  @Override
+  public String getUkFluidOuncesPrompt() {
+    return ukFluidOunces.getPromptText();
   }
 
   @Override
@@ -153,8 +241,18 @@ public final class JFXVolumeView extends StackPane implements VolumeView {
   }
 
   @Override
-  public void setUkFluidOuncesValue(String value) {
-    ukFluidOunces.setText(value);
+  public String getUkFluidOunces() {
+    return ukFluidOunces.getText();
+  }
+
+  @Override
+  public void setUkFluidOunces(String fluidOunces) {
+    ukFluidOunces.setText(fluidOunces);
+  }
+
+  @Override
+  public String getUkPintsPrompt() {
+    return ukPints.getPromptText();
   }
 
   @Override
@@ -163,8 +261,18 @@ public final class JFXVolumeView extends StackPane implements VolumeView {
   }
 
   @Override
-  public void setUkPintsValue(String value) {
-    ukPints.setText(value);
+  public String getUkPints() {
+    return ukPints.getText();
+  }
+
+  @Override
+  public void setUkPints(String pints) {
+    ukPints.setText(pints);
+  }
+
+  @Override
+  public String getUkGallonsPrompt() {
+    return ukGallons.getPromptText();
   }
 
   @Override
@@ -173,8 +281,18 @@ public final class JFXVolumeView extends StackPane implements VolumeView {
   }
 
   @Override
-  public void setUkGallonsValue(String value) {
-    ukGallons.setText(value);
+  public String getUkGallons() {
+    return ukGallons.getText();
+  }
+
+  @Override
+  public void setUkGallons(String gallons) {
+    ukGallons.setText(gallons);
+  }
+
+  @Override
+  public String getUsTeaspoonsPrompt() {
+    return usTeaspoons.getPromptText();
   }
 
   @Override
@@ -183,8 +301,18 @@ public final class JFXVolumeView extends StackPane implements VolumeView {
   }
 
   @Override
-  public void setUsTeaspoonsValue(String value) {
-    usTeaspoons.setText(value);
+  public String getUsTeaspoons() {
+    return usTeaspoons.getText();
+  }
+
+  @Override
+  public void setUsTeaspoons(String teaspoons) {
+    this.usTeaspoons.setText(teaspoons);
+  }
+
+  @Override
+  public String getUsTablespoonsPrompt() {
+    return usTablespoons.getPromptText();
   }
 
   @Override
@@ -193,8 +321,18 @@ public final class JFXVolumeView extends StackPane implements VolumeView {
   }
 
   @Override
-  public void setUsTablespoonsValue(String value) {
-    usTablespoons.setText(value);
+  public String getUsTablespoons() {
+    return usTablespoons.getText();
+  }
+
+  @Override
+  public void setUsTablespoons(String tablespoons) {
+    this.usTablespoons.setText(tablespoons);
+  }
+
+  @Override
+  public String getUsCupsPrompt() {
+    return usCups.getPromptText();
   }
 
   @Override
@@ -203,8 +341,18 @@ public final class JFXVolumeView extends StackPane implements VolumeView {
   }
 
   @Override
-  public void setUsCupsValue(String value) {
-    usCups.setText(value);
+  public String getUsCups() {
+    return usCups.getText();
+  }
+
+  @Override
+  public void setUsCups(String cups) {
+    usCups.setText(cups);
+  }
+
+  @Override
+  public String getUsFluidOuncesPrompt() {
+    return usFluidOunces.getPromptText();
   }
 
   @Override
@@ -213,8 +361,18 @@ public final class JFXVolumeView extends StackPane implements VolumeView {
   }
 
   @Override
-  public void setUsFluidOuncesValue(String value) {
-    usFluidOunces.setText(value);
+  public String getUsFluidOunces() {
+    return usFluidOunces.getText();
+  }
+
+  @Override
+  public void setUsFluidOunces(String fluidOunces) {
+    usFluidOunces.setText(fluidOunces);
+  }
+
+  @Override
+  public String getUsPintsPrompt() {
+    return usPints.getPromptText();
   }
 
   @Override
@@ -223,8 +381,18 @@ public final class JFXVolumeView extends StackPane implements VolumeView {
   }
 
   @Override
-  public void setUsPintsValue(String value) {
-    usPints.setText(value);
+  public String getUsPints() {
+    return usPints.getText();
+  }
+
+  @Override
+  public void setUsPints(String pints) {
+    usPints.setText(pints);
+  }
+
+  @Override
+  public String getUsGallonsPrompt() {
+    return usGallons.getPromptText();
   }
 
   @Override
@@ -233,8 +401,18 @@ public final class JFXVolumeView extends StackPane implements VolumeView {
   }
 
   @Override
-  public void setUsGallonsValue(String value) {
-    usGallons.setText(value);
+  public String getUsGallons() {
+    return usGallons.getText();
+  }
+
+  @Override
+  public void setUsGallons(String gallons) {
+    usGallons.setText(gallons);
+  }
+
+  @Override
+  public String getCubicInchesPrompt() {
+    return cubicInches.getPromptText();
   }
 
   @Override
@@ -243,44 +421,42 @@ public final class JFXVolumeView extends StackPane implements VolumeView {
   }
 
   @Override
-  public void setCubicInchesValue(String value) {
-    cubicInches.setText(value);
+  public String getCubicInches() {
+    return cubicInches.getText();
   }
 
-  @FXML
-  private void initialize() {
-    getChildren().setAll(root);
+  @Override
+  public void setCubicInches(String cubicInches) {
+    this.cubicInches.setText(cubicInches);
   }
 
-  private void bindMetricInputEventsToPresenter(VolumePresenter presenter) {
-    bindInputEventToPresenter(presenter, milliliters, MILLILITER);
-    bindInputEventToPresenter(presenter, deciliters, DECILITER);
-    bindInputEventToPresenter(presenter, liters, LITER);
-    bindInputEventToPresenter(presenter, hectoliters, HECTOLITER);
-    bindInputEventToPresenter(presenter, cubicMeters, CUBIC_METER);
+  private void bindMetricTextFieldActionEvents() {
+    bindTextFieldActionEvent(milliliters, MILLILITER);
+    bindTextFieldActionEvent(deciliters, DECILITER);
+    bindTextFieldActionEvent(liters, LITER);
+    bindTextFieldActionEvent(hectoliters, HECTOLITER);
+    bindTextFieldActionEvent(cubicMeters, CUBIC_METER);
   }
 
-  private void bindImperialInputEventsToPresenter(VolumePresenter presenter) {
-    bindInputEventToPresenter(presenter, ukTeaspoons, UK_TEASPOON);
-    bindInputEventToPresenter(presenter, ukTablespoons, UK_TABLESPOON);
-    bindInputEventToPresenter(presenter, ukCups, UK_CUP);
-    bindInputEventToPresenter(presenter, ukFluidOunces, UK_FLUID_OUNCE);
-    bindInputEventToPresenter(presenter, ukPints, UK_PINT);
-    bindInputEventToPresenter(presenter, ukGallons, UK_GALLON);
+  private void bindImperialTextFieldActionEvents() {
+    bindTextFieldActionEvent(ukTeaspoons, UK_TEASPOON);
+    bindTextFieldActionEvent(ukTablespoons, UK_TABLESPOON);
+    bindTextFieldActionEvent(ukCups, UK_CUP);
+    bindTextFieldActionEvent(ukFluidOunces, UK_FLUID_OUNCE);
+    bindTextFieldActionEvent(ukPints, UK_PINT);
+    bindTextFieldActionEvent(ukGallons, UK_GALLON);
   }
 
-  private void bindUsInputEventsToPresenter(VolumePresenter presenter) {
-    bindInputEventToPresenter(presenter, usTeaspoons, US_TEASPOON);
-    bindInputEventToPresenter(presenter, usTablespoons, US_TABLESPOON);
-    bindInputEventToPresenter(presenter, usCups, US_CUP);
-    bindInputEventToPresenter(presenter, usFluidOunces, US_FLUID_OUNCE);
-    bindInputEventToPresenter(presenter, usPints, US_PINT);
-    bindInputEventToPresenter(presenter, usGallons, US_GALLON);
+  private void bindUsTextFieldActionEvents() {
+    bindTextFieldActionEvent(usTeaspoons, US_TEASPOON);
+    bindTextFieldActionEvent(usTablespoons, US_TABLESPOON);
+    bindTextFieldActionEvent(usCups, US_CUP);
+    bindTextFieldActionEvent(usFluidOunces, US_FLUID_OUNCE);
+    bindTextFieldActionEvent(usPints, US_PINT);
+    bindTextFieldActionEvent(usGallons, US_GALLON);
   }
 
-  private void bindInputEventToPresenter(VolumePresenter presenter, JFXTextField textField,
-      Volume unit) {
-    textField.setOnAction(e -> presenter
-        .conversionRequested(textField.getText(), unit));
+  private void bindTextFieldActionEvent(JFXTextField textField, Volume unit) {
+    textField.setOnAction(e -> pushEvent(new VolumeConversionRequest(textField.getText(), unit)));
   }
 }

@@ -31,27 +31,35 @@ import static com.ivanvinski.kunvertuh.unit.Mass.POUND;
 import static com.ivanvinski.kunvertuh.unit.Mass.UK_TON;
 import static com.ivanvinski.kunvertuh.unit.Mass.US_TON;
 
-import com.ivanvinski.kunvertuh.presenter.MassPresenter;
+import com.google.inject.Inject;
+import com.ivanvinski.kunvertuh.event.EventStream;
+import com.ivanvinski.kunvertuh.event.conversion.MassConversionRequest;
 import com.ivanvinski.kunvertuh.unit.Mass;
 import com.ivanvinski.kunvertuh.view.MassView;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
-import javafx.scene.layout.StackPane;
 
-public final class JFXMassView extends StackPane implements MassView {
+public final class JFXMassView extends AbstractJFXView implements MassView {
 
-  @FXML
-  private Parent root;
   @FXML
   private JFXTextField milligrams, grams, dekagrams, kilograms, metricTons;
   @FXML
   private JFXTextField grains, drams, ounces, pounds, ukTons, usTons;
 
+  @Inject
+  public JFXMassView(EventStream eventStream) {
+    super(eventStream);
+  }
+
   @Override
-  public void attach(MassPresenter presenter) {
-    bindMetricInputEventsToPresenter(presenter);
-    bindNonMetricInputEventsToPresenter(presenter);
+  public void bindEvents() {
+    bindMetricTextFieldActionEvents();
+    bindNonMetricTextFieldActionEvents();
+  }
+
+  @Override
+  public String getMilligramsPrompt() {
+    return milligrams.getPromptText();
   }
 
   @Override
@@ -60,8 +68,18 @@ public final class JFXMassView extends StackPane implements MassView {
   }
 
   @Override
-  public void setMilligramsValue(String value) {
-    milligrams.setText(value);
+  public String getMilligrams() {
+    return milligrams.getText();
+  }
+
+  @Override
+  public void setMilligrams(String milligrams) {
+    this.milligrams.setText(milligrams);
+  }
+
+  @Override
+  public String getGramsPrompt() {
+    return grams.getPromptText();
   }
 
   @Override
@@ -70,8 +88,18 @@ public final class JFXMassView extends StackPane implements MassView {
   }
 
   @Override
-  public void setGramsValue(String value) {
-    grams.setText(value);
+  public String getGrams() {
+    return grams.getText();
+  }
+
+  @Override
+  public void setGrams(String grams) {
+    this.grams.setText(grams);
+  }
+
+  @Override
+  public String getDekagramsPrompt() {
+    return dekagrams.getPromptText();
   }
 
   @Override
@@ -80,8 +108,18 @@ public final class JFXMassView extends StackPane implements MassView {
   }
 
   @Override
-  public void setDekagramsValue(String value) {
-    dekagrams.setText(value);
+  public String getDekagrams() {
+    return dekagrams.getText();
+  }
+
+  @Override
+  public void setDekagrams(String dekagrams) {
+    this.dekagrams.setText(dekagrams);
+  }
+
+  @Override
+  public String getKilogramsPrompt() {
+    return kilograms.getPromptText();
   }
 
   @Override
@@ -90,8 +128,18 @@ public final class JFXMassView extends StackPane implements MassView {
   }
 
   @Override
-  public void setKilogramsValue(String value) {
-    kilograms.setText(value);
+  public String getKilograms() {
+    return kilograms.getText();
+  }
+
+  @Override
+  public void setKilograms(String kilograms) {
+    this.kilograms.setText(kilograms);
+  }
+
+  @Override
+  public String getMetricTonsPrompt() {
+    return metricTons.getPromptText();
   }
 
   @Override
@@ -100,8 +148,18 @@ public final class JFXMassView extends StackPane implements MassView {
   }
 
   @Override
-  public void setMetricTonsValue(String value) {
-    metricTons.setText(value);
+  public String getMetricTons() {
+    return metricTons.getText();
+  }
+
+  @Override
+  public void setMetricTons(String metricTons) {
+    this.metricTons.setText(metricTons);
+  }
+
+  @Override
+  public String getGrainsPrompt() {
+    return grains.getPromptText();
   }
 
   @Override
@@ -110,8 +168,18 @@ public final class JFXMassView extends StackPane implements MassView {
   }
 
   @Override
-  public void setGrainsValue(String value) {
-    grains.setText(value);
+  public String getGrains() {
+    return grains.getText();
+  }
+
+  @Override
+  public void setGrains(String grains) {
+    this.grains.setText(grains);
+  }
+
+  @Override
+  public String getDramsPrompt() {
+    return drams.getPromptText();
   }
 
   @Override
@@ -120,8 +188,18 @@ public final class JFXMassView extends StackPane implements MassView {
   }
 
   @Override
-  public void setDramsValue(String value) {
-    drams.setText(value);
+  public String getDrams() {
+    return drams.getText();
+  }
+
+  @Override
+  public void setDrams(String drams) {
+    this.drams.setText(drams);
+  }
+
+  @Override
+  public String getOuncesPrompt() {
+    return ounces.getPromptText();
   }
 
   @Override
@@ -130,8 +208,18 @@ public final class JFXMassView extends StackPane implements MassView {
   }
 
   @Override
-  public void setOuncesValue(String value) {
-    ounces.setText(value);
+  public String getOunces() {
+    return ounces.getText();
+  }
+
+  @Override
+  public void setOunces(String ounces) {
+    this.ounces.setText(ounces);
+  }
+
+  @Override
+  public String getPoundsPrompt() {
+    return pounds.getPromptText();
   }
 
   @Override
@@ -140,8 +228,18 @@ public final class JFXMassView extends StackPane implements MassView {
   }
 
   @Override
-  public void setPoundsValue(String value) {
-    pounds.setText(value);
+  public String getPounds() {
+    return pounds.getText();
+  }
+
+  @Override
+  public void setPounds(String pounds) {
+    this.pounds.setText(pounds);
+  }
+
+  @Override
+  public String getUkTonsPrompt() {
+    return ukTons.getPromptText();
   }
 
   @Override
@@ -150,45 +248,53 @@ public final class JFXMassView extends StackPane implements MassView {
   }
 
   @Override
-  public void setUkTonsValue(String value) {
-    ukTons.setText(value);
+  public String getUkTons() {
+    return ukTons.getText();
+  }
+
+  @Override
+  public void setUkTons(String ukTons) {
+    this.ukTons.setText(ukTons);
+  }
+
+  @Override
+  public String getUsTonsPrompt() {
+    return usTons.getPromptText();
   }
 
   @Override
   public void setUsTonsPrompt(String prompt) {
-    usTons.setPromptText(prompt);
+    this.usTons.setPromptText(prompt);
   }
 
   @Override
-  public void setUsTonsValue(String value) {
-    usTons.setText(value);
+  public String getUsTons() {
+    return usTons.getText();
   }
 
-  @FXML
-  private void initialize() {
-    getChildren().setAll(root);
+  @Override
+  public void setUsTons(String usTons) {
+    this.usTons.setText(usTons);
   }
 
-  private void bindMetricInputEventsToPresenter(MassPresenter presenter) {
-    bindInputEventToPresenter(presenter, milligrams, MILLIGRAM);
-    bindInputEventToPresenter(presenter, grams, GRAM);
-    bindInputEventToPresenter(presenter, dekagrams, DEKAGRAM);
-    bindInputEventToPresenter(presenter, kilograms, KILOGRAM);
-    bindInputEventToPresenter(presenter, metricTons, METRIC_TON);
+  private void bindMetricTextFieldActionEvents() {
+    bindTextFieldActionEvent(milligrams, MILLIGRAM);
+    bindTextFieldActionEvent(grams, GRAM);
+    bindTextFieldActionEvent(dekagrams, DEKAGRAM);
+    bindTextFieldActionEvent(kilograms, KILOGRAM);
+    bindTextFieldActionEvent(metricTons, METRIC_TON);
   }
 
-  private void bindNonMetricInputEventsToPresenter(MassPresenter presenter) {
-    bindInputEventToPresenter(presenter, grains, GRAIN);
-    bindInputEventToPresenter(presenter, drams, DRAM);
-    bindInputEventToPresenter(presenter, ounces, OUNCE);
-    bindInputEventToPresenter(presenter, pounds, POUND);
-    bindInputEventToPresenter(presenter, ukTons, UK_TON);
-    bindInputEventToPresenter(presenter, usTons, US_TON);
+  private void bindNonMetricTextFieldActionEvents() {
+    bindTextFieldActionEvent(grains, GRAIN);
+    bindTextFieldActionEvent(drams, DRAM);
+    bindTextFieldActionEvent(ounces, OUNCE);
+    bindTextFieldActionEvent(pounds, POUND);
+    bindTextFieldActionEvent(ukTons, UK_TON);
+    bindTextFieldActionEvent(usTons, US_TON);
   }
 
-  private void bindInputEventToPresenter(MassPresenter presenter, JFXTextField textField,
-      Mass unit) {
-    textField.setOnAction(e -> presenter
-        .conversionRequested(textField.getText(), unit));
+  private void bindTextFieldActionEvent(JFXTextField textField, Mass unit) {
+    textField.setOnAction(e -> pushEvent(new MassConversionRequest(textField.getText(), unit)));
   }
 }

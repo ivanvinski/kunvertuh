@@ -20,13 +20,15 @@
 package com.ivanvinski.kunvertuh.view.javafx;
 
 import com.google.inject.Injector;
+import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.presenter.Presenter;
 import java.util.Objects;
 import javafx.util.Callback;
 
-public class MVPAssembler implements Callback<Class<?>, Object> {
+public final class MVPAssembler implements Callback<Class<?>, Object> {
 
   private final Injector injector;
+  private Presenter presenter;
 
   public MVPAssembler(Injector injector) {
     this.injector = Objects.requireNonNull(injector, "Injector can't be null");
@@ -34,6 +36,13 @@ public class MVPAssembler implements Callback<Class<?>, Object> {
 
   @Override
   public Object call(Class<?> presenterType) {
-    return ((Presenter) injector.getInstance(presenterType)).getView();
+    EventStream eventStream = injector.getInstance(EventStream.class);
+    presenter = (Presenter) injector.getInstance(presenterType);
+    eventStream.subscribe(presenter);
+    return presenter.getView();
+  }
+
+  public Presenter getPresenter() {
+    return presenter;
   }
 }

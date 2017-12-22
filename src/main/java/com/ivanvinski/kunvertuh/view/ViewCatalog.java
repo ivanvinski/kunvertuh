@@ -32,6 +32,7 @@ public final class ViewCatalog {
     Objects.requireNonNull(view, "Can't add null view");
     Class<? extends View> viewType = view.getClass();
     if (contains(viewType)) {
+      getViews().stream().map(Object::getClass).forEach(System.out::println);
       throw new IllegalArgumentException("Duplicate views are not allowed: " + viewType);
     } else {
       views.put(viewType, view);
@@ -46,10 +47,19 @@ public final class ViewCatalog {
     if (!contains(viewType)) {
       throw new IllegalArgumentException("View does not exist: " + viewType);
     }
-    return views.get(viewType);
+    return views.get(viewType) == null ? getIfAssignable(viewType) : views.get(viewType);
   }
 
   public boolean contains(Class<? extends View> viewType) {
-    return views.containsKey(viewType);
+    return views.containsKey(viewType) || getIfAssignable(viewType) != null;
+  }
+
+  private View getIfAssignable(Class<? extends View> assignableType) {
+    for (View view : getViews()) {
+      if (assignableType.isAssignableFrom(view.getClass())) {
+        return view;
+      }
+    }
+    return null;
   }
 }

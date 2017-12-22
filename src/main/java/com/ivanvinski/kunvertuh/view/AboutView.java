@@ -19,25 +19,41 @@
 
 package com.ivanvinski.kunvertuh.view;
 
-import com.ivanvinski.kunvertuh.presenter.AboutPresenter;
+public interface AboutView extends View {
 
-public interface AboutView extends View<AboutPresenter> {
+  String getVersion();
 
   void setVersion(String version);
 
-  void setRepositoryText(String text);
+  String getRepositoryPrompt();
+
+  void setRepositoryPrompt(String text);
+
+  String getRepositoryPage();
 
   void setRepositoryPage(String repositoryUri);
 
+  String getLicense();
+
   void setLicense(String license);
 
-  void setContactText(String text);
+  String getContactPrompt();
 
-  void setContactPage(String contactUri);
+  void setContactPrompt(String text);
 
-  void setAuthor(String author);
+  String getContactUri();
 
-  void setAuthorPage(String authorUri);
+  void setContactUri(String contactUri);
 
-  void setAuthorGithub(String githubUri);
+  String getAuthorName();
+
+  void setAuthorName(String name);
+
+  String getAuthorUri();
+
+  void setAuthorUri(String authorUri);
+
+  String getAuthorGithubUri();
+
+  void setAuthorGithubUri(String githubUri);
 }

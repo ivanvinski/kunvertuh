@@ -19,9 +19,15 @@
 
 package com.ivanvinski.kunvertuh.view.javafx;
 
-import com.ivanvinski.kunvertuh.presenter.MainPresenter;
+import com.google.inject.Inject;
+import com.ivanvinski.kunvertuh.event.EventStream;
+import com.ivanvinski.kunvertuh.event.ViewChangeRequest;
+import com.ivanvinski.kunvertuh.view.AboutView;
+import com.ivanvinski.kunvertuh.view.LengthView;
 import com.ivanvinski.kunvertuh.view.MainView;
+import com.ivanvinski.kunvertuh.view.MassView;
 import com.ivanvinski.kunvertuh.view.View;
+import com.ivanvinski.kunvertuh.view.VolumeView;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
@@ -36,7 +42,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
-public class JFXMainView extends StackPane implements MainView {
+public final class JFXMainView extends AbstractJFXView implements MainView {
 
   private static final String SELECTED_CLASS = "selected";
 
@@ -52,14 +58,18 @@ public class JFXMainView extends StackPane implements MainView {
   private Map<Class<? extends View>, JFXButton> viewButtonMap = new LinkedHashMap<>();
   private View activeView;
 
+  @Inject
+  public JFXMainView(EventStream eventStream) {
+    super(eventStream);
+  }
+
   @Override
-  public void attach(MainPresenter presenter) {
-    getChildren().setAll(root);
+  public void bindEvents() {
     prepareMenuButtonAndNavigationDrawer();
-    length.setOnAction(e -> changeViewAndCloseDrawer(presenter, JFXLengthView.class));
-    mass.setOnAction(e -> changeViewAndCloseDrawer(presenter, JFXMassView.class));
-    volume.setOnAction(e -> changeViewAndCloseDrawer(presenter, JFXVolumeView.class));
-    about.setOnAction(e -> changeViewAndCloseDrawer(presenter, JFXAboutView.class));
+    length.setOnAction(e -> pushViewChangeRequestAndCloseDrawer(LengthView.class));
+    mass.setOnAction(e -> pushViewChangeRequestAndCloseDrawer(MassView.class));
+    volume.setOnAction(e -> pushViewChangeRequestAndCloseDrawer(VolumeView.class));
+    about.setOnAction(e -> pushViewChangeRequestAndCloseDrawer(AboutView.class));
   }
 
   @Override
@@ -119,8 +129,8 @@ public class JFXMainView extends StackPane implements MainView {
     }
   }
 
-  private void changeViewAndCloseDrawer(MainPresenter presenter, Class<? extends View> viewType) {
-    presenter.viewChangeRequested(viewType);
+  private void pushViewChangeRequestAndCloseDrawer(Class<? extends View> viewType) {
+    pushEvent(new ViewChangeRequest(viewType));
     navigation.close();
   }
 

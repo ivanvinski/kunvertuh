@@ -19,9 +19,7 @@
 
 package com.ivanvinski.kunvertuh.view;
 
-import com.ivanvinski.kunvertuh.presenter.MainPresenter;
-
-public interface MainView extends View<MainPresenter> {
+public interface MainView extends View {
 
   View getActiveView();
 

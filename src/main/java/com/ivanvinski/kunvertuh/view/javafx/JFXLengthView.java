@@ -19,39 +19,36 @@
 
 package com.ivanvinski.kunvertuh.view.javafx;
 
-import static com.ivanvinski.kunvertuh.unit.Length.CENTIMETER;
-import static com.ivanvinski.kunvertuh.unit.Length.DECIMETER;
-import static com.ivanvinski.kunvertuh.unit.Length.FOOT;
-import static com.ivanvinski.kunvertuh.unit.Length.INCH;
-import static com.ivanvinski.kunvertuh.unit.Length.KILOMETER;
-import static com.ivanvinski.kunvertuh.unit.Length.METER;
-import static com.ivanvinski.kunvertuh.unit.Length.MILE;
-import static com.ivanvinski.kunvertuh.unit.Length.MILLIMETER;
-import static com.ivanvinski.kunvertuh.unit.Length.UK_LEAGUE;
-import static com.ivanvinski.kunvertuh.unit.Length.US_LEAGUE;
-import static com.ivanvinski.kunvertuh.unit.Length.YARD;
-
-import com.ivanvinski.kunvertuh.presenter.LengthPresenter;
+import com.google.inject.Inject;
+import com.ivanvinski.kunvertuh.event.EventStream;
+import com.ivanvinski.kunvertuh.event.conversion.LengthConversionRequest;
 import com.ivanvinski.kunvertuh.unit.Length;
 import com.ivanvinski.kunvertuh.view.LengthView;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.TextField;
 
-public final class JFXLengthView extends StackPane implements LengthView {
+public final class JFXLengthView extends AbstractJFXView implements LengthView {
 
-  @FXML
-  private Parent root;
   @FXML
   private JFXTextField millimeters, centimeters, decimeters, meters, kilometers;
   @FXML
   private JFXTextField inches, feet, yards, miles, ukLeagues, usLeagues;
 
+  @Inject
+  public JFXLengthView(EventStream eventStream) {
+    super(eventStream);
+  }
+
   @Override
-  public void attach(LengthPresenter presenter) {
-    bindMetricInputEventsToPresenter(presenter);
-    bindNonMetricInputEventsToPresenter(presenter);
+  public void bindEvents() {
+    bindMetricTextFieldActionEvents();
+    bindNonMetricTextFieldActionEvents();
+  }
+
+  @Override
+  public String getMillimetersPrompt() {
+    return millimeters.getPromptText();
   }
 
   @Override
@@ -60,8 +57,18 @@ public final class JFXLengthView extends StackPane implements LengthView {
   }
 
   @Override
-  public void setMillimetersValue(String value) {
-    millimeters.setText(value);
+  public String getMillimeters() {
+    return millimeters.getText();
+  }
+
+  @Override
+  public void setMillimeters(String millimeters) {
+    this.millimeters.setText(millimeters);
+  }
+
+  @Override
+  public String getCentimetersPrompt() {
+    return centimeters.getPromptText();
   }
 
   @Override
@@ -70,8 +77,18 @@ public final class JFXLengthView extends StackPane implements LengthView {
   }
 
   @Override
-  public void setCentimetersValue(String value) {
-    centimeters.setText(value);
+  public String getCentimeters() {
+    return centimeters.getText();
+  }
+
+  @Override
+  public void setCentimeters(String centimeters) {
+    this.centimeters.setText(centimeters);
+  }
+
+  @Override
+  public String getDecimeterPrompt() {
+    return decimeters.getPromptText();
   }
 
   @Override
@@ -80,8 +97,18 @@ public final class JFXLengthView extends StackPane implements LengthView {
   }
 
   @Override
-  public void setDecimetersValue(String value) {
-    decimeters.setText(value);
+  public String getDecimeters() {
+    return decimeters.getText();
+  }
+
+  @Override
+  public void setDecimeters(String decimeters) {
+    this.decimeters.setText(decimeters);
+  }
+
+  @Override
+  public String getMetersPrompt() {
+    return meters.getPromptText();
   }
 
   @Override
@@ -90,8 +117,18 @@ public final class JFXLengthView extends StackPane implements LengthView {
   }
 
   @Override
-  public void setMetersValue(String value) {
-    meters.setText(value);
+  public String getMeters() {
+    return meters.getText();
+  }
+
+  @Override
+  public void setMeters(String meters) {
+    this.meters.setText(meters);
+  }
+
+  @Override
+  public String getKilometersPrompt() {
+    return kilometers.getPromptText();
   }
 
   @Override
@@ -100,8 +137,18 @@ public final class JFXLengthView extends StackPane implements LengthView {
   }
 
   @Override
-  public void setKilometersValue(String value) {
-    kilometers.setText(value);
+  public String getKilometers() {
+    return kilometers.getText();
+  }
+
+  @Override
+  public void setKilometers(String kilometers) {
+    this.kilometers.setText(kilometers);
+  }
+
+  @Override
+  public String getInchesPrompt() {
+    return inches.getPromptText();
   }
 
   @Override
@@ -110,8 +157,18 @@ public final class JFXLengthView extends StackPane implements LengthView {
   }
 
   @Override
-  public void setInchesValue(String value) {
-    inches.setText(value);
+  public String getInches() {
+    return inches.getText();
+  }
+
+  @Override
+  public void setInches(String inches) {
+    this.inches.setText(inches);
+  }
+
+  @Override
+  public String getFeetPrompt() {
+    return feet.getPromptText();
   }
 
   @Override
@@ -120,8 +177,18 @@ public final class JFXLengthView extends StackPane implements LengthView {
   }
 
   @Override
-  public void setFeetValue(String value) {
-    feet.setText(value);
+  public String getFeet() {
+    return feet.getText();
+  }
+
+  @Override
+  public void setFeet(String feet) {
+    this.feet.setText(feet);
+  }
+
+  @Override
+  public String getYardsPrompt() {
+    return yards.getPromptText();
   }
 
   @Override
@@ -130,8 +197,18 @@ public final class JFXLengthView extends StackPane implements LengthView {
   }
 
   @Override
-  public void setYardsValue(String value) {
-    yards.setText(value);
+  public String getYards() {
+    return yards.getText();
+  }
+
+  @Override
+  public void setYards(String yards) {
+    this.yards.setText(yards);
+  }
+
+  @Override
+  public String getMilesPrompt() {
+    return miles.getPromptText();
   }
 
   @Override
@@ -140,8 +217,18 @@ public final class JFXLengthView extends StackPane implements LengthView {
   }
 
   @Override
-  public void setMilesValue(String value) {
-    miles.setText(value);
+  public String getMiles() {
+    return miles.getText();
+  }
+
+  @Override
+  public void setMiles(String miles) {
+    this.miles.setText(miles);
+  }
+
+  @Override
+  public String getUkLeaguesPrompt() {
+    return ukLeagues.getPromptText();
   }
 
   @Override
@@ -150,8 +237,18 @@ public final class JFXLengthView extends StackPane implements LengthView {
   }
 
   @Override
-  public void setUkLeaguesValue(String value) {
-    ukLeagues.setText(value);
+  public String getUkLeagues() {
+    return ukLeagues.getText();
+  }
+
+  @Override
+  public void setUkLeagues(String ukLeagues) {
+    this.ukLeagues.setText(ukLeagues);
+  }
+
+  @Override
+  public String getUsLeaguesPrompt() {
+    return usLeagues.getPromptText();
   }
 
   @Override
@@ -160,35 +257,33 @@ public final class JFXLengthView extends StackPane implements LengthView {
   }
 
   @Override
-  public void setUsLeaguesValue(String value) {
-    usLeagues.setText(value);
+  public String getUsLeagues() {
+    return usLeagues.getText();
   }
 
-  @FXML
-  private void initialize() {
-    getChildren().setAll(root);
+  @Override
+  public void setUsLeagues(String usLeagues) {
+    this.usLeagues.setText(usLeagues);
   }
 
-  private void bindMetricInputEventsToPresenter(LengthPresenter presenter) {
-    bindInputEventToPresenter(presenter, millimeters, MILLIMETER);
-    bindInputEventToPresenter(presenter, centimeters, CENTIMETER);
-    bindInputEventToPresenter(presenter, decimeters, DECIMETER);
-    bindInputEventToPresenter(presenter, meters, METER);
-    bindInputEventToPresenter(presenter, kilometers, KILOMETER);
+  private void bindMetricTextFieldActionEvents() {
+    bindTextFieldActionEvent(millimeters, Length.MILLIMETER);
+    bindTextFieldActionEvent(centimeters, Length.CENTIMETER);
+    bindTextFieldActionEvent(decimeters, Length.DECIMETER);
+    bindTextFieldActionEvent(meters, Length.METER);
+    bindTextFieldActionEvent(kilometers, Length.KILOMETER);
   }
 
-  private void bindNonMetricInputEventsToPresenter(LengthPresenter presenter) {
-    bindInputEventToPresenter(presenter, inches, INCH);
-    bindInputEventToPresenter(presenter, feet, FOOT);
-    bindInputEventToPresenter(presenter, yards, YARD);
-    bindInputEventToPresenter(presenter, miles, MILE);
-    bindInputEventToPresenter(presenter, ukLeagues, UK_LEAGUE);
-    bindInputEventToPresenter(presenter, usLeagues, US_LEAGUE);
+  private void bindNonMetricTextFieldActionEvents() {
+    bindTextFieldActionEvent(inches, Length.INCH);
+    bindTextFieldActionEvent(feet, Length.FOOT);
+    bindTextFieldActionEvent(yards, Length.YARD);
+    bindTextFieldActionEvent(miles, Length.MILE);
+    bindTextFieldActionEvent(ukLeagues, Length.UK_LEAGUE);
+    bindTextFieldActionEvent(usLeagues, Length.US_LEAGUE);
   }
 
-  private void bindInputEventToPresenter(LengthPresenter presenter, JFXTextField textField,
-      Length unit) {
-    textField.setOnAction(e -> presenter
-        .conversionRequested(textField.getText(), unit));
+  private void bindTextFieldActionEvent(TextField textField, Length unit) {
+    textField.setOnAction(e -> pushEvent(new LengthConversionRequest(textField.getText(), unit)));
   }
 }

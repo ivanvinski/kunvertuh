@@ -19,54 +19,93 @@
 
 package com.ivanvinski.kunvertuh.view;
 
-import com.ivanvinski.kunvertuh.presenter.LengthPresenter;
+public interface LengthView extends View {
 
-public interface LengthView extends View<LengthPresenter> {
-
-  @Override
-  void attach(LengthPresenter presenter);
+  String getMillimetersPrompt();
 
   void setMillimetersPrompt(String prompt);
 
-  void setMillimetersValue(String value);
+  String getMillimeters();
+
+  void setMillimeters(String millimeters);
+
+  String getCentimetersPrompt();
 
   void setCentimetersPrompt(String prompt);
 
-  void setCentimetersValue(String value);
+  String getCentimeters();
+
+  void setCentimeters(String centimeters);
+
+  String getDecimeterPrompt();
 
   void setDecimetersPrompt(String prompt);
 
-  void setDecimetersValue(String value);
+  String getDecimeters();
+
+  void setDecimeters(String decimeters);
+
+  String getMetersPrompt();
 
   void setMetersPrompt(String prompt);
 
-  void setMetersValue(String value);
+  String getMeters();
+
+  void setMeters(String meters);
+
+  String getKilometersPrompt();
 
   void setKilometersPrompt(String prompt);
 
-  void setKilometersValue(String value);
+  String getKilometers();
+
+  void setKilometers(String kilometers);
+
+  String getInchesPrompt();
 
   void setInchesPrompt(String prompt);
 
-  void setInchesValue(String value);
+  String getInches();
+
+  void setInches(String inches);
+
+  String getFeetPrompt();
 
   void setFeetPrompt(String prompt);
 
-  void setFeetValue(String value);
+  String getFeet();
+
+  void setFeet(String feet);
+
+  String getYardsPrompt();
 
   void setYardsPrompt(String prompt);
 
-  void setYardsValue(String value);
+  String getYards();
+
+  void setYards(String yards);
+
+  String getMilesPrompt();
 
   void setMilesPrompt(String prompt);
 
-  void setMilesValue(String value);
+  String getMiles();
+
+  void setMiles(String miles);
+
+  String getUkLeaguesPrompt();
 
   void setUkLeaguesPrompt(String prompt);
 
-  void setUkLeaguesValue(String value);
+  String getUkLeagues();
+
+  void setUkLeagues(String ukLeagues);
+
+  String getUsLeaguesPrompt();
 
   void setUsLeaguesPrompt(String prompt);
 
-  void setUsLeaguesValue(String value);
+  String getUsLeagues();
+
+  void setUsLeagues(String usLeagues);
 }

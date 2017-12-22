@@ -19,54 +19,93 @@
 
 package com.ivanvinski.kunvertuh.view;
 
-import com.ivanvinski.kunvertuh.presenter.MassPresenter;
+public interface MassView extends View {
 
-public interface MassView extends View<MassPresenter> {
-
-  @Override
-  void attach(MassPresenter presenter);
+  String getMilligramsPrompt();
 
   void setMilligramsPrompt(String prompt);
 
-  void setMilligramsValue(String value);
+  String getMilligrams();
+
+  void setMilligrams(String milligrams);
+
+  String getGramsPrompt();
 
   void setGramsPrompt(String prompt);
 
-  void setGramsValue(String value);
+  String getGrams();
+
+  void setGrams(String grams);
+
+  String getDekagramsPrompt();
 
   void setDekagramsPrompt(String prompt);
 
-  void setDekagramsValue(String value);
+  String getDekagrams();
+
+  void setDekagrams(String dekagrams);
+
+  String getKilogramsPrompt();
 
   void setKilogramsPrompt(String prompt);
 
-  void setKilogramsValue(String value);
+  String getKilograms();
+
+  void setKilograms(String kilograms);
+
+  String getMetricTonsPrompt();
 
   void setMetricTonsPrompt(String prompt);
 
-  void setMetricTonsValue(String value);
+  String getMetricTons();
+
+  void setMetricTons(String metricTons);
+
+  String getGrainsPrompt();
 
   void setGrainsPrompt(String prompt);
 
-  void setGrainsValue(String value);
+  String getGrains();
+
+  void setGrains(String grains);
+
+  String getDramsPrompt();
 
   void setDramsPrompt(String prompt);
 
-  void setDramsValue(String value);
+  String getDrams();
+
+  void setDrams(String drams);
+
+  String getOuncesPrompt();
 
   void setOuncesPrompt(String prompt);
 
-  void setOuncesValue(String value);
+  String getOunces();
+
+  void setOunces(String ounces);
+
+  String getPoundsPrompt();
 
   void setPoundsPrompt(String prompt);
 
-  void setPoundsValue(String value);
+  String getPounds();
+
+  void setPounds(String pounds);
+
+  String getUkTonsPrompt();
 
   void setUkTonsPrompt(String prompt);
 
-  void setUkTonsValue(String value);
+  String getUkTons();
+
+  void setUkTons(String ukTons);
+
+  String getUsTonsPrompt();
 
   void setUsTonsPrompt(String prompt);
 
-  void setUsTonsValue(String value);
+  String getUsTons();
+
+  void setUsTons(String usTons);
 }
