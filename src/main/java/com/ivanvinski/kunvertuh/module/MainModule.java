@@ -20,6 +20,9 @@
 package com.ivanvinski.kunvertuh.module;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.Singleton;
+import com.ivanvinski.kunvertuh.event.EventStream;
+import com.ivanvinski.kunvertuh.event.GuavaEventStream;
 import com.ivanvinski.kunvertuh.model.LengthModel;
 import com.ivanvinski.kunvertuh.model.MainModel;
 import com.ivanvinski.kunvertuh.model.MassModel;
@@ -43,40 +46,53 @@ import com.ivanvinski.kunvertuh.view.javafx.JFXLengthView;
 import com.ivanvinski.kunvertuh.view.javafx.JFXMainView;
 import com.ivanvinski.kunvertuh.view.javafx.JFXMassView;
 import com.ivanvinski.kunvertuh.view.javafx.JFXVolumeView;
+import java.util.Objects;
 import javafx.application.HostServices;
 
-public class ProductionModule extends AbstractModule {
+public final class MainModule extends AbstractModule {
 
-  private ViewCatalog viewCatalog;
-  private DoubleStringConverter valueConverter;
   private HostServices hostServices;
 
-  public ProductionModule(ViewCatalog viewCatalog, DoubleStringConverter valueConverter,
-      HostServices hostServices) {
-    this.viewCatalog = viewCatalog;
-    this.valueConverter = valueConverter;
-    this.hostServices = hostServices;
+  public MainModule(HostServices hostServices) {
+    this.hostServices = Objects.requireNonNull(hostServices, "Host services can't be null");
   }
 
   @Override
   protected void configure() {
-    bind(ViewCatalog.class).toInstance(viewCatalog);
-    bind(DoubleStringConverter.class).toInstance(valueConverter);
-    bind(HostServices.class).toInstance(hostServices);
-    bind(MainView.class).to(JFXMainView.class);
+    configureModels();
+    configureViews();
+    configurePresenters();
+    configureMiscellaneous();
+  }
+
+  private void configureModels() {
     bind(MainModel.class);
-    bind(MainPresenter.class);
-    bind(LengthView.class).to(JFXLengthView.class);
     bind(LengthModel.class);
-    bind(LengthPresenter.class);
-    bind(MassView.class).to(JFXMassView.class);
     bind(MassModel.class);
-    bind(MassPresenter.class);
-    bind(VolumeView.class).to(JFXVolumeView.class);
     bind(VolumeModel.class);
-    bind(VolumePresenter.class);
-    bind(AboutView.class).to(JFXAboutView.class);
     bind(Browser.class).to(JFXBrowser.class);
+  }
+
+  private void configureViews() {
+    bind(MainView.class).to(JFXMainView.class);
+    bind(LengthView.class).to(JFXLengthView.class);
+    bind(MassView.class).to(JFXMassView.class);
+    bind(VolumeView.class).to(JFXVolumeView.class);
+    bind(AboutView.class).to(JFXAboutView.class);
+  }
+
+  private void configurePresenters() {
+    bind(MainPresenter.class);
+    bind(LengthPresenter.class);
+    bind(MassPresenter.class);
+    bind(VolumePresenter.class);
     bind(AboutPresenter.class);
+  }
+
+  private void configureMiscellaneous() {
+    bind(EventStream.class).to(GuavaEventStream.class).in(Singleton.class);
+    bind(ViewCatalog.class).in(Singleton.class);
+    bind(DoubleStringConverter.class);
+    bind(HostServices.class).toInstance(hostServices);
   }
 }
