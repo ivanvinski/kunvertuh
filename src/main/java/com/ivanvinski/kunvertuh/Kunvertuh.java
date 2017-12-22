@@ -19,16 +19,21 @@
 
 package com.ivanvinski.kunvertuh;
 
-import com.ivanvinski.kunvertuh.module.ProductionModule;
-import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import com.ivanvinski.kunvertuh.event.EventStream;
+import com.ivanvinski.kunvertuh.event.ViewChangeRequest;
+import com.ivanvinski.kunvertuh.module.MainModule;
+import com.ivanvinski.kunvertuh.view.LengthView;
+import com.ivanvinski.kunvertuh.view.MainView;
 import com.ivanvinski.kunvertuh.view.ViewCatalog;
-import com.ivanvinski.kunvertuh.view.javafx.JFXMainView;
 import com.ivanvinski.kunvertuh.view.javafx.JFXViewLoader;
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Kunvertuh extends Application {
+public final class Kunvertuh extends Application {
 
   public static void main(String... args) {
     launch(args);
@@ -36,29 +41,29 @@ public class Kunvertuh extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    ViewCatalog catalog = loadAllViews();
-    JFXMainView mainView = (JFXMainView) catalog.get(JFXMainView.class);
-    Scene scene = new Scene(mainView, 800, 600);
-    scene.getStylesheets().add(getClass().getResource("/style/light.css").toExternalForm());
-    primaryStage.setScene(scene);
+    Injector injector = Guice.createInjector(new MainModule(getHostServices()));
+    EventStream eventStream = injector.getInstance(EventStream.class);
+    ViewCatalog loadedViews = loadAllViews(injector);
+    primaryStage.setScene(createScene(loadedViews));
+    eventStream.push(new ViewChangeRequest(LengthView.class));
     primaryStage.centerOnScreen();
     primaryStage.show();
   }
 
-  private ViewCatalog loadAllViews() {
-    ViewCatalog views = new ViewCatalog();
-    DoubleStringConverter converter = new DoubleStringConverter();
-    ProductionModule module = new ProductionModule(views, converter, getHostServices());
-    views.add(new JFXViewLoader(getClass().getResource("/view/length-units.fxml"), module)
-        .load());
-    views.add(new JFXViewLoader(getClass().getResource("/view/mass-units.fxml"), module)
-        .load());
-    views.add(new JFXViewLoader(getClass().getResource("/view/volume-units.fxml"), module)
-        .load());
-    views.add(new JFXViewLoader(getClass().getResource("/view/main.fxml"), module)
-        .load());
-    views.add(new JFXViewLoader(getClass().getResource("/view/about.fxml"), module)
-        .load());
-    return views;
+  private ViewCatalog loadAllViews(Injector injector) {
+    JFXViewLoader loader = new JFXViewLoader(injector);
+    loader.load(getClass().getResource("/view/length-units.fxml"));
+    loader.load(getClass().getResource("/view/mass-units.fxml"));
+    loader.load(getClass().getResource("/view/volume-units.fxml"));
+    loader.load(getClass().getResource("/view/main.fxml"));
+    loader.load(getClass().getResource("/view/about.fxml"));
+    return loader.getLoadedViews();
+  }
+
+  private Scene createScene(ViewCatalog views) {
+    MainView mainView = (MainView) views.get(MainView.class);
+    Scene scene = new Scene((Parent) mainView, 800, 600);
+    scene.getStylesheets().add(getClass().getResource("/style/light.css").toExternalForm());
+    return scene;
   }
 }
