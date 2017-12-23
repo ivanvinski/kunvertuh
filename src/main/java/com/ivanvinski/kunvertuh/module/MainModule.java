@@ -24,30 +24,28 @@ import com.google.inject.Singleton;
 import com.google.inject.TypeLiteral;
 import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.event.GuavaEventStream;
+import com.ivanvinski.kunvertuh.measurement.Length;
+import com.ivanvinski.kunvertuh.measurement.Mass;
+import com.ivanvinski.kunvertuh.measurement.UnitConverter;
+import com.ivanvinski.kunvertuh.measurement.Volume;
 import com.ivanvinski.kunvertuh.model.MainModel;
 import com.ivanvinski.kunvertuh.presenter.AboutPresenter;
 import com.ivanvinski.kunvertuh.presenter.LengthPresenter;
 import com.ivanvinski.kunvertuh.presenter.MainPresenter;
 import com.ivanvinski.kunvertuh.presenter.MassPresenter;
 import com.ivanvinski.kunvertuh.presenter.VolumePresenter;
-import com.ivanvinski.kunvertuh.measurement.Length;
-import com.ivanvinski.kunvertuh.measurement.Mass;
-import com.ivanvinski.kunvertuh.measurement.UnitConverter;
-import com.ivanvinski.kunvertuh.measurement.Volume;
 import com.ivanvinski.kunvertuh.util.Browser;
 import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 import com.ivanvinski.kunvertuh.util.JFXBrowser;
 import com.ivanvinski.kunvertuh.view.AboutView;
-import com.ivanvinski.kunvertuh.view.LengthView;
+import com.ivanvinski.kunvertuh.view.ConverterView;
 import com.ivanvinski.kunvertuh.view.MainView;
-import com.ivanvinski.kunvertuh.view.MassView;
 import com.ivanvinski.kunvertuh.view.ViewCatalog;
-import com.ivanvinski.kunvertuh.view.VolumeView;
 import com.ivanvinski.kunvertuh.view.javafx.JFXAboutView;
-import com.ivanvinski.kunvertuh.view.javafx.JFXLengthView;
+import com.ivanvinski.kunvertuh.view.javafx.JFXLengthConverterView;
 import com.ivanvinski.kunvertuh.view.javafx.JFXMainView;
-import com.ivanvinski.kunvertuh.view.javafx.JFXMassView;
-import com.ivanvinski.kunvertuh.view.javafx.JFXVolumeView;
+import com.ivanvinski.kunvertuh.view.javafx.JFXMassConverterView;
+import com.ivanvinski.kunvertuh.view.javafx.JFXVolumeConverterView;
 import java.util.Objects;
 import javafx.application.HostServices;
 
@@ -80,9 +78,12 @@ public final class MainModule extends AbstractModule {
 
   private void configureViews() {
     bind(MainView.class).to(JFXMainView.class);
-    bind(LengthView.class).to(JFXLengthView.class);
-    bind(MassView.class).to(JFXMassView.class);
-    bind(VolumeView.class).to(JFXVolumeView.class);
+    bind(new TypeLiteral<ConverterView<Length>>() {
+    }).to(JFXLengthConverterView.class);
+    bind(new TypeLiteral<ConverterView<Mass>>() {
+    }).to(JFXMassConverterView.class);
+    bind(new TypeLiteral<ConverterView<Volume>>() {
+    }).to(JFXVolumeConverterView.class);
     bind(AboutView.class).to(JFXAboutView.class);
   }
 
