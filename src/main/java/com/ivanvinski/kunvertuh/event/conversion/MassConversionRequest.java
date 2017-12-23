@@ -19,7 +19,7 @@
 
 package com.ivanvinski.kunvertuh.event.conversion;
 
-import com.ivanvinski.kunvertuh.unit.Mass;
+import com.ivanvinski.kunvertuh.measurement.Mass;
 
 public class MassConversionRequest extends AbstractConversionRequest<Mass> {
 

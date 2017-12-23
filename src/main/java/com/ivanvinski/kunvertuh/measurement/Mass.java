@@ -17,12 +17,12 @@
  *
  */
 
-package com.ivanvinski.kunvertuh.unit;
+package com.ivanvinski.kunvertuh.measurement;
 
-import static com.ivanvinski.kunvertuh.unit.MeasurementSystem.IMPERIAL;
-import static com.ivanvinski.kunvertuh.unit.MeasurementSystem.IMPERIAL_AND_US_CUSTOMARY;
-import static com.ivanvinski.kunvertuh.unit.MeasurementSystem.METRIC;
-import static com.ivanvinski.kunvertuh.unit.MeasurementSystem.US_CUSTOMARY;
+import static com.ivanvinski.kunvertuh.measurement.MeasurementSystem.IMPERIAL;
+import static com.ivanvinski.kunvertuh.measurement.MeasurementSystem.IMPERIAL_AND_US_CUSTOMARY;
+import static com.ivanvinski.kunvertuh.measurement.MeasurementSystem.METRIC;
+import static com.ivanvinski.kunvertuh.measurement.MeasurementSystem.US_CUSTOMARY;
 
 public enum Mass implements Unit {
 

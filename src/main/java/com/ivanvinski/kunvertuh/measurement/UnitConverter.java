@@ -17,7 +17,7 @@
  *
  */
 
-package com.ivanvinski.kunvertuh.unit;
+package com.ivanvinski.kunvertuh.measurement;
 
 import com.google.inject.Inject;
 import java.util.Arrays;

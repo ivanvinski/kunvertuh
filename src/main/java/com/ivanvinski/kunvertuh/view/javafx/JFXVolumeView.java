@@ -19,29 +19,29 @@
 
 package com.ivanvinski.kunvertuh.view.javafx;
 
-import static com.ivanvinski.kunvertuh.unit.Volume.CUBIC_INCH;
-import static com.ivanvinski.kunvertuh.unit.Volume.CUBIC_METER;
-import static com.ivanvinski.kunvertuh.unit.Volume.DECILITER;
-import static com.ivanvinski.kunvertuh.unit.Volume.HECTOLITER;
-import static com.ivanvinski.kunvertuh.unit.Volume.LITER;
-import static com.ivanvinski.kunvertuh.unit.Volume.MILLILITER;
-import static com.ivanvinski.kunvertuh.unit.Volume.UK_CUP;
-import static com.ivanvinski.kunvertuh.unit.Volume.UK_FLUID_OUNCE;
-import static com.ivanvinski.kunvertuh.unit.Volume.UK_GALLON;
-import static com.ivanvinski.kunvertuh.unit.Volume.UK_PINT;
-import static com.ivanvinski.kunvertuh.unit.Volume.UK_TABLESPOON;
-import static com.ivanvinski.kunvertuh.unit.Volume.UK_TEASPOON;
-import static com.ivanvinski.kunvertuh.unit.Volume.US_CUP;
-import static com.ivanvinski.kunvertuh.unit.Volume.US_FLUID_OUNCE;
-import static com.ivanvinski.kunvertuh.unit.Volume.US_GALLON;
-import static com.ivanvinski.kunvertuh.unit.Volume.US_PINT;
-import static com.ivanvinski.kunvertuh.unit.Volume.US_TABLESPOON;
-import static com.ivanvinski.kunvertuh.unit.Volume.US_TEASPOON;
+import static com.ivanvinski.kunvertuh.measurement.Volume.CUBIC_INCH;
+import static com.ivanvinski.kunvertuh.measurement.Volume.CUBIC_METER;
+import static com.ivanvinski.kunvertuh.measurement.Volume.DECILITER;
+import static com.ivanvinski.kunvertuh.measurement.Volume.HECTOLITER;
+import static com.ivanvinski.kunvertuh.measurement.Volume.LITER;
+import static com.ivanvinski.kunvertuh.measurement.Volume.MILLILITER;
+import static com.ivanvinski.kunvertuh.measurement.Volume.UK_CUP;
+import static com.ivanvinski.kunvertuh.measurement.Volume.UK_FLUID_OUNCE;
+import static com.ivanvinski.kunvertuh.measurement.Volume.UK_GALLON;
+import static com.ivanvinski.kunvertuh.measurement.Volume.UK_PINT;
+import static com.ivanvinski.kunvertuh.measurement.Volume.UK_TABLESPOON;
+import static com.ivanvinski.kunvertuh.measurement.Volume.UK_TEASPOON;
+import static com.ivanvinski.kunvertuh.measurement.Volume.US_CUP;
+import static com.ivanvinski.kunvertuh.measurement.Volume.US_FLUID_OUNCE;
+import static com.ivanvinski.kunvertuh.measurement.Volume.US_GALLON;
+import static com.ivanvinski.kunvertuh.measurement.Volume.US_PINT;
+import static com.ivanvinski.kunvertuh.measurement.Volume.US_TABLESPOON;
+import static com.ivanvinski.kunvertuh.measurement.Volume.US_TEASPOON;
 
 import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.event.conversion.VolumeConversionRequest;
-import com.ivanvinski.kunvertuh.unit.Volume;
+import com.ivanvinski.kunvertuh.measurement.Volume;
 import com.ivanvinski.kunvertuh.view.VolumeView;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;

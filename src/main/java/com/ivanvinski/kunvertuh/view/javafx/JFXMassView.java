@@ -19,22 +19,22 @@
 
 package com.ivanvinski.kunvertuh.view.javafx;
 
-import static com.ivanvinski.kunvertuh.unit.Mass.DEKAGRAM;
-import static com.ivanvinski.kunvertuh.unit.Mass.DRAM;
-import static com.ivanvinski.kunvertuh.unit.Mass.GRAIN;
-import static com.ivanvinski.kunvertuh.unit.Mass.GRAM;
-import static com.ivanvinski.kunvertuh.unit.Mass.KILOGRAM;
-import static com.ivanvinski.kunvertuh.unit.Mass.METRIC_TON;
-import static com.ivanvinski.kunvertuh.unit.Mass.MILLIGRAM;
-import static com.ivanvinski.kunvertuh.unit.Mass.OUNCE;
-import static com.ivanvinski.kunvertuh.unit.Mass.POUND;
-import static com.ivanvinski.kunvertuh.unit.Mass.UK_TON;
-import static com.ivanvinski.kunvertuh.unit.Mass.US_TON;
+import static com.ivanvinski.kunvertuh.measurement.Mass.DEKAGRAM;
+import static com.ivanvinski.kunvertuh.measurement.Mass.DRAM;
+import static com.ivanvinski.kunvertuh.measurement.Mass.GRAIN;
+import static com.ivanvinski.kunvertuh.measurement.Mass.GRAM;
+import static com.ivanvinski.kunvertuh.measurement.Mass.KILOGRAM;
+import static com.ivanvinski.kunvertuh.measurement.Mass.METRIC_TON;
+import static com.ivanvinski.kunvertuh.measurement.Mass.MILLIGRAM;
+import static com.ivanvinski.kunvertuh.measurement.Mass.OUNCE;
+import static com.ivanvinski.kunvertuh.measurement.Mass.POUND;
+import static com.ivanvinski.kunvertuh.measurement.Mass.UK_TON;
+import static com.ivanvinski.kunvertuh.measurement.Mass.US_TON;
 
 import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.event.conversion.MassConversionRequest;
-import com.ivanvinski.kunvertuh.unit.Mass;
+import com.ivanvinski.kunvertuh.measurement.Mass;
 import com.ivanvinski.kunvertuh.view.MassView;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;

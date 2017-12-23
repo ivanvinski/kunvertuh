@@ -19,7 +19,7 @@
 
 package com.ivanvinski.kunvertuh.event.conversion;
 
-import com.ivanvinski.kunvertuh.unit.Unit;
+import com.ivanvinski.kunvertuh.measurement.Unit;
 
 public class AbstractConversionRequest<U extends Unit> {
 

@@ -17,7 +17,7 @@
  *
  */
 
-package com.ivanvinski.kunvertuh.unit;
+package com.ivanvinski.kunvertuh.measurement;
 
 public interface Unit {
 

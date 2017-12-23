@@ -19,7 +19,7 @@
 
 package com.ivanvinski.kunvertuh.event.conversion;
 
-import com.ivanvinski.kunvertuh.unit.Length;
+import com.ivanvinski.kunvertuh.measurement.Length;
 
 public final class LengthConversionRequest extends AbstractConversionRequest<Length> {
 

@@ -19,7 +19,7 @@
 
 package com.ivanvinski.kunvertuh.event.conversion;
 
-import com.ivanvinski.kunvertuh.unit.Volume;
+import com.ivanvinski.kunvertuh.measurement.Volume;
 
 public final class VolumeConversionRequest extends AbstractConversionRequest<Volume> {
 

@@ -19,23 +19,23 @@
 
 package com.ivanvinski.kunvertuh.presenter;
 
-import static com.ivanvinski.kunvertuh.unit.Length.CENTIMETER;
-import static com.ivanvinski.kunvertuh.unit.Length.DECIMETER;
-import static com.ivanvinski.kunvertuh.unit.Length.FOOT;
-import static com.ivanvinski.kunvertuh.unit.Length.INCH;
-import static com.ivanvinski.kunvertuh.unit.Length.KILOMETER;
-import static com.ivanvinski.kunvertuh.unit.Length.METER;
-import static com.ivanvinski.kunvertuh.unit.Length.MILE;
-import static com.ivanvinski.kunvertuh.unit.Length.MILLIMETER;
-import static com.ivanvinski.kunvertuh.unit.Length.UK_LEAGUE;
-import static com.ivanvinski.kunvertuh.unit.Length.US_LEAGUE;
-import static com.ivanvinski.kunvertuh.unit.Length.YARD;
+import static com.ivanvinski.kunvertuh.measurement.Length.CENTIMETER;
+import static com.ivanvinski.kunvertuh.measurement.Length.DECIMETER;
+import static com.ivanvinski.kunvertuh.measurement.Length.FOOT;
+import static com.ivanvinski.kunvertuh.measurement.Length.INCH;
+import static com.ivanvinski.kunvertuh.measurement.Length.KILOMETER;
+import static com.ivanvinski.kunvertuh.measurement.Length.METER;
+import static com.ivanvinski.kunvertuh.measurement.Length.MILE;
+import static com.ivanvinski.kunvertuh.measurement.Length.MILLIMETER;
+import static com.ivanvinski.kunvertuh.measurement.Length.UK_LEAGUE;
+import static com.ivanvinski.kunvertuh.measurement.Length.US_LEAGUE;
+import static com.ivanvinski.kunvertuh.measurement.Length.YARD;
 
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.event.conversion.LengthConversionRequest;
-import com.ivanvinski.kunvertuh.unit.Length;
-import com.ivanvinski.kunvertuh.unit.UnitConverter;
+import com.ivanvinski.kunvertuh.measurement.Length;
+import com.ivanvinski.kunvertuh.measurement.UnitConverter;
 import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 import com.ivanvinski.kunvertuh.view.LengthView;
 import java.util.Objects;

@@ -22,7 +22,7 @@ package com.ivanvinski.kunvertuh.view.javafx;
 import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.event.conversion.LengthConversionRequest;
-import com.ivanvinski.kunvertuh.unit.Length;
+import com.ivanvinski.kunvertuh.measurement.Length;
 import com.ivanvinski.kunvertuh.view.LengthView;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
