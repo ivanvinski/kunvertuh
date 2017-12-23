@@ -17,13 +17,31 @@
  *
  */
 
-package com.ivanvinski.kunvertuh.event.conversion;
+package com.ivanvinski.kunvertuh.event;
 
-import com.ivanvinski.kunvertuh.measurement.Volume;
+import com.ivanvinski.kunvertuh.measurement.Unit;
 
-public final class VolumeConversionRequest extends AbstractConversionRequest<Volume> {
+public final class ConversionRequest {
 
-  public VolumeConversionRequest(String value, Volume unit) {
-    super(value, unit);
+  private String value;
+  private Unit unit;
+  private Class<? extends Unit> unitType;
+
+  public <U extends Unit> ConversionRequest(String value, U unit) {
+    this.value = value;
+    this.unit = unit;
+    unitType = unit.getClass();
+  }
+
+  public String getValue() {
+    return value;
+  }
+
+  public Unit getUnit() {
+    return unit;
+  }
+
+  public Class<? extends Unit> getUnitType() {
+    return unitType;
   }
 }
