@@ -26,32 +26,25 @@ import java.util.Objects;
 
 public class MainModel {
 
-  private ViewCatalog catalog;
+  private ViewCatalog views;
   private View activeView;
+  private String activeViewIdentifier;
 
   @Inject
-  public MainModel(ViewCatalog catalog) {
-    this.catalog = Objects.requireNonNull(catalog, "View catalog can't be null");
+  public MainModel(ViewCatalog views) {
+    this.views = Objects.requireNonNull(views, "View catalog can't be null");
   }
 
   public View getActiveView() {
     return activeView;
   }
 
-  public void setActiveView(View view) {
-    activeView = view;
+  public void setActiveView(String identifier) {
+    activeView = views.getView(identifier);
+    activeViewIdentifier = identifier;
   }
 
-  public View getView(Class<? extends View> viewType) {
-    return getViewByType(viewType);
-  }
-
-  private View getViewByType(Class<? extends View> viewType) {
-    for (View view : catalog.getViews()) {
-      if (viewType.isAssignableFrom(view.getClass())) {
-        return view;
-      }
-    }
-    throw new NullPointerException("View not found: " + viewType);
+  public String getActiveViewIdentifier() {
+    return activeViewIdentifier;
   }
 }
