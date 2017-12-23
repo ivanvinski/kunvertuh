@@ -19,60 +19,22 @@
 
 package com.ivanvinski.kunvertuh.presenter;
 
-import static com.ivanvinski.kunvertuh.measurement.Mass.DEKAGRAM;
-import static com.ivanvinski.kunvertuh.measurement.Mass.DRAM;
-import static com.ivanvinski.kunvertuh.measurement.Mass.GRAIN;
-import static com.ivanvinski.kunvertuh.measurement.Mass.GRAM;
-import static com.ivanvinski.kunvertuh.measurement.Mass.KILOGRAM;
-import static com.ivanvinski.kunvertuh.measurement.Mass.METRIC_TON;
-import static com.ivanvinski.kunvertuh.measurement.Mass.MILLIGRAM;
-import static com.ivanvinski.kunvertuh.measurement.Mass.OUNCE;
-import static com.ivanvinski.kunvertuh.measurement.Mass.POUND;
-import static com.ivanvinski.kunvertuh.measurement.Mass.UK_TON;
-import static com.ivanvinski.kunvertuh.measurement.Mass.US_TON;
-
-import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
-import com.ivanvinski.kunvertuh.event.conversion.MassConversionRequest;
 import com.ivanvinski.kunvertuh.measurement.Mass;
 import com.ivanvinski.kunvertuh.measurement.UnitConverter;
 import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
-import com.ivanvinski.kunvertuh.view.MassView;
-import java.util.Objects;
+import com.ivanvinski.kunvertuh.view.ConverterView;
 
-public final class MassPresenter extends AbstractPresenter<MassView, UnitConverter<Mass>> {
-
-  private DoubleStringConverter valueConverter;
+public final class MassPresenter extends AbstractConverterPresenter<Mass> {
 
   @Inject
-  public MassPresenter(MassView view, UnitConverter<Mass> model,
+  public MassPresenter(ConverterView<Mass> view, UnitConverter<Mass> model,
       DoubleStringConverter valueConverter) {
-    super(view, model);
-    this.valueConverter = Objects.requireNonNull(valueConverter, "Value converter can't be null");
+    super(view, model, valueConverter);
   }
 
-  @Subscribe
-  public void onConversionRequested(MassConversionRequest request) {
-    Double conversionValue = valueConverter.parse(request.getValue());
-    getModel().convert(conversionValue, request.getUnit());
-    updateMetricValues();
-    updateNonMetricValues();
-  }
-
-  private void updateMetricValues() {
-    getView().setMilligrams(valueConverter.format(getModel().getValue(MILLIGRAM)));
-    getView().setGrams(valueConverter.format(getModel().getValue(GRAM)));
-    getView().setDekagrams(valueConverter.format(getModel().getValue(DEKAGRAM)));
-    getView().setKilograms(valueConverter.format(getModel().getValue(KILOGRAM)));
-    getView().setMetricTons(valueConverter.format(getModel().getValue(METRIC_TON)));
-  }
-
-  private void updateNonMetricValues() {
-    getView().setGrains(valueConverter.format(getModel().getValue(GRAIN)));
-    getView().setDrams(valueConverter.format(getModel().getValue(DRAM)));
-    getView().setOunces(valueConverter.format(getModel().getValue(OUNCE)));
-    getView().setPounds(valueConverter.format(getModel().getValue(POUND)));
-    getView().setUkTons(valueConverter.format(getModel().getValue(UK_TON)));
-    getView().setUsTons(valueConverter.format(getModel().getValue(US_TON)));
+  @Override
+  public Class<Mass> getUnitConversionType() {
+    return Mass.class;
   }
 }

@@ -19,78 +19,22 @@
 
 package com.ivanvinski.kunvertuh.presenter;
 
-import static com.ivanvinski.kunvertuh.measurement.Volume.CUBIC_INCH;
-import static com.ivanvinski.kunvertuh.measurement.Volume.CUBIC_METER;
-import static com.ivanvinski.kunvertuh.measurement.Volume.DECILITER;
-import static com.ivanvinski.kunvertuh.measurement.Volume.HECTOLITER;
-import static com.ivanvinski.kunvertuh.measurement.Volume.LITER;
-import static com.ivanvinski.kunvertuh.measurement.Volume.MILLILITER;
-import static com.ivanvinski.kunvertuh.measurement.Volume.UK_CUP;
-import static com.ivanvinski.kunvertuh.measurement.Volume.UK_FLUID_OUNCE;
-import static com.ivanvinski.kunvertuh.measurement.Volume.UK_GALLON;
-import static com.ivanvinski.kunvertuh.measurement.Volume.UK_PINT;
-import static com.ivanvinski.kunvertuh.measurement.Volume.UK_TABLESPOON;
-import static com.ivanvinski.kunvertuh.measurement.Volume.UK_TEASPOON;
-import static com.ivanvinski.kunvertuh.measurement.Volume.US_CUP;
-import static com.ivanvinski.kunvertuh.measurement.Volume.US_FLUID_OUNCE;
-import static com.ivanvinski.kunvertuh.measurement.Volume.US_GALLON;
-import static com.ivanvinski.kunvertuh.measurement.Volume.US_PINT;
-import static com.ivanvinski.kunvertuh.measurement.Volume.US_TABLESPOON;
-import static com.ivanvinski.kunvertuh.measurement.Volume.US_TEASPOON;
-
-import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
-import com.ivanvinski.kunvertuh.event.conversion.VolumeConversionRequest;
 import com.ivanvinski.kunvertuh.measurement.UnitConverter;
 import com.ivanvinski.kunvertuh.measurement.Volume;
 import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
-import com.ivanvinski.kunvertuh.view.VolumeView;
-import java.util.Objects;
+import com.ivanvinski.kunvertuh.view.ConverterView;
 
-public final class VolumePresenter extends AbstractPresenter<VolumeView, UnitConverter<Volume>> {
-
-  private DoubleStringConverter valueConverter;
+public final class VolumePresenter extends AbstractConverterPresenter<Volume> {
 
   @Inject
-  public VolumePresenter(VolumeView view, UnitConverter<Volume> model,
+  public VolumePresenter(ConverterView<Volume> view, UnitConverter<Volume> model,
       DoubleStringConverter valueConverter) {
-    super(view, model);
-    this.valueConverter = Objects.requireNonNull(valueConverter, "Value converter can't be null");
+    super(view, model, valueConverter);
   }
 
-  @Subscribe
-  public void onConversionRequested(VolumeConversionRequest request) {
-    Double conversionValue = valueConverter.parse(request.getValue());
-    getModel().convert(conversionValue, request.getUnit());
-    updateMetricValues();
-    updateImperialValues();
-    updateUsValues();
-    getView().setCubicInches(valueConverter.format(getModel().getValue(CUBIC_INCH)));
-  }
-
-  private void updateMetricValues() {
-    getView().setMilliliters(valueConverter.format(getModel().getValue(MILLILITER)));
-    getView().setDeciliters(valueConverter.format(getModel().getValue(DECILITER)));
-    getView().setLiters(valueConverter.format(getModel().getValue(LITER)));
-    getView().setHectoliters(valueConverter.format(getModel().getValue(HECTOLITER)));
-    getView().setCubicMeters(valueConverter.format(getModel().getValue(CUBIC_METER)));
-  }
-
-  private void updateImperialValues() {
-    getView().setUkTeaspoons(valueConverter.format(getModel().getValue(UK_TEASPOON)));
-    getView().setUkTablespoons(valueConverter.format(getModel().getValue(UK_TABLESPOON)));
-    getView().setUkCups(valueConverter.format(getModel().getValue(UK_CUP)));
-    getView().setUkFluidOunces(valueConverter.format(getModel().getValue(UK_FLUID_OUNCE)));
-    getView().setUkPints(valueConverter.format(getModel().getValue(UK_PINT)));
-    getView().setUkGallons(valueConverter.format(getModel().getValue(UK_GALLON)));
-  }
-
-  private void updateUsValues() {
-    getView().setUsTeaspoons(valueConverter.format(getModel().getValue(US_TEASPOON)));
-    getView().setUsTablespoons(valueConverter.format(getModel().getValue(US_TABLESPOON)));
-    getView().setUsCups(valueConverter.format(getModel().getValue(US_CUP)));
-    getView().setUsFluidOunces(valueConverter.format(getModel().getValue(US_FLUID_OUNCE)));
-    getView().setUsPints(valueConverter.format(getModel().getValue(US_PINT)));
-    getView().setUsGallons(valueConverter.format(getModel().getValue(US_GALLON)));
+  @Override
+  public Class<Volume> getUnitConversionType() {
+    return Volume.class;
   }
 }

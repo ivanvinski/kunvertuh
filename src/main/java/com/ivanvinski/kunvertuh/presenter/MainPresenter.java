@@ -24,7 +24,6 @@ import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.event.ViewChangeRequest;
 import com.ivanvinski.kunvertuh.model.MainModel;
 import com.ivanvinski.kunvertuh.view.MainView;
-import com.ivanvinski.kunvertuh.view.View;
 
 public final class MainPresenter extends AbstractPresenter<MainView, MainModel> {
 
@@ -35,16 +34,14 @@ public final class MainPresenter extends AbstractPresenter<MainView, MainModel> 
 
   @Subscribe
   public void onViewChangeRequst(ViewChangeRequest request) {
-    View nextView = getModel().getView(request.getViewType());
-    if (!isActiveView(nextView.getClass())) {
-      getView().setActiveView(nextView);
-      getModel().setActiveView(nextView);
+    getModel().setActiveView(request.getViewIdentifier());
+    if (isActiveView(request.getViewIdentifier())) {
+      getView().setActiveView(getModel().getActiveView());
     }
   }
 
-  private boolean isActiveView(Class<? extends View> nextViewType) {
-    View activeView = getModel().getActiveView();
-    Class<? extends View> activeViewType = activeView == null ? null : activeView.getClass();
-    return nextViewType == activeViewType;
+  private boolean isActiveView(String viewIdentifier) {
+    String activeViewIdentifier = getModel().getActiveViewIdentifier();
+    return activeViewIdentifier != null && viewIdentifier.equals(activeViewIdentifier);
   }
 }
