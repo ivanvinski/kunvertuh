@@ -19,11 +19,7 @@
 
 package com.ivanvinski.kunvertuh.unit;
 
-public interface Unit {
+public enum MeasurementSystem {
 
-  double getBaseUnitFactor();
-
-  String getSymbol();
-
-  MeasurementSystem getSystem();
+  METRIC, IMPERIAL, US_CUSTOMARY, IMPERIAL_AND_US_CUSTOMARY
 }

@@ -19,22 +19,47 @@
 
 package com.ivanvinski.kunvertuh.unit;
 
-public final class Length extends Unit {
+import static com.ivanvinski.kunvertuh.unit.MeasurementSystem.IMPERIAL;
+import static com.ivanvinski.kunvertuh.unit.MeasurementSystem.IMPERIAL_AND_US_CUSTOMARY;
+import static com.ivanvinski.kunvertuh.unit.MeasurementSystem.METRIC;
+import static com.ivanvinski.kunvertuh.unit.MeasurementSystem.US_CUSTOMARY;
 
-  public static final Length MILLIMETER = new Length("mm", .001d);
-  public static final Length CENTIMETER = new Length("cm", .01d);
-  public static final Length DECIMETER = new Length("dm", .1d);
-  public static final Length METER = new Length("m", 1d);
-  public static final Length KILOMETER = new Length("km", 1000d);
+public enum Length implements Unit {
 
-  public static final Length INCH = new Length("in", .0254d);
-  public static final Length FOOT = new Length("ft", .3048d);
-  public static final Length YARD = new Length("yd", .9144d);
-  public static final Length MILE = new Length("mi", 1609.344d);
-  public static final Length UK_LEAGUE = new Length("", 4828d);
-  public static final Length US_LEAGUE = new Length("", 4828.0417d);
+  MILLIMETER(.001d, "mm", METRIC),
+  CENTIMETER(.01d, "cm", METRIC),
+  DECIMETER(.1d, "dm", METRIC),
+  METER(1d, "m", METRIC),
+  KILOMETER(1000d, "km", METRIC),
 
-  private Length(String abbreviation, double baseUnitFactor) {
-    super(abbreviation, baseUnitFactor);
+  INCH(.0254d, "in", IMPERIAL_AND_US_CUSTOMARY),
+  FOOT(.3048d, "ft", IMPERIAL_AND_US_CUSTOMARY),
+  YARD(.9144d, "yd", IMPERIAL_AND_US_CUSTOMARY),
+  MILE(1609.344d, "mi", IMPERIAL_AND_US_CUSTOMARY),
+  UK_LEAGUE(4828d, "st leag", IMPERIAL),
+  US_LEAGUE(4828.0417d, "st leag", US_CUSTOMARY);
+
+  private double baseUnitFactor;
+  private String symbol;
+  private MeasurementSystem measurementSystem;
+
+  Length(double baseUnitFactor, String symbol, MeasurementSystem measurementSystem) {
+    this.symbol = symbol;
+    this.baseUnitFactor = baseUnitFactor;
+    this.measurementSystem = measurementSystem;
+  }
+
+  @Override
+  public double getBaseUnitFactor() {
+    return baseUnitFactor;
+  }
+
+  @Override
+  public String getSymbol() {
+    return symbol;
+  }
+
+  public MeasurementSystem getSystem() {
+    return measurementSystem;
   }
 }

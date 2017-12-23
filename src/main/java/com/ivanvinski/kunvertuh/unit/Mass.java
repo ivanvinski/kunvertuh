@@ -19,22 +19,48 @@
 
 package com.ivanvinski.kunvertuh.unit;
 
-public final class Mass extends Unit {
+import static com.ivanvinski.kunvertuh.unit.MeasurementSystem.IMPERIAL;
+import static com.ivanvinski.kunvertuh.unit.MeasurementSystem.IMPERIAL_AND_US_CUSTOMARY;
+import static com.ivanvinski.kunvertuh.unit.MeasurementSystem.METRIC;
+import static com.ivanvinski.kunvertuh.unit.MeasurementSystem.US_CUSTOMARY;
 
-  public static final Mass MILLIGRAM = new Mass("mg", .001d);
-  public static final Mass GRAM = new Mass("g", 1d);
-  public static final Mass DEKAGRAM = new Mass("dag", 10d);
-  public static final Mass KILOGRAM = new Mass("kg", 1000d);
-  public static final Mass METRIC_TON = new Mass("t", 1000000d);
+public enum Mass implements Unit {
 
-  public static final Mass GRAIN = new Mass("gr", .06479891d);
-  public static final Mass DRAM = new Mass("dr", 1.771845d);
-  public static final Mass OUNCE = new Mass("oz", 28.34952d);
-  public static final Mass POUND = new Mass("lb", 453.5924d);
-  public static final Mass UK_TON = new Mass("t", 1016047.203454d);
-  public static final Mass US_TON = new Mass("t", 907185d);
+  MILLIGRAM(.001d, "mg", METRIC),
+  GRAM(1d, "g", METRIC),
+  DEKAGRAM(10d, "dag", METRIC),
+  KILOGRAM(1000d, "kg", METRIC),
+  METRIC_TON(1000000d, "t", METRIC),
 
-  private Mass(String abbreviation, double baseUnitFactor) {
-    super(abbreviation, baseUnitFactor);
+  GRAIN(.06479891d, "gr", IMPERIAL_AND_US_CUSTOMARY),
+  DRAM(1.771845d, "dr", IMPERIAL_AND_US_CUSTOMARY),
+  OUNCE(28.34952d, "oz", IMPERIAL_AND_US_CUSTOMARY),
+  POUND(453.5924d, "lb", IMPERIAL_AND_US_CUSTOMARY),
+  UK_TON(1016047.203454d, "t", IMPERIAL),
+  US_TON(907185d, "t", US_CUSTOMARY);
+
+  private double baseUnitFactor;
+  private String symbol;
+  private MeasurementSystem measurementSystem;
+
+  Mass(double baseUnitFactor, String symbol, MeasurementSystem measurementSystem) {
+    this.baseUnitFactor = baseUnitFactor;
+    this.symbol = symbol;
+    this.measurementSystem = measurementSystem;
+  }
+
+  @Override
+  public double getBaseUnitFactor() {
+    return baseUnitFactor;
+  }
+
+  @Override
+  public String getSymbol() {
+    return symbol;
+  }
+
+  @Override
+  public MeasurementSystem getSystem() {
+    return measurementSystem;
   }
 }

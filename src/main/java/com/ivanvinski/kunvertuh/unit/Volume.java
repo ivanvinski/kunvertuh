@@ -19,31 +19,57 @@
 
 package com.ivanvinski.kunvertuh.unit;
 
-public final class Volume extends Unit {
+import static com.ivanvinski.kunvertuh.unit.MeasurementSystem.IMPERIAL;
+import static com.ivanvinski.kunvertuh.unit.MeasurementSystem.IMPERIAL_AND_US_CUSTOMARY;
+import static com.ivanvinski.kunvertuh.unit.MeasurementSystem.METRIC;
+import static com.ivanvinski.kunvertuh.unit.MeasurementSystem.US_CUSTOMARY;
 
-  public static final Volume MILLILITER = new Volume("ml", .001d);
-  public static final Volume DECILITER = new Volume("dl", .1d);
-  public static final Volume LITER = new Volume("l", 1d);
-  public static final Volume HECTOLITER = new Volume("hl", 100d);
-  public static final Volume CUBIC_METER = new Volume("m3", 1000d);
+public enum Volume implements Unit {
 
-  public static final Volume UK_TEASPOON = new Volume("tsp", .00591939d);
-  public static final Volume UK_TABLESPOON = new Volume("Tbsp", .0177582d);
-  public static final Volume UK_CUP = new Volume("cp", .284131d);
-  public static final Volume UK_FLUID_OUNCE = new Volume("fl oz", .0284131d);
-  public static final Volume UK_PINT = new Volume("pt", .5682612d);
-  public static final Volume UK_GALLON = new Volume("gal", 4.54609d);
+  MILLILITER(.001d, "ml", METRIC),
+  DECILITER(.1d, "dl", METRIC),
+  LITER(1d, "l", METRIC),
+  HECTOLITER(100d, "hl", METRIC),
+  CUBIC_METER(1000d, "m3", METRIC),
 
-  public static final Volume US_TEASPOON = new Volume("tsp", .00492892d);
-  public static final Volume US_TABLESPOON = new Volume("Tbsp", 0.0147868d);
-  public static final Volume US_CUP = new Volume("cp", .24d);
-  public static final Volume US_FLUID_OUNCE = new Volume("fl oz", .02957344d);
-  public static final Volume US_PINT = new Volume("pt", .473176d);
-  public static final Volume US_GALLON = new Volume("gal", 3.7854003218d);
+  UK_TEASPOON(.00591939d, "tsp", IMPERIAL),
+  UK_TABLESPOON(.0177582d, "Tbsp", IMPERIAL),
+  UK_CUP(.284131d, "cp", IMPERIAL),
+  UK_FLUID_OUNCE(.0284131d, "fl oz", IMPERIAL),
+  UK_PINT(.5682612d, "pt", IMPERIAL),
+  UK_GALLON(4.54609d, "gal", IMPERIAL),
 
-  public static final Volume CUBIC_INCH = new Volume("in3", .01638706d);
+  US_TEASPOON(.00492892d, "tsp", US_CUSTOMARY),
+  US_TABLESPOON(0.0147868d, "Tbsp", US_CUSTOMARY),
+  US_CUP(.24d, "cp", US_CUSTOMARY),
+  US_FLUID_OUNCE(.02957344d, "fl oz", US_CUSTOMARY),
+  US_PINT(.473176d, "pt", US_CUSTOMARY),
+  US_GALLON(3.7854003218d, "gal", US_CUSTOMARY),
 
-  private Volume(String abbreviation, double baseUnitFactor) {
-    super(abbreviation, baseUnitFactor);
+  CUBIC_INCH(.01638706d, "in3", IMPERIAL_AND_US_CUSTOMARY);
+
+  private double baseUnitFactor;
+  private String symbol;
+  private MeasurementSystem measurementSystem;
+
+  Volume(double baseUnitFactor, String symbol, MeasurementSystem measurementSystem) {
+    this.baseUnitFactor = baseUnitFactor;
+    this.symbol = symbol;
+    this.measurementSystem = measurementSystem;
+  }
+
+  @Override
+  public double getBaseUnitFactor() {
+    return baseUnitFactor;
+  }
+
+  @Override
+  public String getSymbol() {
+    return symbol;
+  }
+
+  @Override
+  public MeasurementSystem getSystem() {
+    return measurementSystem;
   }
 }

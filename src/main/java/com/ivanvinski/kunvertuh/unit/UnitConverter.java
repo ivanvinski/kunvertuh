@@ -19,32 +19,54 @@
 
 package com.ivanvinski.kunvertuh.unit;
 
+import com.google.inject.Inject;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 
-public final class UnitConverter<U extends Unit> {
+public class UnitConverter<U extends Unit> {
 
-  public UnitConversion<U> convert(Double value, U unit) {
-    return new UnitConversion<>(value, unit);
+  private Map<U, Double> convertedValues = new LinkedHashMap<>();
+
+  @Inject
+  public UnitConverter(U... supportedUnits) {
+    Arrays.stream(supportedUnits)
+        .filter(Objects::nonNull)
+        .forEach(this::registerUnit);
   }
 
-  public static final class UnitConversion<U extends Unit> {
+  public void convert(double sourceValue, U sourceUnit) {
+    throwExceptionIfNullOrUnsupportedUnit(sourceUnit);
+    double baseValue = toBaseValue(sourceValue, sourceUnit);
+    getSupportedUnits().forEach(unit -> convertBaseValueToTargetUnit(baseValue, unit));
+  }
 
-    private Double sourceValue;
-    private U sourceUnit;
+  public Collection<U> getSupportedUnits() {
+    return convertedValues.keySet();
+  }
 
-    private UnitConversion(Double sourceValue, U sourceUnit) {
-      this.sourceValue = sourceValue;
-      this.sourceUnit = sourceUnit;
+  public double getValue(U unit) {
+    return convertedValues.get(unit);
+  }
+
+  private void registerUnit(U unit) {
+    convertedValues.put(unit, 0d);
+  }
+
+  private void throwExceptionIfNullOrUnsupportedUnit(U unit) {
+    Objects.requireNonNull(unit, "Can't work with null unit");
+    if (!convertedValues.containsKey(unit)) {
+      throw new IllegalArgumentException("Unsupported unit: " + unit);
     }
+  }
 
-    public Double to(U targetUnit) {
-      Objects.requireNonNull(sourceUnit, "Source unit can't be null");
-      Objects.requireNonNull(targetUnit, "Target unit can't be null");
-      if (sourceValue == null) {
-        return null;
-      }
-      double baseUnitValue = sourceValue * sourceUnit.getBaseUnitFactor();
-      return baseUnitValue / targetUnit.getBaseUnitFactor();
-    }
+  private double toBaseValue(double sourceValue, U sourceUnit) {
+    return sourceValue * sourceUnit.getBaseUnitFactor();
+  }
+
+  private void convertBaseValueToTargetUnit(double baseValue, U targetUnit) {
+    convertedValues.put(targetUnit, baseValue / targetUnit.getBaseUnitFactor());
   }
 }
