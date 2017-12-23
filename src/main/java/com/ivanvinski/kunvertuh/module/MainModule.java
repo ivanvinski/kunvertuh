@@ -21,17 +21,19 @@ package com.ivanvinski.kunvertuh.module;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Singleton;
+import com.google.inject.TypeLiteral;
 import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.event.GuavaEventStream;
-import com.ivanvinski.kunvertuh.model.LengthModel;
 import com.ivanvinski.kunvertuh.model.MainModel;
-import com.ivanvinski.kunvertuh.model.MassModel;
-import com.ivanvinski.kunvertuh.model.VolumeModel;
 import com.ivanvinski.kunvertuh.presenter.AboutPresenter;
 import com.ivanvinski.kunvertuh.presenter.LengthPresenter;
 import com.ivanvinski.kunvertuh.presenter.MainPresenter;
 import com.ivanvinski.kunvertuh.presenter.MassPresenter;
 import com.ivanvinski.kunvertuh.presenter.VolumePresenter;
+import com.ivanvinski.kunvertuh.unit.Length;
+import com.ivanvinski.kunvertuh.unit.Mass;
+import com.ivanvinski.kunvertuh.unit.UnitConverter;
+import com.ivanvinski.kunvertuh.unit.Volume;
 import com.ivanvinski.kunvertuh.util.Browser;
 import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 import com.ivanvinski.kunvertuh.util.JFXBrowser;
@@ -67,9 +69,12 @@ public final class MainModule extends AbstractModule {
 
   private void configureModels() {
     bind(MainModel.class);
-    bind(LengthModel.class);
-    bind(MassModel.class);
-    bind(VolumeModel.class);
+    bind(new TypeLiteral<UnitConverter<Length>>() {
+    }).toInstance(new UnitConverter<>(Length.values()));
+    bind(new TypeLiteral<UnitConverter<Mass>>() {
+    }).toInstance(new UnitConverter<>(Mass.values()));
+    bind(new TypeLiteral<UnitConverter<Volume>>() {
+    }).toInstance(new UnitConverter<>(Volume.values()));
     bind(Browser.class).to(JFXBrowser.class);
   }
 
