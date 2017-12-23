@@ -19,9 +19,14 @@
 
 package com.ivanvinski.kunvertuh.view;
 
-public interface View {
+public final class Views {
 
-  void initialize();
+  public static final String MAIN = "MAIN";
+  public static final String LENGTH = "LENGTH";
+  public static final String MASS = "MASS";
+  public static final String VOLUME = "VOLUME";
+  public static final String ABOUT = "ABOUT";
 
-  void pushEvent(Object event);
+  private Views() {
+  }
 }

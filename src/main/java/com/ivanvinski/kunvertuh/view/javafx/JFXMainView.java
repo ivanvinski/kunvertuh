@@ -22,12 +22,9 @@ package com.ivanvinski.kunvertuh.view.javafx;
 import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.event.ViewChangeRequest;
-import com.ivanvinski.kunvertuh.view.AboutView;
-import com.ivanvinski.kunvertuh.view.LengthView;
 import com.ivanvinski.kunvertuh.view.MainView;
-import com.ivanvinski.kunvertuh.view.MassView;
 import com.ivanvinski.kunvertuh.view.View;
-import com.ivanvinski.kunvertuh.view.VolumeView;
+import com.ivanvinski.kunvertuh.view.Views;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
@@ -64,12 +61,12 @@ public final class JFXMainView extends AbstractJFXView implements MainView {
   }
 
   @Override
-  public void bindEvents() {
+  public void initialize() {
     prepareMenuButtonAndNavigationDrawer();
-    length.setOnAction(e -> pushViewChangeRequestAndCloseDrawer(LengthView.class));
-    mass.setOnAction(e -> pushViewChangeRequestAndCloseDrawer(MassView.class));
-    volume.setOnAction(e -> pushViewChangeRequestAndCloseDrawer(VolumeView.class));
-    about.setOnAction(e -> pushViewChangeRequestAndCloseDrawer(AboutView.class));
+    length.setOnAction(e -> pushViewChangeRequestAndCloseDrawer(Views.LENGTH));
+    mass.setOnAction(e -> pushViewChangeRequestAndCloseDrawer(Views.MASS));
+    volume.setOnAction(e -> pushViewChangeRequestAndCloseDrawer(Views.VOLUME));
+    about.setOnAction(e -> pushViewChangeRequestAndCloseDrawer(Views.ABOUT));
   }
 
   @Override
@@ -102,11 +99,11 @@ public final class JFXMainView extends AbstractJFXView implements MainView {
 
   private void createAndRegisterNavigationButtons() {
     length = newNavigationButton("Length", MaterialDesignIcon.RULER);
-    registerNavigationButton(length, JFXLengthView.class);
+    registerNavigationButton(length, JFXLengthConverterView.class);
     mass = newNavigationButton("Mass", MaterialDesignIcon.WEIGHT);
-    registerNavigationButton(mass, JFXMassView.class);
+    registerNavigationButton(mass, JFXMassConverterView.class);
     volume = newNavigationButton("Volume", MaterialDesignIcon.CUBE_OUTLINE);
-    registerNavigationButton(volume, JFXVolumeView.class);
+    registerNavigationButton(volume, JFXVolumeConverterView.class);
     about = newNavigationButton("About", MaterialDesignIcon.HELP_CIRCLE);
     registerNavigationButton(about, JFXAboutView.class);
   }
@@ -129,8 +126,8 @@ public final class JFXMainView extends AbstractJFXView implements MainView {
     }
   }
 
-  private void pushViewChangeRequestAndCloseDrawer(Class<? extends View> viewType) {
-    pushEvent(new ViewChangeRequest(viewType));
+  private void pushViewChangeRequestAndCloseDrawer(String viewIdentifier) {
+    pushEvent(new ViewChangeRequest(viewIdentifier));
     navigation.close();
   }
 

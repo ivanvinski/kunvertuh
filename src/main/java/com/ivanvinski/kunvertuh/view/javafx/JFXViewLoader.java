@@ -39,7 +39,7 @@ public final class JFXViewLoader {
     loadedViews = injector.getInstance(ViewCatalog.class);
   }
 
-  public View load(URL fxmlLocation) {
+  public View load(String identifier, URL fxmlLocation) {
     FXMLLoader loader = new FXMLLoader(fxmlLocation);
     MVPAssembler assembler = new MVPAssembler(injector);
     loader.setControllerFactory(assembler);
@@ -47,8 +47,7 @@ public final class JFXViewLoader {
     AbstractJFXView view = loader.getController();
     view.getChildren().setAll(rootNode);
     assembler.getPresenter().onInitialization();
-    view.bindEvents();
-    loadedViews.add(view);
+    loadedViews.addView(identifier, view);
     return view;
   }
 

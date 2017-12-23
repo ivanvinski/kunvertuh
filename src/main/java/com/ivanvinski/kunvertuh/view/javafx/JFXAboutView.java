@@ -40,7 +40,7 @@ public final class JFXAboutView extends AbstractJFXView implements AboutView {
   }
 
   @Override
-  public void bindEvents() {
+  public void initialize() {
     openHyperlinkInBrowserOnActionEvent(repository);
     openHyperlinkInBrowserOnActionEvent(contact);
     openHyperlinkInBrowserOnActionEvent(authorPage);

@@ -19,47 +19,51 @@
 
 package com.ivanvinski.kunvertuh.view;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public final class ViewCatalog {
 
-  private Map<Class<? extends View>, View> views = new HashMap<>();
+  private Map<String, View> views = new HashMap<>();
 
-  public void add(View view) {
+  public void addView(String identifier, View view) {
+    Objects.requireNonNull(identifier, "Identifier can't be null");
+    throwExceptionIfDuplicateIdentifier(identifier);
     Objects.requireNonNull(view, "Can't add null view");
-    Class<? extends View> viewType = view.getClass();
-    if (contains(viewType)) {
-      getViews().stream().map(Object::getClass).forEach(System.out::println);
-      throw new IllegalArgumentException("Duplicate views are not allowed: " + viewType);
-    } else {
-      views.put(viewType, view);
+    throwExceptionIfDuplicateView(view.getClass());
+    views.put(identifier, view);
+  }
+
+  public <V extends View> V getView(String identifier) {
+    if (!containsIdentifier(identifier)) {
+      throw new IllegalArgumentException("View not added: identifier=" + identifier);
     }
+    return (V) views.get(identifier);
   }
 
-  public Collection<View> getViews() {
-    return views.values();
+  public boolean containsIdentifier(String identifier) {
+    return identifier != null && views.containsKey(identifier);
   }
 
-  public View get(Class<? extends View> viewType) {
-    if (!contains(viewType)) {
-      throw new IllegalArgumentException("View does not exist: " + viewType);
-    }
-    return views.get(viewType) == null ? getIfAssignable(viewType) : views.get(viewType);
-  }
-
-  public boolean contains(Class<? extends View> viewType) {
-    return views.containsKey(viewType) || getIfAssignable(viewType) != null;
-  }
-
-  private View getIfAssignable(Class<? extends View> assignableType) {
-    for (View view : getViews()) {
-      if (assignableType.isAssignableFrom(view.getClass())) {
-        return view;
+  public boolean containsView(Class<? extends View> viewType) {
+    for (View view : views.values()) {
+      if (viewType == view.getClass()) {
+        return true;
       }
     }
-    return null;
+    return false;
+  }
+
+  private void throwExceptionIfDuplicateIdentifier(String identifier) {
+    if (containsIdentifier(identifier)) {
+      throw new IllegalArgumentException("Duplicate identifier: " + identifier);
+    }
+  }
+
+  private void throwExceptionIfDuplicateView(Class<? extends View> viewType) {
+    if (containsView(viewType)) {
+      throw new IllegalArgumentException("Duplicate view: " + viewType.getClass());
+    }
   }
 }

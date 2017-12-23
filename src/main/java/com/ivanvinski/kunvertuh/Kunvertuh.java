@@ -24,12 +24,10 @@ import com.google.inject.Injector;
 import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.event.ViewChangeRequest;
 import com.ivanvinski.kunvertuh.module.MainModule;
-import com.ivanvinski.kunvertuh.view.LengthView;
-import com.ivanvinski.kunvertuh.view.MainView;
 import com.ivanvinski.kunvertuh.view.ViewCatalog;
+import com.ivanvinski.kunvertuh.view.Views;
 import com.ivanvinski.kunvertuh.view.javafx.JFXViewLoader;
 import javafx.application.Application;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -45,24 +43,23 @@ public final class Kunvertuh extends Application {
     EventStream eventStream = injector.getInstance(EventStream.class);
     ViewCatalog loadedViews = loadAllViews(injector);
     primaryStage.setScene(createScene(loadedViews));
-    eventStream.push(new ViewChangeRequest(LengthView.class));
+    eventStream.push(new ViewChangeRequest(Views.LENGTH));
     primaryStage.centerOnScreen();
     primaryStage.show();
   }
 
   private ViewCatalog loadAllViews(Injector injector) {
     JFXViewLoader loader = new JFXViewLoader(injector);
-    loader.load(getClass().getResource("/view/length-units.fxml"));
-    loader.load(getClass().getResource("/view/mass-units.fxml"));
-    loader.load(getClass().getResource("/view/volume-units.fxml"));
-    loader.load(getClass().getResource("/view/main.fxml"));
-    loader.load(getClass().getResource("/view/about.fxml"));
+    loader.load(Views.LENGTH, getClass().getResource("/view/length-converter.fxml"));
+    loader.load(Views.MASS, getClass().getResource("/view/mass-converter.fxml"));
+    loader.load(Views.VOLUME, getClass().getResource("/view/volume-converter.fxml"));
+    loader.load(Views.MAIN, getClass().getResource("/view/main.fxml"));
+    loader.load(Views.ABOUT, getClass().getResource("/view/about.fxml"));
     return loader.getLoadedViews();
   }
 
   private Scene createScene(ViewCatalog views) {
-    MainView mainView = (MainView) views.get(MainView.class);
-    Scene scene = new Scene((Parent) mainView, 800, 600);
+    Scene scene = new Scene(views.getView(Views.MAIN), 800, 600);
     scene.getStylesheets().add(getClass().getResource("/style/light.css").toExternalForm());
     return scene;
   }
