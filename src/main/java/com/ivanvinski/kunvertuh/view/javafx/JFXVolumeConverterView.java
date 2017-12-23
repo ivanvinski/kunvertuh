@@ -21,8 +21,6 @@ package com.ivanvinski.kunvertuh.view.javafx;
 
 import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.event.EventStream;
-import com.ivanvinski.kunvertuh.event.conversion.AbstractConversionRequest;
-import com.ivanvinski.kunvertuh.event.conversion.VolumeConversionRequest;
 import com.ivanvinski.kunvertuh.measurement.Volume;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

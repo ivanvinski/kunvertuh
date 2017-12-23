@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Hyperlink?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-
 <!--
   ~ Kunvertuh
   ~ Copyright (C) 2017  Ivan Vinski
@@ -27,59 +19,72 @@
   ~
   -->
 
-<ScrollPane fx:id="root" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pannable="true" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ivanvinski.kunvertuh.presenter.AboutPresenter">
-   <content>
-      <VBox prefWidth="100.0" styleClass="card-container">
-         <children>
-            <Label styleClass="subheading" text="About">
-               <VBox.margin>
-                  <Insets top="-8.0" />
-               </VBox.margin></Label>
-            <VBox prefWidth="100.0" styleClass="card">
-               <children>
-                  <Label styleClass="heading" text="Kunvertuh" />
-                  <Label fx:id="version" text="Version placeholder" />
-                  <Label fx:id="license" text="Licensed under GPL v3.0" />
-                  <Hyperlink fx:id="repository" text="Fork me on GitHub">
-                     <graphic>
-                        <MaterialDesignIconView glyphName="GIT" />
-                     </graphic>
-                  </Hyperlink>
-               </children>
-            </VBox>
-            <Label styleClass="subheading" text="Help" />
-            <VBox prefWidth="100.0" styleClass="card">
-               <children>
-                  <Label fx:id="question" text="Q: How to use this software?" />
-                  <Label fx:id="answer" text="A: Click on desired unit field, enter a value and press enter." wrapText="true" />
-                  <Pane>
-                     <VBox.margin>
-                        <Insets bottom="5.0" top="5.0" />
-                     </VBox.margin>
-                  </Pane>
-                  <Hyperlink fx:id="contact" text="For other information, feel free to contact me." />
-               </children>
-            </VBox>
-            <Label styleClass="subheading" text="Author" />
-            <VBox prefWidth="100.0" styleClass="card">
-               <children>
-                  <Label fx:id="author" styleClass="heading" text="Ivan Vinski" />
-                  <Hyperlink fx:id="authorPage" text="Website">
-                     <graphic>
-                        <MaterialDesignIconView glyphName="WEB" />
-                     </graphic>
-                  </Hyperlink>
-                  <Hyperlink fx:id="authorGithub" text="GitHub">
-                     <graphic>
-                        <MaterialDesignIconView glyphName="GITHUB_CIRCLE" />
-                     </graphic>
-                  </Hyperlink>
-               </children>
-            </VBox>
-         </children>
-         <padding>
-            <Insets left="8.0" right="8.0" />
-         </padding>
-      </VBox>
-   </content>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<ScrollPane fx:id="root" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308"
+  maxWidth="1.7976931348623157E308" pannable="true" prefHeight="400.0" prefWidth="600.0"
+  xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1"
+  fx:controller="com.ivanvinski.kunvertuh.presenter.AboutPresenter">
+  <content>
+    <VBox prefWidth="100.0" styleClass="card-container">
+      <children>
+        <Label styleClass="subheading" text="About">
+          <VBox.margin>
+            <Insets top="-8.0"/>
+          </VBox.margin>
+        </Label>
+        <VBox prefWidth="100.0" styleClass="card">
+          <children>
+            <Label styleClass="heading" text="Kunvertuh"/>
+            <Label fx:id="version" text="Version placeholder"/>
+            <Label fx:id="license" text="Licensed under GPL v3.0"/>
+            <Hyperlink fx:id="repository" text="Fork me on GitHub">
+              <graphic>
+                <MaterialDesignIconView glyphName="GIT"/>
+              </graphic>
+            </Hyperlink>
+          </children>
+        </VBox>
+        <Label styleClass="subheading" text="Help"/>
+        <VBox prefWidth="100.0" styleClass="card">
+          <children>
+            <Label fx:id="question" text="Q: How to use this software?"/>
+            <Label fx:id="answer"
+              text="A: Click on desired unit field, enter a value and press enter."
+              wrapText="true"/>
+            <Pane>
+              <VBox.margin>
+                <Insets bottom="5.0" top="5.0"/>
+              </VBox.margin>
+            </Pane>
+            <Hyperlink fx:id="contact" text="For other information, feel free to contact me."/>
+          </children>
+        </VBox>
+        <Label styleClass="subheading" text="Author"/>
+        <VBox prefWidth="100.0" styleClass="card">
+          <children>
+            <Label fx:id="author" styleClass="heading" text="Ivan Vinski"/>
+            <Hyperlink fx:id="authorPage" text="Website">
+              <graphic>
+                <MaterialDesignIconView glyphName="WEB"/>
+              </graphic>
+            </Hyperlink>
+            <Hyperlink fx:id="authorGithub" text="GitHub">
+              <graphic>
+                <MaterialDesignIconView glyphName="GITHUB_CIRCLE"/>
+              </graphic>
+            </Hyperlink>
+          </children>
+        </VBox>
+      </children>
+      <padding>
+        <Insets left="8.0" right="8.0"/>
+      </padding>
+    </VBox>
+  </content>
 </ScrollPane>

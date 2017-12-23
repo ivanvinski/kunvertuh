@@ -19,8 +19,8 @@
 
 package com.ivanvinski.kunvertuh.view.javafx;
 
-import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.event.ConversionRequest;
+import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.measurement.MeasurementSystem;
 import com.ivanvinski.kunvertuh.measurement.Unit;
 import com.ivanvinski.kunvertuh.view.ConverterView;
