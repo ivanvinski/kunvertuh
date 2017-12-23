@@ -19,17 +19,15 @@
 
 package com.ivanvinski.kunvertuh.event;
 
-import com.ivanvinski.kunvertuh.view.View;
-
 public final class ViewChangeRequest {
 
-  private Class<? extends View> viewType;
+  private String viewIdentifier;
 
-  public ViewChangeRequest(Class<? extends View> viewType) {
-    this.viewType = viewType;
+  public ViewChangeRequest(String viewIdentifier) {
+    this.viewIdentifier = viewIdentifier;
   }
 
-  public Class<? extends View> getViewType() {
-    return viewType;
+  public String getViewIdentifier() {
+    return viewIdentifier;
   }
 }
