@@ -28,14 +28,7 @@ import com.ivanvinski.kunvertuh.measurement.Length;
 import com.ivanvinski.kunvertuh.measurement.Mass;
 import com.ivanvinski.kunvertuh.measurement.UnitConverter;
 import com.ivanvinski.kunvertuh.measurement.Volume;
-import com.ivanvinski.kunvertuh.model.MainModel;
-import com.ivanvinski.kunvertuh.presenter.AboutPresenter;
-import com.ivanvinski.kunvertuh.presenter.LengthPresenter;
-import com.ivanvinski.kunvertuh.presenter.MainPresenter;
-import com.ivanvinski.kunvertuh.presenter.MassPresenter;
-import com.ivanvinski.kunvertuh.presenter.VolumePresenter;
 import com.ivanvinski.kunvertuh.util.Browser;
-import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 import com.ivanvinski.kunvertuh.util.JFXBrowser;
 import com.ivanvinski.kunvertuh.view.AboutView;
 import com.ivanvinski.kunvertuh.view.ConverterView;
@@ -61,12 +54,12 @@ public final class MainModule extends AbstractModule {
   protected void configure() {
     configureModels();
     configureViews();
-    configurePresenters();
-    configureMiscellaneous();
+    bind(EventStream.class).to(GuavaEventStream.class).in(Singleton.class);
+    bind(ViewCatalog.class).in(Singleton.class);
+    bind(HostServices.class).toInstance(hostServices);
   }
 
   private void configureModels() {
-    bind(MainModel.class);
     bind(new TypeLiteral<UnitConverter<Length>>() {
     }).toInstance(new UnitConverter<>(Length.values()));
     bind(new TypeLiteral<UnitConverter<Mass>>() {
@@ -85,20 +78,5 @@ public final class MainModule extends AbstractModule {
     bind(new TypeLiteral<ConverterView<Volume>>() {
     }).to(JFXVolumeConverterView.class);
     bind(AboutView.class).to(JFXAboutView.class);
-  }
-
-  private void configurePresenters() {
-    bind(MainPresenter.class);
-    bind(LengthPresenter.class);
-    bind(MassPresenter.class);
-    bind(VolumePresenter.class);
-    bind(AboutPresenter.class);
-  }
-
-  private void configureMiscellaneous() {
-    bind(EventStream.class).to(GuavaEventStream.class).in(Singleton.class);
-    bind(ViewCatalog.class).in(Singleton.class);
-    bind(DoubleStringConverter.class);
-    bind(HostServices.class).toInstance(hostServices);
   }
 }
