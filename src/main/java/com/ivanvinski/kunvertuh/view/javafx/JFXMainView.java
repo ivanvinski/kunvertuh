@@ -31,25 +31,24 @@ import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 
 public final class JFXMainView extends AbstractJFXView implements MainView {
 
   private static final String SELECTED_CLASS = "selected";
 
   @FXML
-  private Parent root;
-  private StackPane viewContainer = new StackPane();
+  private StackPane viewContainer;
   @FXML
   private JFXButton menu;
   @FXML
   private JFXDrawer navigation;
+
+  private JFXViewChanger viewChanger;
   private JFXButton length, mass, volume, about;
 
   private Map<Class<? extends View>, JFXButton> viewButtonMap = new LinkedHashMap<>();
@@ -62,6 +61,7 @@ public final class JFXMainView extends AbstractJFXView implements MainView {
 
   @Override
   public void initialize() {
+    viewChanger = new JFXViewChanger(viewContainer);
     prepareMenuButtonAndNavigationDrawer();
     length.setOnAction(e -> pushViewChangeRequestAndCloseDrawer(Views.LENGTH));
     mass.setOnAction(e -> pushViewChangeRequestAndCloseDrawer(Views.MASS));
@@ -77,16 +77,11 @@ public final class JFXMainView extends AbstractJFXView implements MainView {
   @Override
   public void setActiveView(View view) {
     setSelectedButtonByView((Parent) view);
-    if (activeView == null) {
-      viewContainer.getChildren().setAll((Parent) view);
-    } else {
-      changeViewWithFading((Parent) view);
-    }
+    viewChanger.changeView((Parent) view);
     activeView = view;
   }
 
   private void prepareMenuButtonAndNavigationDrawer() {
-    getChildren().setAll(root);
     createAndRegisterNavigationButtons();
     menu.setOnAction(event -> toggleDrawer());
     VBox navigationContent = new VBox();
@@ -137,17 +132,5 @@ public final class JFXMainView extends AbstractJFXView implements MainView {
     if (button != null) {
       button.getStyleClass().add(SELECTED_CLASS);
     }
-  }
-
-  private void changeViewWithFading(Parent nextView) {
-    viewContainer.getChildren().add(0, nextView);
-    FadeTransition fadeOut = new FadeTransition(Duration.millis(200d), (Parent) activeView);
-    fadeOut.setOnFinished(event -> {
-      viewContainer.getChildren().setAll(nextView);
-      fadeOut.getNode().setOpacity(1d);
-    });
-    fadeOut.setFromValue(1d);
-    fadeOut.setToValue(0d);
-    fadeOut.play();
   }
 }
