@@ -19,22 +19,11 @@
 
 package com.ivanvinski.kunvertuh;
 
-import com.ivanvinski.kunvertuh.measurement.LengthConverterTest;
-import com.ivanvinski.kunvertuh.measurement.MassConverterTest;
-import com.ivanvinski.kunvertuh.measurement.UnitConverterTest;
-import com.ivanvinski.kunvertuh.measurement.VolumeConverterTest;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
+public final class DoublePrecision {
 
+  public static final double STRICT = 0d;
+  public static final double TWO_DECIMAL = .001d;
 
-@RunWith(Suite.class)
-@SuiteClasses({
-    UnitConverterTest.class,
-    LengthConverterTest.class,
-    MassConverterTest.class,
-    VolumeConverterTest.class,
-})
-public class AllTests {
-
+  private DoublePrecision() {
+  }
 }
