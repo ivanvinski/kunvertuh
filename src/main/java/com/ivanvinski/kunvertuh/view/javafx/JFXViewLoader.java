@@ -40,26 +40,31 @@ public final class JFXViewLoader {
   }
 
   public View load(String identifier, URL fxmlLocation) {
-    FXMLLoader loader = new FXMLLoader(fxmlLocation);
-    MVPAssembler assembler = new MVPAssembler(injector);
-    loader.setControllerFactory(assembler);
-    Parent rootNode = loadOrThrowException(loader);
-    AbstractJFXView view = loader.getController();
-    view.getChildren().setAll(rootNode);
-    assembler.getPresenter().onInitialization();
-    loadedViews.addView(identifier, view);
-    return view;
+    ModelViewPresenter mvp = loadMVP(fxmlLocation);
+    assembleView((AbstractJFXView) mvp.getView(), mvp.getRoot());
+    mvp.getPresenter().onInitialization();
+    loadedViews.addView(identifier, mvp.getView());
+    return mvp.getView();
   }
 
   public ViewCatalog getLoadedViews() {
     return loadedViews;
   }
 
-  private Parent loadOrThrowException(FXMLLoader loader) {
+  private ModelViewPresenter loadMVP(URL fxmlLocation) {
+    FXMLLoader loader = new FXMLLoader(fxmlLocation);
+    ModelViewPresenterFactory factory = new ModelViewPresenterFactory(injector);
+    loader.setControllerFactory(factory);
     try {
-      return loader.load();
+      Parent rootNode = loader.load();
+      return new ModelViewPresenter(rootNode, factory.getModel(), factory.getView(),
+          factory.getPresenter());
     } catch (IOException e) {
       throw new UncheckedIOException("Unable to load view: " + loader.getLocation(), e);
     }
+  }
+
+  private void assembleView(AbstractJFXView view, Parent root) {
+    view.getChildren().setAll(root);
   }
 }
