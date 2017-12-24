@@ -29,8 +29,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Separator;
@@ -41,18 +39,14 @@ public final class JFXMainView extends AbstractJFXView implements MainView {
 
   private static final String SELECTED_CLASS = "selected";
 
-  @FXML
-  private StackPane viewContainer;
+  private StackPane viewContainer = new StackPane();
+  private JFXViewChanger viewChanger = new JFXViewChanger(viewContainer);
+  private View activeView;
   @FXML
   private JFXButton menu;
   @FXML
   private JFXDrawer navigation;
-
-  private JFXViewChanger viewChanger;
-  private JFXButton length, mass, volume, about;
-
-  private Map<Class<? extends View>, JFXButton> viewButtonMap = new LinkedHashMap<>();
-  private View activeView;
+  private VBox navigationContent = new VBox();
 
   @Inject
   public JFXMainView(EventStream eventStream) {
@@ -61,12 +55,16 @@ public final class JFXMainView extends AbstractJFXView implements MainView {
 
   @Override
   public void initialize() {
-    viewChanger = new JFXViewChanger(viewContainer);
-    prepareMenuButtonAndNavigationDrawer();
-    length.setOnAction(e -> pushViewChangeRequestAndCloseDrawer(Views.LENGTH));
-    mass.setOnAction(e -> pushViewChangeRequestAndCloseDrawer(Views.MASS));
-    volume.setOnAction(e -> pushViewChangeRequestAndCloseDrawer(Views.VOLUME));
-    about.setOnAction(e -> pushViewChangeRequestAndCloseDrawer(Views.ABOUT));
+    navigation.setContent(viewContainer);
+    menu.setOnAction(event -> toggleDrawer());
+    navigationContent.getStyleClass().add("nav-content");
+    navigation.setSidePane(navigationContent);
+    addNavigationButton(Views.LENGTH, MaterialDesignIcon.RULER);
+    addNavigationButton(Views.MASS, MaterialDesignIcon.WEIGHT);
+    addNavigationButton(Views.VOLUME, MaterialDesignIcon.CUBE_OUTLINE);
+    addNavigationButtonSeparator();
+    addNavigationButton(Views.ABOUT, MaterialDesignIcon.HELP_CIRCLE_OUTLINE);
+    navigationContent.getChildren().get(0).getStyleClass().add(SELECTED_CLASS);
   }
 
   @Override
@@ -76,41 +74,29 @@ public final class JFXMainView extends AbstractJFXView implements MainView {
 
   @Override
   public void setActiveView(View view) {
-    setSelectedButtonByView((Parent) view);
     viewChanger.changeView((Parent) view);
     activeView = view;
   }
 
-  private void prepareMenuButtonAndNavigationDrawer() {
-    createAndRegisterNavigationButtons();
-    menu.setOnAction(event -> toggleDrawer());
-    VBox navigationContent = new VBox();
-    navigationContent.getStyleClass().add("nav-content");
-    navigationContent.getChildren().setAll(viewButtonMap.values());
-    navigationContent.getChildren().add(3, new Separator());
-    navigation.setSidePane(navigationContent);
-    navigation.setContent(viewContainer);
-  }
-
-  private void createAndRegisterNavigationButtons() {
-    length = newNavigationButton("Length", MaterialDesignIcon.RULER);
-    registerNavigationButton(length, JFXLengthConverterView.class);
-    mass = newNavigationButton("Mass", MaterialDesignIcon.WEIGHT);
-    registerNavigationButton(mass, JFXMassConverterView.class);
-    volume = newNavigationButton("Volume", MaterialDesignIcon.CUBE_OUTLINE);
-    registerNavigationButton(volume, JFXVolumeConverterView.class);
-    about = newNavigationButton("About", MaterialDesignIcon.HELP_CIRCLE);
-    registerNavigationButton(about, JFXAboutView.class);
-  }
-
-  private JFXButton newNavigationButton(String text, MaterialDesignIcon icon) {
-    JFXButton button = new JFXButton(text, new MaterialDesignIconView(icon));
+  private void addNavigationButton(String viewIdentifier, MaterialDesignIcon icon) {
+    JFXButton button = new JFXButton(viewIdentifier, new MaterialDesignIconView(icon));
     button.setMaxWidth(Double.MAX_VALUE);
-    return button;
+    button.setUserData(viewIdentifier);
+    button.setOnAction(e -> {
+      setSelectedButton(button);
+      pushEvent(new ViewChangeRequest(viewIdentifier));
+      navigation.close();
+    });
+    navigationContent.getChildren().add(button);
   }
 
-  private void registerNavigationButton(JFXButton button, Class<? extends View> viewType) {
-    viewButtonMap.put(viewType, button);
+  private void addNavigationButtonSeparator() {
+    navigationContent.getChildren().add(new Separator());
+  }
+
+  private void setSelectedButton(JFXButton button) {
+    navigationContent.getChildren().forEach(node -> node.getStyleClass().remove(SELECTED_CLASS));
+    button.getStyleClass().add(SELECTED_CLASS);
   }
 
   private void toggleDrawer() {
@@ -118,19 +104,6 @@ public final class JFXMainView extends AbstractJFXView implements MainView {
       navigation.close();
     } else if (navigation.isHidden() || navigation.isHiding()) {
       navigation.open();
-    }
-  }
-
-  private void pushViewChangeRequestAndCloseDrawer(String viewIdentifier) {
-    pushEvent(new ViewChangeRequest(viewIdentifier));
-    navigation.close();
-  }
-
-  private void setSelectedButtonByView(Parent view) {
-    viewButtonMap.values().forEach(button -> button.getStyleClass().remove(SELECTED_CLASS));
-    JFXButton button = view == null ? null : viewButtonMap.get(view.getClass());
-    if (button != null) {
-      button.getStyleClass().add(SELECTED_CLASS);
     }
   }
 }
