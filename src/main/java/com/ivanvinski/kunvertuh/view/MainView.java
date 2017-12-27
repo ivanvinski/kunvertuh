@@ -24,4 +24,8 @@ public interface MainView extends View {
   View getActiveView();
 
   void setActiveView(View view);
+
+  String getAppBarTitle();
+
+  void setAppBarTitle(String appBarTitle);
 }

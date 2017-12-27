@@ -46,7 +46,7 @@
             <Insets right="16.0"/>
           </HBox.margin>
         </JFXButton>
-        <Label styleClass="heading" text="Kunvertuh"/>
+        <Label fx:id="appBarTitle" styleClass="heading" text="Kunvertuh"/>
       </children>
     </HBox>
   </top>

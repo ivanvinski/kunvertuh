@@ -32,6 +32,7 @@ import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -43,6 +44,8 @@ public final class JFXMainView extends AbstractJFXView implements MainView {
   private StackPane viewContainer = new StackPane();
   private JFXViewChanger viewChanger = new JFXViewChanger(viewContainer);
   private View activeView;
+  @FXML
+  private Label appBarTitle;
   @FXML
   private JFXButton menu;
   @FXML
@@ -87,6 +90,21 @@ public final class JFXMainView extends AbstractJFXView implements MainView {
   public void setActiveView(View view) {
     viewChanger.changeView((Parent) view);
     activeView = view;
+  }
+
+  @Override
+  public String getAppBarTitle() {
+    return appBarTitle.getText();
+  }
+
+  @Override
+  public void setAppBarTitle(String appBarTitle) {
+    if (getLanguage() == null) {
+      return;
+    }
+    String title = getLanguage().getString(appBarTitle + "_VIEW");
+    title = title.equals("%null%") ? getLanguage().getString(appBarTitle) : title;
+    this.appBarTitle.setText(title);
   }
 
   private void addNavigationButton(String viewIdentifier, MaterialDesignIcon icon) {

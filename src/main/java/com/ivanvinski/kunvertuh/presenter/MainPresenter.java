@@ -22,6 +22,7 @@ package com.ivanvinski.kunvertuh.presenter;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.event.ViewChangeRequest;
+import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.model.MainModel;
 import com.ivanvinski.kunvertuh.view.MainView;
 
@@ -37,7 +38,14 @@ public final class MainPresenter extends AbstractPresenter<MainView, MainModel> 
     getModel().setActiveView(request.getViewIdentifier());
     if (isActiveView(request.getViewIdentifier())) {
       getView().setActiveView(getModel().getActiveView());
+      getView().setAppBarTitle(getModel().getActiveViewIdentifier());
     }
+  }
+
+  @Override
+  public void onLanguageChange(Language language) {
+    super.onLanguageChange(language);
+    getView().setAppBarTitle(getModel().getActiveViewIdentifier());
   }
 
   private boolean isActiveView(String viewIdentifier) {
