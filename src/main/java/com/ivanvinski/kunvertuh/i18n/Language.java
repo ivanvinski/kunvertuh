@@ -6,6 +6,12 @@ import java.util.ResourceBundle;
 
 public class Language {
 
+  public static final Language ENGLISH = new LanguageBuilder("English", "en")
+      .setGroupingSeparator(',')
+      .setDecimalSeparator('.')
+      .build();
+  public static final Language[] ALL = new Language[]{ENGLISH};
+
   private String name;
   private NumberFormat numberFormat;
   private ResourceBundle resourceBundle;
