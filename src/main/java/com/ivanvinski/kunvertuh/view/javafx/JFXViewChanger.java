@@ -36,7 +36,7 @@ public final class JFXViewChanger {
   public void changeView(Parent nextView) {
     if (viewContainer.getChildren().isEmpty()) {
       setView(nextView);
-    } else if (nextView != viewContainer.getChildren().get(0)){
+    } else if (nextView != viewContainer.getChildren().get(0)) {
       transitionToView(nextView);
     }
   }
