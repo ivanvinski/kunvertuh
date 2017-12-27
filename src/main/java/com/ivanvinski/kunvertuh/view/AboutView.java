@@ -21,6 +21,8 @@ package com.ivanvinski.kunvertuh.view;
 
 public interface AboutView extends View {
 
+  void addDependencyCredit(String name, String uri, String license, String licenseUri);
+
   String getVersion();
 
   void setVersion(String version);

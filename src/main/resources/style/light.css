@@ -63,12 +63,16 @@
   -glyph-size: 24px;
 }
 
-.hyperlink {
+.hyperlink, .important-hyperlink {
   -fx-padding: 0px;
   -fx-font-size: 14px;
   -fx-border-color: transparent;
   -fx-text-fill: -primary-color;
   -fx-underline: true;
+}
+
+.important-hyperlink {
+  -fx-font-size: 20px;
 }
 
 .hyperlink:hover {

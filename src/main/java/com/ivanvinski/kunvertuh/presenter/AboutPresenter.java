@@ -34,15 +34,24 @@ public final class AboutPresenter extends AbstractPresenter<AboutView, Browser> 
 
   @Override
   public void onInitialization() {
-    getView().setVersion("Version: -");
-    getView().setLicense("Licensed under GPL v3.0");
-    getView().setContactPrompt("For more information, feel free to contact me.");
     getView().setContactUri("https://ivanvinski.com/contact/");
     getView().setRepositoryPrompt("Fork me on Github");
     getView().setRepositoryPage("https://github.com/ivanvinski/kunvertuh");
     getView().setAuthorName("Ivan Vinski");
     getView().setAuthorUri("https://ivanvinski.com/");
     getView().setAuthorGithubUri("https://github.com/ivanvinski");
+    getView().addDependencyCredit("Guava", "https://github.com/google/guava",
+        "Apache 2.0", "https://www.apache.org/licenses/LICENSE-2.0.txt");
+    getView().addDependencyCredit("Guice", "https://github.com/google/guice",
+        "Apache 2.0", "https://www.apache.org/licenses/LICENSE-2.0.txt");
+    getView().addDependencyCredit("JFoenix", "http://jfoenix.com/",
+        "Apache 2.0", "https://www.apache.org/licenses/LICENSE-2.0.txt");
+    getView().addDependencyCredit("FontAwesomeFX", "https://bitbucket.org/Jerady/fontawesomefx",
+        "Apache 2.0", "https://www.apache.org/licenses/LICENSE-2.0.txt");
+    getView().addDependencyCredit("JUnit", "https://github.com/junit-team/junit4",
+        "Eclipse Public License 1.0", "https://www.eclipse.org/legal/epl-v10.html");
+    getView().addDependencyCredit("Mockito", "https://github.com/mockito/mockito",
+        "MIT", "https://mit-license.org/");
   }
 
   @Subscribe
