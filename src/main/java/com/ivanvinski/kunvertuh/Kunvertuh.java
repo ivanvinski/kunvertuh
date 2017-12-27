@@ -46,6 +46,7 @@ public final class Kunvertuh extends Application {
     primaryStage.setScene(createScene(loadedViews));
     eventStream.push(new ViewChangeRequest(Views.LENGTH));
     eventStream.push(Language.ENGLISH);
+    primaryStage.setTitle("Kunvertuh");
     primaryStage.centerOnScreen();
     primaryStage.show();
   }
