@@ -22,17 +22,32 @@ package com.ivanvinski.kunvertuh.view.javafx;
 import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.event.OpenInBrowserEvent;
+import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.view.AboutView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
+import javafx.scene.layout.VBox;
 
 public final class JFXAboutView extends AbstractJFXView implements AboutView {
 
   @FXML
-  private Label version, license, author;
+  private Label aboutSubheading, version, license;
   @FXML
-  private Hyperlink repository, contact, authorPage, authorGithub;
+  private Hyperlink repository;
+
+  @FXML
+  private Label helpSubheading, question, answer;
+  @FXML
+  private Hyperlink contact;
+
+  @FXML
+  private Label creditsSubheading, developerHeading, developerSubheading;
+  @FXML
+  private Hyperlink authorPage, authorGithub;
+  @FXML
+  private VBox creditsBox;
 
   @Inject
   public JFXAboutView(EventStream eventStream) {
@@ -45,6 +60,37 @@ public final class JFXAboutView extends AbstractJFXView implements AboutView {
     openHyperlinkInBrowserOnActionEvent(contact);
     openHyperlinkInBrowserOnActionEvent(authorPage);
     openHyperlinkInBrowserOnActionEvent(authorGithub);
+  }
+
+  @Override
+  public void addDependencyCredit(String name, String uri, String license, String licenseUri) {
+    VBox dependencyCredit = new VBox();
+    Hyperlink titleAndLink = new Hyperlink(name);
+    titleAndLink.getStyleClass().add("important-hyperlink");
+    titleAndLink.setUserData(uri);
+    openHyperlinkInBrowserOnActionEvent(titleAndLink);
+    Hyperlink licenseLink = new Hyperlink(license);
+    licenseLink.setUserData(licenseUri);
+    openHyperlinkInBrowserOnActionEvent(licenseLink);
+    dependencyCredit.getChildren().addAll(new Separator(), titleAndLink, licenseLink);
+    creditsBox.getChildren().add(dependencyCredit);
+  }
+
+  @Override
+  public void setLanguage(Language language) {
+    super.setLanguage(language);
+    aboutSubheading.setText(language.getString("ABOUT"));
+    version.setText(language.getString("VERSION") + ": -");
+    license.setText(language.getString("LICENSE") + ": GPL v3.0");
+    repository.setText(language.getString("FORK_ME"));
+    helpSubheading.setText(language.getString("HELP"));
+    question.setText(language.getString("HELP_QUESTION"));
+    answer.setText(language.getString("HELP_ANSWER"));
+    contact.setText(language.getString("CONTACT_FOR_MORE_INFO"));
+    creditsSubheading.setText(language.getString("CREDITS"));
+    developerSubheading.setText(language.getString("DEVELOPER"));
+    authorPage.setText(language.getString("WEBSITE"));
+    authorGithub.setText(language.getString("GITHUB"));
   }
 
   @Override
@@ -109,12 +155,12 @@ public final class JFXAboutView extends AbstractJFXView implements AboutView {
 
   @Override
   public String getAuthorName() {
-    return author.getText();
+    return developerHeading.getText();
   }
 
   @Override
   public void setAuthorName(String name) {
-    author.setText(name);
+    developerHeading.setText(name);
   }
 
   @Override

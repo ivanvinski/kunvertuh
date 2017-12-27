@@ -19,6 +19,8 @@
 
 package com.ivanvinski.kunvertuh.presenter;
 
+import com.google.common.eventbus.Subscribe;
+import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.view.View;
 import java.util.Objects;
 
@@ -30,6 +32,12 @@ public abstract class AbstractPresenter<V extends View, M> implements Presenter<
   public AbstractPresenter(V view, M model) {
     this.view = Objects.requireNonNull(view, "View can't be null");
     this.model = Objects.requireNonNull(model, "Model can't be null");
+  }
+
+  @Subscribe
+  @Override
+  public void onLanguageChange(Language language) {
+    getView().setLanguage(language);
   }
 
   @Override

@@ -19,12 +19,15 @@
 
 package com.ivanvinski.kunvertuh.presenter;
 
+import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.view.View;
 
 public interface Presenter<V extends View, M> {
 
   default void onInitialization() {
   }
+
+  void onLanguageChange(Language language);
 
   V getView();
 

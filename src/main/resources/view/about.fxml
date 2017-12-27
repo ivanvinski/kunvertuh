@@ -32,7 +32,7 @@
   <content>
     <VBox prefWidth="100.0" styleClass="card-container">
       <children>
-        <Label fx:id="aboutSubheader" styleClass="subheading" text="About">
+        <Label fx:id="aboutSubheading" styleClass="subheading" text="About">
           <VBox.margin>
             <Insets top="-8.0" />
           </VBox.margin>
@@ -49,7 +49,7 @@
             </Hyperlink>
           </children>
         </VBox>
-        <Label fx:id="helpSubheader" styleClass="subheading" text="Help" />
+        <Label fx:id="helpSubheading" styleClass="subheading" text="Help" />
         <VBox prefWidth="100.0" styleClass="card">
           <children>
             <Label fx:id="question" text="Q: How to use this software?" />
@@ -62,11 +62,11 @@
             <Hyperlink fx:id="contact" text="For other information, feel free to contact me." />
           </children>
         </VBox>
-        <Label fx:id="creditsSubheader" styleClass="subheading" text="Credits" />
+        <Label fx:id="creditsSubheading" styleClass="subheading" text="Credits" />
         <VBox fx:id="creditsBox" prefWidth="100.0" styleClass="card">
           <children>
-            <Label fx:id="author" styleClass="heading" text="Ivan Vinski" />
-                  <Label text="Developer of this software" />
+            <Label styleClass="heading" text="Ivan Vinski" />
+                  <Label fx:id="developerSubheading" text="Developer of this software" />
                   <HBox>
                      <children>
                   <Hyperlink fx:id="authorPage" text="Website">

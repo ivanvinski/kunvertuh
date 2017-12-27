@@ -20,6 +20,7 @@
 package com.ivanvinski.kunvertuh.view.javafx;
 
 import com.ivanvinski.kunvertuh.event.EventStream;
+import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.view.View;
 import java.util.Objects;
 import javafx.scene.layout.StackPane;
@@ -27,6 +28,7 @@ import javafx.scene.layout.StackPane;
 public abstract class AbstractJFXView extends StackPane implements View {
 
   private EventStream eventStream;
+  private Language language;
 
   public AbstractJFXView(EventStream eventStream) {
     this.eventStream = Objects.requireNonNull(eventStream, "Event streams can't be null");
@@ -35,5 +37,15 @@ public abstract class AbstractJFXView extends StackPane implements View {
   @Override
   public void pushEvent(Object event) {
     eventStream.push(event);
+  }
+
+  @Override
+  public Language getLanguage() {
+    return language;
+  }
+
+  @Override
+  public void setLanguage(Language language) {
+    this.language = language;
   }
 }

@@ -21,6 +21,7 @@ package com.ivanvinski.kunvertuh.presenter;
 
 import com.google.common.eventbus.Subscribe;
 import com.ivanvinski.kunvertuh.event.ConversionRequest;
+import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.measurement.Unit;
 import com.ivanvinski.kunvertuh.measurement.UnitConverter;
 import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
@@ -41,6 +42,15 @@ public abstract class AbstractConverterPresenter<U extends Unit> extends
   @Override
   public void onInitialization() {
     getView().initialize(getModel().getSupportedUnits());
+  }
+
+  @Override
+  public void onLanguageChange(Language language) {
+    super.onLanguageChange(language);
+    for (U unit : getModel().getSupportedUnits()) {
+      getView().setValue(unit, "");
+    }
+    valueConverter.setValueFormat(language.getNumberFormat());
   }
 
   @Subscribe

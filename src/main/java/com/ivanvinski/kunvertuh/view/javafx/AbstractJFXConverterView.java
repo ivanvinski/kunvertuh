@@ -21,6 +21,7 @@ package com.ivanvinski.kunvertuh.view.javafx;
 
 import com.ivanvinski.kunvertuh.event.ConversionRequest;
 import com.ivanvinski.kunvertuh.event.EventStream;
+import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.measurement.MeasurementSystem;
 import com.ivanvinski.kunvertuh.measurement.Unit;
 import com.ivanvinski.kunvertuh.view.ConverterView;
@@ -49,6 +50,15 @@ public abstract class AbstractJFXConverterView<U extends Unit> extends AbstractJ
   public void initialize(Collection<U> supportedUnits) {
     Arrays.stream(MeasurementSystem.values()).forEachOrdered(this::registerInputContainerFor);
     supportedUnits.forEach(this::registerInputFor);
+  }
+
+  @Override
+  public void setLanguage(Language language) {
+    super.setLanguage(language);
+    containerTitles.forEach((system, subheading) ->
+        subheading.setText(language.getString(system.toString())));
+    inputControls.forEach((unit, textField) ->
+        textField.setPromptText(language.getString(unit.toString())));
   }
 
   @Override

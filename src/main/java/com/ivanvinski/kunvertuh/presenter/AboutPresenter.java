@@ -37,7 +37,6 @@ public final class AboutPresenter extends AbstractPresenter<AboutView, Browser> 
     getView().setContactUri("https://ivanvinski.com/contact/");
     getView().setRepositoryPrompt("Fork me on Github");
     getView().setRepositoryPage("https://github.com/ivanvinski/kunvertuh");
-    getView().setAuthorName("Ivan Vinski");
     getView().setAuthorUri("https://ivanvinski.com/");
     getView().setAuthorGithubUri("https://github.com/ivanvinski");
     getView().addDependencyCredit("Guava", "https://github.com/google/guava",

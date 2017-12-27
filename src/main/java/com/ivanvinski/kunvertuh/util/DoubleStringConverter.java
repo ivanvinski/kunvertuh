@@ -19,6 +19,7 @@
 
 package com.ivanvinski.kunvertuh.util;
 
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -29,7 +30,8 @@ public class DoubleStringConverter implements StringConverter<Double> {
   private NumberFormat valueFormat;
 
   public DoubleStringConverter() {
-    this(new DecimalFormat("#0.000#######"));
+    this(new DecimalFormat("#0.0000000000"));
+    valueFormat.setRoundingMode(RoundingMode.HALF_EVEN);
   }
 
   public DoubleStringConverter(NumberFormat valueFormat) {
@@ -48,5 +50,13 @@ public class DoubleStringConverter implements StringConverter<Double> {
     } catch (ParseException e) {
       return null;
     }
+  }
+
+  public NumberFormat getValueFormat() {
+    return valueFormat;
+  }
+
+  public void setValueFormat(NumberFormat valueFormat) {
+    this.valueFormat = valueFormat;
   }
 }
