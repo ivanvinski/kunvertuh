@@ -87,7 +87,7 @@
   -fx-font-weight: bold;
 }
 
-.jfx-text-field {
+.jfx-text-field, .jfx-combo-box {
   -fx-text-fill: -primary-text-and-icons-color;
   -jfx-focus-color: -primary-color;
   -jfx-unfocus-color: -primary-text-and-icons-color;
