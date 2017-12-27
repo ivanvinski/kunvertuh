@@ -33,11 +33,13 @@ import com.ivanvinski.kunvertuh.util.JFXBrowser;
 import com.ivanvinski.kunvertuh.view.AboutView;
 import com.ivanvinski.kunvertuh.view.ConverterView;
 import com.ivanvinski.kunvertuh.view.MainView;
+import com.ivanvinski.kunvertuh.view.SettingsView;
 import com.ivanvinski.kunvertuh.view.ViewCatalog;
 import com.ivanvinski.kunvertuh.view.javafx.JFXAboutView;
 import com.ivanvinski.kunvertuh.view.javafx.JFXLengthConverterView;
 import com.ivanvinski.kunvertuh.view.javafx.JFXMainView;
 import com.ivanvinski.kunvertuh.view.javafx.JFXMassConverterView;
+import com.ivanvinski.kunvertuh.view.javafx.JFXSettingsView;
 import com.ivanvinski.kunvertuh.view.javafx.JFXVolumeConverterView;
 import java.util.Objects;
 import javafx.application.HostServices;
@@ -77,6 +79,7 @@ public final class MainModule extends AbstractModule {
     }).to(JFXMassConverterView.class);
     bind(new TypeLiteral<ConverterView<Volume>>() {
     }).to(JFXVolumeConverterView.class);
+    bind(SettingsView.class).to(JFXSettingsView.class);
     bind(AboutView.class).to(JFXAboutView.class);
   }
 }

@@ -23,7 +23,6 @@ import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.event.ViewChangeRequest;
 import com.ivanvinski.kunvertuh.i18n.Language;
-import com.ivanvinski.kunvertuh.util.JFXBrowser;
 import com.ivanvinski.kunvertuh.view.MainView;
 import com.ivanvinski.kunvertuh.view.View;
 import com.ivanvinski.kunvertuh.view.Views;
@@ -65,6 +64,7 @@ public final class JFXMainView extends AbstractJFXView implements MainView {
     addNavigationButton(Views.MASS, MaterialDesignIcon.WEIGHT);
     addNavigationButton(Views.VOLUME, MaterialDesignIcon.CUBE_OUTLINE);
     addNavigationButtonSeparator();
+    addNavigationButton(Views.SETTINGS, MaterialDesignIcon.SETTINGS);
     addNavigationButton(Views.ABOUT, MaterialDesignIcon.HELP_CIRCLE_OUTLINE);
     navigationContent.getChildren().get(0).getStyleClass().add(SELECTED_CLASS);
   }

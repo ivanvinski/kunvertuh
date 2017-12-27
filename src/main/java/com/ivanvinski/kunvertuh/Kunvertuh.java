@@ -23,6 +23,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.event.ViewChangeRequest;
+import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.module.MainModule;
 import com.ivanvinski.kunvertuh.view.ViewCatalog;
 import com.ivanvinski.kunvertuh.view.Views;
@@ -44,6 +45,7 @@ public final class Kunvertuh extends Application {
     ViewCatalog loadedViews = loadAllViews(injector);
     primaryStage.setScene(createScene(loadedViews));
     eventStream.push(new ViewChangeRequest(Views.LENGTH));
+    eventStream.push(Language.ENGLISH);
     primaryStage.centerOnScreen();
     primaryStage.show();
   }
@@ -54,6 +56,7 @@ public final class Kunvertuh extends Application {
     loader.load(Views.MASS, getClass().getResource("/view/mass-converter.fxml"));
     loader.load(Views.VOLUME, getClass().getResource("/view/volume-converter.fxml"));
     loader.load(Views.MAIN, getClass().getResource("/view/main.fxml"));
+    loader.load(Views.SETTINGS, getClass().getResource("/view/settings.fxml"));
     loader.load(Views.ABOUT, getClass().getResource("/view/about.fxml"));
     return loader.getLoadedViews();
   }

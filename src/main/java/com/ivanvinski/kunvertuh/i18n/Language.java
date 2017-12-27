@@ -41,4 +41,9 @@ public class Language {
       return "%null%";
     }
   }
+
+  @Override
+  public String toString() {
+    return getName();
+  }
 }
