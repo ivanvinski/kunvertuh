@@ -10,7 +10,11 @@ public class Language {
       .setGroupingSeparator(',')
       .setDecimalSeparator('.')
       .build();
-  public static final Language[] ALL = new Language[]{ENGLISH};
+  public static final Language CROATIAN = new LanguageBuilder("Hrvatski", "hr")
+      .setGroupingSeparator('.')
+      .setDecimalSeparator(',')
+      .build();
+  public static final Language[] ALL = new Language[]{ENGLISH, CROATIAN};
 
   private String name;
   private NumberFormat numberFormat;
