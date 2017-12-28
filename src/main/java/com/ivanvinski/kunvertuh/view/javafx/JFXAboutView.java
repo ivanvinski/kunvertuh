@@ -80,7 +80,7 @@ public final class JFXAboutView extends AbstractJFXView implements AboutView {
   public void setLanguage(Language language) {
     super.setLanguage(language);
     aboutSubheading.setText(language.getString("ABOUT"));
-    version.setText(language.getString("VERSION") + ": -");
+    version.setText(language.getString("VERSION") + ": 0.1.0");
     license.setText(language.getString("LICENSE") + ": GPL v3.0");
     repository.setText(language.getString("FORK_ME"));
     helpSubheading.setText(language.getString("HELP"));
