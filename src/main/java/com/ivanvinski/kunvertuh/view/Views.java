@@ -25,6 +25,7 @@ public final class Views {
   public static final String LENGTH = "LENGTH";
   public static final String MASS = "MASS";
   public static final String VOLUME = "VOLUME";
+  public static final String AREA = "AREA";
   public static final String SETTINGS = "SETTINGS";
   public static final String ABOUT = "ABOUT";
 

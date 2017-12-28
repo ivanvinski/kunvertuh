@@ -56,6 +56,7 @@ public final class Kunvertuh extends Application {
     loader.load(Views.LENGTH, getClass().getResource("/view/length-converter.fxml"));
     loader.load(Views.MASS, getClass().getResource("/view/mass-converter.fxml"));
     loader.load(Views.VOLUME, getClass().getResource("/view/volume-converter.fxml"));
+    loader.load(Views.AREA, getClass().getResource("/view/area-converter.fxml"));
     loader.load(Views.MAIN, getClass().getResource("/view/main.fxml"));
     loader.load(Views.SETTINGS, getClass().getResource("/view/settings.fxml"));
     loader.load(Views.ABOUT, getClass().getResource("/view/about.fxml"));

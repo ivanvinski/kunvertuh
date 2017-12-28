@@ -66,6 +66,7 @@ public final class JFXMainView extends AbstractJFXView implements MainView {
     addNavigationButton(Views.LENGTH, MaterialDesignIcon.RULER);
     addNavigationButton(Views.MASS, MaterialDesignIcon.WEIGHT);
     addNavigationButton(Views.VOLUME, MaterialDesignIcon.CUBE_OUTLINE);
+    addNavigationButton(Views.AREA, MaterialDesignIcon.GRID);
     addNavigationButtonSeparator();
     addNavigationButton(Views.SETTINGS, MaterialDesignIcon.SETTINGS);
     addNavigationButton(Views.ABOUT, MaterialDesignIcon.HELP_CIRCLE_OUTLINE);

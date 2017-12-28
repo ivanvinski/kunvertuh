@@ -24,6 +24,7 @@ import com.google.inject.Singleton;
 import com.google.inject.TypeLiteral;
 import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.event.GuavaEventStream;
+import com.ivanvinski.kunvertuh.measurement.Area;
 import com.ivanvinski.kunvertuh.measurement.Length;
 import com.ivanvinski.kunvertuh.measurement.Mass;
 import com.ivanvinski.kunvertuh.measurement.UnitConverter;
@@ -36,6 +37,7 @@ import com.ivanvinski.kunvertuh.view.MainView;
 import com.ivanvinski.kunvertuh.view.SettingsView;
 import com.ivanvinski.kunvertuh.view.ViewCatalog;
 import com.ivanvinski.kunvertuh.view.javafx.JFXAboutView;
+import com.ivanvinski.kunvertuh.view.javafx.JFXAreaConverterView;
 import com.ivanvinski.kunvertuh.view.javafx.JFXLengthConverterView;
 import com.ivanvinski.kunvertuh.view.javafx.JFXMainView;
 import com.ivanvinski.kunvertuh.view.javafx.JFXMassConverterView;
@@ -68,6 +70,8 @@ public final class MainModule extends AbstractModule {
     }).toInstance(new UnitConverter<>(Mass.values()));
     bind(new TypeLiteral<UnitConverter<Volume>>() {
     }).toInstance(new UnitConverter<>(Volume.values()));
+    bind(new TypeLiteral<UnitConverter<Area>>() {
+    }).toInstance(new UnitConverter<>(Area.values()));
     bind(Browser.class).to(JFXBrowser.class);
   }
 
@@ -79,6 +83,8 @@ public final class MainModule extends AbstractModule {
     }).to(JFXMassConverterView.class);
     bind(new TypeLiteral<ConverterView<Volume>>() {
     }).to(JFXVolumeConverterView.class);
+    bind(new TypeLiteral<ConverterView<Area>>() {
+    }).to(JFXAreaConverterView.class);
     bind(SettingsView.class).to(JFXSettingsView.class);
     bind(AboutView.class).to(JFXAboutView.class);
   }
