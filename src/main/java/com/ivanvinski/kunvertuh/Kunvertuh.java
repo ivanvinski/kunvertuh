@@ -1,6 +1,6 @@
 /*
- * Kunvertuh
- * Copyright (C) 2017  Ivan Vinski
+ * Kunvertuh - simple and beautiful unit converter
+ * Copyright (C) 2018  Ivan Vinski
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,22 +13,27 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 package com.ivanvinski.kunvertuh;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 import com.ivanvinski.kunvertuh.event.EventStream;
+import com.ivanvinski.kunvertuh.event.GuavaEventStream;
 import com.ivanvinski.kunvertuh.event.ViewChangeRequest;
+import com.ivanvinski.kunvertuh.event.ViewsLoadedEvent;
 import com.ivanvinski.kunvertuh.i18n.Language;
-import com.ivanvinski.kunvertuh.module.MainModule;
-import com.ivanvinski.kunvertuh.view.ViewCatalog;
-import com.ivanvinski.kunvertuh.view.Views;
-import com.ivanvinski.kunvertuh.view.javafx.JFXViewLoader;
+import com.ivanvinski.kunvertuh.mvp.loader.JFXViewLoader;
+import com.ivanvinski.kunvertuh.mvp.loader.ViewLoader;
+import com.ivanvinski.kunvertuh.measurement.Area;
+import com.ivanvinski.kunvertuh.measurement.Length;
+import com.ivanvinski.kunvertuh.measurement.Mass;
+import com.ivanvinski.kunvertuh.measurement.Volume;
+import com.ivanvinski.kunvertuh.mvp.view.View;
+import java.net.URL;
+import java.util.Map;
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -40,10 +45,10 @@ public final class Kunvertuh extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    Injector injector = Guice.createInjector(new MainModule(getHostServices()));
-    EventStream eventStream = injector.getInstance(EventStream.class);
-    ViewCatalog loadedViews = loadAllViews(injector);
-    primaryStage.setScene(createScene(loadedViews));
+    EventStream eventStream = new GuavaEventStream();
+    Map<String, View> loadedViews = loadAllViews(eventStream);
+    eventStream.push(new ViewsLoadedEvent(loadedViews));
+    primaryStage.setScene(createScene(loadedViews.get(Views.MAIN)));
     eventStream.push(new ViewChangeRequest(Views.LENGTH));
     eventStream.push(Language.ENGLISH);
     primaryStage.setTitle("Kunvertuh");
@@ -51,20 +56,28 @@ public final class Kunvertuh extends Application {
     primaryStage.show();
   }
 
-  private ViewCatalog loadAllViews(Injector injector) {
-    JFXViewLoader loader = new JFXViewLoader(injector);
-    loader.load(Views.LENGTH, getClass().getResource("/view/length-converter.fxml"));
-    loader.load(Views.MASS, getClass().getResource("/view/mass-converter.fxml"));
-    loader.load(Views.VOLUME, getClass().getResource("/view/volume-converter.fxml"));
-    loader.load(Views.AREA, getClass().getResource("/view/area-converter.fxml"));
-    loader.load(Views.MAIN, getClass().getResource("/view/main.fxml"));
-    loader.load(Views.SETTINGS, getClass().getResource("/view/settings.fxml"));
-    loader.load(Views.ABOUT, getClass().getResource("/view/about.fxml"));
+  private Map<String, View> loadAllViews(EventStream eventStream) {
+    ViewLoader<URL> loader = new JFXViewLoader(eventStream, getHostServices());
+    loader.loadViewTemplate(Views.LENGTH,
+        getClass().getResource("/view/converter-template.fxml"),
+        Length.class);
+    loader.loadViewTemplate(Views.MASS,
+        getClass().getResource("/view/converter-template.fxml"),
+        Mass.class);
+    loader.loadViewTemplate(Views.VOLUME,
+        getClass().getResource("/view/converter-template.fxml"),
+        Volume.class);
+    loader.loadViewTemplate(Views.AREA,
+        getClass().getResource("/view/converter-template.fxml"),
+        Area.class);
+    loader.loadView(Views.MAIN, getClass().getResource("/view/main.fxml"));
+    loader.loadView(Views.SETTINGS, getClass().getResource("/view/settings.fxml"));
+    loader.loadView(Views.ABOUT, getClass().getResource("/view/about.fxml"));
     return loader.getLoadedViews();
   }
 
-  private Scene createScene(ViewCatalog views) {
-    Scene scene = new Scene(views.getView(Views.MAIN), 800, 600);
+  private Scene createScene(View initialView) {
+    Scene scene = new Scene((Parent) initialView, 800, 600);
     scene.getStylesheets().add(getClass().getResource("/style/light.css").toExternalForm());
     return scene;
   }
