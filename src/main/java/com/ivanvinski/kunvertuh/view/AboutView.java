@@ -21,41 +21,111 @@ package com.ivanvinski.kunvertuh.view;
 
 public interface AboutView extends View {
 
-  void addDependencyCredit(String name, String uri, String license, String licenseUri);
+  String getName();
+
+  void setName(String name);
 
   String getVersion();
 
   void setVersion(String version);
 
-  String getRepositoryPrompt();
+  String getTagline();
 
-  void setRepositoryPrompt(String text);
+  void setTagline(String tagline);
 
-  String getRepositoryPage();
+  String getDeveloper();
 
-  void setRepositoryPage(String repositoryUri);
+  void setDeveloper(String developer);
+
+  String getDeveloperRoleText();
+
+  void setDeveloperRoleText(String developerRoleText);
+
+  String getDeveloperWebsiteText();
+
+  void setDeveloperWebsiteText(String developerWebsiteText);
+
+  Runnable getOnDeveloperWebsiteClicked();
+
+  void setOnDeveloperWebsiteClicked(Runnable developerWebsiteClickAction);
+
+  String getDeveloperGithubText();
+
+  void setDeveloperGithubText(String developerGithubText);
+
+  Runnable getOnDeveloperGithubClicked();
+
+  void setOnDeveloperGithubClicked(Runnable developerGithubClickAction);
+
+  String getOpenSourceHeading();
+
+  void setOpenSourceHeading(String openSourceHeading);
+
+  String getLicensePrompt();
+
+  void setLicensePrompt(String licensePrompt);
 
   String getLicense();
 
   void setLicense(String license);
 
-  String getContactPrompt();
+  String getProjectRepositoryText();
 
-  void setContactPrompt(String text);
+  void setProjectRepositoryText(String projectRepositoryText);
 
-  String getContactUri();
+  Runnable getOnProjectRepositoryClicked();
 
-  void setContactUri(String contactUri);
+  void setOnProjectRepositoryClicked(Runnable projectRepositoryClickAction);
 
-  String getAuthorName();
+  String getDependenciesHeader();
 
-  void setAuthorName(String name);
+  void setDependenciesHeader(String dependenciesHeader);
 
-  String getAuthorUri();
+  String getJFoenixNote();
 
-  void setAuthorUri(String authorUri);
+  void setJFoenixNote(String jfoenixNote);
 
-  String getAuthorGithubUri();
+  String getJFoenixWebsiteText();
 
-  void setAuthorGithubUri(String githubUri);
+  void setJFoenixWebsiteText(String jfoenixWebsiteText);
+
+  Runnable getOnJFoenixClicked();
+
+  void setOnJFoenixClicked(Runnable jfoenixClickAction);
+
+  Runnable getOnJFoenixLicenseClicked();
+
+  void setOnJFoenixLicenseClicked(Runnable jfoenixLicenseClickAction);
+
+  String getFontAwesomeFXNote();
+
+  void setFontAwesomeFXNote(String fontAwesomeFxNote);
+
+  String getFontAwesomeFXWebsiteText();
+
+  void setFontAwesomeFXWebsiteText(String fontAwesomeFXWebsiteText);
+
+  Runnable getOnFontAwesomeFXClicked();
+
+  void setOnFontAwesomeFXClicked(Runnable fontAwesomeFxClickAction);
+
+  Runnable getOnFontAwesomeFXLicenseClicked();
+
+  void setOnFontAwesomeFXLicenseClicked(Runnable fontAwesomeFxLicenseClickAction);
+
+  String getGuavaNote();
+
+  void setGuavaNote(String guavaNote);
+
+  String getGuavaWebsiteText();
+
+  void setGuavaWebsiteText(String guavaWebsiteText);
+
+  Runnable getOnGuavaClicked();
+
+  void setOnGuavaClicked(Runnable guavaClickAction);
+
+  Runnable getOnGuavaLicenseClicked();
+
+  void setOnGuavaLicenseClicked(Runnable guavaLicenseClickAction);
 }

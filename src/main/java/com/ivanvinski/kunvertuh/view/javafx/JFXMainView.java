@@ -19,10 +19,6 @@
 
 package com.ivanvinski.kunvertuh.view.javafx;
 
-import com.google.inject.Inject;
-import com.ivanvinski.kunvertuh.event.EventStream;
-import com.ivanvinski.kunvertuh.event.ViewChangeRequest;
-import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.view.MainView;
 import com.ivanvinski.kunvertuh.view.View;
 import com.ivanvinski.kunvertuh.view.Views;
@@ -30,19 +26,22 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Consumer;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
-public final class JFXMainView extends AbstractJFXView implements MainView {
+public final class JFXMainView extends StackPane implements MainView {
 
   private static final String SELECTED_CLASS = "selected";
 
   private StackPane viewContainer = new StackPane();
-  private JFXViewChanger viewChanger = new JFXViewChanger(viewContainer);
   private View activeView;
   @FXML
   private Label appBarTitle;
@@ -50,47 +49,45 @@ public final class JFXMainView extends AbstractJFXView implements MainView {
   private JFXButton menu;
   @FXML
   private JFXDrawer navigation;
-  private VBox navigationContent = new VBox();
-
-  @Inject
-  public JFXMainView(EventStream eventStream) {
-    super(eventStream);
-  }
+  private VBox navigationItemsBox = new VBox();
+  private Map<String, JFXButton> navigationItems = new HashMap<>();
+  private Consumer<String> navigationItemClickAction = string -> {
+  };
 
   @Override
   public void initialize() {
     navigation.setContent(viewContainer);
     menu.setOnAction(event -> toggleDrawer());
-    navigationContent.getStyleClass().add("nav-content");
-    navigation.setSidePane(navigationContent);
-    addNavigationButton(Views.LENGTH, MaterialDesignIcon.RULER);
-    addNavigationButton(Views.MASS, MaterialDesignIcon.WEIGHT);
-    addNavigationButton(Views.VOLUME, MaterialDesignIcon.CUBE_OUTLINE);
-    addNavigationButton(Views.AREA, MaterialDesignIcon.GRID);
-    addNavigationButtonSeparator();
-    addNavigationButton(Views.SETTINGS, MaterialDesignIcon.SETTINGS);
-    addNavigationButton(Views.ABOUT, MaterialDesignIcon.HELP_CIRCLE_OUTLINE);
-    navigationContent.getChildren().get(0).getStyleClass().add(SELECTED_CLASS);
+    navigationItemsBox.getStyleClass().add("nav-content");
+    navigation.setSidePane(navigationItemsBox);
   }
 
   @Override
-  public void setLanguage(Language language) {
-    super.setLanguage(language);
-    navigationContent.getChildren().stream()
-        .filter(node -> node instanceof JFXButton)
-        .map(node -> (JFXButton) node)
-        .forEach(button -> button.setText(language.getString((String) button.getUserData())));
+  public void addNavigationItem(String viewIdentifier) {
+    Node icon = getIconByViewIdentifier(viewIdentifier);
+    JFXButton button = new JFXButton(viewIdentifier);
+    if (icon != null) {
+      button.setGraphic(icon);
+    }
+    button.setMaxWidth(Double.MAX_VALUE);
+    button.setOnAction(e -> {
+      selectNavigationItem(viewIdentifier);
+      navigation.close();
+      navigationItemClickAction.accept(viewIdentifier);
+    });
+    navigationItemsBox.getChildren().add(button);
+    navigationItems.put(viewIdentifier, button);
   }
 
   @Override
-  public View getActiveView() {
-    return activeView;
+  public void addNavigationItemSeparator() {
+    navigationItemsBox.getChildren().add(new Separator());
   }
 
   @Override
-  public void setActiveView(View view) {
-    viewChanger.changeView((Parent) view);
-    activeView = view;
+  public void selectNavigationItem(String viewIdentifier) {
+    navigationItemsBox.getChildren().forEach(node -> node.getStyleClass().remove(SELECTED_CLASS));
+    navigationItems.get(viewIdentifier).getStyleClass().add(SELECTED_CLASS);
   }
 
   @Override
@@ -100,33 +97,63 @@ public final class JFXMainView extends AbstractJFXView implements MainView {
 
   @Override
   public void setAppBarTitle(String appBarTitle) {
-    if (getLanguage() == null) {
-      return;
+    this.appBarTitle.setText(appBarTitle);
+  }
+
+  @Override
+  public String getNavigationButtonText(String viewIdentifier) {
+    return navigationItems.get(viewIdentifier).getText();
+  }
+
+  @Override
+  public void setNavigationButtonText(String viewIdentifier, String buttonText) {
+    navigationItems.get(viewIdentifier).setText(buttonText);
+  }
+
+  @Override
+  public boolean containsNavigationButton(String viewIdentifier) {
+    return navigationItems.containsKey(viewIdentifier);
+  }
+
+  @Override
+  public Consumer<String> getOnNavigationItemClicked() {
+    return navigationItemClickAction;
+  }
+
+  @Override
+  public void setOnNavigationItemClicked(Consumer<String> navigationItemClickAction) {
+    this.navigationItemClickAction = navigationItemClickAction;
+  }
+
+  @Override
+  public View getActiveView() {
+    return activeView;
+  }
+
+  @Override
+  public void setActiveView(View view) {
+    viewContainer.getChildren().setAll((Parent) view);
+    activeView = view;
+  }
+
+  private Node getIconByViewIdentifier(String viewIdentifier) {
+    MaterialDesignIcon icon;
+    if (viewIdentifier.equals(Views.LENGTH)) {
+      icon = MaterialDesignIcon.RULER;
+    } else if (viewIdentifier.equals(Views.MASS)) {
+      icon = MaterialDesignIcon.WEIGHT;
+    } else if (viewIdentifier.equals(Views.VOLUME)) {
+      icon = MaterialDesignIcon.CUBE_OUTLINE;
+    } else if (viewIdentifier.equals(Views.AREA)) {
+      icon = MaterialDesignIcon.GRID;
+    } else if (viewIdentifier.equals(Views.SETTINGS)) {
+      icon = MaterialDesignIcon.SETTINGS;
+    } else if (viewIdentifier.equals(Views.ABOUT)) {
+      icon = MaterialDesignIcon.HELP_CIRCLE_OUTLINE;
+    } else {
+      return null;
     }
-    String title = getLanguage().getString(appBarTitle + "_VIEW");
-    title = title.equals("%null%") ? getLanguage().getString(appBarTitle) : title;
-    this.appBarTitle.setText(title);
-  }
-
-  private void addNavigationButton(String viewIdentifier, MaterialDesignIcon icon) {
-    JFXButton button = new JFXButton(viewIdentifier, new MaterialDesignIconView(icon));
-    button.setMaxWidth(Double.MAX_VALUE);
-    button.setUserData(viewIdentifier);
-    button.setOnAction(e -> {
-      setSelectedButton(button);
-      pushEvent(new ViewChangeRequest(viewIdentifier));
-      navigation.close();
-    });
-    navigationContent.getChildren().add(button);
-  }
-
-  private void addNavigationButtonSeparator() {
-    navigationContent.getChildren().add(new Separator());
-  }
-
-  private void setSelectedButton(JFXButton button) {
-    navigationContent.getChildren().forEach(node -> node.getStyleClass().remove(SELECTED_CLASS));
-    button.getStyleClass().add(SELECTED_CLASS);
+    return new MaterialDesignIconView(icon);
   }
 
   private void toggleDrawer() {

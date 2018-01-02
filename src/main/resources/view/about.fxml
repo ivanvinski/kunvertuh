@@ -19,78 +19,121 @@
   ~
   -->
 
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<ScrollPane fx:id="root" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308"
-  maxWidth="1.7976931348623157E308" pannable="true" prefHeight="600.0" prefWidth="600.0"
-  xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1"
-  fx:controller="com.ivanvinski.kunvertuh.presenter.AboutPresenter">
-  <content>
-    <VBox prefWidth="100.0" styleClass="card-container">
-      <children>
-        <Label fx:id="aboutSubheading" styleClass="subheading" text="About">
-          <VBox.margin>
-            <Insets top="-8.0"/>
-          </VBox.margin>
-        </Label>
-        <VBox prefWidth="100.0" styleClass="card">
-          <children>
-            <Label styleClass="heading" text="Kunvertuh"/>
-            <Label fx:id="version" text="Version placeholder"/>
-            <Label fx:id="license" text="Licensed under GPL v3.0"/>
-            <Hyperlink fx:id="repository" text="Fork me on GitHub">
-              <graphic>
-                <MaterialDesignIconView glyphName="GIT"/>
-              </graphic>
-            </Hyperlink>
-          </children>
-        </VBox>
-        <Label fx:id="helpSubheading" styleClass="subheading" text="Help"/>
-        <VBox prefWidth="100.0" styleClass="card">
-          <children>
-            <Label fx:id="question" text="Q: How to use this software?"/>
-            <Label fx:id="answer"
-              text="A: Click on desired unit field, enter a value and press enter."
-              wrapText="true"/>
-            <Pane>
-              <VBox.margin>
-                <Insets bottom="5.0" top="5.0"/>
-              </VBox.margin>
-            </Pane>
-            <Hyperlink fx:id="contact" text="For other information, feel free to contact me."/>
-          </children>
-        </VBox>
-        <Label fx:id="creditsSubheading" styleClass="subheading" text="Credits"/>
-        <VBox fx:id="creditsBox" prefWidth="100.0" styleClass="card">
-          <children>
-            <Label styleClass="heading" text="Ivan Vinski"/>
-            <Label fx:id="developerSubheading" text="Developer of this software"/>
-            <HBox>
-              <children>
-                <Hyperlink fx:id="authorPage" text="Website">
-                  <graphic>
-                    <MaterialDesignIconView glyphName="WEB"/>
-                  </graphic>
-                </Hyperlink>
-                <Hyperlink fx:id="authorGithub" text="GitHub">
-                  <graphic>
-                    <MaterialDesignIconView glyphName="GITHUB_CIRCLE"/>
-                  </graphic>
-                </Hyperlink>
-              </children>
-            </HBox>
-          </children>
-        </VBox>
-      </children>
-      <padding>
-        <Insets left="8.0" right="8.0"/>
-      </padding>
-    </VBox>
-  </content>
+
+<ScrollPane fx:id="root" fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pannable="true" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ivanvinski.kunvertuh.presenter.AboutPresenter">
+   <content>
+      <GridPane hgap="8.0" styleClass="card-container" vgap="8.0">
+        <columnConstraints>
+          <ColumnConstraints />
+          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="35.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="35.0" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="35.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <VBox prefWidth="100.0" spacing="4.0" styleClass="card" GridPane.columnIndex="1" GridPane.columnSpan="2">
+               <children>
+                  <Label fx:id="name" styleClass="heading" text="Kunvertuh" />
+                  <Label fx:id="version" text="Version 0.1.0" />
+                  <Label fx:id="tagline" text="Simple and beautiful unit converter" wrapText="true" />
+               </children>
+            </VBox>
+            <VBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="315.0" spacing="4.0" styleClass="card" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1">
+               <children>
+                  <Label fx:id="openSource" styleClass="heading" text="Open Source" wrapText="true" />
+                  <JFXTextArea fx:id="license" editable="false" maxHeight="1.7976931348623157E308" promptText="License: GPL v3.0">
+                     <VBox.margin>
+                        <Insets bottom="16.0" top="16.0" />
+                     </VBox.margin>
+                  </JFXTextArea>
+                  <Hyperlink fx:id="projectRepository" text="Fork me on GitHub" wrapText="true">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="GITHUB_CIRCLE" />
+                     </graphic>
+                  </Hyperlink>
+               </children>
+            </VBox>
+            <VBox prefWidth="100.0" spacing="4.0" styleClass="card" GridPane.columnIndex="3">
+               <children>
+                  <Label fx:id="developer" styleClass="heading" text="Ivan Vinski" wrapText="true" />
+                  <Label fx:id="developerRole" text="Developer of this project" wrapText="true" />
+                  <Hyperlink fx:id="developerWebsite" text="Website">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="WEB" />
+                     </graphic>
+                  </Hyperlink>
+                  <Hyperlink fx:id="developerGithub" text="GitHub">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="GITHUB_CIRCLE" />
+                     </graphic>
+                  </Hyperlink>
+               </children>
+            </VBox>
+            <Label fx:id="dependenciesHeader" styleClass="subheading" text="Open source software used in this project" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" />
+            <VBox prefWidth="100.0" spacing="4.0" styleClass="card" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <Label styleClass="heading" text="JFoenix" />
+                  <Label fx:id="jfoenixNote" text="Used for material design components" wrapText="true" />
+                  <Hyperlink fx:id="jfoenixLicense" text="Apache 2.0">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="SCALE_BALANCE" />
+                     </graphic>
+                  </Hyperlink>
+                  <Hyperlink fx:id="jfoenixWebsite" text="Website">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="WEB" />
+                     </graphic>
+                  </Hyperlink>
+               </children>
+            </VBox>
+            <VBox prefWidth="100.0" spacing="4.0" styleClass="card" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <children>
+                  <Label styleClass="heading" text="FontAwesomeFX" />
+                  <Label fx:id="fontAwesomeFxNote" text="Used for material design icons" wrapText="true" />
+                  <Hyperlink fx:id="fontAwesomeFxLicense" text="Apache 2.0">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="SCALE_BALANCE" />
+                     </graphic>
+                  </Hyperlink>
+                  <Hyperlink fx:id="fontAwesomeFxWebsite" text="Repository">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="BITBUCKET" />
+                     </graphic>
+                  </Hyperlink>
+               </children>
+            </VBox>
+            <VBox prefWidth="100.0" spacing="4.0" styleClass="card" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <children>
+                  <Label styleClass="heading" text="Guava" />
+                  <Label fx:id="guavaNote" text="Used for event bus" wrapText="true" />
+                  <Hyperlink fx:id="guavaLicense" text="Apache 2.0">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="SCALE_BALANCE" />
+                     </graphic>
+                  </Hyperlink>
+                  <Hyperlink fx:id="guavaWebsite" text="Repository">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="GITHUB_CIRCLE" />
+                     </graphic>
+                  </Hyperlink>
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+   </content>
 </ScrollPane>

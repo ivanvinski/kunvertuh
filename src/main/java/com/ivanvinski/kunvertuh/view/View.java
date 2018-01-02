@@ -19,15 +19,7 @@
 
 package com.ivanvinski.kunvertuh.view;
 
-import com.ivanvinski.kunvertuh.i18n.Language;
-
 public interface View {
 
   void initialize();
-
-  void pushEvent(Object event);
-
-  Language getLanguage();
-
-  void setLanguage(Language language);
 }

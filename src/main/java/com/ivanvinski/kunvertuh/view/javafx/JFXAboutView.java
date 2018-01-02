@@ -19,78 +19,60 @@
 
 package com.ivanvinski.kunvertuh.view.javafx;
 
-import com.google.inject.Inject;
-import com.ivanvinski.kunvertuh.event.EventStream;
-import com.ivanvinski.kunvertuh.event.OpenInBrowserEvent;
 import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.view.AboutView;
+import com.jfoenix.controls.JFXTextArea;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.StackPane;
 
-public final class JFXAboutView extends AbstractJFXView implements AboutView {
-
-  @FXML
-  private Label aboutSubheading, version, license;
-  @FXML
-  private Hyperlink repository;
+public final class JFXAboutView extends StackPane implements AboutView {
 
   @FXML
-  private Label helpSubheading, question, answer;
+  private Label name, version, tagline, developer, developerRole;
   @FXML
-  private Hyperlink contact;
+  private Hyperlink developerWebsite, developerGithub;
+  private Runnable developerWebsiteClickAction, developerGithubClickAction;
 
   @FXML
-  private Label creditsSubheading, developerHeading, developerSubheading;
+  private Label openSource;
   @FXML
-  private Hyperlink authorPage, authorGithub;
+  private JFXTextArea license;
   @FXML
-  private VBox creditsBox;
+  private Hyperlink projectRepository;
+  private Runnable projectRepositoryClickAction;
 
-  @Inject
-  public JFXAboutView(EventStream eventStream) {
-    super(eventStream);
-  }
+  @FXML
+  private Label dependenciesHeader, jfoenixNote, fontAwesomeFxNote, guavaNote;
+  @FXML
+  private Hyperlink jfoenixLicense, fontAwesomeFxLicense, guavaLicense;
+  private Runnable jfoenixLicenseClickAction, fontAwesomeFxLicenseClickAction, guavaLicenseClickAction;
+  @FXML
+  private Hyperlink jfoenixWebsite, fontAwesomeFxWebsite, guavaWebsite;
+  private Runnable jfoenixClickAction, fontAwesomeFxClickAction, guavaClickAction;
 
   @Override
   public void initialize() {
-    openHyperlinkInBrowserOnActionEvent(repository);
-    openHyperlinkInBrowserOnActionEvent(contact);
-    openHyperlinkInBrowserOnActionEvent(authorPage);
-    openHyperlinkInBrowserOnActionEvent(authorGithub);
+    developerWebsite.setOnAction(e -> developerWebsiteClickAction.run());
+    developerGithub.setOnAction(e -> developerGithubClickAction.run());
+    projectRepository.setOnAction(e -> projectRepositoryClickAction.run());
+    jfoenixLicense.setOnAction(e -> jfoenixLicenseClickAction.run());
+    fontAwesomeFxLicense.setOnAction(e -> fontAwesomeFxLicenseClickAction.run());
+    guavaLicense.setOnAction(e -> fontAwesomeFxLicenseClickAction.run());
+    jfoenixWebsite.setOnAction(e -> jfoenixClickAction.run());
+    fontAwesomeFxWebsite.setOnAction(e -> fontAwesomeFxClickAction.run());
+    guavaWebsite.setOnAction(e -> guavaClickAction.run());
   }
 
   @Override
-  public void addDependencyCredit(String name, String uri, String license, String licenseUri) {
-    VBox dependencyCredit = new VBox();
-    Hyperlink titleAndLink = new Hyperlink(name);
-    titleAndLink.getStyleClass().add("important-hyperlink");
-    titleAndLink.setUserData(uri);
-    openHyperlinkInBrowserOnActionEvent(titleAndLink);
-    Hyperlink licenseLink = new Hyperlink(license);
-    licenseLink.setUserData(licenseUri);
-    openHyperlinkInBrowserOnActionEvent(licenseLink);
-    dependencyCredit.getChildren().addAll(new Separator(), titleAndLink, licenseLink);
-    creditsBox.getChildren().add(dependencyCredit);
+  public String getName() {
+    return name.getText();
   }
 
   @Override
-  public void setLanguage(Language language) {
-    super.setLanguage(language);
-    aboutSubheading.setText(language.getString("ABOUT"));
-    version.setText(language.getString("VERSION") + ": 0.1.0");
-    license.setText(language.getString("LICENSE") + ": GPL v3.0");
-    repository.setText(language.getString("FORK_ME"));
-    helpSubheading.setText(language.getString("HELP"));
-    question.setText(language.getString("HELP_QUESTION"));
-    answer.setText(language.getString("HELP_ANSWER"));
-    contact.setText(language.getString("CONTACT_FOR_MORE_INFO"));
-    creditsSubheading.setText(language.getString("CREDITS"));
-    developerSubheading.setText(language.getString("DEVELOPER"));
-    authorPage.setText(language.getString("WEBSITE"));
-    authorGithub.setText(language.getString("GITHUB"));
+  public void setName(String name) {
+    this.name.setText(name);
   }
 
   @Override
@@ -104,23 +86,92 @@ public final class JFXAboutView extends AbstractJFXView implements AboutView {
   }
 
   @Override
-  public String getRepositoryPrompt() {
-    return repository.getText();
+  public String getTagline() {
+    return tagline.getText();
   }
 
   @Override
-  public void setRepositoryPrompt(String text) {
-    repository.setText(text);
+  public void setTagline(String tagline) {
+    this.tagline.setText(tagline);
   }
 
   @Override
-  public String getRepositoryPage() {
-    return (String) repository.getUserData();
+  public String getDeveloper() {
+    return developer.getText();
+  }
+
+  public void setDeveloper(String developer) {
+    this.developer.setText(developer);
   }
 
   @Override
-  public void setRepositoryPage(String repositoryUri) {
-    repository.setUserData(repositoryUri);
+  public String getDeveloperRoleText() {
+    return developerRole.getText();
+  }
+
+  @Override
+  public void setDeveloperRoleText(String developerRoleText) {
+    developerRole.setText(developerRoleText);
+  }
+
+  @Override
+  public String getDeveloperWebsiteText() {
+    return developerWebsite.getText();
+  }
+
+  @Override
+  public void setDeveloperWebsiteText(String developerWebsiteText) {
+    developerWebsite.setText(developerWebsiteText);
+  }
+
+  @Override
+  public Runnable getOnDeveloperWebsiteClicked() {
+    return developerWebsiteClickAction;
+  }
+
+  @Override
+  public void setOnDeveloperWebsiteClicked(Runnable developerWebsiteClickAction) {
+    this.developerWebsiteClickAction = developerWebsiteClickAction;
+  }
+
+  @Override
+  public String getDeveloperGithubText() {
+    return developerGithub.getText();
+  }
+
+  @Override
+  public void setDeveloperGithubText(String developerGithubText) {
+    developerGithub.setText(developerGithubText);
+  }
+
+  @Override
+  public Runnable getOnDeveloperGithubClicked() {
+    return developerGithubClickAction;
+  }
+
+  @Override
+  public void setOnDeveloperGithubClicked(Runnable developerGithubClickAction) {
+    this.developerGithubClickAction = developerGithubClickAction;
+  }
+
+  @Override
+  public String getOpenSourceHeading() {
+    return openSource.getText();
+  }
+
+  @Override
+  public void setOpenSourceHeading(String openSourceHeading) {
+    openSource.setText(openSourceHeading);
+  }
+
+  @Override
+  public String getLicensePrompt() {
+    return license.getPromptText();
+  }
+
+  @Override
+  public void setLicensePrompt(String licensePrompt) {
+    license.setPromptText(licensePrompt);
   }
 
   @Override
@@ -134,56 +185,152 @@ public final class JFXAboutView extends AbstractJFXView implements AboutView {
   }
 
   @Override
-  public String getContactPrompt() {
-    return contact.getText();
+  public String getProjectRepositoryText() {
+    return projectRepository.getText();
   }
 
   @Override
-  public void setContactPrompt(String text) {
-    contact.setText(text);
+  public void setProjectRepositoryText(String projectRepositoryText) {
+    projectRepository.setText(projectRepositoryText);
   }
 
   @Override
-  public String getContactUri() {
-    return (String) contact.getUserData();
+  public Runnable getOnProjectRepositoryClicked() {
+    return projectRepositoryClickAction;
   }
 
   @Override
-  public void setContactUri(String contactUri) {
-    contact.setUserData(contactUri);
+  public void setOnProjectRepositoryClicked(Runnable projectRepositoryClickAction) {
+    this.projectRepositoryClickAction = projectRepositoryClickAction;
   }
 
   @Override
-  public String getAuthorName() {
-    return developerHeading.getText();
+  public String getDependenciesHeader() {
+    return dependenciesHeader.getText();
   }
 
   @Override
-  public void setAuthorName(String name) {
-    developerHeading.setText(name);
+  public void setDependenciesHeader(String dependenciesHeader) {
+    this.dependenciesHeader.setText(dependenciesHeader);
   }
 
   @Override
-  public String getAuthorUri() {
-    return (String) authorPage.getUserData();
+  public String getJFoenixNote() {
+    return jfoenixNote.getText();
   }
 
   @Override
-  public void setAuthorUri(String authorUri) {
-    authorPage.setUserData(authorUri);
+  public void setJFoenixNote(String jfoenixNote) {
+    this.jfoenixNote.setText(jfoenixNote);
   }
 
   @Override
-  public String getAuthorGithubUri() {
-    return (String) authorGithub.getUserData();
+  public String getJFoenixWebsiteText() {
+    return jfoenixWebsite.getText();
   }
 
   @Override
-  public void setAuthorGithubUri(String githubUri) {
-    authorGithub.setUserData(githubUri);
+  public void setJFoenixWebsiteText(String jfoenixWebsiteText) {
+    jfoenixWebsite.setText(jfoenixWebsiteText);
   }
 
-  private void openHyperlinkInBrowserOnActionEvent(Hyperlink link) {
-    link.setOnAction(e -> pushEvent(new OpenInBrowserEvent((String) link.getUserData())));
+  @Override
+  public Runnable getOnJFoenixClicked() {
+    return jfoenixClickAction;
+  }
+
+  @Override
+  public void setOnJFoenixClicked(Runnable jfoenixClickAction) {
+    this.jfoenixClickAction = jfoenixClickAction;
+  }
+
+  @Override
+  public Runnable getOnJFoenixLicenseClicked() {
+    return jfoenixLicenseClickAction;
+  }
+
+  @Override
+  public void setOnJFoenixLicenseClicked(Runnable jfoenixLicenseClickAction) {
+    this.jfoenixLicenseClickAction = jfoenixLicenseClickAction;
+  }
+
+  @Override
+  public String getFontAwesomeFXNote() {
+    return fontAwesomeFxNote.getText();
+  }
+
+  @Override
+  public void setFontAwesomeFXNote(String fontAwesomeFxNote) {
+    this.fontAwesomeFxNote.setText(fontAwesomeFxNote);
+  }
+
+  @Override
+  public String getFontAwesomeFXWebsiteText() {
+    return fontAwesomeFxWebsite.getText();
+  }
+
+  @Override
+  public void setFontAwesomeFXWebsiteText(String fontAwesomeFXWebsiteText) {
+    fontAwesomeFxWebsite.setText(fontAwesomeFXWebsiteText);
+  }
+
+  @Override
+  public Runnable getOnFontAwesomeFXClicked() {
+    return fontAwesomeFxClickAction;
+  }
+
+  @Override
+  public void setOnFontAwesomeFXClicked(Runnable fontAwesomeFxClickAction) {
+    this.fontAwesomeFxClickAction = fontAwesomeFxClickAction;
+  }
+
+  @Override
+  public Runnable getOnFontAwesomeFXLicenseClicked() {
+    return fontAwesomeFxLicenseClickAction;
+  }
+
+  @Override
+  public void setOnFontAwesomeFXLicenseClicked(Runnable fontAwesomeFxLicenseClickAction) {
+    this.fontAwesomeFxLicenseClickAction = fontAwesomeFxLicenseClickAction;
+  }
+
+  @Override
+  public String getGuavaNote() {
+    return guavaNote.getText();
+  }
+
+  @Override
+  public void setGuavaNote(String guavaNote) {
+    this.guavaNote.setText(guavaNote);
+  }
+
+  @Override
+  public String getGuavaWebsiteText() {
+    return guavaWebsite.getText();
+  }
+
+  @Override
+  public void setGuavaWebsiteText(String guavaWebsiteText) {
+    guavaWebsite.setText(guavaWebsiteText);
+  }
+
+  @Override
+  public Runnable getOnGuavaClicked() {
+    return guavaClickAction;
+  }
+
+  @Override
+  public void setOnGuavaClicked(Runnable guavaClickAction) {
+    this.guavaClickAction = guavaClickAction;
+  }
+
+  @Override
+  public Runnable getOnGuavaLicenseClicked() {
+    return guavaLicenseClickAction;
+  }
+
+  @Override
+  public void setOnGuavaLicenseClicked(Runnable guavaLicenseClickAction) {
+    this.guavaLicenseClickAction = guavaLicenseClickAction;
   }
 }

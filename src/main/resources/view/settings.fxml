@@ -12,7 +12,7 @@
     <HBox alignment="CENTER" prefWidth="200.0" spacing="8.0">
       <children>
         <MaterialDesignIconView glyphName="TRANSLATE"/>
-        <JFXComboBox fx:id="languageField" maxWidth="1.7976931348623157E308" promptText="Language"
+        <JFXComboBox fx:id="languages" maxWidth="1.7976931348623157E308" promptText="Language"
           HBox.hgrow="ALWAYS"/>
       </children>
       <styleClass>

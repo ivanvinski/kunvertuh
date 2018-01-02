@@ -19,27 +19,18 @@
 
 package com.ivanvinski.kunvertuh.view;
 
-import com.ivanvinski.kunvertuh.measurement.MeasurementSystem;
 import com.ivanvinski.kunvertuh.measurement.Unit;
-import java.util.Collection;
+import java.util.function.Consumer;
 
 public interface ConverterView<U extends Unit> extends View {
 
-  @Override
-  default void initialize() {
-  }
+  String getUnitPrompt(U unit);
 
-  void initialize(Collection<U> supportedUnits);
+  void setUnitPrompt(U unit, String prompt);
 
-  String getTitle(MeasurementSystem system);
+  String getUnitValue(U unit);
 
-  void setTitle(MeasurementSystem system, String title);
+  void setUnitValue(U unit, String value);
 
-  String getPrompt(U unit);
-
-  void setPrompt(U unit, String prompt);
-
-  String getValue(U unit);
-
-  void setValue(U unit, String value);
+  void setOnConversionAction(U unit, Consumer<String> valueConsumer);
 }
