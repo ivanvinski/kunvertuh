@@ -22,8 +22,8 @@ import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.measurement.Unit;
 import com.ivanvinski.kunvertuh.measurement.UnitConverter;
-import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 import com.ivanvinski.kunvertuh.mvp.view.ConverterView;
+import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 
 public final class ConverterPresenter<U extends Unit> extends
     Presenter<ConverterView<U>, UnitConverter<U>> {

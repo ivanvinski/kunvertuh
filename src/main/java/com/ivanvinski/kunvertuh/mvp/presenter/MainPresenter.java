@@ -19,13 +19,13 @@
 package com.ivanvinski.kunvertuh.mvp.presenter;
 
 import com.google.common.eventbus.Subscribe;
+import com.ivanvinski.kunvertuh.Views;
 import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.event.ViewChangeRequest;
 import com.ivanvinski.kunvertuh.event.ViewsLoadedEvent;
 import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.mvp.model.MainModel;
 import com.ivanvinski.kunvertuh.mvp.view.MainView;
-import com.ivanvinski.kunvertuh.Views;
 
 public final class MainPresenter extends Presenter<MainView, MainModel> {
 

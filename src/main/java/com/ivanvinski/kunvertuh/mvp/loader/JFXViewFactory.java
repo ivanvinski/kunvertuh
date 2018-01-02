@@ -33,11 +33,11 @@ import com.ivanvinski.kunvertuh.mvp.presenter.ConverterPresenter;
 import com.ivanvinski.kunvertuh.mvp.presenter.MainPresenter;
 import com.ivanvinski.kunvertuh.mvp.presenter.Presenter;
 import com.ivanvinski.kunvertuh.mvp.presenter.SettingsPresenter;
-import com.ivanvinski.kunvertuh.util.JFXBrowser;
 import com.ivanvinski.kunvertuh.mvp.view.javafx.JFXAboutView;
 import com.ivanvinski.kunvertuh.mvp.view.javafx.JFXConverterView;
 import com.ivanvinski.kunvertuh.mvp.view.javafx.JFXMainView;
 import com.ivanvinski.kunvertuh.mvp.view.javafx.JFXSettingsView;
+import com.ivanvinski.kunvertuh.util.JFXBrowser;
 import javafx.application.HostServices;
 import javafx.util.Callback;
 

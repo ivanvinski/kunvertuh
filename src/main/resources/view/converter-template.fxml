@@ -24,29 +24,31 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-
-<ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" pannable="true" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308"
+  maxWidth="1.7976931348623157E308" pannable="true" prefHeight="600.0" prefWidth="600.0"
+  xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
   <content>
     <GridPane hgap="8.0" maxHeight="1.7976931348623157E308" styleClass="card-container">
       <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
       </columnConstraints>
       <rowConstraints>
-        <RowConstraints vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS" />
+        <RowConstraints vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="1.7976931348623157E308" vgrow="ALWAYS"/>
       </rowConstraints>
       <children>
         <VBox fx:id="metricUnits" prefWidth="100.0" GridPane.rowSpan="2147483647">
           <styleClass>
-            <String fx:value="card" />
-            <String fx:value="unit-card" />
+            <String fx:value="card"/>
+            <String fx:value="unit-card"/>
           </styleClass>
         </VBox>
-        <VBox fx:id="otherUnits" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowSpan="2147483647">
+        <VBox fx:id="otherUnits" prefWidth="100.0" GridPane.columnIndex="1"
+          GridPane.rowSpan="2147483647">
           <styleClass>
-            <String fx:value="card" />
-            <String fx:value="unit-card" />
+            <String fx:value="card"/>
+            <String fx:value="unit-card"/>
           </styleClass>
         </VBox>
       </children>
