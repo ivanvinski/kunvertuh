@@ -4,13 +4,22 @@ import com.ivanvinski.kunvertuh.i18n.Language;
 
 public class SettingsModel {
 
-  private Language language;
+  private Language[] languages;
+  private Language activeLanguage;
 
-  public Language getLanguage() {
-    return language;
+  public SettingsModel(Language[] languages) {
+    this.languages = languages;
   }
 
-  public void setLanguage(Language language) {
-    this.language = language;
+  public Language[] getLanguages() {
+    return languages;
+  }
+
+  public Language getActiveLanguage() {
+    return activeLanguage;
+  }
+
+  public void setActiveLanguage(Language activeLanguage) {
+    this.activeLanguage = activeLanguage;
   }
 }

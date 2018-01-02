@@ -19,32 +19,43 @@
 
 package com.ivanvinski.kunvertuh.model;
 
-import com.google.inject.Inject;
 import com.ivanvinski.kunvertuh.view.View;
-import com.ivanvinski.kunvertuh.view.ViewCatalog;
-import java.util.Objects;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainModel {
 
-  private ViewCatalog views;
+  private Map<String, View> views = new HashMap<>();
+  private Map<View, String> identifiers = new HashMap<>();
   private View activeView;
-  private String activeViewIdentifier;
-
-  @Inject
-  public MainModel(ViewCatalog views) {
-    this.views = Objects.requireNonNull(views, "View catalog can't be null");
-  }
 
   public View getActiveView() {
     return activeView;
   }
 
-  public void setActiveView(String identifier) {
-    activeView = views.getView(identifier);
-    activeViewIdentifier = identifier;
+  public void setActiveView(String viewIdentifier) {
+    View nextView = getView(viewIdentifier);
+    if (nextView == null) {
+      throw new IllegalArgumentException("Can't set non-existent view: " + viewIdentifier);
+    } else if (activeView != nextView) {
+      activeView = nextView;
+    }
   }
 
-  public String getActiveViewIdentifier() {
-    return activeViewIdentifier;
+  public Map<String, View> getViews() {
+    return views;
+  }
+
+  public View getView(String viewIdentifier) {
+    return views.get(viewIdentifier);
+  }
+
+  public String getIdentifier(View view) {
+    return identifiers.get(view);
+  }
+
+  public void setViews(Map<String, View> views) {
+    this.views = views;
+    views.forEach((identifier, view) -> identifiers.put(view, identifier));
   }
 }

@@ -10,12 +10,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Converter view template FXML file
 - Concrete, abstract presenter abstract class
 - Concrete, generic converter presenter
+- About model
+- Views loaded event so the main view doesn't depend on view loading order
 
 ### Changed
 - Refactored and cleaned up view abstractions and implementations
 - Redesigned About view
 - Refactored and cleaned up presenters
 - Presenters now handle internationalization instead of views
+- Refactored and cleaned up models
 
 ### Removed
 - Specific converter view implementations
