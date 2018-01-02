@@ -87,12 +87,21 @@
   -fx-font-weight: bold;
 }
 
-.jfx-text-field, .jfx-combo-box {
+.jfx-text-field, .jfx-combo-box, .jfx-text-area {
   -fx-text-fill: -primary-text-and-icons-color;
   -jfx-focus-color: -primary-color;
   -jfx-unfocus-color: -primary-text-and-icons-color;
   -jfx-label-float: TRUE;
   -fx-font-size: 16px;
+}
+
+.jfx-text-area .content {
+  -fx-background: white;
+  -fx-background-color: white;
+}
+
+.jfx-text-area .scroll-pane {
+  -fx-background-color: white;
 }
 
 .separator {
