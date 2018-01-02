@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Concrete, generic converter presenter
 - About model
 - Views loaded event so the main view doesn't depend on view loading order
+- Better model-view-presenter loaders/managers
 
 ### Changed
 - Refactored and cleaned up view abstractions and implementations
@@ -24,6 +25,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Specific converter view implementations
 - Specific converter view FXML files
 - Specific converter presenters
+- Outdated model-view-presenter loaders/managers
 
 ## [0.1.0] - 2017-12-28
 - Initial release
