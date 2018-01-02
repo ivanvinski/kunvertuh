@@ -20,36 +20,66 @@
 package com.ivanvinski.kunvertuh.presenter;
 
 import com.google.common.eventbus.Subscribe;
-import com.google.inject.Inject;
+import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.event.ViewChangeRequest;
+import com.ivanvinski.kunvertuh.event.ViewsLoadedEvent;
 import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.model.MainModel;
 import com.ivanvinski.kunvertuh.view.MainView;
+import com.ivanvinski.kunvertuh.view.Views;
 
-public final class MainPresenter extends AbstractPresenter<MainView, MainModel> {
+public final class MainPresenter extends Presenter<MainView, MainModel> {
 
-  @Inject
-  public MainPresenter(MainView view, MainModel model) {
-    super(view, model);
-  }
+  private Language language;
 
-  @Subscribe
-  public void onViewChangeRequst(ViewChangeRequest request) {
-    getModel().setActiveView(request.getViewIdentifier());
-    if (isActiveView(request.getViewIdentifier())) {
-      getView().setActiveView(getModel().getActiveView());
-      getView().setAppBarTitle(getModel().getActiveViewIdentifier());
-    }
+  public MainPresenter(MainView view, MainModel model, EventStream eventStream) {
+    super(view, model, eventStream);
   }
 
   @Override
-  public void onLanguageChange(Language language) {
-    super.onLanguageChange(language);
-    getView().setAppBarTitle(getModel().getActiveViewIdentifier());
+  public void onInitialized() {
+    getView().addNavigationItem(Views.LENGTH);
+    getView().addNavigationItem(Views.MASS);
+    getView().addNavigationItem(Views.VOLUME);
+    getView().addNavigationItem(Views.AREA);
+    getView().addNavigationItemSeparator();
+    getView().addNavigationItem(Views.SETTINGS);
+    getView().addNavigationItem(Views.ABOUT);
+    getView().setOnNavigationItemClicked(viewIdentifier ->
+        onViewChangeRequest(new ViewChangeRequest(viewIdentifier)));
   }
 
-  private boolean isActiveView(String viewIdentifier) {
-    String activeViewIdentifier = getModel().getActiveViewIdentifier();
-    return activeViewIdentifier != null && viewIdentifier.equals(activeViewIdentifier);
+  @Override
+  public void onLanguageChanged(Language language) {
+    this.language = language;
+    updateAppBarTitle();
+    getModel().getViews().keySet().stream()
+        .filter(getView()::containsNavigationButton)
+        .forEach(viewIdentifier -> getView()
+            .setNavigationButtonText(viewIdentifier, language.getString(viewIdentifier)));
+  }
+
+  @Subscribe
+  public void onViewsLoaded(ViewsLoadedEvent event) {
+    getModel().setViews(event.getLoadedViews());
+  }
+
+  @Subscribe
+  public void onViewChangeRequest(ViewChangeRequest request) {
+    getView().selectNavigationItem(request.getViewIdentifier());
+    getModel().setActiveView(request.getViewIdentifier());
+    getView().setActiveView(getModel().getActiveView());
+    updateAppBarTitle();
+  }
+
+  private void updateAppBarTitle() {
+    String activeViewIdentifier = getModel().getIdentifier(getModel().getActiveView());
+    if (language == null) {
+      getView().setAppBarTitle(activeViewIdentifier);
+      return;
+    }
+    String title = language.getString(activeViewIdentifier + "_VIEW");
+    title = title.equals("%null%") ? language.getString(activeViewIdentifier) : title;
+    getView().setAppBarTitle(title);
   }
 }

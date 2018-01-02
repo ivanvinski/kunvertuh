@@ -19,42 +19,52 @@
 
 package com.ivanvinski.kunvertuh.presenter;
 
-import com.google.common.eventbus.Subscribe;
-import com.google.inject.Inject;
-import com.ivanvinski.kunvertuh.event.OpenInBrowserEvent;
-import com.ivanvinski.kunvertuh.util.Browser;
+import com.ivanvinski.kunvertuh.event.EventStream;
+import com.ivanvinski.kunvertuh.i18n.Language;
+import com.ivanvinski.kunvertuh.model.AboutModel;
 import com.ivanvinski.kunvertuh.view.AboutView;
 
-public final class AboutPresenter extends AbstractPresenter<AboutView, Browser> {
+public final class AboutPresenter extends Presenter<AboutView, AboutModel> {
 
-  @Inject
-  public AboutPresenter(AboutView view, Browser model) {
-    super(view, model);
+  public AboutPresenter(AboutView view, AboutModel model, EventStream eventStream) {
+    super(view, model, eventStream);
   }
 
   @Override
-  public void onInitialization() {
-    getView().setContactUri("https://ivanvinski.com/contact/");
-    getView().setRepositoryPrompt("Fork me on Github");
-    getView().setRepositoryPage("https://github.com/ivanvinski/kunvertuh");
-    getView().setAuthorUri("https://ivanvinski.com/");
-    getView().setAuthorGithubUri("https://github.com/ivanvinski");
-    getView().addDependencyCredit("Guava", "https://github.com/google/guava",
-        "Apache 2.0", "https://www.apache.org/licenses/LICENSE-2.0.txt");
-    getView().addDependencyCredit("Guice", "https://github.com/google/guice",
-        "Apache 2.0", "https://www.apache.org/licenses/LICENSE-2.0.txt");
-    getView().addDependencyCredit("JFoenix", "http://jfoenix.com/",
-        "Apache 2.0", "https://www.apache.org/licenses/LICENSE-2.0.txt");
-    getView().addDependencyCredit("FontAwesomeFX", "https://bitbucket.org/Jerady/fontawesomefx",
-        "Apache 2.0", "https://www.apache.org/licenses/LICENSE-2.0.txt");
-    getView().addDependencyCredit("JUnit", "https://github.com/junit-team/junit4",
-        "Eclipse Public License 1.0", "https://www.eclipse.org/legal/epl-v10.html");
-    getView().addDependencyCredit("Mockito", "https://github.com/mockito/mockito",
-        "MIT", "https://mit-license.org/");
+  public void onInitialized() {
+    getView().setName(getModel().getName());
+    getView().setLicense(getModel().getLicenseText());
+    getView().setOnDeveloperWebsiteClicked(() -> browse(getModel().getDeveloperWebsite()));
+    getView().setOnDeveloperGithubClicked(() -> browse(getModel().getDeveloperGithub()));
+    getView().setOnProjectRepositoryClicked(() -> browse(getModel().getRepositoryUri()));
+    getView().setOnJFoenixLicenseClicked(() -> browse(getModel().getApacheLicenseUri()));
+    getView().setOnJFoenixClicked(() -> browse(getModel().getJfoenixUri()));
+    getView().setOnFontAwesomeFXLicenseClicked(() -> browse(getModel().getApacheLicenseUri()));
+    getView().setOnFontAwesomeFXClicked(() -> browse(getModel().getFontAwesomeFxUri()));
+    getView().setOnGuavaLicenseClicked(() -> browse(getModel().getApacheLicenseUri()));
+    getView().setOnGuavaClicked(() -> browse(getModel().getGuavaUri()));
   }
 
-  @Subscribe
-  public void onOpenInBrowser(OpenInBrowserEvent event) {
-    getModel().open(event.getUri());
+  @Override
+  public void onLanguageChanged(Language language) {
+    getView().setVersion(language.getString("VERSION") + ' ' + getModel().getVersion());
+    getView().setTagline(language.getString("TAGLINE"));
+    getView().setDeveloper(getModel().getDeveloper());
+    getView().setDeveloperRoleText(language.getString("DEVELOPER_ROLE"));
+    getView().setDeveloperWebsiteText(language.getString("WEBSITE"));
+    getView().setOpenSourceHeading(language.getString("OPEN_SOURCE"));
+    getView().setLicensePrompt(language.getString("LICENSE") + ": " + getModel().getLicense());
+    getView().setProjectRepositoryText(language.getString("FORK_ME"));
+    getView().setDependenciesHeader(language.getString("OPEN_SOURCE_DEPENDENCIES"));
+    getView().setJFoenixNote(language.getString("JFOENIX_NOTE"));
+    getView().setJFoenixWebsiteText(language.getString("WEBSITE"));
+    getView().setFontAwesomeFXNote(language.getString("FONT_AWESOME_FX_NOTE"));
+    getView().setFontAwesomeFXWebsiteText(language.getString("REPOSITORY"));
+    getView().setGuavaNote(language.getString("GUAVA_NOTE"));
+    getView().setGuavaWebsiteText(language.getString("REPOSITORY"));
+  }
+
+  private void browse(String uri) {
+    getModel().browse(uri);
   }
 }

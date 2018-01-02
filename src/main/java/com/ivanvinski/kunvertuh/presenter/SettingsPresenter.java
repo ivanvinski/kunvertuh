@@ -1,20 +1,26 @@
 package com.ivanvinski.kunvertuh.presenter;
 
-import com.google.inject.Inject;
+import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.model.SettingsModel;
 import com.ivanvinski.kunvertuh.view.SettingsView;
+import java.util.Arrays;
 
-public class SettingsPresenter extends AbstractPresenter<SettingsView, SettingsModel> {
+public class SettingsPresenter extends Presenter<SettingsView, SettingsModel> {
 
-  @Inject
-  public SettingsPresenter(SettingsView view, SettingsModel model) {
-    super(view, model);
+  public SettingsPresenter(SettingsView view, SettingsModel model, EventStream eventStream) {
+    super(view, model, eventStream);
   }
 
   @Override
-  public void onLanguageChange(Language language) {
-    super.onLanguageChange(language);
-    getModel().setLanguage(language);
+  public void onInitialized() {
+    Arrays.stream(getModel().getLanguages()).forEach(getView()::addLanguage);
+    getView().setOnLanguageChanged(getEventStream()::push);
+  }
+
+  @Override
+  public void onLanguageChanged(Language language) {
+    getView().selectLanguage(language);
+    getView().setLanguagePrompt(language.getString("LANGUAGE"));
   }
 }

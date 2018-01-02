@@ -19,17 +19,38 @@
 
 package com.ivanvinski.kunvertuh.presenter;
 
+import com.google.common.eventbus.Subscribe;
+import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.view.View;
+import java.util.Objects;
 
-public interface Presenter<V extends View, M> {
+public abstract class Presenter<V extends View, M> {
 
-  default void onInitialization() {
+  private V view;
+  private M model;
+  private EventStream eventStream;
+
+  public Presenter(V view, M model, EventStream eventStream) {
+    this.view = Objects.requireNonNull(view, "View can't be null");
+    this.model = Objects.requireNonNull(model, "Model can't be null");
+    this.eventStream = Objects.requireNonNull(eventStream, "Event stream can't be null");
   }
 
-  void onLanguageChange(Language language);
+  public abstract void onInitialized();
 
-  V getView();
+  @Subscribe
+  public abstract void onLanguageChanged(Language language);
 
-  M getModel();
+  public V getView() {
+    return view;
+  }
+
+  public M getModel() {
+    return model;
+  }
+
+  public EventStream getEventStream() {
+    return eventStream;
+  }
 }
