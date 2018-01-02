@@ -17,11 +17,11 @@
  *
  */
 
-package com.ivanvinski.kunvertuh.view.javafx;
+package com.ivanvinski.kunvertuh.mvp.view.javafx;
 
-import com.ivanvinski.kunvertuh.view.MainView;
-import com.ivanvinski.kunvertuh.view.View;
-import com.ivanvinski.kunvertuh.view.Views;
+import com.ivanvinski.kunvertuh.mvp.view.MainView;
+import com.ivanvinski.kunvertuh.mvp.view.View;
+import com.ivanvinski.kunvertuh.Views;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;

@@ -1,6 +1,6 @@
 package com.ivanvinski.kunvertuh.event;
 
-import com.ivanvinski.kunvertuh.view.View;
+import com.ivanvinski.kunvertuh.mvp.view.View;
 import java.util.Map;
 
 public final class ViewsLoadedEvent {

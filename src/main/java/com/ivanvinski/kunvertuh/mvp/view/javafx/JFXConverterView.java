@@ -1,9 +1,8 @@
-package com.ivanvinski.kunvertuh.view.javafx;
+package com.ivanvinski.kunvertuh.mvp.view.javafx;
 
-import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.measurement.MeasurementSystem;
 import com.ivanvinski.kunvertuh.measurement.Unit;
-import com.ivanvinski.kunvertuh.view.ConverterView;
+import com.ivanvinski.kunvertuh.mvp.view.ConverterView;
 import com.jfoenix.controls.JFXTextField;
 import java.util.Arrays;
 import java.util.HashMap;

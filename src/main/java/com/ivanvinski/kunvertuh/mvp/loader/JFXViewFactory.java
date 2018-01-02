@@ -1,4 +1,4 @@
-package com.ivanvinski.kunvertuh.loader;
+package com.ivanvinski.kunvertuh.mvp.loader;
 
 import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.i18n.Language;
@@ -7,19 +7,19 @@ import com.ivanvinski.kunvertuh.measurement.Length;
 import com.ivanvinski.kunvertuh.measurement.Mass;
 import com.ivanvinski.kunvertuh.measurement.UnitConverter;
 import com.ivanvinski.kunvertuh.measurement.Volume;
-import com.ivanvinski.kunvertuh.model.AboutModel;
-import com.ivanvinski.kunvertuh.model.MainModel;
-import com.ivanvinski.kunvertuh.model.SettingsModel;
-import com.ivanvinski.kunvertuh.presenter.AboutPresenter;
-import com.ivanvinski.kunvertuh.presenter.ConverterPresenter;
-import com.ivanvinski.kunvertuh.presenter.MainPresenter;
-import com.ivanvinski.kunvertuh.presenter.Presenter;
-import com.ivanvinski.kunvertuh.presenter.SettingsPresenter;
+import com.ivanvinski.kunvertuh.mvp.model.AboutModel;
+import com.ivanvinski.kunvertuh.mvp.model.MainModel;
+import com.ivanvinski.kunvertuh.mvp.model.SettingsModel;
+import com.ivanvinski.kunvertuh.mvp.presenter.AboutPresenter;
+import com.ivanvinski.kunvertuh.mvp.presenter.ConverterPresenter;
+import com.ivanvinski.kunvertuh.mvp.presenter.MainPresenter;
+import com.ivanvinski.kunvertuh.mvp.presenter.Presenter;
+import com.ivanvinski.kunvertuh.mvp.presenter.SettingsPresenter;
 import com.ivanvinski.kunvertuh.util.JFXBrowser;
-import com.ivanvinski.kunvertuh.view.javafx.JFXAboutView;
-import com.ivanvinski.kunvertuh.view.javafx.JFXConverterView;
-import com.ivanvinski.kunvertuh.view.javafx.JFXMainView;
-import com.ivanvinski.kunvertuh.view.javafx.JFXSettingsView;
+import com.ivanvinski.kunvertuh.mvp.view.javafx.JFXAboutView;
+import com.ivanvinski.kunvertuh.mvp.view.javafx.JFXConverterView;
+import com.ivanvinski.kunvertuh.mvp.view.javafx.JFXMainView;
+import com.ivanvinski.kunvertuh.mvp.view.javafx.JFXSettingsView;
 import javafx.application.HostServices;
 import javafx.util.Callback;
 

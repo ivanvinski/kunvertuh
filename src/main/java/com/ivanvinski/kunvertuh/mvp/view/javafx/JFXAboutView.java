@@ -17,10 +17,9 @@
  *
  */
 
-package com.ivanvinski.kunvertuh.view.javafx;
+package com.ivanvinski.kunvertuh.mvp.view.javafx;
 
-import com.ivanvinski.kunvertuh.i18n.Language;
-import com.ivanvinski.kunvertuh.view.AboutView;
+import com.ivanvinski.kunvertuh.mvp.view.AboutView;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;

@@ -1,4 +1,4 @@
-package com.ivanvinski.kunvertuh.model;
+package com.ivanvinski.kunvertuh.mvp.model;
 
 import com.ivanvinski.kunvertuh.util.Browser;
 import java.io.BufferedReader;

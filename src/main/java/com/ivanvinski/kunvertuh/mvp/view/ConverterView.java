@@ -17,9 +17,20 @@
  *
  */
 
-package com.ivanvinski.kunvertuh.view;
+package com.ivanvinski.kunvertuh.mvp.view;
 
-public interface View {
+import com.ivanvinski.kunvertuh.measurement.Unit;
+import java.util.function.Consumer;
 
-  void initialize();
+public interface ConverterView<U extends Unit> extends View {
+
+  String getUnitPrompt(U unit);
+
+  void setUnitPrompt(U unit, String prompt);
+
+  String getUnitValue(U unit);
+
+  void setUnitValue(U unit, String value);
+
+  void setOnConversionAction(U unit, Consumer<String> valueConsumer);
 }

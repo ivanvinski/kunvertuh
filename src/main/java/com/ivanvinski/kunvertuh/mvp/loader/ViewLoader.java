@@ -1,6 +1,6 @@
-package com.ivanvinski.kunvertuh.loader;
+package com.ivanvinski.kunvertuh.mvp.loader;
 
-import com.ivanvinski.kunvertuh.view.View;
+import com.ivanvinski.kunvertuh.mvp.view.View;
 import java.util.Map;
 
 public interface ViewLoader<R> {

@@ -1,4 +1,4 @@
-package com.ivanvinski.kunvertuh.view;
+package com.ivanvinski.kunvertuh.mvp.view;
 
 import com.ivanvinski.kunvertuh.i18n.Language;
 import java.util.function.Consumer;

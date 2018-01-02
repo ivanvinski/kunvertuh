@@ -17,9 +17,9 @@
  *
  */
 
-package com.ivanvinski.kunvertuh.model;
+package com.ivanvinski.kunvertuh.mvp.model;
 
-import com.ivanvinski.kunvertuh.view.View;
+import com.ivanvinski.kunvertuh.mvp.view.View;
 import java.util.HashMap;
 import java.util.Map;
 

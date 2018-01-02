@@ -17,12 +17,12 @@
  *
  */
 
-package com.ivanvinski.kunvertuh.presenter;
+package com.ivanvinski.kunvertuh.mvp.presenter;
 
 import com.google.common.eventbus.Subscribe;
 import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.i18n.Language;
-import com.ivanvinski.kunvertuh.view.View;
+import com.ivanvinski.kunvertuh.mvp.view.View;
 import java.util.Objects;
 
 public abstract class Presenter<V extends View, M> {

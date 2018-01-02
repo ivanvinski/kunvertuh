@@ -17,7 +17,7 @@
  *
  */
 
-package com.ivanvinski.kunvertuh.view;
+package com.ivanvinski.kunvertuh.mvp.view;
 
 public interface AboutView extends View {
 

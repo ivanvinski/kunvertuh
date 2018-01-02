@@ -17,33 +17,9 @@
  *
  */
 
-package com.ivanvinski.kunvertuh.view;
+package com.ivanvinski.kunvertuh.mvp.view;
 
-import java.util.function.Consumer;
+public interface View {
 
-public interface MainView extends View {
-
-  void addNavigationItem(String viewIdentifier);
-
-  void addNavigationItemSeparator();
-
-  void selectNavigationItem(String viewIdentifier);
-
-  String getAppBarTitle();
-
-  void setAppBarTitle(String appBarTitle);
-
-  String getNavigationButtonText(String viewIdentifier);
-
-  void setNavigationButtonText(String viewIdentifier, String buttonText);
-
-  boolean containsNavigationButton(String viewIdentifier);
-
-  Consumer<String> getOnNavigationItemClicked();
-
-  void setOnNavigationItemClicked(Consumer<String> navigationItemClickAction);
-
-  View getActiveView();
-
-  void setActiveView(View view);
+  void initialize();
 }

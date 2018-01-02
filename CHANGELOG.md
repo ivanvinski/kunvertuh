@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Presenters now handle internationalization instead of views
 - Refactored and cleaned up models
 - Replaced dependency injection library with view factory
+- Restructured project packages
 
 ### Removed
 - Specific converter view implementations

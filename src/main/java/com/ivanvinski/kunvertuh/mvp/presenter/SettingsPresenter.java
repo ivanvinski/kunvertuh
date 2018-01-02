@@ -1,9 +1,9 @@
-package com.ivanvinski.kunvertuh.presenter;
+package com.ivanvinski.kunvertuh.mvp.presenter;
 
 import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.i18n.Language;
-import com.ivanvinski.kunvertuh.model.SettingsModel;
-import com.ivanvinski.kunvertuh.view.SettingsView;
+import com.ivanvinski.kunvertuh.mvp.model.SettingsModel;
+import com.ivanvinski.kunvertuh.mvp.view.SettingsView;
 import java.util.Arrays;
 
 public class SettingsPresenter extends Presenter<SettingsView, SettingsModel> {

@@ -17,20 +17,33 @@
  *
  */
 
-package com.ivanvinski.kunvertuh.view;
+package com.ivanvinski.kunvertuh.mvp.view;
 
-import com.ivanvinski.kunvertuh.measurement.Unit;
 import java.util.function.Consumer;
 
-public interface ConverterView<U extends Unit> extends View {
+public interface MainView extends View {
 
-  String getUnitPrompt(U unit);
+  void addNavigationItem(String viewIdentifier);
 
-  void setUnitPrompt(U unit, String prompt);
+  void addNavigationItemSeparator();
 
-  String getUnitValue(U unit);
+  void selectNavigationItem(String viewIdentifier);
 
-  void setUnitValue(U unit, String value);
+  String getAppBarTitle();
 
-  void setOnConversionAction(U unit, Consumer<String> valueConsumer);
+  void setAppBarTitle(String appBarTitle);
+
+  String getNavigationButtonText(String viewIdentifier);
+
+  void setNavigationButtonText(String viewIdentifier, String buttonText);
+
+  boolean containsNavigationButton(String viewIdentifier);
+
+  Consumer<String> getOnNavigationItemClicked();
+
+  void setOnNavigationItemClicked(Consumer<String> navigationItemClickAction);
+
+  View getActiveView();
+
+  void setActiveView(View view);
 }

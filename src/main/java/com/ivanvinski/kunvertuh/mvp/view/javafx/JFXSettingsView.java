@@ -1,7 +1,7 @@
-package com.ivanvinski.kunvertuh.view.javafx;
+package com.ivanvinski.kunvertuh.mvp.view.javafx;
 
 import com.ivanvinski.kunvertuh.i18n.Language;
-import com.ivanvinski.kunvertuh.view.SettingsView;
+import com.ivanvinski.kunvertuh.mvp.view.SettingsView;
 import com.jfoenix.controls.JFXComboBox;
 import java.util.function.Consumer;
 import javafx.fxml.FXML;

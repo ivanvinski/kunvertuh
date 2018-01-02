@@ -17,12 +17,12 @@
  *
  */
 
-package com.ivanvinski.kunvertuh.presenter;
+package com.ivanvinski.kunvertuh.mvp.presenter;
 
 import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.i18n.Language;
-import com.ivanvinski.kunvertuh.model.AboutModel;
-import com.ivanvinski.kunvertuh.view.AboutView;
+import com.ivanvinski.kunvertuh.mvp.model.AboutModel;
+import com.ivanvinski.kunvertuh.mvp.view.AboutView;
 
 public final class AboutPresenter extends Presenter<AboutView, AboutModel> {
 
