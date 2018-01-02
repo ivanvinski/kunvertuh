@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - About model
 - Views loaded event so the main view doesn't depend on view loading order
 - Better model-view-presenter loaders/managers
+- Updated license and file headers
 
 ### Changed
 - Refactored and cleaned up view abstractions and implementations
