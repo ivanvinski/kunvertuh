@@ -19,7 +19,6 @@
 
 package com.ivanvinski.kunvertuh.measurement;
 
-import com.google.inject.Inject;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -30,7 +29,6 @@ public class UnitConverter<U extends Unit> {
 
   private Map<U, Double> convertedValues = new LinkedHashMap<>();
 
-  @Inject
   public UnitConverter(U... supportedUnits) {
     Arrays.stream(supportedUnits)
         .filter(Objects::nonNull)
