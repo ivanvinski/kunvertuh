@@ -18,7 +18,6 @@
 
 package com.ivanvinski.kunvertuh.mvp.model;
 
-import com.ivanvinski.kunvertuh.util.Browser;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,8 +25,6 @@ import java.io.InputStreamReader;
 import java.io.UncheckedIOException;
 
 public class AboutModel {
-
-  private final Browser browser;
 
   private final String name = "Kunvertuh";
   private final String version = "0.1.0";
@@ -44,13 +41,8 @@ public class AboutModel {
   private final String fontAwesomeFxUri = "https://bitbucket.org/Jerady/fontawesomefx";
   private final String guavaUri = "https://github.com/google/guava";
 
-  public AboutModel(Browser browser) {
-    this.browser = browser;
+  public AboutModel() {
     licenseText = readLicenseFile();
-  }
-
-  public void browse(String uri) {
-    browser.open(uri);
   }
 
   public String getName() {

@@ -20,6 +20,7 @@ package com.ivanvinski.kunvertuh;
 
 import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.event.GuavaEventStream;
+import com.ivanvinski.kunvertuh.event.OpenInBrowserEventHandler;
 import com.ivanvinski.kunvertuh.event.ViewChangeRequest;
 import com.ivanvinski.kunvertuh.event.ViewsLoadedEvent;
 import com.ivanvinski.kunvertuh.i18n.Language;
@@ -30,6 +31,7 @@ import com.ivanvinski.kunvertuh.measurement.Volume;
 import com.ivanvinski.kunvertuh.mvp.loader.JFXViewLoader;
 import com.ivanvinski.kunvertuh.mvp.loader.ViewLoader;
 import com.ivanvinski.kunvertuh.mvp.view.View;
+import com.ivanvinski.kunvertuh.util.JFXBrowser;
 import java.net.URL;
 import java.util.Map;
 import javafx.application.Application;
@@ -46,6 +48,7 @@ public final class Kunvertuh extends Application {
   @Override
   public void start(Stage primaryStage) throws Exception {
     EventStream eventStream = new GuavaEventStream();
+    registerEventHandlers(eventStream);
     Map<String, View> loadedViews = loadAllViews(eventStream);
     eventStream.push(new ViewsLoadedEvent(loadedViews));
     primaryStage.setScene(createScene(loadedViews.get(Views.MAIN)));
@@ -56,8 +59,12 @@ public final class Kunvertuh extends Application {
     primaryStage.show();
   }
 
+  private void registerEventHandlers(EventStream eventStream) {
+    eventStream.subscribe(new OpenInBrowserEventHandler(new JFXBrowser(getHostServices())));
+  }
+
   private Map<String, View> loadAllViews(EventStream eventStream) {
-    ViewLoader<URL> loader = new JFXViewLoader(eventStream, getHostServices());
+    ViewLoader<URL> loader = new JFXViewLoader(eventStream);
     loader.loadViewTemplate(Views.LENGTH,
         getClass().getResource("/view/converter-template.fxml"),
         Length.class);

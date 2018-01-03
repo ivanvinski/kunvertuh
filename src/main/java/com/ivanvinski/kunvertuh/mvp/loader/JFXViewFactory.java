@@ -37,19 +37,15 @@ import com.ivanvinski.kunvertuh.mvp.view.javafx.JFXAboutView;
 import com.ivanvinski.kunvertuh.mvp.view.javafx.JFXConverterView;
 import com.ivanvinski.kunvertuh.mvp.view.javafx.JFXMainView;
 import com.ivanvinski.kunvertuh.mvp.view.javafx.JFXSettingsView;
-import com.ivanvinski.kunvertuh.util.JFXBrowser;
-import javafx.application.HostServices;
 import javafx.util.Callback;
 
 final class JFXViewFactory implements Callback<Class<?>, Object> {
 
   private final EventStream eventStream;
-  private final HostServices hostServices;
   private Presenter presenter;
 
-  public JFXViewFactory(EventStream eventStream, HostServices hostServices) {
+  public JFXViewFactory(EventStream eventStream) {
     this.eventStream = eventStream;
-    this.hostServices = hostServices;
   }
 
   @Override
@@ -74,7 +70,7 @@ final class JFXViewFactory implements Callback<Class<?>, Object> {
           eventStream);
     } else if (presenterType == AboutPresenter.class) {
       return new AboutPresenter(new JFXAboutView(),
-          new AboutModel(new JFXBrowser(hostServices)),
+          new AboutModel(),
           eventStream);
     } else if (presenterType == Length.class) {
       return new ConverterPresenter<>(new JFXConverterView<>(Length.values()),

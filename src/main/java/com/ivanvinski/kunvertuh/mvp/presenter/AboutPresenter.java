@@ -19,6 +19,7 @@
 package com.ivanvinski.kunvertuh.mvp.presenter;
 
 import com.ivanvinski.kunvertuh.event.EventStream;
+import com.ivanvinski.kunvertuh.event.OpenInBrowserEvent;
 import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.mvp.model.AboutModel;
 import com.ivanvinski.kunvertuh.mvp.view.AboutView;
@@ -64,6 +65,6 @@ public final class AboutPresenter extends Presenter<AboutView, AboutModel> {
   }
 
   private void browse(String uri) {
-    getModel().browse(uri);
+    getEventStream().push(new OpenInBrowserEvent(uri));
   }
 }

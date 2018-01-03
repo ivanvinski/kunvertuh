@@ -37,15 +37,14 @@ public class JFXViewLoader implements ViewLoader<URL> {
   private HostServices hostServices;
   private Map<String, View> loadedViews = new LinkedHashMap<>();
 
-  public JFXViewLoader(EventStream eventStream, HostServices hostServices) {
+  public JFXViewLoader(EventStream eventStream) {
     this.eventStream = eventStream;
-    this.hostServices = hostServices;
   }
 
   @Override
   public void loadView(String identifier, URL fxmlLocation) {
     FXMLLoader loader = new FXMLLoader(fxmlLocation);
-    JFXViewFactory viewFactory = new JFXViewFactory(eventStream, hostServices);
+    JFXViewFactory viewFactory = new JFXViewFactory(eventStream);
     loader.setControllerFactory(viewFactory);
     loadAndAssemble(identifier, loader, viewFactory);
   }
@@ -53,7 +52,7 @@ public class JFXViewLoader implements ViewLoader<URL> {
   @Override
   public void loadViewTemplate(String identifier, URL fxmlLocation, Class<?> presenterType) {
     FXMLLoader loader = new FXMLLoader(fxmlLocation);
-    JFXViewFactory viewFactory = new JFXViewFactory(eventStream, hostServices);
+    JFXViewFactory viewFactory = new JFXViewFactory(eventStream);
     loader.setController(viewFactory.call(presenterType));
     loadAndAssemble(identifier, loader, viewFactory);
   }
