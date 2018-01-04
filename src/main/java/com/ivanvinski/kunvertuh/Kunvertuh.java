@@ -55,6 +55,8 @@ public final class Kunvertuh extends Application {
     eventStream.push(new ViewChangeRequest(Views.LENGTH));
     eventStream.push(Language.ENGLISH);
     primaryStage.setTitle("Kunvertuh");
+    primaryStage.setMinWidth(650d);
+    primaryStage.setMinHeight(500d);
     primaryStage.centerOnScreen();
     primaryStage.show();
   }
