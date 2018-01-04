@@ -27,7 +27,7 @@ import java.io.UncheckedIOException;
 public class AboutModel {
 
   private final String name = "Kunvertuh";
-  private final String version = "0.1.0";
+  private final String version = "0.2.0";
   private final String license = "GPL v3.0";
   private final String licenseText;
 
