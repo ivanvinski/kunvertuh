@@ -18,6 +18,6 @@ that supports **metric**, **imperial** and **U.S. customary** measurement units.
 - croatian
 
 ## Installing
-1. [Download](https://github.com/ivanvinski/kunvertuh/releases/download/v0.1.0/kunvertuh-v0.1.0.zip) the archive file
+1. [Download](https://github.com/ivanvinski/kunvertuh/releases) the archive file
 2. Extract files into desired directory
 3. Run the `kunvertuh.jar` file
