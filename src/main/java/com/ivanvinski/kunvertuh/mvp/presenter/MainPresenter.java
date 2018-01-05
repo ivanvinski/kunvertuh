@@ -26,8 +26,9 @@ import com.ivanvinski.kunvertuh.event.ViewsLoadedEvent;
 import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.mvp.model.MainModel;
 import com.ivanvinski.kunvertuh.mvp.view.MainView;
+import com.ivanvinski.kunvertuh.mvp.view.View;
 
-public final class MainPresenter extends Presenter<MainView, MainModel> {
+public class MainPresenter extends Presenter<MainView, MainModel> {
 
   private Language language;
 
@@ -72,13 +73,17 @@ public final class MainPresenter extends Presenter<MainView, MainModel> {
   }
 
   private void updateAppBarTitle() {
-    String activeViewIdentifier = getModel().getIdentifier(getModel().getActiveView());
-    if (language == null) {
-      getView().setAppBarTitle(activeViewIdentifier);
+    View activeView = getModel().getActiveView();
+    if (activeView == null) {
       return;
     }
-    String title = language.getString(activeViewIdentifier + "_VIEW");
-    title = title.equals("%null%") ? language.getString(activeViewIdentifier) : title;
-    getView().setAppBarTitle(title);
+    String activeViewIdentifier = getModel().getIdentifier(activeView);
+    if (language != null) {
+      String title = language.getString(activeViewIdentifier + "_VIEW");
+      title = title.equals("%null%") ? language.getString(activeViewIdentifier) : title;
+      getView().setAppBarTitle(title);
+    } else {
+      getView().setAppBarTitle(activeViewIdentifier);
+    }
   }
 }
