@@ -50,6 +50,7 @@ public final class JFXMainView extends StackPane implements MainView {
   private JFXDrawer navigation;
   private VBox navigationItemsBox = new VBox();
   private Map<String, JFXButton> navigationItems = new HashMap<>();
+  private String selectedNavigationItem;
   private Consumer<String> navigationItemClickAction = string -> {
   };
 
@@ -87,6 +88,12 @@ public final class JFXMainView extends StackPane implements MainView {
   public void selectNavigationItem(String viewIdentifier) {
     navigationItemsBox.getChildren().forEach(node -> node.getStyleClass().remove(SELECTED_CLASS));
     navigationItems.get(viewIdentifier).getStyleClass().add(SELECTED_CLASS);
+    selectedNavigationItem = viewIdentifier;
+  }
+
+  @Override
+  public String getSelectedNavigationItem() {
+    return selectedNavigationItem;
   }
 
   @Override

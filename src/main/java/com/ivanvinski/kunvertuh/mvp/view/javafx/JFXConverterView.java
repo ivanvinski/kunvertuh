@@ -35,6 +35,7 @@ public class JFXConverterView<U extends Unit> extends StackPane implements Conve
 
   private U[] units;
   private Map<U, JFXTextField> unitFields = new HashMap<>();
+  private Map<U, Consumer<String>> conversionActions = new HashMap<>();
 
   @FXML
   private VBox metricUnits, otherUnits;
@@ -69,9 +70,15 @@ public class JFXConverterView<U extends Unit> extends StackPane implements Conve
   }
 
   @Override
-  public void setOnConversionAction(U unit, Consumer<String> valueConsumer) {
+  public Consumer<String> getOnConversionAction(U unit) {
+    return conversionActions.get(unit);
+  }
+
+  @Override
+  public void setOnConversionAction(U unit, Consumer<String> conversionAction) {
     JFXTextField unitField = unitFields.get(unit);
-    unitField.setOnAction(e -> valueConsumer.accept(unitField.getText()));
+    unitField.setOnAction(e -> conversionAction.accept(unitField.getText()));
+    conversionActions.put(unit, conversionAction);
   }
 
   protected void constructUnitField(U unit) {

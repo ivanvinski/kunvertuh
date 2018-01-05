@@ -28,6 +28,8 @@ public interface MainView extends View {
 
   void selectNavigationItem(String viewIdentifier);
 
+  String getSelectedNavigationItem();
+
   String getAppBarTitle();
 
   void setAppBarTitle(String appBarTitle);

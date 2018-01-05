@@ -31,5 +31,7 @@ public interface ConverterView<U extends Unit> extends View {
 
   void setUnitValue(U unit, String value);
 
-  void setOnConversionAction(U unit, Consumer<String> valueConsumer);
+  Consumer<String> getOnConversionAction(U unit);
+
+  void setOnConversionAction(U unit, Consumer<String> conversionAction);
 }
