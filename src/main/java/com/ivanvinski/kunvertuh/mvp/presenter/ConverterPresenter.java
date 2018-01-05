@@ -25,7 +25,7 @@ import com.ivanvinski.kunvertuh.measurement.UnitConverter;
 import com.ivanvinski.kunvertuh.mvp.view.ConverterView;
 import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 
-public final class ConverterPresenter<U extends Unit> extends
+public class ConverterPresenter<U extends Unit> extends
     Presenter<ConverterView<U>, UnitConverter<U>> {
 
   private DoubleStringConverter valueConverter = new DoubleStringConverter();

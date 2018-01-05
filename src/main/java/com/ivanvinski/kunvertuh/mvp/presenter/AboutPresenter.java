@@ -24,7 +24,7 @@ import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.mvp.model.AboutModel;
 import com.ivanvinski.kunvertuh.mvp.view.AboutView;
 
-public final class AboutPresenter extends Presenter<AboutView, AboutModel> {
+public class AboutPresenter extends Presenter<AboutView, AboutModel> {
 
   public AboutPresenter(AboutView view, AboutModel model, EventStream eventStream) {
     super(view, model, eventStream);
@@ -64,7 +64,7 @@ public final class AboutPresenter extends Presenter<AboutView, AboutModel> {
     getView().setGuavaWebsiteText(language.getString("REPOSITORY"));
   }
 
-  private void browse(String uri) {
+  protected void browse(String uri) {
     getEventStream().push(new OpenInBrowserEvent(uri));
   }
 }
