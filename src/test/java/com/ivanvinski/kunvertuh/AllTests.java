@@ -23,6 +23,7 @@ import com.ivanvinski.kunvertuh.measurement.LengthConverterTest;
 import com.ivanvinski.kunvertuh.measurement.MassConverterTest;
 import com.ivanvinski.kunvertuh.measurement.UnitConverterTest;
 import com.ivanvinski.kunvertuh.measurement.VolumeConverterTest;
+import com.ivanvinski.kunvertuh.mvp.presenter.ConverterPresenterTest;
 import com.ivanvinski.kunvertuh.mvp.presenter.MainPresenterTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -37,6 +38,7 @@ import org.junit.runners.Suite.SuiteClasses;
     VolumeConverterTest.class,
     AreaConverterTest.class,
     MainPresenterTest.class,
+    ConverterPresenterTest.class,
 })
 public class AllTests {
 
