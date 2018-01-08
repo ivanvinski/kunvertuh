@@ -53,10 +53,7 @@ public class MainPresenter extends Presenter<MainView, MainModel> {
   public void onLanguageChanged(Language language) {
     this.language = language;
     updateAppBarTitle();
-    getModel().getViews().keySet().stream()
-        .filter(getView()::containsNavigationButton)
-        .forEach(viewIdentifier -> getView()
-            .setNavigationButtonText(viewIdentifier, language.getString(viewIdentifier)));
+    updateNavigationButtonsText();
   }
 
   @Subscribe
@@ -74,16 +71,26 @@ public class MainPresenter extends Presenter<MainView, MainModel> {
 
   private void updateAppBarTitle() {
     View activeView = getModel().getActiveView();
+    String activeViewIdentifier = getModel().getIdentifier(activeView);
     if (activeView == null) {
       return;
-    }
-    String activeViewIdentifier = getModel().getIdentifier(activeView);
-    if (language != null) {
+    } else if (language == null) {
+      getView().setAppBarTitle(activeViewIdentifier);
+    } else {
       String title = language.getString(activeViewIdentifier + "_VIEW");
       title = title.equals("%null%") ? language.getString(activeViewIdentifier) : title;
       getView().setAppBarTitle(title);
-    } else {
-      getView().setAppBarTitle(activeViewIdentifier);
     }
+  }
+
+  private void updateNavigationButtonsText() {
+    getModel().getViews().keySet()
+        .stream()
+        .filter(getView()::containsNavigationButton)
+        .forEach(this::updateNavigationButtonText);
+  }
+
+  private void updateNavigationButtonText(String viewIdentifier) {
+    getView().setNavigationButtonText(viewIdentifier, language.getString(viewIdentifier));
   }
 }
