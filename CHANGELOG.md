@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+### Added
+- Active view null check when updating app bar title so `NullPointerException` would not be thrown
+in case active view was not set
+- Unit tests for MainPresenter
+- Unit tests for ConverterPresenter
+- Unit tests for AboutPresenter
+
+### Changed
+- Refactored a few classes for easier testability
+
 ## [0.2.0] - 2018-01-04
 ### Added
 - Concrete, generic converter view implementation
