@@ -1,5 +1,5 @@
 # Tasks
-The following tasks should be finished until January 6, 2018:
+The following tasks should be finished by January 6, 2018:
 - [x] Clean up about view
 - [x] Clean up converter view
 - [x] Separate language and number format setting into two settings
@@ -10,7 +10,7 @@ The following tasks should be finished until January 6, 2018:
 - [x] Rethink dependency injection and possibly remove it
 - [x] Update year in license file and file headers
 
-The following tasks should be finished until January 13, 2018:
+The following tasks should be finished by January 13, 2018:
 - [ ] Support temperature unit conversion
 - [ ] Support speed unit conversion
 - [ ] Support time unit conversion
