@@ -3,7 +3,7 @@ The following tasks should be finished until January 6, 2018:
 - [x] Clean up about view
 - [x] Clean up converter view
 - [x] Separate language and number format setting into two settings
-- [ ] Store language and number format settings
+- [x] Store language and number format settings
 - [ ] Write tests for untested units of code
 - [x] Rethink model-view-presenter architecture and possibly reimplement it
 - [x] Clean up view loading

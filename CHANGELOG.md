@@ -11,6 +11,7 @@ in case active view was not set
 - Unit tests for MainPresenter
 - Unit tests for ConverterPresenter
 - Unit tests for AboutPresenter
+- Settings persistence - settings are now saved
 
 ### Changed
 - Refactored a few classes for easier testability

@@ -19,8 +19,6 @@
 package com.ivanvinski.kunvertuh.mvp.loader;
 
 import com.ivanvinski.kunvertuh.event.EventStream;
-import com.ivanvinski.kunvertuh.i18n.Language;
-import com.ivanvinski.kunvertuh.i18n.NumberFormats;
 import com.ivanvinski.kunvertuh.measurement.Area;
 import com.ivanvinski.kunvertuh.measurement.Length;
 import com.ivanvinski.kunvertuh.measurement.Mass;
@@ -38,6 +36,7 @@ import com.ivanvinski.kunvertuh.mvp.view.javafx.JFXAboutView;
 import com.ivanvinski.kunvertuh.mvp.view.javafx.JFXConverterView;
 import com.ivanvinski.kunvertuh.mvp.view.javafx.JFXMainView;
 import com.ivanvinski.kunvertuh.mvp.view.javafx.JFXSettingsView;
+import com.ivanvinski.kunvertuh.storage.DefaultSettings;
 import javafx.util.Callback;
 
 final class JFXViewFactory implements Callback<Class<?>, Object> {
@@ -67,7 +66,7 @@ final class JFXViewFactory implements Callback<Class<?>, Object> {
           eventStream);
     } else if (presenterType == SettingsPresenter.class) {
       return new SettingsPresenter(new JFXSettingsView(),
-          new SettingsModel(Language.ALL, NumberFormats.ALL),
+          new SettingsModel(new DefaultSettings()),
           eventStream);
     } else if (presenterType == AboutPresenter.class) {
       return new AboutPresenter(new JFXAboutView(),

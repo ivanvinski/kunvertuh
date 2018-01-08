@@ -42,6 +42,7 @@ public class SettingsPresenter extends Presenter<SettingsView, SettingsModel> {
 
   @Override
   public void onLanguageChanged(Language language) {
+    getModel().setActiveLanguage(language);
     getView().selectLanguage(language);
     getView().setLanguagePrompt(language.getString("LANGUAGE"));
     getView().setNumberFormatPrompt(language.getString("NUMBER_FORMAT"));
@@ -49,6 +50,7 @@ public class SettingsPresenter extends Presenter<SettingsView, SettingsModel> {
 
   @Subscribe
   public void onNumberFormatChanged(NumberFormat numberFormat) {
+    getModel().setActiveNumberFormat(numberFormat);
     getView().selectNumberFormat(numberFormat);
   }
 }
