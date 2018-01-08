@@ -16,35 +16,17 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.ivanvinski.kunvertuh.mvp.view;
+package com.ivanvinski.kunvertuh.i18n;
 
-import com.ivanvinski.kunvertuh.i18n.Language;
 import java.text.NumberFormat;
-import java.util.function.Consumer;
 
-public interface SettingsView extends View {
+public final class NumberFormats {
 
-  void addLanguage(Language language);
+  public static final NumberFormat DOT_AS_DECIMAL_SEPARATOR = Language.ENGLISH.getNumberFormat();
+  public static final NumberFormat COMMA_AS_DECIMAL_SEPARATOR = Language.CROATIAN.getNumberFormat();
+  public static final NumberFormat[] ALL = new NumberFormat[]{DOT_AS_DECIMAL_SEPARATOR,
+      COMMA_AS_DECIMAL_SEPARATOR};
 
-  void addNumberFormat(NumberFormat numberFormat);
-
-  void selectLanguage(Language language);
-
-  void selectNumberFormat(NumberFormat numberFormat);
-
-  Consumer<Language> getOnLanguageChanged();
-
-  void setOnLanguageChanged(Consumer<Language> languageChanged);
-
-  String getLanguagePrompt();
-
-  void setLanguagePrompt(String languagePrompt);
-
-  Consumer<NumberFormat> getOnNumberFormatChanged();
-
-  void setOnNumberFormatChanged(Consumer<NumberFormat> numberFormatChanged);
-
-  String getNumberFormatPrompt();
-
-  void setNumberFormatPrompt(String numberFormatPrompt);
+  private NumberFormats() {
+  }
 }

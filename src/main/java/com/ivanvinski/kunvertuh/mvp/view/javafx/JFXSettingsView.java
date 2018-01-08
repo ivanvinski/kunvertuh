@@ -20,7 +20,9 @@ package com.ivanvinski.kunvertuh.mvp.view.javafx;
 
 import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.mvp.view.SettingsView;
+import com.ivanvinski.kunvertuh.util.NumberFormatListCell;
 import com.jfoenix.controls.JFXComboBox;
+import java.text.NumberFormat;
 import java.util.function.Consumer;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
@@ -30,11 +32,19 @@ public class JFXSettingsView extends StackPane implements SettingsView {
   @FXML
   private JFXComboBox<Language> languages;
   private Consumer<Language> languageChanged;
+  @FXML
+  private JFXComboBox<NumberFormat> numberFormats;
+  private Consumer<NumberFormat> numberFormatChanged;
+  private double numberFormatExample = 1234560.789;
 
   @Override
   public void initialize() {
     languages.setOnAction(e ->
         languageChanged.accept(languages.getSelectionModel().getSelectedItem()));
+    numberFormats.setButtonCell(new NumberFormatListCell(numberFormatExample));
+    numberFormats.setCellFactory(cell -> new NumberFormatListCell(numberFormatExample));
+    numberFormats.setOnAction(e ->
+        numberFormatChanged.accept(numberFormats.getSelectionModel().getSelectedItem()));
   }
 
   @Override
@@ -43,8 +53,18 @@ public class JFXSettingsView extends StackPane implements SettingsView {
   }
 
   @Override
+  public void addNumberFormat(NumberFormat numberFormat) {
+    numberFormats.getItems().add(numberFormat);
+  }
+
+  @Override
   public void selectLanguage(Language supportedLanguage) {
     languages.getSelectionModel().select(supportedLanguage);
+  }
+
+  @Override
+  public void selectNumberFormat(NumberFormat numberFormat) {
+    numberFormats.getSelectionModel().select(numberFormat);
   }
 
   @Override
@@ -65,5 +85,25 @@ public class JFXSettingsView extends StackPane implements SettingsView {
   @Override
   public void setLanguagePrompt(String languagePrompt) {
     languages.setPromptText(languagePrompt);
+  }
+
+  @Override
+  public Consumer<NumberFormat> getOnNumberFormatChanged() {
+    return numberFormatChanged;
+  }
+
+  @Override
+  public void setOnNumberFormatChanged(Consumer<NumberFormat> numberFormatChanged) {
+    this.numberFormatChanged = numberFormatChanged;
+  }
+
+  @Override
+  public String getNumberFormatPrompt() {
+    return numberFormats.getPromptText();
+  }
+
+  @Override
+  public void setNumberFormatPrompt(String numberFormatPrompt) {
+    numberFormats.setPromptText(numberFormatPrompt);
   }
 }

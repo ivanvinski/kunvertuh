@@ -20,6 +20,7 @@ package com.ivanvinski.kunvertuh.mvp.loader;
 
 import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.i18n.Language;
+import com.ivanvinski.kunvertuh.i18n.NumberFormats;
 import com.ivanvinski.kunvertuh.measurement.Area;
 import com.ivanvinski.kunvertuh.measurement.Length;
 import com.ivanvinski.kunvertuh.measurement.Mass;
@@ -66,7 +67,7 @@ final class JFXViewFactory implements Callback<Class<?>, Object> {
           eventStream);
     } else if (presenterType == SettingsPresenter.class) {
       return new SettingsPresenter(new JFXSettingsView(),
-          new SettingsModel(Language.ALL),
+          new SettingsModel(Language.ALL, NumberFormats.ALL),
           eventStream);
     } else if (presenterType == AboutPresenter.class) {
       return new AboutPresenter(new JFXAboutView(),

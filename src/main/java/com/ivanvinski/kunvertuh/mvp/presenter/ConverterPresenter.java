@@ -18,12 +18,16 @@
 
 package com.ivanvinski.kunvertuh.mvp.presenter;
 
+import com.google.common.eventbus.Subscribe;
 import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.measurement.Unit;
 import com.ivanvinski.kunvertuh.measurement.UnitConverter;
 import com.ivanvinski.kunvertuh.mvp.view.ConverterView;
 import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
+import java.text.NumberFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ConverterPresenter<U extends Unit> extends
     Presenter<ConverterView<U>, UnitConverter<U>> {
@@ -46,9 +50,20 @@ public class ConverterPresenter<U extends Unit> extends
   public void onLanguageChanged(Language language) {
     for (U unit : getModel().getSupportedUnits()) {
       getView().setUnitPrompt(unit, language.getString(unit.toString()));
-      getView().setUnitValue(unit, "");
     }
-    valueConverter.setValueFormat(language.getNumberFormat());
+  }
+
+  @Subscribe
+  public void onNumberFormatChanged(NumberFormat numberFormat) {
+    Map<U, Double> tmpValues = new HashMap<>();
+    for (U unit : getModel().getSupportedUnits()) {
+      valueConverter.parse(getView().getUnitValue(unit));
+      tmpValues.put(unit, valueConverter.parse(getView().getUnitValue(unit)));
+    }
+    valueConverter.setValueFormat(numberFormat);
+    for (U unit : getModel().getSupportedUnits()) {
+      getView().setUnitValue(unit, valueConverter.format(tmpValues.get(unit)));
+    }
   }
 
   public void onConversionRequested(U unit, String value) {

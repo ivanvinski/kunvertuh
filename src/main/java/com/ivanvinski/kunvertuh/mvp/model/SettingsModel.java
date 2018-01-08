@@ -19,14 +19,18 @@
 package com.ivanvinski.kunvertuh.mvp.model;
 
 import com.ivanvinski.kunvertuh.i18n.Language;
+import java.text.NumberFormat;
 
 public class SettingsModel {
 
   private Language[] languages;
   private Language activeLanguage;
+  private NumberFormat[] numberFormats;
+  private NumberFormat activeNumberFormat;
 
-  public SettingsModel(Language[] languages) {
+  public SettingsModel(Language[] languages, NumberFormat[] numberFormats) {
     this.languages = languages;
+    this.numberFormats = numberFormats;
   }
 
   public Language[] getLanguages() {
@@ -39,5 +43,17 @@ public class SettingsModel {
 
   public void setActiveLanguage(Language activeLanguage) {
     this.activeLanguage = activeLanguage;
+  }
+
+  public NumberFormat[] getNumberFormats() {
+    return numberFormats;
+  }
+
+  public NumberFormat getActiveNumberFormat() {
+    return activeNumberFormat;
+  }
+
+  public void setActiveNumberFormat(NumberFormat activeNumberFormat) {
+    this.activeNumberFormat = activeNumberFormat;
   }
 }

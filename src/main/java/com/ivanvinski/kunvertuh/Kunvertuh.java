@@ -24,6 +24,7 @@ import com.ivanvinski.kunvertuh.event.OpenInBrowserEventHandler;
 import com.ivanvinski.kunvertuh.event.ViewChangeRequest;
 import com.ivanvinski.kunvertuh.event.ViewsLoadedEvent;
 import com.ivanvinski.kunvertuh.i18n.Language;
+import com.ivanvinski.kunvertuh.i18n.NumberFormats;
 import com.ivanvinski.kunvertuh.measurement.Area;
 import com.ivanvinski.kunvertuh.measurement.Length;
 import com.ivanvinski.kunvertuh.measurement.Mass;
@@ -54,6 +55,7 @@ public final class Kunvertuh extends Application {
     primaryStage.setScene(createScene(loadedViews.get(Views.MAIN)));
     eventStream.push(new ViewChangeRequest(Views.LENGTH));
     eventStream.push(Language.ENGLISH);
+    eventStream.push(NumberFormats.DOT_AS_DECIMAL_SEPARATOR);
     primaryStage.setTitle("Kunvertuh");
     primaryStage.setMinWidth(650d);
     primaryStage.setMinHeight(500d);

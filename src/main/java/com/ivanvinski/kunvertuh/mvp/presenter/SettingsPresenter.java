@@ -18,10 +18,12 @@
 
 package com.ivanvinski.kunvertuh.mvp.presenter;
 
+import com.google.common.eventbus.Subscribe;
 import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.mvp.model.SettingsModel;
 import com.ivanvinski.kunvertuh.mvp.view.SettingsView;
+import java.text.NumberFormat;
 import java.util.Arrays;
 
 public class SettingsPresenter extends Presenter<SettingsView, SettingsModel> {
@@ -34,11 +36,19 @@ public class SettingsPresenter extends Presenter<SettingsView, SettingsModel> {
   public void onInitialized() {
     Arrays.stream(getModel().getLanguages()).forEach(getView()::addLanguage);
     getView().setOnLanguageChanged(getEventStream()::push);
+    Arrays.stream(getModel().getNumberFormats()).forEach(getView()::addNumberFormat);
+    getView().setOnNumberFormatChanged(getEventStream()::push);
   }
 
   @Override
   public void onLanguageChanged(Language language) {
     getView().selectLanguage(language);
     getView().setLanguagePrompt(language.getString("LANGUAGE"));
+    getView().setNumberFormatPrompt(language.getString("NUMBER_FORMAT"));
+  }
+
+  @Subscribe
+  public void onNumberFormatChanged(NumberFormat numberFormat) {
+    getView().selectNumberFormat(numberFormat);
   }
 }
