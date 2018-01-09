@@ -12,7 +12,7 @@ The following tasks should be finished by January 6, 2018:
 
 The following tasks should be finished by January 13, 2018:
 - [x] Support temperature unit conversion
-- [ ] Support speed unit conversion
+- [x] Support speed unit conversion
 - [ ] Support time unit conversion
 - [ ] Support pressure unit conversion
 - [ ] Support angle unit conversion

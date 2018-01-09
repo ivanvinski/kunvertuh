@@ -12,6 +12,7 @@ that supports **metric**, **imperial** and **U.S. customary** measurement units.
 - volume units (liters, fluid ounces, ...)
 - area units (hectares, acres, ...)
 - temperature units (celsius, fahrenheit, kelvin)
+- speed units (kilometers per hour, miles per hour, ...)
 - more units will be added later on
 
 ### Available Languages

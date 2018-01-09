@@ -22,6 +22,7 @@ import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.measurement.Area;
 import com.ivanvinski.kunvertuh.measurement.Length;
 import com.ivanvinski.kunvertuh.measurement.Mass;
+import com.ivanvinski.kunvertuh.measurement.Speed;
 import com.ivanvinski.kunvertuh.measurement.Temperature;
 import com.ivanvinski.kunvertuh.measurement.TemperatureConverter;
 import com.ivanvinski.kunvertuh.measurement.UnitConverter;
@@ -93,6 +94,10 @@ final class JFXViewFactory implements Callback<Class<?>, Object> {
     } else if (presenterType == Temperature.class) {
       return new ConverterPresenter<>(new JFXConverterView<>(Temperature.values()),
           new TemperatureConverter(),
+          eventStream);
+    } else if (presenterType == Speed.class) {
+      return new ConverterPresenter<>(new JFXConverterView<>(Speed.values()),
+          new UnitConverter<>(Speed.values()),
           eventStream);
     }
     throw new IllegalArgumentException("Unsupported presenter type: " + presenterType);

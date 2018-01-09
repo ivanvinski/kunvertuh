@@ -26,6 +26,7 @@ public final class Views {
   public static final String VOLUME = "VOLUME";
   public static final String AREA = "AREA";
   public static final String TEMPERATURE = "TEMPERATURE";
+  public static final String SPEED = "SPEED";
   public static final String SETTINGS = "SETTINGS";
   public static final String ABOUT = "ABOUT";
 
