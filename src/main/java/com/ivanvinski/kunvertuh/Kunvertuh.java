@@ -28,6 +28,7 @@ import com.ivanvinski.kunvertuh.i18n.NumberFormats;
 import com.ivanvinski.kunvertuh.measurement.Area;
 import com.ivanvinski.kunvertuh.measurement.Length;
 import com.ivanvinski.kunvertuh.measurement.Mass;
+import com.ivanvinski.kunvertuh.measurement.Pressure;
 import com.ivanvinski.kunvertuh.measurement.Speed;
 import com.ivanvinski.kunvertuh.measurement.Temperature;
 import com.ivanvinski.kunvertuh.measurement.Time;
@@ -96,6 +97,9 @@ public final class Kunvertuh extends Application {
     loader.loadViewTemplate(Views.TIME,
         getClass().getResource("/view/converter-template.fxml"),
         Time.class);
+    loader.loadViewTemplate(Views.PRESSURE,
+        getClass().getResource("/view/converter-template.fxml"),
+        Pressure.class);
     loader.loadView(Views.MAIN, getClass().getResource("/view/main.fxml"));
     loader.loadView(Views.SETTINGS, getClass().getResource("/view/settings.fxml"));
     loader.loadView(Views.ABOUT, getClass().getResource("/view/about.fxml"));

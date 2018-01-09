@@ -15,6 +15,7 @@ in case active view was not set
 - Temperature units conversion
 - Speed units conversion
 - Time units conversion
+- Pressure units conversion
 
 ### Changed
 - Refactored a few classes for easier testability

@@ -28,6 +28,7 @@ public final class Views {
   public static final String TEMPERATURE = "TEMPERATURE";
   public static final String SPEED = "SPEED";
   public static final String TIME = "TIME";
+  public static final String PRESSURE = "PRESSURE";
   public static final String SETTINGS = "SETTINGS";
   public static final String ABOUT = "ABOUT";
 

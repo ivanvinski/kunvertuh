@@ -162,6 +162,8 @@ public final class JFXMainView extends StackPane implements MainView {
       icon = MaterialDesignIcon.GAUGE;
     } else if (viewIdentifier.equals(Views.TIME)) {
       icon = MaterialDesignIcon.CLOCK;
+    } else if (viewIdentifier.equals(Views.PRESSURE)) {
+      icon = MaterialDesignIcon.ARROW_COMPRESS_ALL;
     } else {
       return null;
     }

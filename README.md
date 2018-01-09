@@ -14,6 +14,7 @@ that supports **metric**, **imperial** and **U.S. customary** measurement units.
 - temperature units (celsius, fahrenheit, kelvin)
 - speed units (kilometers per hour, miles per hour, ...)
 - time units (seconds, minutes, hours, ...)
+- pressure units (pascal, bars, ...)
 - more units will be added later on
 
 ### Available Languages
