@@ -21,6 +21,7 @@ package com.ivanvinski.kunvertuh;
 import com.ivanvinski.kunvertuh.measurement.AreaConverterTest;
 import com.ivanvinski.kunvertuh.measurement.LengthConverterTest;
 import com.ivanvinski.kunvertuh.measurement.MassConverterTest;
+import com.ivanvinski.kunvertuh.measurement.SpeedConverterTest;
 import com.ivanvinski.kunvertuh.measurement.TemperatureConverterTest;
 import com.ivanvinski.kunvertuh.measurement.UnitConverterTest;
 import com.ivanvinski.kunvertuh.measurement.VolumeConverterTest;
@@ -31,7 +32,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
-
 @RunWith(Suite.class)
 @SuiteClasses({
     UnitConverterTest.class,
@@ -39,11 +39,13 @@ import org.junit.runners.Suite.SuiteClasses;
     MassConverterTest.class,
     VolumeConverterTest.class,
     AreaConverterTest.class,
+    TemperatureConverterTest.class,
+    SpeedConverterTest.class,
     MainPresenterTest.class,
     ConverterPresenterTest.class,
     AboutPresenterTest.class,
-    TemperatureConverterTest.class,
 })
 public class AllTests {
 
 }
+
