@@ -23,6 +23,7 @@ import com.ivanvinski.kunvertuh.measurement.LengthConverterTest;
 import com.ivanvinski.kunvertuh.measurement.MassConverterTest;
 import com.ivanvinski.kunvertuh.measurement.SpeedConverterTest;
 import com.ivanvinski.kunvertuh.measurement.TemperatureConverterTest;
+import com.ivanvinski.kunvertuh.measurement.TimeConverterTest;
 import com.ivanvinski.kunvertuh.measurement.UnitConverterTest;
 import com.ivanvinski.kunvertuh.measurement.VolumeConverterTest;
 import com.ivanvinski.kunvertuh.mvp.presenter.AboutPresenterTest;
@@ -41,6 +42,7 @@ import org.junit.runners.Suite.SuiteClasses;
     AreaConverterTest.class,
     TemperatureConverterTest.class,
     SpeedConverterTest.class,
+    TimeConverterTest.class,
     MainPresenterTest.class,
     ConverterPresenterTest.class,
     AboutPresenterTest.class,
