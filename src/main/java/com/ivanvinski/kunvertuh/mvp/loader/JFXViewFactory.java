@@ -25,6 +25,7 @@ import com.ivanvinski.kunvertuh.measurement.Mass;
 import com.ivanvinski.kunvertuh.measurement.Speed;
 import com.ivanvinski.kunvertuh.measurement.Temperature;
 import com.ivanvinski.kunvertuh.measurement.TemperatureConverter;
+import com.ivanvinski.kunvertuh.measurement.Time;
 import com.ivanvinski.kunvertuh.measurement.UnitConverter;
 import com.ivanvinski.kunvertuh.measurement.Volume;
 import com.ivanvinski.kunvertuh.mvp.model.AboutModel;
@@ -98,6 +99,10 @@ final class JFXViewFactory implements Callback<Class<?>, Object> {
     } else if (presenterType == Speed.class) {
       return new ConverterPresenter<>(new JFXConverterView<>(Speed.values()),
           new UnitConverter<>(Speed.values()),
+          eventStream);
+    } else if (presenterType == Time.class) {
+      return new ConverterPresenter<>(new JFXConverterView<>(Time.values()),
+          new UnitConverter<>(Time.values()),
           eventStream);
     }
     throw new IllegalArgumentException("Unsupported presenter type: " + presenterType);

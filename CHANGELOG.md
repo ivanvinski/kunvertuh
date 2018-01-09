@@ -14,6 +14,7 @@ in case active view was not set
 - Settings persistence - settings are now saved
 - Temperature units conversion
 - Speed units conversion
+- Time units conversion
 
 ### Changed
 - Refactored a few classes for easier testability

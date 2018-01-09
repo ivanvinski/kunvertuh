@@ -30,6 +30,7 @@ import com.ivanvinski.kunvertuh.measurement.Length;
 import com.ivanvinski.kunvertuh.measurement.Mass;
 import com.ivanvinski.kunvertuh.measurement.Speed;
 import com.ivanvinski.kunvertuh.measurement.Temperature;
+import com.ivanvinski.kunvertuh.measurement.Time;
 import com.ivanvinski.kunvertuh.measurement.Volume;
 import com.ivanvinski.kunvertuh.mvp.loader.JFXViewLoader;
 import com.ivanvinski.kunvertuh.mvp.loader.ViewLoader;
@@ -92,6 +93,9 @@ public final class Kunvertuh extends Application {
     loader.loadViewTemplate(Views.SPEED,
         getClass().getResource("/view/converter-template.fxml"),
         Speed.class);
+    loader.loadViewTemplate(Views.TIME,
+        getClass().getResource("/view/converter-template.fxml"),
+        Time.class);
     loader.loadView(Views.MAIN, getClass().getResource("/view/main.fxml"));
     loader.loadView(Views.SETTINGS, getClass().getResource("/view/settings.fxml"));
     loader.loadView(Views.ABOUT, getClass().getResource("/view/about.fxml"));

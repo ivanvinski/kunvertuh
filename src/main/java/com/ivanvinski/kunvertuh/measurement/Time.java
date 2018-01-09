@@ -16,21 +16,41 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.ivanvinski.kunvertuh;
+package com.ivanvinski.kunvertuh.measurement;
 
-public final class Views {
+public enum Time implements Unit {
 
-  public static final String MAIN = "MAIN";
-  public static final String LENGTH = "LENGTH";
-  public static final String MASS = "MASS";
-  public static final String VOLUME = "VOLUME";
-  public static final String AREA = "AREA";
-  public static final String TEMPERATURE = "TEMPERATURE";
-  public static final String SPEED = "SPEED";
-  public static final String TIME = "TIME";
-  public static final String SETTINGS = "SETTINGS";
-  public static final String ABOUT = "ABOUT";
+  NANOSECOND(.000000001d),
+  MICROSECOND(.000001d),
+  MILLISECOND(.001d),
+  SECOND(1d),
+  MINUTE(60d),
+  HOUR(3600d),
+  DAY(86400d),
+  WEEK(604800d),
+  MONTH(2628000d),
+  YEAR(31540000d),
+  DECADE(315400000d),
+  CENTURY(3154000000d);
 
-  private Views() {
+  private double baseUnitFactor;
+
+  Time(double baseUnitFactor) {
+    this.baseUnitFactor = baseUnitFactor;
+  }
+
+  @Override
+  public double getBaseUnitFactor() {
+    return baseUnitFactor;
+  }
+
+  @Override
+  public String getSymbol() {
+    return null;
+  }
+
+  @Override
+  public MeasurementSystem getSystem() {
+    return MeasurementSystem.METRIC;
   }
 }

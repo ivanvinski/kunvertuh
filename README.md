@@ -13,6 +13,7 @@ that supports **metric**, **imperial** and **U.S. customary** measurement units.
 - area units (hectares, acres, ...)
 - temperature units (celsius, fahrenheit, kelvin)
 - speed units (kilometers per hour, miles per hour, ...)
+- time units (seconds, minutes, hours, ...)
 - more units will be added later on
 
 ### Available Languages
