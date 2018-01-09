@@ -16,19 +16,34 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.ivanvinski.kunvertuh;
+package com.ivanvinski.kunvertuh.measurement;
 
-public final class Views {
+public enum Temperature implements Unit {
 
-  public static final String MAIN = "MAIN";
-  public static final String LENGTH = "LENGTH";
-  public static final String MASS = "MASS";
-  public static final String VOLUME = "VOLUME";
-  public static final String AREA = "AREA";
-  public static final String TEMPERATURE = "TEMPERATURE";
-  public static final String SETTINGS = "SETTINGS";
-  public static final String ABOUT = "ABOUT";
+  CELSIUS("C", MeasurementSystem.METRIC),
+  FAHRENHEIT("F", MeasurementSystem.IMPERIAL_AND_US_CUSTOMARY),
+  KELVIN("K", null);
 
-  private Views() {
+  private String symbol;
+  private MeasurementSystem system;
+
+  Temperature(String symbol, MeasurementSystem system) {
+    this.symbol = symbol;
+    this.system = system;
+  }
+
+  @Override
+  public double getBaseUnitFactor() {
+    return 0d;
+  }
+
+  @Override
+  public String getSymbol() {
+    return symbol;
+  }
+
+  @Override
+  public MeasurementSystem getSystem() {
+    return system;
   }
 }

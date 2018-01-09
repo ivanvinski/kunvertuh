@@ -156,6 +156,8 @@ public final class JFXMainView extends StackPane implements MainView {
       icon = MaterialDesignIcon.SETTINGS;
     } else if (viewIdentifier.equals(Views.ABOUT)) {
       icon = MaterialDesignIcon.HELP_CIRCLE_OUTLINE;
+    } else if (viewIdentifier.equals(Views.TEMPERATURE)) {
+      icon = MaterialDesignIcon.THERMOMETER;
     } else {
       return null;
     }

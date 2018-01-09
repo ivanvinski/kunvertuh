@@ -48,15 +48,19 @@ public class UnitConverter<U extends Unit> {
     return convertedValues.get(unit);
   }
 
-  private void registerUnit(U unit) {
-    convertedValues.put(unit, 0d);
-  }
-
-  private void throwExceptionIfNullOrUnsupportedUnit(U unit) {
+  protected void throwExceptionIfNullOrUnsupportedUnit(U unit) {
     Objects.requireNonNull(unit, "Can't work with null unit");
     if (!convertedValues.containsKey(unit)) {
       throw new IllegalArgumentException("Unsupported unit: " + unit);
     }
+  }
+
+  protected void setValue(U unit, double value) {
+    convertedValues.put(unit, value);
+  }
+
+  private void registerUnit(U unit) {
+    convertedValues.put(unit, 0d);
   }
 
   private double toBaseValue(double sourceValue, U sourceUnit) {

@@ -12,6 +12,7 @@ in case active view was not set
 - Unit tests for ConverterPresenter
 - Unit tests for AboutPresenter
 - Settings persistence - settings are now saved
+- Temperature units conversion
 
 ### Changed
 - Refactored a few classes for easier testability

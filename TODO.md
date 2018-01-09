@@ -11,7 +11,7 @@ The following tasks should be finished by January 6, 2018:
 - [x] Update year in license file and file headers
 
 The following tasks should be finished by January 13, 2018:
-- [ ] Support temperature unit conversion
+- [x] Support temperature unit conversion
 - [ ] Support speed unit conversion
 - [ ] Support time unit conversion
 - [ ] Support pressure unit conversion
