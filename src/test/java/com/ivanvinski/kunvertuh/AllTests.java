@@ -18,6 +18,7 @@
 
 package com.ivanvinski.kunvertuh;
 
+import com.ivanvinski.kunvertuh.measurement.AngleConverterTest;
 import com.ivanvinski.kunvertuh.measurement.AreaConverterTest;
 import com.ivanvinski.kunvertuh.measurement.LengthConverterTest;
 import com.ivanvinski.kunvertuh.measurement.MassConverterTest;
@@ -45,6 +46,7 @@ import org.junit.runners.Suite.SuiteClasses;
     SpeedConverterTest.class,
     TimeConverterTest.class,
     PressureConverterTest.class,
+    AngleConverterTest.class,
     MainPresenterTest.class,
     ConverterPresenterTest.class,
     AboutPresenterTest.class,
