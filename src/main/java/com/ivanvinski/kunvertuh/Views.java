@@ -31,6 +31,7 @@ public final class Views {
   public static final String PRESSURE = "PRESSURE";
   public static final String ANGLE = "ANGLE";
   public static final String DATA_TRANSFER_RATE = "DATA_TRANSFER_RATE";
+  public static final String DIGITAL_STORAGE = "DIGITAL_STORAGE";
   public static final String SETTINGS = "SETTINGS";
   public static final String ABOUT = "ABOUT";
 

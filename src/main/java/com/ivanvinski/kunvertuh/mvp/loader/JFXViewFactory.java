@@ -22,6 +22,7 @@ import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.measurement.Angle;
 import com.ivanvinski.kunvertuh.measurement.Area;
 import com.ivanvinski.kunvertuh.measurement.DataTransferRate;
+import com.ivanvinski.kunvertuh.measurement.DigitalStorage;
 import com.ivanvinski.kunvertuh.measurement.Length;
 import com.ivanvinski.kunvertuh.measurement.Mass;
 import com.ivanvinski.kunvertuh.measurement.Pressure;
@@ -118,6 +119,10 @@ final class JFXViewFactory implements Callback<Class<?>, Object> {
     } else if (presenterType == DataTransferRate.class) {
       return new ConverterPresenter<>(new JFXConverterView<>(DataTransferRate.values()),
           new UnitConverter<>(DataTransferRate.values()),
+          eventStream);
+    } else if (presenterType == DigitalStorage.class) {
+      return new ConverterPresenter<>(new JFXConverterView<>(DigitalStorage.values()),
+          new UnitConverter<>(DigitalStorage.values()),
           eventStream);
     }
     throw new IllegalArgumentException("Unsupported presenter type: " + presenterType);

@@ -18,6 +18,7 @@ in case active view was not set
 - Pressure units conversion
 - Angle units conversion
 - Data transfer rate units conversion
+- Digital storage units conversion
 
 ### Changed
 - Refactored a few classes for easier testability
