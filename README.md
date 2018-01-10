@@ -11,13 +11,6 @@ that supports **metric**, **imperial** and **U.S. customary** measurement units.
 - mass units (kilograms, ounces, ...)
 - volume units (liters, fluid ounces, ...)
 - area units (hectares, acres, ...)
-- temperature units (celsius, fahrenheit, kelvin)
-- speed units (kilometers per hour, miles per hour, ...)
-- time units (seconds, minutes, hours, ...)
-- pressure units (pascal, bars, ...)
-- angle units (degrees, radians, ...)
-- data transfer rate units (bits per second, bytes per second, ...)
-- digital storage units (bits, bytes, ...)
 - more units will be added later on
 
 ### Available Languages
