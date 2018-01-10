@@ -1,10 +1,21 @@
 # Tasks
+
+## Current
+The following tasks should be finished by January 14, 2018:
+- [ ] Implement better unit categorization
+- [ ] Redesign converter view layout based on unit categorization
+- [ ] Check for typos in language bundles
+- [ ] Check for, and remove, code duplication
+
+The following tasks do not have a due date:
+- [ ] Write tests for untested units of code
+
+## Archive
 The following tasks should be finished by January 6, 2018:
 - [x] Clean up about view
 - [x] Clean up converter view
 - [x] Separate language and number format setting into two settings
 - [x] Store language and number format settings
-- [ ] Write tests for untested units of code
 - [x] Rethink model-view-presenter architecture and possibly reimplement it
 - [x] Clean up view loading
 - [x] Rethink dependency injection and possibly remove it
