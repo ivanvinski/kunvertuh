@@ -17,6 +17,7 @@ in case active view was not set
 - Time units conversion
 - Pressure units conversion
 - Angle units conversion
+- Data transfer rate units conversion
 
 ### Changed
 - Refactored a few classes for easier testability

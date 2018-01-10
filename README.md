@@ -16,6 +16,7 @@ that supports **metric**, **imperial** and **U.S. customary** measurement units.
 - time units (seconds, minutes, hours, ...)
 - pressure units (pascal, bars, ...)
 - angle units (degrees, radians, ...)
+- data transfer rate units (bits per second, bytes per second, ...)
 - more units will be added later on
 
 ### Available Languages
