@@ -15,6 +15,6 @@ The following tasks should be finished by January 13, 2018:
 - [x] Support speed unit conversion
 - [x] Support time unit conversion
 - [x] Support pressure unit conversion
-- [ ] Support angle unit conversion
+- [x] Support angle unit conversion
 - [ ] Support data transfer unit conversion
 - [ ] Support digital storage unit conversion

@@ -25,6 +25,7 @@ import com.ivanvinski.kunvertuh.event.ViewChangeRequest;
 import com.ivanvinski.kunvertuh.event.ViewsLoadedEvent;
 import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.i18n.NumberFormats;
+import com.ivanvinski.kunvertuh.measurement.Angle;
 import com.ivanvinski.kunvertuh.measurement.Area;
 import com.ivanvinski.kunvertuh.measurement.Length;
 import com.ivanvinski.kunvertuh.measurement.Mass;
@@ -100,6 +101,9 @@ public final class Kunvertuh extends Application {
     loader.loadViewTemplate(Views.PRESSURE,
         getClass().getResource("/view/converter-template.fxml"),
         Pressure.class);
+    loader.loadViewTemplate(Views.ANGLE,
+        getClass().getResource("/view/converter-template.fxml"),
+        Angle.class);
     loader.loadView(Views.MAIN, getClass().getResource("/view/main.fxml"));
     loader.loadView(Views.SETTINGS, getClass().getResource("/view/settings.fxml"));
     loader.loadView(Views.ABOUT, getClass().getResource("/view/about.fxml"));

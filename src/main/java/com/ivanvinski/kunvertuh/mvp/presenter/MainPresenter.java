@@ -46,6 +46,7 @@ public class MainPresenter extends Presenter<MainView, MainModel> {
     getView().addNavigationItem(Views.SPEED);
     getView().addNavigationItem(Views.TIME);
     getView().addNavigationItem(Views.PRESSURE);
+    getView().addNavigationItem(Views.ANGLE);
     getView().addNavigationItemSeparator();
     getView().addNavigationItem(Views.SETTINGS);
     getView().addNavigationItem(Views.ABOUT);

@@ -19,6 +19,7 @@
 package com.ivanvinski.kunvertuh.mvp.loader;
 
 import com.ivanvinski.kunvertuh.event.EventStream;
+import com.ivanvinski.kunvertuh.measurement.Angle;
 import com.ivanvinski.kunvertuh.measurement.Area;
 import com.ivanvinski.kunvertuh.measurement.Length;
 import com.ivanvinski.kunvertuh.measurement.Mass;
@@ -108,6 +109,10 @@ final class JFXViewFactory implements Callback<Class<?>, Object> {
     } else if (presenterType == Pressure.class) {
       return new ConverterPresenter<>(new JFXConverterView<>(Pressure.values()),
           new UnitConverter<>(Pressure.values()),
+          eventStream);
+    } else if (presenterType == Angle.class) {
+      return new ConverterPresenter<>(new JFXConverterView<>(Angle.values()),
+          new UnitConverter<>(Angle.values()),
           eventStream);
     }
     throw new IllegalArgumentException("Unsupported presenter type: " + presenterType);

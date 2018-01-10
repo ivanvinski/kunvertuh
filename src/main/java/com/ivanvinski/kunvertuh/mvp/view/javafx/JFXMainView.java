@@ -164,6 +164,8 @@ public final class JFXMainView extends StackPane implements MainView {
       icon = MaterialDesignIcon.CLOCK;
     } else if (viewIdentifier.equals(Views.PRESSURE)) {
       icon = MaterialDesignIcon.ARROW_COMPRESS_ALL;
+    } else if (viewIdentifier.equals(Views.ANGLE)) {
+      icon = MaterialDesignIcon.MATH_COMPASS;
     } else {
       return null;
     }

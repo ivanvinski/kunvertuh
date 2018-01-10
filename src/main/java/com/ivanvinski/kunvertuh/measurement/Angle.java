@@ -16,23 +16,37 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.ivanvinski.kunvertuh;
+package com.ivanvinski.kunvertuh.measurement;
 
-public final class Views {
+public enum Angle implements Unit {
 
-  public static final String MAIN = "MAIN";
-  public static final String LENGTH = "LENGTH";
-  public static final String MASS = "MASS";
-  public static final String VOLUME = "VOLUME";
-  public static final String AREA = "AREA";
-  public static final String TEMPERATURE = "TEMPERATURE";
-  public static final String SPEED = "SPEED";
-  public static final String TIME = "TIME";
-  public static final String PRESSURE = "PRESSURE";
-  public static final String ANGLE = "ANGLE";
-  public static final String SETTINGS = "SETTINGS";
-  public static final String ABOUT = "ABOUT";
+  DEGREE(1d, "°"),
+  MINUTE_OF_ARC(1d / 60d, "'"),
+  SECOND_OF_ARC(1d / 3600d, "''"),
+  RADIAN(57.2958d, "rad"),
+  MILLIRADIAN(.05729578d, "mil"),
+  GRADIAN(.9d, "gon");
 
-  private Views() {
+  private double baseUnitFactor;
+  private String symbol;
+
+  Angle(double baseUnitFactor, String symbol) {
+    this.baseUnitFactor = baseUnitFactor;
+    this.symbol = symbol;
+  }
+
+  @Override
+  public double getBaseUnitFactor() {
+    return baseUnitFactor;
+  }
+
+  @Override
+  public String getSymbol() {
+    return symbol;
+  }
+
+  @Override
+  public MeasurementSystem getSystem() {
+    return null;
   }
 }
