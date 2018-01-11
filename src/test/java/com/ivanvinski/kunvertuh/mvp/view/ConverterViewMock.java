@@ -20,6 +20,7 @@ package com.ivanvinski.kunvertuh.mvp.view;
 
 import com.ivanvinski.kunvertuh.measurement.Unit;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -31,6 +32,10 @@ public class ConverterViewMock<U extends Unit> implements ConverterView<U> {
 
   @Override
   public void initialize() {
+  }
+
+  @Override
+  public void appendUnitsCard(List<U> leftColumn, List<U> rightColumn) {
   }
 
   @Override

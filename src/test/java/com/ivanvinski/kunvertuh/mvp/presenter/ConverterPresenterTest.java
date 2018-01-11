@@ -26,6 +26,7 @@ import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.measurement.Length;
 import com.ivanvinski.kunvertuh.measurement.UnitConverter;
+import com.ivanvinski.kunvertuh.mvp.model.ConverterModel;
 import com.ivanvinski.kunvertuh.mvp.view.ConverterView;
 import com.ivanvinski.kunvertuh.mvp.view.ConverterViewMock;
 import org.junit.Before;
@@ -35,7 +36,8 @@ import org.mockito.Mockito;
 public class ConverterPresenterTest {
 
   private ConverterView<Length> view = new ConverterViewMock<>();
-  private UnitConverter<Length> model = Mockito.spy(new UnitConverter<>(Length.values()));
+  private UnitConverter<Length> converter = Mockito.spy(new UnitConverter<>(Length.values()));
+  private ConverterModel<Length> model = new ConverterModel<>(converter);
   private EventStream eventStream = Mockito.mock(EventStream.class);
   private ConverterPresenter<Length> presenter = Mockito
       .spy(new ConverterPresenter<>(view, model, eventStream));
@@ -47,7 +49,7 @@ public class ConverterPresenterTest {
 
   @Test
   public void conversionActionsForAllSupportedUnitsAreInitialized() {
-    model.getSupportedUnits().forEach(unit ->
+    converter.getSupportedUnits().forEach(unit ->
         assertNotNull("Conversion action not set for: " + unit.toString(), unit));
   }
 
@@ -55,7 +57,7 @@ public class ConverterPresenterTest {
   public void unitPromptsAreChangedOnLanguageChange() {
     final Language language = Language.CROATIAN;
     presenter.onLanguageChanged(language);
-    model.getSupportedUnits().forEach(unit ->
+    converter.getSupportedUnits().forEach(unit ->
         assertEquals("Incorrect prompt for unit: " + unit.toString(),
             language.getString(unit.toString()),
             view.getUnitPrompt(unit)));
@@ -64,7 +66,7 @@ public class ConverterPresenterTest {
   @Test
   public void unitValuesAreChangedOnConversion() {
     presenter.onConversionRequested(Length.KILOMETER, "100");
-    model.getSupportedUnits().forEach(unit ->
+    converter.getSupportedUnits().forEach(unit ->
         assertNotEquals("Value not set for unit: " + unit.toString(),
             "",
             view.getUnitValue(unit)));
