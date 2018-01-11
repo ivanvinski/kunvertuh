@@ -23,6 +23,8 @@ in case active view was not set
 ### Changed
 - Refactored a few classes for easier testability
 - Separated language and number format setting into two settings
+- Reimplemented unit categorization
+- Redesigned converter view UI layout
 
 ## [0.2.0] - 2018-01-04
 ### Added

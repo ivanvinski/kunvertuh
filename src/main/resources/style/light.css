@@ -204,6 +204,8 @@
 .unit-card {
   -fx-padding: 24px 16px;
   -fx-spacing: 24px;
+  -fx-vgap: 24px;
+  -fx-hgap: 16px;
 }
 
 /*

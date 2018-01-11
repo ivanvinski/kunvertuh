@@ -2,8 +2,8 @@
 
 ## Current
 The following tasks should be finished by January 14, 2018:
-- [ ] Implement better unit categorization
-- [ ] Redesign converter view layout based on unit categorization
+- [x] Implement better unit categorization
+- [x] Redesign converter view layout based on unit categorization
 - [ ] Check for typos in language bundles
 - [ ] Check for, and remove, code duplication
 

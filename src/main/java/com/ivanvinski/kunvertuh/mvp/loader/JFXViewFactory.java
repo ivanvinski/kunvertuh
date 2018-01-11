@@ -30,9 +30,10 @@ import com.ivanvinski.kunvertuh.measurement.Speed;
 import com.ivanvinski.kunvertuh.measurement.Temperature;
 import com.ivanvinski.kunvertuh.measurement.TemperatureConverter;
 import com.ivanvinski.kunvertuh.measurement.Time;
-import com.ivanvinski.kunvertuh.measurement.UnitConverter;
+import com.ivanvinski.kunvertuh.measurement.Unit;
 import com.ivanvinski.kunvertuh.measurement.Volume;
 import com.ivanvinski.kunvertuh.mvp.model.AboutModel;
+import com.ivanvinski.kunvertuh.mvp.model.ConverterModel;
 import com.ivanvinski.kunvertuh.mvp.model.MainModel;
 import com.ivanvinski.kunvertuh.mvp.model.SettingsModel;
 import com.ivanvinski.kunvertuh.mvp.presenter.AboutPresenter;
@@ -81,50 +82,37 @@ final class JFXViewFactory implements Callback<Class<?>, Object> {
           new AboutModel(),
           eventStream);
     } else if (presenterType == Length.class) {
-      return new ConverterPresenter<>(new JFXConverterView<>(Length.values()),
-          new UnitConverter<>(Length.values()),
-          eventStream);
+      return createConverterMVP(Length.values(), eventStream);
     } else if (presenterType == Mass.class) {
-      return new ConverterPresenter<>(new JFXConverterView<>(Mass.values()),
-          new UnitConverter<>(Mass.values()),
-          eventStream);
+      return createConverterMVP(Mass.values(), eventStream);
     } else if (presenterType == Volume.class) {
-      return new ConverterPresenter<>(new JFXConverterView<>(Volume.values()),
-          new UnitConverter<>(Volume.values()),
-          eventStream);
+      return createConverterMVP(Volume.values(), eventStream);
     } else if (presenterType == Area.class) {
-      return new ConverterPresenter<>(new JFXConverterView<>(Area.values()),
-          new UnitConverter<>(Area.values()),
-          eventStream);
+      return createConverterMVP(Area.values(), eventStream);
     } else if (presenterType == Temperature.class) {
-      return new ConverterPresenter<>(new JFXConverterView<>(Temperature.values()),
-          new TemperatureConverter(),
+      return new ConverterPresenter<>(new JFXConverterView<>(),
+          new ConverterModel<>(new TemperatureConverter()),
           eventStream);
     } else if (presenterType == Speed.class) {
-      return new ConverterPresenter<>(new JFXConverterView<>(Speed.values()),
-          new UnitConverter<>(Speed.values()),
-          eventStream);
+      return createConverterMVP(Speed.values(), eventStream);
     } else if (presenterType == Time.class) {
-      return new ConverterPresenter<>(new JFXConverterView<>(Time.values()),
-          new UnitConverter<>(Time.values()),
-          eventStream);
+      return createConverterMVP(Time.values(), eventStream);
     } else if (presenterType == Pressure.class) {
-      return new ConverterPresenter<>(new JFXConverterView<>(Pressure.values()),
-          new UnitConverter<>(Pressure.values()),
-          eventStream);
+      return createConverterMVP(Pressure.values(), eventStream);
     } else if (presenterType == Angle.class) {
-      return new ConverterPresenter<>(new JFXConverterView<>(Angle.values()),
-          new UnitConverter<>(Angle.values()),
-          eventStream);
+      return createConverterMVP(Angle.values(), eventStream);
     } else if (presenterType == DataTransferRate.class) {
-      return new ConverterPresenter<>(new JFXConverterView<>(DataTransferRate.values()),
-          new UnitConverter<>(DataTransferRate.values()),
-          eventStream);
+      return createConverterMVP(DataTransferRate.values(), eventStream);
     } else if (presenterType == DigitalStorage.class) {
-      return new ConverterPresenter<>(new JFXConverterView<>(DigitalStorage.values()),
-          new UnitConverter<>(DigitalStorage.values()),
-          eventStream);
+      return createConverterMVP(DigitalStorage.values(), eventStream);
     }
     throw new IllegalArgumentException("Unsupported presenter type: " + presenterType);
+  }
+
+  private <U extends Unit> ConverterPresenter<U> createConverterMVP(U[] units,
+      EventStream eventStream) {
+    return new ConverterPresenter<>(new JFXConverterView<>(),
+        new ConverterModel<>(units),
+        eventStream);
   }
 }

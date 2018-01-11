@@ -19,9 +19,12 @@
 package com.ivanvinski.kunvertuh.mvp.view;
 
 import com.ivanvinski.kunvertuh.measurement.Unit;
+import java.util.List;
 import java.util.function.Consumer;
 
 public interface ConverterView<U extends Unit> extends View {
+
+  void appendUnitsCard(List<U> leftColumn, List<U> rightColumn);
 
   String getUnitPrompt(U unit);
 

@@ -18,35 +18,42 @@
 
 package com.ivanvinski.kunvertuh.mvp.view.javafx;
 
-import com.ivanvinski.kunvertuh.measurement.MeasurementSystem;
 import com.ivanvinski.kunvertuh.measurement.Unit;
 import com.ivanvinski.kunvertuh.mvp.view.ConverterView;
 import com.jfoenix.controls.JFXTextField;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Consumer;
 import javafx.fxml.FXML;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class JFXConverterView<U extends Unit> extends StackPane implements ConverterView<U> {
 
-  private U[] units;
   private Map<U, JFXTextField> unitFields = new HashMap<>();
   private Map<U, Consumer<String>> conversionActions = new HashMap<>();
 
   @FXML
-  private VBox metricUnits, otherUnits;
-
-  public JFXConverterView(U[] units) {
-    this.units = Objects.requireNonNull(units, "Converter view can't operate with null units");
-  }
+  private VBox cards;
 
   @Override
   public void initialize() {
-    Arrays.stream(units).forEachOrdered(this::constructUnitField);
+  }
+
+  @Override
+  public void appendUnitsCard(List<U> leftColumn, List<U> rightColumn) {
+    GridPane card = new GridPane();
+    card.getStyleClass().addAll("card", "unit-card");
+    for (int i = 0; i < leftColumn.size(); i++) {
+      card.add(constructUnitField(leftColumn.get(i)), 0, i);
+    }
+    for (int i = 0; i < rightColumn.size(); i++) {
+      card.add(constructUnitField(rightColumn.get(i)), 1, i);
+    }
+    cards.getChildren().add(card);
   }
 
   @Override
@@ -81,14 +88,13 @@ public class JFXConverterView<U extends Unit> extends StackPane implements Conve
     conversionActions.put(unit, conversionAction);
   }
 
-  protected void constructUnitField(U unit) {
+  protected JFXTextField constructUnitField(U unit) {
     JFXTextField unitField = new JFXTextField();
+    GridPane.setHgrow(unitField, Priority.ALWAYS);
+    GridPane.setVgrow(unitField, Priority.ALWAYS);
+    unitField.setMaxWidth(Double.MAX_VALUE);
     unitField.setPromptText(unit.toString());
-    getUnitFieldContainerFor(unit).getChildren().add(unitField);
     unitFields.put(unit, unitField);
-  }
-
-  protected VBox getUnitFieldContainerFor(U unit) {
-    return unit.getSystem() == MeasurementSystem.METRIC ? metricUnits : otherUnits;
+    return unitField;
   }
 }
