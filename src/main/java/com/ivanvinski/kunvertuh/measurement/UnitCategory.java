@@ -20,14 +20,24 @@ package com.ivanvinski.kunvertuh.measurement;
 
 public enum UnitCategory {
 
-  GLOBAL,
-  METRIC,
-  IMPERIAL,
-  US_CUSTOMARY,
-  NON_METRIC,
-  BI,
-  BI_BIT,
-  BI_BYTE,
-  BIT,
-  BYTE
+  GLOBAL(0),
+  METRIC(1),
+  IMPERIAL(2),
+  US_CUSTOMARY(3),
+  NON_METRIC(4),
+  BIT(5),
+  BYTE(6),
+  BI(7),
+  BI_BIT(8),
+  BI_BYTE(9);
+
+  private int orderIndex;
+
+  UnitCategory(int orderIndex) {
+    this.orderIndex = orderIndex;
+  }
+
+  public int getOrderIndex() {
+    return orderIndex;
+  }
 }

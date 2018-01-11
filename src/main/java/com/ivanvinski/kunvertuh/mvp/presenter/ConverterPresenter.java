@@ -22,10 +22,12 @@ import com.google.common.eventbus.Subscribe;
 import com.ivanvinski.kunvertuh.event.EventStream;
 import com.ivanvinski.kunvertuh.i18n.Language;
 import com.ivanvinski.kunvertuh.measurement.Unit;
+import com.ivanvinski.kunvertuh.measurement.UnitCategory;
 import com.ivanvinski.kunvertuh.mvp.model.ConverterModel;
 import com.ivanvinski.kunvertuh.mvp.view.ConverterView;
 import com.ivanvinski.kunvertuh.util.DoubleStringConverter;
 import java.text.NumberFormat;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +46,7 @@ public class ConverterPresenter<U extends Unit> extends
   public void onInitialized() {
     getModel().getCategories()
         .stream()
+        .sorted(Comparator.comparingInt(UnitCategory::getOrderIndex))
         .map(getModel()::getUnits)
         .forEach(this::divideUnitsAndAppendUnitsCard);
     for (U unit : getModel().getAllUnits()) {
@@ -82,7 +85,9 @@ public class ConverterPresenter<U extends Unit> extends
   private void divideUnitsAndAppendUnitsCard(List<U> units) {
     int halfTheSize = (int) Math.ceil((float) units.size() / 2.0);
     List<U> leftColumn = units.subList(0, halfTheSize);
+    leftColumn.sort(Comparator.comparingDouble(U::getBaseUnitFactor));
     List<U> rightColumn = units.subList(halfTheSize, units.size());
+    rightColumn.sort(Comparator.comparingDouble(U::getBaseUnitFactor));
     getView().appendUnitsCard(leftColumn, rightColumn);
   }
 }

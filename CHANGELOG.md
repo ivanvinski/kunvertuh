@@ -19,6 +19,7 @@ in case active view was not set
 - Angle units conversion
 - Data transfer rate units conversion
 - Digital storage units conversion
+- Sorting by category index and base unit factor
 
 ### Changed
 - Refactored a few classes for easier testability
