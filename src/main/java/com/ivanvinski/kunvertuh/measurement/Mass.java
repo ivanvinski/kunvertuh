@@ -18,34 +18,29 @@
 
 package com.ivanvinski.kunvertuh.measurement;
 
-import static com.ivanvinski.kunvertuh.measurement.MeasurementSystem.IMPERIAL;
-import static com.ivanvinski.kunvertuh.measurement.MeasurementSystem.IMPERIAL_AND_US_CUSTOMARY;
-import static com.ivanvinski.kunvertuh.measurement.MeasurementSystem.METRIC;
-import static com.ivanvinski.kunvertuh.measurement.MeasurementSystem.US_CUSTOMARY;
-
 public enum Mass implements Unit {
 
-  MILLIGRAM(.001d, "mg", METRIC),
-  GRAM(1d, "g", METRIC),
-  DEKAGRAM(10d, "dag", METRIC),
-  KILOGRAM(1000d, "kg", METRIC),
-  METRIC_TON(1000000d, "t", METRIC),
+  MILLIGRAM(.001d, "mg", UnitCategory.METRIC),
+  GRAM(1d, "g", UnitCategory.METRIC),
+  DEKAGRAM(10d, "dag", UnitCategory.METRIC),
+  KILOGRAM(1000d, "kg", UnitCategory.METRIC),
+  METRIC_TON(1000000d, "t", UnitCategory.METRIC),
 
-  GRAIN(.06479891d, "gr", IMPERIAL_AND_US_CUSTOMARY),
-  DRAM(1.771845d, "dr", IMPERIAL_AND_US_CUSTOMARY),
-  OUNCE(28.34952d, "oz", IMPERIAL_AND_US_CUSTOMARY),
-  POUND(453.5924d, "lb", IMPERIAL_AND_US_CUSTOMARY),
-  UK_TON(1016047.203454d, "t", IMPERIAL),
-  US_TON(907185d, "t", US_CUSTOMARY);
+  GRAIN(.06479891d, "gr", UnitCategory.NON_METRIC),
+  DRAM(1.771845d, "dr", UnitCategory.NON_METRIC),
+  OUNCE(28.34952d, "oz", UnitCategory.NON_METRIC),
+  POUND(453.5924d, "lb", UnitCategory.NON_METRIC),
+  UK_TON(1016047.203454d, "t", UnitCategory.NON_METRIC),
+  US_TON(907185d, "t", UnitCategory.NON_METRIC);
 
   private double baseUnitFactor;
   private String symbol;
-  private MeasurementSystem measurementSystem;
+  private UnitCategory category;
 
-  Mass(double baseUnitFactor, String symbol, MeasurementSystem measurementSystem) {
+  Mass(double baseUnitFactor, String symbol, UnitCategory category) {
     this.baseUnitFactor = baseUnitFactor;
     this.symbol = symbol;
-    this.measurementSystem = measurementSystem;
+    this.category = category;
   }
 
   @Override
@@ -59,7 +54,7 @@ public enum Mass implements Unit {
   }
 
   @Override
-  public MeasurementSystem getSystem() {
-    return measurementSystem;
+  public UnitCategory getCategory() {
+    return category;
   }
 }

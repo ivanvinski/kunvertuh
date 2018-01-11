@@ -18,43 +18,38 @@
 
 package com.ivanvinski.kunvertuh.measurement;
 
-import static com.ivanvinski.kunvertuh.measurement.MeasurementSystem.IMPERIAL;
-import static com.ivanvinski.kunvertuh.measurement.MeasurementSystem.IMPERIAL_AND_US_CUSTOMARY;
-import static com.ivanvinski.kunvertuh.measurement.MeasurementSystem.METRIC;
-import static com.ivanvinski.kunvertuh.measurement.MeasurementSystem.US_CUSTOMARY;
-
 public enum Volume implements Unit {
 
-  MILLILITER(.001d, "ml", METRIC),
-  DECILITER(.1d, "dl", METRIC),
-  LITER(1d, "l", METRIC),
-  HECTOLITER(100d, "hl", METRIC),
-  CUBIC_METER(1000d, "m3", METRIC),
+  MILLILITER(.001d, "ml", UnitCategory.METRIC),
+  DECILITER(.1d, "dl", UnitCategory.METRIC),
+  LITER(1d, "l", UnitCategory.METRIC),
+  HECTOLITER(100d, "hl", UnitCategory.METRIC),
+  CUBIC_METER(1000d, "m3", UnitCategory.METRIC),
 
-  UK_TEASPOON(.00591939d, "tsp", IMPERIAL),
-  UK_TABLESPOON(.0177582d, "Tbsp", IMPERIAL),
-  UK_CUP(.284131d, "cp", IMPERIAL),
-  UK_FLUID_OUNCE(.0284131d, "fl oz", IMPERIAL),
-  UK_PINT(.5682612d, "pt", IMPERIAL),
-  UK_GALLON(4.54609d, "gal", IMPERIAL),
+  UK_TEASPOON(.00591939d, "tsp", UnitCategory.IMPERIAL),
+  UK_TABLESPOON(.0177582d, "Tbsp", UnitCategory.IMPERIAL),
+  UK_CUP(.284131d, "cp", UnitCategory.IMPERIAL),
+  UK_FLUID_OUNCE(.0284131d, "fl oz", UnitCategory.IMPERIAL),
+  UK_PINT(.5682612d, "pt", UnitCategory.IMPERIAL),
+  UK_GALLON(4.54609d, "gal", UnitCategory.IMPERIAL),
 
-  US_TEASPOON(.00492892d, "tsp", US_CUSTOMARY),
-  US_TABLESPOON(0.0147868d, "Tbsp", US_CUSTOMARY),
-  US_CUP(.24d, "cp", US_CUSTOMARY),
-  US_FLUID_OUNCE(.02957344d, "fl oz", US_CUSTOMARY),
-  US_PINT(.473176d, "pt", US_CUSTOMARY),
-  US_GALLON(3.7854003218d, "gal", US_CUSTOMARY),
+  US_TEASPOON(.00492892d, "tsp", UnitCategory.US_CUSTOMARY),
+  US_TABLESPOON(0.0147868d, "Tbsp", UnitCategory.US_CUSTOMARY),
+  US_CUP(.24d, "cp", UnitCategory.US_CUSTOMARY),
+  US_FLUID_OUNCE(.02957344d, "fl oz", UnitCategory.US_CUSTOMARY),
+  US_PINT(.473176d, "pt", UnitCategory.US_CUSTOMARY),
+  US_GALLON(3.7854003218d, "gal", UnitCategory.US_CUSTOMARY),
 
-  CUBIC_INCH(.01638706d, "in3", IMPERIAL_AND_US_CUSTOMARY);
+  CUBIC_INCH(.01638706d, "in3", UnitCategory.NON_METRIC);
 
   private double baseUnitFactor;
   private String symbol;
-  private MeasurementSystem measurementSystem;
+  private UnitCategory category;
 
-  Volume(double baseUnitFactor, String symbol, MeasurementSystem measurementSystem) {
+  Volume(double baseUnitFactor, String symbol, UnitCategory category) {
     this.baseUnitFactor = baseUnitFactor;
     this.symbol = symbol;
-    this.measurementSystem = measurementSystem;
+    this.category = category;
   }
 
   @Override
@@ -68,7 +63,7 @@ public enum Volume implements Unit {
   }
 
   @Override
-  public MeasurementSystem getSystem() {
-    return measurementSystem;
+  public UnitCategory getCategory() {
+    return category;
   }
 }

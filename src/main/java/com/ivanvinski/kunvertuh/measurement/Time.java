@@ -20,23 +20,25 @@ package com.ivanvinski.kunvertuh.measurement;
 
 public enum Time implements Unit {
 
-  NANOSECOND(.000000001d),
-  MICROSECOND(.000001d),
-  MILLISECOND(.001d),
-  SECOND(1d),
-  MINUTE(60d),
-  HOUR(3600d),
-  DAY(86400d),
-  WEEK(604800d),
-  MONTH(2628000d),
-  YEAR(31540000d),
-  DECADE(315400000d),
-  CENTURY(3154000000d);
+  NANOSECOND(.000000001d, UnitCategory.GLOBAL),
+  MICROSECOND(.000001d, UnitCategory.GLOBAL),
+  MILLISECOND(.001d, UnitCategory.GLOBAL),
+  SECOND(1d, UnitCategory.GLOBAL),
+  MINUTE(60d, UnitCategory.GLOBAL),
+  HOUR(3600d, UnitCategory.GLOBAL),
+  DAY(86400d, UnitCategory.GLOBAL),
+  WEEK(604800d, UnitCategory.GLOBAL),
+  MONTH(2628000d, UnitCategory.GLOBAL),
+  YEAR(31540000d, UnitCategory.GLOBAL),
+  DECADE(315400000d, UnitCategory.GLOBAL),
+  CENTURY(3154000000d, UnitCategory.GLOBAL);
 
   private double baseUnitFactor;
+  private UnitCategory category;
 
-  Time(double baseUnitFactor) {
+  Time(double baseUnitFactor, UnitCategory category) {
     this.baseUnitFactor = baseUnitFactor;
+    this.category = category;
   }
 
   @Override
@@ -50,7 +52,7 @@ public enum Time implements Unit {
   }
 
   @Override
-  public MeasurementSystem getSystem() {
-    return MeasurementSystem.METRIC;
+  public UnitCategory getCategory() {
+    return category;
   }
 }

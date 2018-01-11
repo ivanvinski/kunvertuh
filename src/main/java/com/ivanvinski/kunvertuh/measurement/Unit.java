@@ -24,5 +24,5 @@ public interface Unit {
 
   String getSymbol();
 
-  MeasurementSystem getSystem();
+  UnitCategory getCategory();
 }

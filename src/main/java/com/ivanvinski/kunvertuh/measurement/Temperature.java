@@ -20,16 +20,16 @@ package com.ivanvinski.kunvertuh.measurement;
 
 public enum Temperature implements Unit {
 
-  CELSIUS("C", MeasurementSystem.METRIC),
-  FAHRENHEIT("F", MeasurementSystem.IMPERIAL_AND_US_CUSTOMARY),
-  KELVIN("K", null);
+  CELSIUS("C", UnitCategory.METRIC),
+  KELVIN("K", UnitCategory.METRIC),
+  FAHRENHEIT("F", UnitCategory.NON_METRIC);
 
   private String symbol;
-  private MeasurementSystem system;
+  private UnitCategory category;
 
-  Temperature(String symbol, MeasurementSystem system) {
+  Temperature(String symbol, UnitCategory category) {
     this.symbol = symbol;
-    this.system = system;
+    this.category = category;
   }
 
   @Override
@@ -43,7 +43,7 @@ public enum Temperature implements Unit {
   }
 
   @Override
-  public MeasurementSystem getSystem() {
-    return system;
+  public UnitCategory getCategory() {
+    return category;
   }
 }

@@ -18,25 +18,22 @@
 
 package com.ivanvinski.kunvertuh.measurement;
 
-import static com.ivanvinski.kunvertuh.measurement.MeasurementSystem.IMPERIAL_AND_US_CUSTOMARY;
-import static com.ivanvinski.kunvertuh.measurement.MeasurementSystem.METRIC;
-
 public enum Pressure implements Unit {
 
-  ATMOSPHERE(101325d, "atm", null),
-  BAR(100000d, "bar", METRIC),
-  PASCAL(1d, "Pa", METRIC),
-  POUND_FORCE_PER_SQUARE_INCH(6894.76d, "psi", IMPERIAL_AND_US_CUSTOMARY),
-  MILLIMETER_OF_MERCURY(133.322d, "mmHg", null);
+  PASCAL(1d, "Pa", UnitCategory.METRIC),
+  BAR(100000d, "bar", UnitCategory.METRIC),
+  MILLIMETER_OF_MERCURY(133.322d, "mmHg", UnitCategory.METRIC),
+  ATMOSPHERE(101325d, "atm", UnitCategory.US_CUSTOMARY),
+  POUND_FORCE_PER_SQUARE_INCH(6894.76d, "psi", UnitCategory.US_CUSTOMARY);
 
   private double baseUnitFactor;
   private String symbol;
-  private MeasurementSystem system;
+  private UnitCategory category;
 
-  Pressure(double baseUnitFactor, String symbol, MeasurementSystem system) {
+  Pressure(double baseUnitFactor, String symbol, UnitCategory category) {
     this.baseUnitFactor = baseUnitFactor;
     this.symbol = symbol;
-    this.system = system;
+    this.category = category;
   }
 
   @Override
@@ -50,7 +47,7 @@ public enum Pressure implements Unit {
   }
 
   @Override
-  public MeasurementSystem getSystem() {
-    return system;
+  public UnitCategory getCategory() {
+    return category;
   }
 }

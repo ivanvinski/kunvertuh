@@ -18,25 +18,22 @@
 
 package com.ivanvinski.kunvertuh.measurement;
 
-import static com.ivanvinski.kunvertuh.measurement.MeasurementSystem.METRIC;
-import static com.ivanvinski.kunvertuh.measurement.MeasurementSystem.US_CUSTOMARY;
-
 public enum Speed implements Unit {
 
-  METER_PER_SECOND(1d, "m/s", METRIC),
-  KILOMETER_PER_HOUR(.277778d, "km/h", METRIC),
-  FOOT_PER_SECOND(0.3048d, "ft/s", US_CUSTOMARY),
-  MILE_PER_HOUR(0.44704d, "mph", US_CUSTOMARY),
-  KNOT(.514444d, "kn", null);
+  METER_PER_SECOND(1d, "m/s", UnitCategory.METRIC),
+  KILOMETER_PER_HOUR(.277778d, "km/h", UnitCategory.METRIC),
+  KNOT(.514444d, "kn", UnitCategory.METRIC),
+  FOOT_PER_SECOND(0.3048d, "ft/s", UnitCategory.US_CUSTOMARY),
+  MILE_PER_HOUR(0.44704d, "mph", UnitCategory.US_CUSTOMARY);
 
   private double baseUnitFactor;
   private String symbol;
-  private MeasurementSystem measurementSystem;
+  private UnitCategory category;
 
-  Speed(double baseUnitFactor, String symbol, MeasurementSystem measurementSystem) {
+  Speed(double baseUnitFactor, String symbol, UnitCategory category) {
     this.baseUnitFactor = baseUnitFactor;
     this.symbol = symbol;
-    this.measurementSystem = measurementSystem;
+    this.category = category;
   }
 
   @Override
@@ -50,7 +47,7 @@ public enum Speed implements Unit {
   }
 
   @Override
-  public MeasurementSystem getSystem() {
-    return measurementSystem;
+  public UnitCategory getCategory() {
+    return category;
   }
 }

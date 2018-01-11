@@ -18,34 +18,29 @@
 
 package com.ivanvinski.kunvertuh.measurement;
 
-import static com.ivanvinski.kunvertuh.measurement.MeasurementSystem.IMPERIAL;
-import static com.ivanvinski.kunvertuh.measurement.MeasurementSystem.IMPERIAL_AND_US_CUSTOMARY;
-import static com.ivanvinski.kunvertuh.measurement.MeasurementSystem.METRIC;
-import static com.ivanvinski.kunvertuh.measurement.MeasurementSystem.US_CUSTOMARY;
-
 public enum Length implements Unit {
 
-  MILLIMETER(.001d, "mm", METRIC),
-  CENTIMETER(.01d, "cm", METRIC),
-  DECIMETER(.1d, "dm", METRIC),
-  METER(1d, "m", METRIC),
-  KILOMETER(1000d, "km", METRIC),
+  MILLIMETER(.001d, "mm", UnitCategory.METRIC),
+  CENTIMETER(.01d, "cm", UnitCategory.METRIC),
+  DECIMETER(.1d, "dm", UnitCategory.METRIC),
+  METER(1d, "m", UnitCategory.METRIC),
+  KILOMETER(1000d, "km", UnitCategory.METRIC),
 
-  INCH(.0254d, "in", IMPERIAL_AND_US_CUSTOMARY),
-  FOOT(.3048d, "ft", IMPERIAL_AND_US_CUSTOMARY),
-  YARD(.9144d, "yd", IMPERIAL_AND_US_CUSTOMARY),
-  MILE(1609.344d, "mi", IMPERIAL_AND_US_CUSTOMARY),
-  UK_LEAGUE(4828d, "st leag", IMPERIAL),
-  US_LEAGUE(4828.0417d, "st leag", US_CUSTOMARY);
+  INCH(.0254d, "in", UnitCategory.NON_METRIC),
+  FOOT(.3048d, "ft", UnitCategory.NON_METRIC),
+  YARD(.9144d, "yd", UnitCategory.NON_METRIC),
+  MILE(1609.344d, "mi", UnitCategory.NON_METRIC),
+  UK_LEAGUE(4828d, "st leag", UnitCategory.NON_METRIC),
+  US_LEAGUE(4828.0417d, "st leag", UnitCategory.NON_METRIC);
 
   private double baseUnitFactor;
   private String symbol;
-  private MeasurementSystem measurementSystem;
+  private UnitCategory category;
 
-  Length(double baseUnitFactor, String symbol, MeasurementSystem measurementSystem) {
+  Length(double baseUnitFactor, String symbol, UnitCategory category) {
     this.symbol = symbol;
     this.baseUnitFactor = baseUnitFactor;
-    this.measurementSystem = measurementSystem;
+    this.category = category;
   }
 
   @Override
@@ -58,7 +53,8 @@ public enum Length implements Unit {
     return symbol;
   }
 
-  public MeasurementSystem getSystem() {
-    return measurementSystem;
+  @Override
+  public UnitCategory getCategory() {
+    return category;
   }
 }

@@ -20,29 +20,31 @@ package com.ivanvinski.kunvertuh.measurement;
 
 public enum DataTransferRate implements Unit {
 
-  BIT_PER_SECOND(1d, "bit/s"),
-  KILOBIT_PER_SECOND(1000d, "Kbit/s"),
-  MEGABIT_PER_SECOND(1000000d, "Mbit/s"),
-  GIGABIT_PER_SECOND(1000000000d, "Gbit/s"),
-  TERABIT_PER_SECOND(1000000000000d, "Tbit/s"),
+  BIT_PER_SECOND(1d, "bit/s", UnitCategory.BIT),
+  KILOBIT_PER_SECOND(1000d, "Kbit/s", UnitCategory.BIT),
+  MEGABIT_PER_SECOND(1000000d, "Mbit/s", UnitCategory.BIT),
+  GIGABIT_PER_SECOND(1000000000d, "Gbit/s", UnitCategory.BIT),
+  TERABIT_PER_SECOND(1000000000000d, "Tbit/s", UnitCategory.BIT),
 
-  BYTE_PER_SECOND(8d, "B/s"),
-  KILOBYTE_PER_SECOND(8000d, "KB/s"),
-  MEGABYTE_PER_SECOND(8000000d, "MB/s"),
-  GIGABYTE_PER_SECOND(8000000000d, "GB/s"),
-  TERABYTE_PER_SECOND(8000000000000d, "TB/s"),
+  BYTE_PER_SECOND(8d, "B/s", UnitCategory.BYTE),
+  KILOBYTE_PER_SECOND(8000d, "KB/s", UnitCategory.BYTE),
+  MEGABYTE_PER_SECOND(8000000d, "MB/s", UnitCategory.BYTE),
+  GIGABYTE_PER_SECOND(8000000000d, "GB/s", UnitCategory.BYTE),
+  TERABYTE_PER_SECOND(8000000000000d, "TB/s", UnitCategory.BYTE),
 
-  KIBIBIT_PER_SECOND(1024d, "Kibit/s"),
-  MEBIBIT_PER_SECOND(1049000d, "Mebit/s"),
-  GIBIBIT_PER_SECOND(1074000000d, "Gibit/s"),
-  TEBIBIT_PER_SECOND(1100000000000d, "Tebit/s");
+  KIBIBIT_PER_SECOND(1024d, "Kibit/s", UnitCategory.BI),
+  MEBIBIT_PER_SECOND(1049000d, "Mebit/s", UnitCategory.BI),
+  GIBIBIT_PER_SECOND(1074000000d, "Gibit/s", UnitCategory.BI),
+  TEBIBIT_PER_SECOND(1100000000000d, "Tebit/s", UnitCategory.BI);
 
   private double baseUnitFactor;
   private String symbol;
+  private UnitCategory category;
 
-  DataTransferRate(double baseUnitFactor, String symbol) {
+  DataTransferRate(double baseUnitFactor, String symbol, UnitCategory category) {
     this.baseUnitFactor = baseUnitFactor;
     this.symbol = symbol;
+    this.category = category;
   }
 
   @Override
@@ -56,7 +58,7 @@ public enum DataTransferRate implements Unit {
   }
 
   @Override
-  public MeasurementSystem getSystem() {
-    return null;
+  public UnitCategory getCategory() {
+    return category;
   }
 }

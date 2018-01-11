@@ -20,19 +20,21 @@ package com.ivanvinski.kunvertuh.measurement;
 
 public enum Angle implements Unit {
 
-  DEGREE(1d, "°"),
-  MINUTE_OF_ARC(1d / 60d, "'"),
-  SECOND_OF_ARC(1d / 3600d, "''"),
-  RADIAN(57.2958d, "rad"),
-  MILLIRADIAN(.05729578d, "mil"),
-  GRADIAN(.9d, "gon");
+  DEGREE(1d, "°", UnitCategory.GLOBAL),
+  MINUTE_OF_ARC(1d / 60d, "'", UnitCategory.GLOBAL),
+  SECOND_OF_ARC(1d / 3600d, "''", UnitCategory.GLOBAL),
+  RADIAN(57.2958d, "rad", UnitCategory.GLOBAL),
+  MILLIRADIAN(.05729578d, "mil", UnitCategory.GLOBAL),
+  GRADIAN(.9d, "gon", UnitCategory.GLOBAL);
 
   private double baseUnitFactor;
   private String symbol;
+  private UnitCategory category;
 
-  Angle(double baseUnitFactor, String symbol) {
+  Angle(double baseUnitFactor, String symbol, UnitCategory category) {
     this.baseUnitFactor = baseUnitFactor;
     this.symbol = symbol;
+    this.category = category;
   }
 
   @Override
@@ -46,7 +48,7 @@ public enum Angle implements Unit {
   }
 
   @Override
-  public MeasurementSystem getSystem() {
-    return null;
+  public UnitCategory getCategory() {
+    return category;
   }
 }

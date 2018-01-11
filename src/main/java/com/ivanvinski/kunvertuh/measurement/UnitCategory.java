@@ -18,7 +18,16 @@
 
 package com.ivanvinski.kunvertuh.measurement;
 
-public enum MeasurementSystem {
+public enum UnitCategory {
 
-  METRIC, IMPERIAL, US_CUSTOMARY, IMPERIAL_AND_US_CUSTOMARY
+  GLOBAL,
+  METRIC,
+  IMPERIAL,
+  US_CUSTOMARY,
+  NON_METRIC,
+  BI,
+  BI_BIT,
+  BI_BYTE,
+  BIT,
+  BYTE
 }

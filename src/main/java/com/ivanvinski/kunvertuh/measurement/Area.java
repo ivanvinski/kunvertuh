@@ -18,31 +18,28 @@
 
 package com.ivanvinski.kunvertuh.measurement;
 
-import static com.ivanvinski.kunvertuh.measurement.MeasurementSystem.IMPERIAL_AND_US_CUSTOMARY;
-import static com.ivanvinski.kunvertuh.measurement.MeasurementSystem.METRIC;
-
 public enum Area implements Unit {
 
-  SQUARE_MILLIMETER(.000001d, "mm2", METRIC),
-  SQUARE_CENTIMETER(.0001d, "cm2", METRIC),
-  SQUARE_METER(1d, "m2", METRIC),
-  HECTARE(10000d, "ha", METRIC),
-  SQUARE_KILOMETER(1000000d, "km2", METRIC),
+  SQUARE_MILLIMETER(.000001d, "mm2", UnitCategory.METRIC),
+  SQUARE_CENTIMETER(.0001d, "cm2", UnitCategory.METRIC),
+  SQUARE_METER(1d, "m2", UnitCategory.METRIC),
+  HECTARE(10000d, "ha", UnitCategory.METRIC),
+  SQUARE_KILOMETER(1000000d, "km2", UnitCategory.METRIC),
 
-  SQUARE_INCH(.00064516d, "in2", IMPERIAL_AND_US_CUSTOMARY),
-  SQUARE_FOOT(.092903d, "ft2", IMPERIAL_AND_US_CUSTOMARY),
-  SQUARE_YARD(.836127d, "yd2", IMPERIAL_AND_US_CUSTOMARY),
-  ACRE(4046.86d, "ac2", IMPERIAL_AND_US_CUSTOMARY),
-  SQUARE_MILE(2590000d, "mi2", IMPERIAL_AND_US_CUSTOMARY);
+  SQUARE_INCH(.00064516d, "in2", UnitCategory.NON_METRIC),
+  SQUARE_FOOT(.092903d, "ft2", UnitCategory.NON_METRIC),
+  SQUARE_YARD(.836127d, "yd2", UnitCategory.NON_METRIC),
+  ACRE(4046.86d, "ac2", UnitCategory.NON_METRIC),
+  SQUARE_MILE(2590000d, "mi2", UnitCategory.NON_METRIC);
 
   private double baseUnitFactor;
   private String symbol;
-  private MeasurementSystem measurementSystem;
+  private UnitCategory category;
 
-  Area(double baseUnitFactor, String symbol, MeasurementSystem measurementSystem) {
+  Area(double baseUnitFactor, String symbol, UnitCategory category) {
     this.baseUnitFactor = baseUnitFactor;
     this.symbol = symbol;
-    this.measurementSystem = measurementSystem;
+    this.category = category;
   }
 
   @Override
@@ -56,7 +53,7 @@ public enum Area implements Unit {
   }
 
   @Override
-  public MeasurementSystem getSystem() {
-    return measurementSystem;
+  public UnitCategory getCategory() {
+    return category;
   }
 }
