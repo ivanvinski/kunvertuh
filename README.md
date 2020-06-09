@@ -4,6 +4,8 @@
 
 Kunvertuh, pronounced as *converter* in a British accent, is a unit conversion desktop application that supports plethora of units. Whether you're a marathon runner from Europe who wants to share their progress with their American friends or you're wondering the difference between mebibit and megabyte, Kunvertuh will serve you well - even if you're offline.
 
+![Kunvertuh screenshot](screenshot.png)
+
 ## Features
 
 ### Unit conversion
